@@ -4,12 +4,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.jfeat</groupId>
-    <artifactId>sb-seed</artifactId>
+    <artifactId>doctor-booking</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
-    <name>SpringBoot-Seed</name>
-    <description>Seed Component</description>
+    <name>Doctor Booking</name>
+    <description>Doctor Booking</description>
 
     <parent>
         <groupId>com.jfeat</groupId>
@@ -227,8 +227,8 @@
                 <version>1.0.0</version>
                 <configuration>
                     <!-- change to your module name -->
-                    <moduleName>module1</moduleName>
-                    <dbUrl>jdbc:mysql://127.0.0.1:3306/sbseed</dbUrl>
+                    <moduleName>booking</moduleName>
+                    <dbUrl>jdbc:mysql://127.0.0.1:3306/drbooking</dbUrl>
                     <username>root</username>
                     <password>root</password>
                     <outputDir>src/main/java</outputDir>
