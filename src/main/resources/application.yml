@@ -68,7 +68,7 @@ mybatis-plus:
 spring:
   profiles: test
   datasource:
-      url: jdbc:h2:mem:sbseed;DB_CLOSE_DELAY=-1;DATABASE_TO_UPPER=false
+      url: jdbc:h2:mem:embbooking;DB_CLOSE_DELAY=-1;DATABASE_TO_UPPER=false
       driver-class-name: org.h2.Driver
       username: sa
       password:
@@ -90,7 +90,7 @@ am:
 spring:
   profiles: dev
   datasource:
-      url: jdbc:mysql://127.0.0.1:3306/sbseed?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
+      url: jdbc:mysql://127.0.0.1:3306/embbooking?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
       username: root
       password: root
       filters: log4j,wall,mergeStat
@@ -111,7 +111,7 @@ am:
 spring:
   profiles: produce
   datasource:
-      url: jdbc:mysql://127.0.0.1:3306/sbseed?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
+      url: jdbc:mysql://127.0.0.1:3306/embbooking?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
       username: root
       password: root
       filters: log4j,wall,mergeStat

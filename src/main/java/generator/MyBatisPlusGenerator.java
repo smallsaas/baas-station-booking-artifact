@@ -28,13 +28,13 @@ public class MyBatisPlusGenerator {
 
         // 全局配置
         GlobalConfig gc = new GlobalConfig();
-        gc.setOutputDir("src/main/java");//这里写你自己的java目录
+        gc.setOutputDir("C:\\Users\\Administrator\\Desktop\\platform\\doctor\\doctor-booking\\src\\main\\java");//这里写你自己的java目录
         gc.setFileOverride(true);//是否覆盖
         gc.setActiveRecord(true);
         gc.setEnableCache(false);// XML 二级缓存
         gc.setBaseResultMap(true);// XML ResultMap
         gc.setBaseColumnList(false);// XML columList
-        gc.setAuthor("admin");
+        gc.setAuthor("J4cob");
         mpg.setGlobalConfig(gc);
 
         // 数据源配置
@@ -50,12 +50,12 @@ public class MyBatisPlusGenerator {
         dsc.setDriverName("com.mysql.jdbc.Driver");
         dsc.setUsername("root");
         dsc.setPassword("root");
-        dsc.setUrl("jdbc:mysql://127.0.0.1:3306/sbseed?characterEncoding=utf8");
+        dsc.setUrl("jdbc:mysql://127.0.0.1:3306/embbooking?characterEncoding=utf8");
         mpg.setDataSource(dsc);
 
         // 策略配置
         StrategyConfig strategy = new StrategyConfig();
-        //strategy.setTablePrefix(new String[]{"_"});// 此处可以修改为您的表前缀
+        strategy.setTablePrefix(new String[]{"emb_"});// 此处可以修改为您的表前缀
         strategy.setNaming(NamingStrategy.underline_to_camel);// 表名生成策略
         strategy.setLogicDeleteFieldName("delete_flag"); //逻辑删除字段
         mpg.setStrategy(strategy);
@@ -63,9 +63,9 @@ public class MyBatisPlusGenerator {
         // 包配置
         PackageConfig pc = new PackageConfig();
         pc.setParent(null);
-        pc.setEntity("com.jfeat.am.common.persistence.model");
-        pc.setMapper("com.jfeat.am.common.persistence.dao");
-        pc.setXml("com.jfeat.am.common.persistence.dao.mapping");
+        pc.setEntity("com.jfeat.am.module.booking.services.persistence.model");
+        pc.setMapper("com.jfeat.am.module.booking.services.persistence.mapper");
+        pc.setXml("com.jfeat.am.module.booking.services.persistence.mapping");
         pc.setService("TTT");       //本项目没用，生成之后删掉
         pc.setServiceImpl("TTT");   //本项目没用，生成之后删掉
         pc.setController("TTT");    //本项目没用，生成之后删掉
