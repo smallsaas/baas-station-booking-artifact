@@ -6,9 +6,9 @@ import com.jfeat.am.module.booking.services.persistence.model.Studio;
 import java.util.List;
 
 /**
- * Created by Administrator on 2017/9/14.
+ * Created by J4cob on 2017/9/14.
  */
-public class StudioModel extends Studio{
+public class StudioModel extends Studio {
     public List<Doctor> getDoctors() {
         return doctors;
     }
@@ -17,5 +17,5 @@ public class StudioModel extends Studio{
         this.doctors = doctors;
     }
 
-    List<Doctor>  doctors;
+    List<Doctor> doctors;
 }
