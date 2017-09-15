@@ -7,7 +7,7 @@
         emb_studio.*
     </sql>
     <select id="queryStudio" resultType="Studio">
-    SELECT
+    SELECT emb_service.name AS sname ,emb_studio.*
     FROM emb_service
         RIGHT JOIN emb_studio
         ON emb_studio.id = emb_service.studio_id
