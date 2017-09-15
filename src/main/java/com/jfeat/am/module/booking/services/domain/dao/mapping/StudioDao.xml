@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jfeat.am.module.booking.services.domain.dao.StudioDao">
+
+    <sql id="Base_Column_List">
+        emb_service.name AS sname,
+        emb_studio.*
+    </sql>
+    <select id="queryStudio" resultType="Studio">
+    SELECT
+    FROM emb_service
+        RIGHT JOIN emb_studio
+        ON emb_studio.id = emb_service.studio_id
+    WHERE 1=1
+    <if test="name != null and name != ''">
+        AND emb_service.name LIKE CONCAT('%',#{name},'%')
+    </if>
+
+    </select>
+
+</mapper>

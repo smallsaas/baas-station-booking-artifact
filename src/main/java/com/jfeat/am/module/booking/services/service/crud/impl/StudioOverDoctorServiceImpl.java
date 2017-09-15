@@ -8,6 +8,7 @@ import com.jfeat.am.module.booking.services.persistence.mapper.DoctorMapper;
 import com.jfeat.am.module.booking.services.persistence.mapper.StudioMapper;
 import com.jfeat.am.module.booking.services.persistence.model.Doctor;
 import com.jfeat.am.module.booking.services.persistence.model.Studio;
+import com.jfeat.am.module.booking.services.service.crud.StudioOverDoctorService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -18,7 +19,7 @@ import java.util.Map;
  * Created by J4cob on 2017/9/14.
  */
 @Service
-public class StudioOverDoctorServiceImpl implements CRUDServiceOverSlave<Studio,StudioModel,Doctor>{
+public class StudioOverDoctorServiceImpl implements StudioOverDoctorService, CRUDServiceOverSlave<Studio, StudioModel, Doctor> {
 
     @Resource
     StudioMapper studioMapper;
@@ -48,7 +49,7 @@ public class StudioOverDoctorServiceImpl implements CRUDServiceOverSlave<Studio,
 
     @Override
     public Integer createMaster(Studio studio) {
-        return null;
+        return studioMapper.insert(studio);
     }
 
     @Override
@@ -58,7 +59,7 @@ public class StudioOverDoctorServiceImpl implements CRUDServiceOverSlave<Studio,
 
     @Override
     public Integer updateMaster(Studio studio) {
-        return null;
+        return studioMapper.updateById(studio);
     }
 
     @Override
@@ -73,7 +74,7 @@ public class StudioOverDoctorServiceImpl implements CRUDServiceOverSlave<Studio,
 
     @Override
     public Integer deleteMaster(long l) {
-        return null;
+        return studioMapper.deleteById(l);
     }
 
     @Override
@@ -93,22 +94,22 @@ public class StudioOverDoctorServiceImpl implements CRUDServiceOverSlave<Studio,
 
     @Override
     public Integer addSlaveItem(long l, Doctor doctor) {
-        return null;
+        return doctorMapper.insert(doctor);
     }
 
     @Override
     public Integer updateSlaveItem(long l, Doctor doctor) {
-        return null;
+        return doctorMapper.updateById(doctor);
     }
 
     @Override
     public Integer removeSlaveItem(long l, long l1) {
-        return null;
+        return doctorMapper.deleteById(l1);
     }
 
     @Override
     public Doctor getSlaveItem(long l, long l1) {
-        return null;
+        return doctorMapper.selectById(l1);
     }
 
     @Override

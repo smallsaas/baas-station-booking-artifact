@@ -9,6 +9,9 @@ import java.util.List;
  * Created by J4cob on 2017/9/14.
  */
 public class StudioModel extends Studio {
+
+    List<Doctor> doctors;
+
     public List<Doctor> getDoctors() {
         return doctors;
     }
@@ -17,5 +20,4 @@ public class StudioModel extends Studio {
         this.doctors = doctors;
     }
 
-    List<Doctor> doctors;
 }

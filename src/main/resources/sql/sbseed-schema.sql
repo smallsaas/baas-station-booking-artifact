@@ -10,31 +10,29 @@ Target Server Type    : MYSQL
 Target Server Version : 50718
 File Encoding         : 65001
 
-Date: 2017-09-14 17:34:06
+Date: 2017-09-15 10:11:31
 */
 
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
--- Table structure for emb_appointment
+-- Table structure for emb_customer
 -- ----------------------------
-DROP TABLE IF EXISTS `emb_appointment`;
-CREATE TABLE `emb_appointment` (
+DROP TABLE IF EXISTS `emb_customer`;
+CREATE TABLE `emb_customer` (
   `id` bigint(20) NOT NULL COMMENT '主键',
-  `studio_id` bigint(20) NOT NULL COMMENT '工作室ID',
-  `doctor_id` bigint(20) NOT NULL COMMENT '技师ID',
-  `user_id` bigint(20) NOT NULL COMMENT '技师姓名',
-  `service_id` bigint(20) NOT NULL COMMENT '类型ID',
-  `status` varchar(20) NOT NULL COMMENT ' 订单状态',
-  `fee` decimal(10,2) NOT NULL COMMENT '预约费用',
-  `create_time` date NOT NULL COMMENT ' 创建时间',
-  `appointment_time` date NOT NULL COMMENT ' 预约时间',
-  `close_time` date NOT NULL COMMENT ' 完成(关闭)时间',
+  `name` varchar(50) NOT NULL COMMENT '联系人姓名（即客户姓名）',
+  `phone` varchar(30) NOT NULL COMMENT '联系电话',
+  `birthday` date NOT NULL COMMENT '生日',
+  `verified` int(11) NOT NULL COMMENT '是否手机认证',
+  `sex` varchar(20) NOT NULL COMMENT ' 性别',
+  `wechat` varchar(20) NOT NULL COMMENT '微信号',
+  `description` varchar(255) NOT NULL COMMENT '自我描述',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of emb_appointment
+-- Records of emb_customer
 -- ----------------------------
 
 -- ----------------------------
@@ -100,26 +98,21 @@ CREATE TABLE `emb_studio` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Records of emb_studio
--- ----------------------------
 
 -- ----------------------------
--- Table structure for emb_user
+-- Table structure for emb_appointment
 -- ----------------------------
-DROP TABLE IF EXISTS `emb_user`;
-CREATE TABLE `emb_user` (
+DROP TABLE IF EXISTS `emb_appointment`;
+CREATE TABLE `emb_appointment` (
   `id` bigint(20) NOT NULL COMMENT '主键',
-  `name` varchar(50) NOT NULL COMMENT '联系人姓名（即客户姓名）',
-  `phone` varchar(30) NOT NULL COMMENT '联系电话',
-  `birthday` date NOT NULL COMMENT '生日',
-  `verified` int(11) NOT NULL COMMENT '是否手机认证',
-  `sex` varchar(20) NOT NULL COMMENT ' 性别',
-  `wechat` varchar(20) NOT NULL COMMENT '微信号',
-  `description` varchar(255) NOT NULL COMMENT '自我描述',
+  `studio_id` bigint(20) NOT NULL COMMENT '工作室ID',
+  `doctor_id` bigint(20) NOT NULL COMMENT '技师ID',
+  `user_id` bigint(20) NOT NULL COMMENT '技师姓名',
+  `service_id` bigint(20) NOT NULL COMMENT '类型ID',
+  `status` varchar(20) NOT NULL COMMENT ' 订单状态',
+  `fee` decimal(10,2) NOT NULL COMMENT '预约费用',
+  `create_time` date NOT NULL COMMENT ' 创建时间',
+  `appointment_time` date NOT NULL COMMENT ' 预约时间',
+  `close_time` date NOT NULL COMMENT ' 完成(关闭)时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of emb_user
--- ----------------------------
