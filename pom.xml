@@ -20,6 +20,7 @@
 
     <properties>
         <sb-base.version>1.0.0</sb-base.version>
+        <sb-account.version>1.0.0</sb-base.version>
         <sb-crud.version>1.0.0-SNAPSHOT</sb-crud.version>
     </properties>
 
@@ -28,6 +29,10 @@
             <groupId>com.jfeat</groupId>
             <artifactId>sb-base</artifactId>
             <version>${sb-base.version}</version>
+        <dependency>
+            <groupId>com.jfeat</groupId>
+            <artifactId>sb-account</artifactId>
+            <version>${sb-account.version}</version>
         </dependency>
         <dependency>
             <groupId>com.jfeat</groupId>
