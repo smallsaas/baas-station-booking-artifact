@@ -29,6 +29,7 @@
             <groupId>com.jfeat</groupId>
             <artifactId>sb-base</artifactId>
             <version>${sb-base.version}</version>
+        </dependency>
         <dependency>
             <groupId>com.jfeat</groupId>
             <artifactId>sb-account</artifactId>
