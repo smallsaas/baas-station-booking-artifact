@@ -38,8 +38,8 @@ public class AppointmentEndpoint extends BaseController{
                                 @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
                                 @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize,
                                 @RequestParam(name = "status",required = false) String status,
-                                @RequestParam(name = "status",required = false)long studioId,
-                                @RequestParam(name = "status",required = false)Date createTime){
+                                @RequestParam(name = "studioId",required = false)long studioId,
+                                @RequestParam(name = "createTime",required = false)Date createTime){
         List<Appointment> appointments = patchService.queryAppointment(page,status,studioId,createTime);
         page.setSize(pageSize);
         page.setCurrent(pageNum);
