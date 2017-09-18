@@ -13,7 +13,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author J4cob
- * @since 2017-09-15
+ * @since 2017-09-18
  */
 @TableName("emb_service")
 public class Service extends Model<Service> {

@@ -11,6 +11,18 @@ import java.util.List;
  * Created by Administrator on 2017/9/15.
  */
 public interface StudioDao{
-    List<Studio> queryStudio(Page<Studio> page,
+
+    /*
+    *   query  by ServiceType
+    * */
+    List<Studio> queryStudioByServiceType(Page<Studio> page,
                              @Param("name") String name);
+
+
+    /*
+    *   query  by Site
+    * */
+    List<Studio> queryStudioBySite(Page<Studio> page,
+                                          @Param("site") String site);
+
 }

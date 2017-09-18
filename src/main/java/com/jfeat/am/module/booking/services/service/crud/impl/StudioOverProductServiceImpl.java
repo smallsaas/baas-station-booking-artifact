@@ -6,9 +6,11 @@ import com.jfeat.am.common.crud.CRUDServiceOverSlave;
 import com.jfeat.am.module.booking.services.domain.model.StudioModel;
 import com.jfeat.am.module.booking.services.persistence.mapper.DoctorMapper;
 import com.jfeat.am.module.booking.services.persistence.mapper.StudioMapper;
+import com.jfeat.am.module.booking.services.persistence.mapper.StudioProductMapper;
 import com.jfeat.am.module.booking.services.persistence.model.Doctor;
 import com.jfeat.am.module.booking.services.persistence.model.Studio;
-import com.jfeat.am.module.booking.services.service.crud.StudioOverDoctorService;
+import com.jfeat.am.module.booking.services.persistence.model.StudioProduct;
+import com.jfeat.am.module.booking.services.service.crud.StudioOverProductService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -19,12 +21,12 @@ import java.util.Map;
  * Created by J4cob on 2017/9/14.
  */
 @Service
-public class StudioOverDoctorServiceImpl implements StudioOverDoctorService, CRUDServiceOverSlave<Studio, StudioModel, Doctor> {
+public class StudioOverProductServiceImpl implements StudioOverProductService, CRUDServiceOverSlave<Studio, StudioModel, StudioProduct> {
 
     @Resource
     StudioMapper studioMapper;
     @Resource
-    DoctorMapper doctorMapper;
+    StudioProductMapper productMapper;
 
 
     @Override
@@ -68,13 +70,13 @@ public class StudioOverDoctorServiceImpl implements StudioOverDoctorService, CRU
     }
 
     @Override
-    public Studio retrieveMaster(long l) {
-        return studioMapper.selectById(l);
+    public Studio retrieveMaster(long id) {
+        return studioMapper.selectById(id);
     }
 
     @Override
-    public Integer deleteMaster(long l) {
-        return studioMapper.deleteById(l);
+    public Integer deleteMaster(long id) {
+        return studioMapper.deleteById(id);
     }
 
     @Override
@@ -92,28 +94,29 @@ public class StudioOverDoctorServiceImpl implements StudioOverDoctorService, CRU
         return null;
     }
 
+
     @Override
-    public Integer addSlaveItem(long l, Doctor doctor) {
-        return doctorMapper.insert(doctor);
+    public Integer addSlaveItem(long id, StudioProduct product) {
+        return productMapper.insert(product);
     }
 
     @Override
-    public Integer updateSlaveItem(long l, Doctor doctor) {
-        return doctorMapper.updateById(doctor);
+    public Integer updateSlaveItem(long id, StudioProduct product) {
+        return productMapper.updateById(product);
     }
 
     @Override
-    public Integer removeSlaveItem(long l, long l1) {
-        return doctorMapper.deleteById(l1);
+    public Integer removeSlaveItem(long masterId, long id) {
+        return productMapper.deleteById(id);
     }
 
     @Override
-    public Doctor getSlaveItem(long l, long l1) {
-        return doctorMapper.selectById(l1);
+    public StudioProduct getSlaveItem(long masterId, long id) {
+        return productMapper.selectById(id);
     }
 
     @Override
-    public List<Doctor> selectSlaveItemList(long l) {
+    public List<StudioProduct> selectSlaveItemList(long l) {
         return null;
     }
 
@@ -121,4 +124,5 @@ public class StudioOverDoctorServiceImpl implements StudioOverDoctorService, CRU
     public Integer bulkRemoveSlaveItemList(long l, List<Long> list) {
         return null;
     }
+
 }

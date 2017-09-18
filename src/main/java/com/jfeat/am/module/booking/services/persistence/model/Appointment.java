@@ -15,7 +15,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author J4cob
- * @since 2017-09-15
+ * @since 2017-09-18
  */
 @TableName("emb_appointment")
 public class Appointment extends Model<Appointment> {
@@ -69,6 +69,21 @@ public class Appointment extends Model<Appointment> {
      */
 	@TableField("close_time")
 	private Date closeTime;
+    /**
+     * 保留字段
+     */
+	@TableField("field_a")
+	private String fieldA;
+    /**
+     * 保留字段
+     */
+	@TableField("field_b")
+	private String fieldB;
+    /**
+     * 保留字段
+     */
+	@TableField("field_c")
+	private String fieldC;
 
 
 	public Long getId() {
@@ -151,6 +166,30 @@ public class Appointment extends Model<Appointment> {
 		this.closeTime = closeTime;
 	}
 
+	public String getFieldA() {
+		return fieldA;
+	}
+
+	public void setFieldA(String fieldA) {
+		this.fieldA = fieldA;
+	}
+
+	public String getFieldB() {
+		return fieldB;
+	}
+
+	public void setFieldB(String fieldB) {
+		this.fieldB = fieldB;
+	}
+
+	public String getFieldC() {
+		return fieldC;
+	}
+
+	public void setFieldC(String fieldC) {
+		this.fieldC = fieldC;
+	}
+
 	@Override
 	protected Serializable pkVal() {
 		return this.id;
@@ -169,6 +208,9 @@ public class Appointment extends Model<Appointment> {
 			", createTime=" + createTime +
 			", appointmentTime=" + appointmentTime +
 			", closeTime=" + closeTime +
+			", fieldA=" + fieldA +
+			", fieldB=" + fieldB +
+			", fieldC=" + fieldC +
 			"}";
 	}
 }

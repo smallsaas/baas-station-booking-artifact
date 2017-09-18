@@ -10,6 +10,10 @@
 		<result column="work_time" property="workTime" />
 		<result column="fee" property="fee" />
 		<result column="studio_site" property="studioSite" />
+		<result column="covers" property="covers" />
+		<result column="field_a" property="fieldA" />
+		<result column="field_b" property="fieldB" />
+		<result column="field_c" property="fieldC" />
 	</resultMap>
 
 </mapper>
