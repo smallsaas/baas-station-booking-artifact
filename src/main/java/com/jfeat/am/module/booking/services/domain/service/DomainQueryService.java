@@ -23,7 +23,7 @@ public interface DomainQueryService {
     *   查找店铺 by ServiceType
     * */
     public List<Studio> queryStudioByServiceType(Page<Studio> page,
-                                    String name);
+                                                 String name);
 
     /*
         *   查找店铺 by site

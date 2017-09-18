@@ -16,13 +16,13 @@ public interface StudioDao{
     *   query  by ServiceType
     * */
     List<Studio> queryStudioByServiceType(Page<Studio> page,
-                             @Param("name") String name);
+                                          @Param("name") String name);
 
 
     /*
     *   query  by Site
     * */
     List<Studio> queryStudioBySite(Page<Studio> page,
-                                          @Param("site") String site);
+                                   @Param("site") String site);
 
 }
