@@ -5,6 +5,7 @@ import com.jfeat.am.common.annotation.Permission;
 import com.jfeat.am.common.constant.tips.SuccessTip;
 import com.jfeat.am.common.constant.tips.Tip;
 import com.jfeat.am.common.controller.BaseController;
+import com.jfeat.am.module.booking.services.domain.model.StudioModel;
 import com.jfeat.am.module.booking.services.persistence.model.Doctor;
 import com.jfeat.am.module.booking.services.persistence.model.Studio;
 import com.jfeat.am.module.booking.services.persistence.model.StudioProduct;
@@ -71,8 +72,8 @@ public class StudioEndpoint extends BaseController{
         return SuccessTip.create(result);
     }
     @GetMapping("/{id}")
-    public Tip showStudio(@PathVariable long id){
-        Studio result = sDservice.retrieveMaster(id);
+    public Tip showStudioModel(@PathVariable long id){
+        StudioModel result = domainQueryService.showStudioModel(id);
         return SuccessTip.create(result);
     }
     @DeleteMapping("/{id}")
