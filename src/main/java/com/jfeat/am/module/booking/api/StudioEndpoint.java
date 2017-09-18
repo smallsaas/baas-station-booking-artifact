@@ -1,12 +1,14 @@
 package com.jfeat.am.module.booking.api;
 
 import com.baomidou.mybatisplus.plugins.Page;
+import com.jfeat.am.common.annotation.Permission;
 import com.jfeat.am.common.constant.tips.SuccessTip;
 import com.jfeat.am.common.constant.tips.Tip;
 import com.jfeat.am.common.controller.BaseController;
 import com.jfeat.am.module.booking.services.persistence.model.Doctor;
 import com.jfeat.am.module.booking.services.persistence.model.Studio;
-import com.jfeat.am.module.booking.services.service.crud.StudioOverDoctorService;
+import com.jfeat.am.module.booking.services.persistence.model.StudioProduct;
+import com.jfeat.am.module.booking.services.service.crud.StudioOverProductService;
 import com.jfeat.am.module.booking.services.domain.service.DomainQueryService;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,21 +23,35 @@ import java.util.List;
 @RestController
 public class StudioEndpoint extends BaseController{
     @Resource
-    StudioOverDoctorService sDservice;
+    StudioOverProductService sDservice;
     @Resource
     DomainQueryService domainQueryService;
 
     /*
-    *   查找店铺
+    *   查找店铺 by ServiceType
     * */
-    @GetMapping("/lists")
-    public  Tip queryStudio(Page page,
+    @GetMapping("/types")
+    public  Tip queryStudioByServiceType(Page page,
                             @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
                             @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize,
                             @RequestParam(name = "name",required = false)String name){
-        List<Studio> studios = domainQueryService.queryStudio(page,name);
         page.setCurrent(pageNum);
         page.setSize(pageSize);
+        List<Studio> studios = domainQueryService.queryStudioByServiceType(page,name);
+        page.setRecords(studios);
+        return SuccessTip.create(page);
+    }
+    /*
+        *   查找店铺 by site
+        * */
+    @GetMapping("/sites")
+    public  Tip queryStudioBySite(Page page,
+                            @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
+                            @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize,
+                            @RequestParam(name = "site",required = false)String site){
+        page.setCurrent(pageNum);
+        page.setSize(pageSize);
+        List<Studio> studios = domainQueryService.queryStudioBySite(page,site);
         page.setRecords(studios);
         return SuccessTip.create(page);
     }
@@ -69,24 +85,24 @@ public class StudioEndpoint extends BaseController{
     *   CRUD  Doctor
     * */
 
-    @PostMapping("/{studioId}/doctors")
-    public Tip addDoctor(@PathVariable long studioId,@Valid @RequestBody Doctor doctor){
-        doctor.setStudioId(studioId);
-        Integer result = sDservice.addSlaveItem(studioId,doctor);
+    @PostMapping("/{studioId}/products")
+    public Tip addStudioProduct(@PathVariable long studioId,@Valid @RequestBody StudioProduct product){
+        product.setStudioId(studioId);
+        Integer result = sDservice.addSlaveItem(studioId,product);
         return SuccessTip.create(result);
     }
-    @PutMapping("/{studioId}/doctors")
-    public Tip updateDoctor(@PathVariable long studioId,@Valid@RequestBody Doctor doctor){
-        Integer result = sDservice.updateSlaveItem(studioId,doctor);
+    @PutMapping("/{studioId}/products")
+    public Tip updateStudioProduct(@PathVariable long studioId,@Valid@RequestBody StudioProduct product){
+        Integer result = sDservice.updateSlaveItem(studioId,product);
         return SuccessTip.create(result);
     }
-    @GetMapping("/{studioId}/doctors/{id}")
-    public Tip showDoctor(@PathVariable long studioId,@PathVariable long id){
-        Doctor result = sDservice.getSlaveItem(studioId,id);
+    @GetMapping("/{studioId}/products/{id}")
+    public Tip showStudioProduct(@PathVariable long studioId,@PathVariable long id){
+        StudioProduct result = sDservice.getSlaveItem(studioId,id);
         return SuccessTip.create(result);
     }
-    @DeleteMapping("/{studioId}/doctors/{id}")
-    public Tip deleteDoctor(@PathVariable long studioId,@PathVariable long id){
+    @DeleteMapping("/{studioId}/products/{id}")
+    public Tip deleteStudioProduct(@PathVariable long studioId,@PathVariable long id){
         Integer result = sDservice.removeSlaveItem(studioId,id);
         return SuccessTip.create(result);
     }

@@ -6,9 +6,11 @@ import com.jfeat.am.common.crud.CRUDServiceOverSlave;
 import com.jfeat.am.module.booking.services.domain.model.StudioModel;
 import com.jfeat.am.module.booking.services.persistence.mapper.DoctorMapper;
 import com.jfeat.am.module.booking.services.persistence.mapper.StudioMapper;
+import com.jfeat.am.module.booking.services.persistence.mapper.StudioProductMapper;
 import com.jfeat.am.module.booking.services.persistence.model.Doctor;
 import com.jfeat.am.module.booking.services.persistence.model.Studio;
-import com.jfeat.am.module.booking.services.service.crud.StudioOverDoctorService;
+import com.jfeat.am.module.booking.services.persistence.model.StudioProduct;
+import com.jfeat.am.module.booking.services.service.crud.StudioOverProductService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -19,12 +21,12 @@ import java.util.Map;
  * Created by J4cob on 2017/9/14.
  */
 @Service
-public class StudioOverDoctorServiceImpl implements StudioOverDoctorService, CRUDServiceOverSlave<Studio, StudioModel, Doctor> {
+public class StudioOverProductServiceImpl implements StudioOverProductService, CRUDServiceOverSlave<Studio, StudioModel, StudioProduct> {
 
     @Resource
     StudioMapper studioMapper;
     @Resource
-    DoctorMapper doctorMapper;
+    StudioProductMapper productMapper;
 
 
     @Override
@@ -94,27 +96,27 @@ public class StudioOverDoctorServiceImpl implements StudioOverDoctorService, CRU
 
 
     @Override
-    public Integer addSlaveItem(long id, Doctor doctor) {
-        return doctorMapper.insert(doctor);
+    public Integer addSlaveItem(long id, StudioProduct product) {
+        return productMapper.insert(product);
     }
 
     @Override
-    public Integer updateSlaveItem(long id, Doctor doctor) {
-        return doctorMapper.updateById(doctor);
+    public Integer updateSlaveItem(long id, StudioProduct product) {
+        return productMapper.updateById(product);
     }
 
     @Override
     public Integer removeSlaveItem(long masterId, long id) {
-        return doctorMapper.deleteById(id);
+        return productMapper.deleteById(id);
     }
 
     @Override
-    public Doctor getSlaveItem(long masterId, long id) {
-        return doctorMapper.selectById(id);
+    public StudioProduct getSlaveItem(long masterId, long id) {
+        return productMapper.selectById(id);
     }
 
     @Override
-    public List<Doctor> selectSlaveItemList(long l) {
+    public List<StudioProduct> selectSlaveItemList(long l) {
         return null;
     }
 
