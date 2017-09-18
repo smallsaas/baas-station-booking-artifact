@@ -1,4 +1,4 @@
-package com.jfeat.am.module.booking.services.service.patch.impl;
+package com.jfeat.am.module.booking.services.domain.service.impl;
 
 import com.baomidou.mybatisplus.plugins.Page;
 
@@ -7,7 +7,7 @@ import com.jfeat.am.module.booking.services.domain.dao.AppointmentDao;
 import com.jfeat.am.module.booking.services.domain.dao.StudioDao;
 import com.jfeat.am.module.booking.services.persistence.model.Appointment;
 import com.jfeat.am.module.booking.services.persistence.model.Studio;
-import com.jfeat.am.module.booking.services.service.patch.PatchService;
+import com.jfeat.am.module.booking.services.domain.service.DomainQueryService;
 
 import org.springframework.stereotype.Service;
 
@@ -19,7 +19,7 @@ import java.util.List;
  * Created by Administrator on 2017/9/15.
  */
 @Service
-public class PatchServiceImpl implements PatchService {
+public class DomainQueryServiceImpl implements DomainQueryService {
     @Resource
     AppointmentDao appointmentDao;
     @Resource

@@ -1,4 +1,4 @@
-package com.jfeat.am.module.booking.services.service.patch;
+package com.jfeat.am.module.booking.services.domain.service;
 
 import com.baomidou.mybatisplus.plugins.Page;
 import com.jfeat.am.module.booking.services.persistence.model.Appointment;
@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by Administrator on 2017/9/15.
  */
-public interface PatchService {
+public interface DomainQueryService {
 
     /**   模糊查找Appointment
     * */
