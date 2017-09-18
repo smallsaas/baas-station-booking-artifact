@@ -7,7 +7,7 @@ import com.jfeat.am.common.controller.BaseController;
 import com.jfeat.am.module.booking.services.persistence.model.Doctor;
 import com.jfeat.am.module.booking.services.persistence.model.Studio;
 import com.jfeat.am.module.booking.services.service.crud.StudioOverDoctorService;
-import com.jfeat.am.module.booking.services.service.patch.PatchService;
+import com.jfeat.am.module.booking.services.domain.service.DomainQueryService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -23,7 +23,7 @@ public class StudioEndpoint extends BaseController{
     @Resource
     StudioOverDoctorService sDservice;
     @Resource
-    PatchService patchService;
+    DomainQueryService domainQueryService;
 
     /*
     *   查找店铺
@@ -33,7 +33,7 @@ public class StudioEndpoint extends BaseController{
                             @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
                             @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize,
                             @RequestParam(name = "name",required = false)String name){
-        List<Studio> studios = patchService.queryStudio(page,name);
+        List<Studio> studios = domainQueryService.queryStudio(page,name);
         page.setCurrent(pageNum);
         page.setSize(pageSize);
         page.setRecords(studios);

@@ -9,7 +9,7 @@ import com.jfeat.am.core.jwt.JWTKit;
 import com.jfeat.am.module.booking.services.persistence.model.Appointment;
 
 import com.jfeat.am.module.booking.services.service.crud.AppointmentService;
-import com.jfeat.am.module.booking.services.service.patch.PatchService;
+import com.jfeat.am.module.booking.services.domain.service.DomainQueryService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -27,7 +27,7 @@ public class AppointmentEndpoint extends BaseController{
     @Resource
     AppointmentService appointmentService;
     @Resource
-    PatchService patchService;
+    DomainQueryService domainQueryService;
 
     /*
     *   fuzzy query
@@ -40,7 +40,7 @@ public class AppointmentEndpoint extends BaseController{
                                 @RequestParam(name = "status",required = false) String status,
                                 @RequestParam(name = "studioId",required = false)long studioId,
                                 @RequestParam(name = "createTime",required = false)Date createTime){
-        List<Appointment> appointments = patchService.queryAppointment(page,status,studioId,createTime);
+        List<Appointment> appointments = domainQueryService.queryAppointment(page,status,studioId,createTime);
         page.setSize(pageSize);
         page.setCurrent(pageNum);
         page.setRecords(appointments);
