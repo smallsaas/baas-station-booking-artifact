@@ -6,6 +6,7 @@ import com.jfeat.am.common.constant.tips.Tip;
 import com.jfeat.am.common.controller.BaseController;
 
 import com.jfeat.am.core.jwt.JWTKit;
+import com.jfeat.am.module.booking.services.domain.definition.AppointmentStatus;
 import com.jfeat.am.module.booking.services.persistence.model.Appointment;
 
 import com.jfeat.am.module.booking.services.service.crud.AppointmentService;
@@ -40,9 +41,9 @@ public class AppointmentEndpoint extends BaseController{
                                 @RequestParam(name = "status",required = false) String status,
                                 @RequestParam(name = "studioId",required = false)long studioId,
                                 @RequestParam(name = "createTime",required = false)Date createTime){
-        List<Appointment> appointments = patchService.queryAppointment(page,status,studioId,createTime);
         page.setSize(pageSize);
         page.setCurrent(pageNum);
+        List<Appointment> appointments = patchService.queryAppointment(page,status,studioId,createTime);
         page.setRecords(appointments);
         return SuccessTip.create(page);
     }
@@ -53,7 +54,7 @@ public class AppointmentEndpoint extends BaseController{
     public Tip createAppointment(@Valid @RequestBody Appointment appointment){
         Long userId = JWTKit.getUserId(getHttpServletRequest());
         appointment.setUserId(userId);
-        appointment.setStatus("Success!");
+        appointment.setStatus(AppointmentStatus.TO_BE_COMFIRMED.toString());
         appointment.setCreateTime(new Date());
         Integer result = appointmentService.createMaster(appointment);
         return SuccessTip.create(result);

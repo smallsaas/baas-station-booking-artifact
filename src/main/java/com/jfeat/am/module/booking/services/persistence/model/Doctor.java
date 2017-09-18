@@ -14,7 +14,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author J4cob
- * @since 2017-09-15
+ * @since 2017-09-18
  */
 @TableName("emb_doctor")
 public class Doctor extends Model<Doctor> {
@@ -47,6 +47,25 @@ public class Doctor extends Model<Doctor> {
      */
 	@TableField("work_time")
 	private Date workTime;
+    /**
+     * 头像
+     */
+	private String cover;
+    /**
+     * 保留字段
+     */
+	@TableField("field_a")
+	private String fieldA;
+    /**
+     * 保留字段
+     */
+	@TableField("field_b")
+	private String fieldB;
+    /**
+     * 保留字段
+     */
+	@TableField("field_c")
+	private String fieldC;
 
 
 	public Long getId() {
@@ -97,6 +116,38 @@ public class Doctor extends Model<Doctor> {
 		this.workTime = workTime;
 	}
 
+	public String getCover() {
+		return cover;
+	}
+
+	public void setCover(String cover) {
+		this.cover = cover;
+	}
+
+	public String getFieldA() {
+		return fieldA;
+	}
+
+	public void setFieldA(String fieldA) {
+		this.fieldA = fieldA;
+	}
+
+	public String getFieldB() {
+		return fieldB;
+	}
+
+	public void setFieldB(String fieldB) {
+		this.fieldB = fieldB;
+	}
+
+	public String getFieldC() {
+		return fieldC;
+	}
+
+	public void setFieldC(String fieldC) {
+		this.fieldC = fieldC;
+	}
+
 	@Override
 	protected Serializable pkVal() {
 		return this.id;
@@ -111,6 +162,10 @@ public class Doctor extends Model<Doctor> {
 			", studioId=" + studioId +
 			", description=" + description +
 			", workTime=" + workTime +
+			", cover=" + cover +
+			", fieldA=" + fieldA +
+			", fieldB=" + fieldB +
+			", fieldC=" + fieldC +
 			"}";
 	}
 }

@@ -68,13 +68,13 @@ public class StudioOverDoctorServiceImpl implements StudioOverDoctorService, CRU
     }
 
     @Override
-    public Studio retrieveMaster(long l) {
-        return studioMapper.selectById(l);
+    public Studio retrieveMaster(long id) {
+        return studioMapper.selectById(id);
     }
 
     @Override
-    public Integer deleteMaster(long l) {
-        return studioMapper.deleteById(l);
+    public Integer deleteMaster(long id) {
+        return studioMapper.deleteById(id);
     }
 
     @Override
@@ -92,24 +92,25 @@ public class StudioOverDoctorServiceImpl implements StudioOverDoctorService, CRU
         return null;
     }
 
+
     @Override
-    public Integer addSlaveItem(long l, Doctor doctor) {
+    public Integer addSlaveItem(long id, Doctor doctor) {
         return doctorMapper.insert(doctor);
     }
 
     @Override
-    public Integer updateSlaveItem(long l, Doctor doctor) {
+    public Integer updateSlaveItem(long id, Doctor doctor) {
         return doctorMapper.updateById(doctor);
     }
 
     @Override
-    public Integer removeSlaveItem(long l, long l1) {
-        return doctorMapper.deleteById(l1);
+    public Integer removeSlaveItem(long masterId, long id) {
+        return doctorMapper.deleteById(id);
     }
 
     @Override
-    public Doctor getSlaveItem(long l, long l1) {
-        return doctorMapper.selectById(l1);
+    public Doctor getSlaveItem(long masterId, long id) {
+        return doctorMapper.selectById(id);
     }
 
     @Override
@@ -121,4 +122,5 @@ public class StudioOverDoctorServiceImpl implements StudioOverDoctorService, CRU
     public Integer bulkRemoveSlaveItemList(long l, List<Long> list) {
         return null;
     }
+
 }

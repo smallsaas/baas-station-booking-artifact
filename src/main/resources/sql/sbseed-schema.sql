@@ -28,6 +28,10 @@ CREATE TABLE `emb_customer` (
   `sex` varchar(20) NOT NULL COMMENT ' 性别',
   `wechat` varchar(20) NOT NULL COMMENT '微信号',
   `description` varchar(255) NOT NULL COMMENT '自我描述',
+  `cover` varchar(255) not null comment '头像',
+  `field_a` varchar(255)  null comment '保留字段',
+  `field_b` varchar(255)  null comment '保留字段',
+  `field_c` varchar(255)  null comment '保留字段',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -46,6 +50,10 @@ CREATE TABLE `emb_doctor` (
   `studio_id` bigint(20) NOT NULL COMMENT '工作室ID',
   `description` varchar(255) NOT NULL COMMENT '自我描述',
   `work_time` date NOT NULL COMMENT ' 工作时间',
+  `cover` varchar(255) not null comment '头像',
+  `field_a` varchar(255)  null comment '保留字段',
+  `field_b` varchar(255)  null comment '保留字段',
+  `field_c` varchar(255)  null comment '保留字段',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -95,10 +103,16 @@ CREATE TABLE `emb_studio` (
   `work_time` date NOT NULL COMMENT '工作时间',
   `fee` decimal(10,2) NOT NULL COMMENT '费用',
   `studio_site` varchar(20) NOT NULL COMMENT '地址',
+    `covers` varchar(255) not null comment '头像',
+	`field_a` varchar(255)  null comment '保留字段',
+  `field_b` varchar(255)  null comment '保留字段',
+  `field_c` varchar(255)  null comment '保留字段',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
+-- ----------------------------
+-- Records of emb_studio
+-- ----------------------------
 -- ----------------------------
 -- Table structure for emb_appointment
 -- ----------------------------
@@ -114,5 +128,26 @@ CREATE TABLE `emb_appointment` (
   `create_time` date NOT NULL COMMENT ' 创建时间',
   `appointment_time` date NOT NULL COMMENT ' 预约时间',
   `close_time` date NOT NULL COMMENT ' 完成(关闭)时间',
+  `field_a` varchar(255)  null comment '保留字段',
+  `field_b` varchar(255)  null comment '保留字段',
+  `field_c` varchar(255)  null comment '保留字段',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+-- ----------------------------
+-- Table structure for emb_appointment
+-- ----------------------------
+
+DROP TABLE IF EXISTS `emb_studio_product`;
+CREATE TABLE `emb_studio_product` (
+  `id` bigint(20) NOT NULL COMMENT '主键',
+  `studio_id` bigint(20) NOT NULL COMMENT '工作室ID',
+  `service_type` bigint(20) NOT NULL COMMENT '类型ID',
+  `fee` decimal(10,2) NOT NULL COMMENT '项目费用',
+  `name` varchar(255) NOT NULL COMMENT ' 项目名称',
+  `description` varchar(255) NOT NULL COMMENT ' 项目描述',
+  `covers` varchar(255) NOT NULL COMMENT ' 封面',
+  `field_a` varchar(255)  null comment '保留字段',
+  `field_b` varchar(255)  null comment '保留字段',
+  `field_c` varchar(255)  null comment '保留字段',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

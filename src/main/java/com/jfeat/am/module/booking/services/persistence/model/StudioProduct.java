@@ -3,7 +3,6 @@ package com.jfeat.am.module.booking.services.persistence.model;
 import java.io.Serializable;
 
 import java.math.BigDecimal;
-import java.util.Date;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
@@ -17,8 +16,8 @@ import java.io.Serializable;
  * @author J4cob
  * @since 2017-09-18
  */
-@TableName("emb_studio")
-public class Studio extends Model<Studio> {
+@TableName("emb_studio_product")
+public class StudioProduct extends Model<StudioProduct> {
 
     private static final long serialVersionUID = 1L;
 
@@ -27,29 +26,29 @@ public class Studio extends Model<Studio> {
      */
 	private Long id;
     /**
-     * 工作室名称
+     * 工作室ID
      */
-	private String name;
+	@TableField("studio_id")
+	private Long studioId;
     /**
-     * 工作室描述
+     * 类型ID
      */
-	private String description;
+	@TableField("service_type")
+	private Long serviceType;
     /**
-     * 工作时间
-     */
-	@TableField("work_time")
-	private Date workTime;
-    /**
-     * 费用
+     * 项目费用
      */
 	private BigDecimal fee;
     /**
-     * 地址
+     *  项目名称
      */
-	@TableField("studio_site")
-	private String studioSite;
+	private String name;
     /**
-     * 头像
+     *  项目描述
+     */
+	private String description;
+    /**
+     *  封面
      */
 	private String covers;
     /**
@@ -77,6 +76,30 @@ public class Studio extends Model<Studio> {
 		this.id = id;
 	}
 
+	public Long getStudioId() {
+		return studioId;
+	}
+
+	public void setStudioId(Long studioId) {
+		this.studioId = studioId;
+	}
+
+	public Long getServiceType() {
+		return serviceType;
+	}
+
+	public void setServiceType(Long serviceType) {
+		this.serviceType = serviceType;
+	}
+
+	public BigDecimal getFee() {
+		return fee;
+	}
+
+	public void setFee(BigDecimal fee) {
+		this.fee = fee;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -91,30 +114,6 @@ public class Studio extends Model<Studio> {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public Date getWorkTime() {
-		return workTime;
-	}
-
-	public void setWorkTime(Date workTime) {
-		this.workTime = workTime;
-	}
-
-	public BigDecimal getFee() {
-		return fee;
-	}
-
-	public void setFee(BigDecimal fee) {
-		this.fee = fee;
-	}
-
-	public String getStudioSite() {
-		return studioSite;
-	}
-
-	public void setStudioSite(String studioSite) {
-		this.studioSite = studioSite;
 	}
 
 	public String getCovers() {
@@ -156,13 +155,13 @@ public class Studio extends Model<Studio> {
 
 	@Override
 	public String toString() {
-		return "Studio{" +
+		return "StudioProduct{" +
 			"id=" + id +
+			", studioId=" + studioId +
+			", serviceType=" + serviceType +
+			", fee=" + fee +
 			", name=" + name +
 			", description=" + description +
-			", workTime=" + workTime +
-			", fee=" + fee +
-			", studioSite=" + studioSite +
 			", covers=" + covers +
 			", fieldA=" + fieldA +
 			", fieldB=" + fieldB +
