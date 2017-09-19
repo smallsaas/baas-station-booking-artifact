@@ -6,15 +6,24 @@
         emb_service.name AS sname,
         emb_studio.*
     </sql>
-    <select id="queryStudioByServiceType" resultType="Studio">
-    SELECT emb_service.name AS sname ,emb_studio.*
-    FROM emb_service
+    <select id="queryStudioByMultiple" resultType="Studio">
+    SELECT emb_service.type_id ,emb_studio.* ,emb_service_type.name AS tname
+
+    FROM emb_service_type
+        RIGHT JOIN emb_service
+        WHERE emb_service_type.id = emb_service.type_id
         RIGHT JOIN emb_studio
         ON emb_studio.id = emb_service.studio_id
     WHERE 1=1
-    <if test="name != null and name != ''">
-        AND emb_service.name LIKE CONCAT('%',#{name},'%')
+    <if test="tname != null and tname != ''">
+        AND emb_service_type.name LIKE CONCAT('%',#{tname},'%')
     </if>
+
+
+     <if test="name != null and name != ''">
+            AND emb_studio.name LIKE CONCAT('%',#{name},'%')
+    </if>
+
 
     </select>
 
@@ -25,6 +34,16 @@
         WHERE 1=1
         <if test="site != null and site != ''">
             AND emb_studio.studio_site LIKE CONCAT('%',#{site},'%')
+        </if>
+
+    </select>
+
+    <select id="queryStudioByName" resultType="Studio">
+        SELECT emb_studio.*
+        FROM emb_studio
+        WHERE 1=1
+        <if test="name != null and name != ''">
+            AND emb_studio.name LIKE CONCAT('%',#{name},'%')
         </if>
 
     </select>

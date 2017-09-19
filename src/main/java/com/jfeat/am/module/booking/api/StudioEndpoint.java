@@ -19,13 +19,12 @@ import javax.validation.Valid;
 import java.util.List;
 
 
-
 /**
  * Created by J4cob on 2017/9/14.
  */
 @RequestMapping("/api/studios")
 @RestController
-public class StudioEndpoint extends BaseController{
+public class StudioEndpoint extends BaseController {
     @Resource
     StudioOverProductService sDservice;
     @Resource
@@ -34,56 +33,75 @@ public class StudioEndpoint extends BaseController{
     /*
     *   查找店铺 by ServiceType
     * */
-    @GetMapping("/types")
-    public  Tip queryStudioByServiceType(Page page,
-                            @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
-                            @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize,
-                            @RequestParam(name = "name",required = false)String name){
+    @GetMapping("/options")
+    public Tip queryStudioByServiceType(Page page,
+                                        @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
+                                        @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize,
+                                        @RequestParam(name = "tname", required = false) String tname,
+                                        @RequestParam(name = "name", required = false) String name) {
         page.setCurrent(pageNum);
         page.setSize(pageSize);
-        List<Studio> studios = domainQueryService.queryStudioByServiceType(page,name);
-        page.setRecords(studios);
-        return SuccessTip.create(page);
-    }
-    /*
-        *   查找店铺 by site
-        * */
-    @GetMapping("/sites")
-    public  Tip queryStudioBySite(Page page,
-                            @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
-                            @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize,
-                            @RequestParam(name = "site",required = false)String site){
-        page.setCurrent(pageNum);
-        page.setSize(pageSize);
-        List<Studio> studios = domainQueryService.queryStudioBySite(page,site);
+        List<Studio> studios = domainQueryService.queryStudioByMultiple(page, tname, name);
         page.setRecords(studios);
         return SuccessTip.create(page);
     }
 
+    /*
+        *   查找店铺 by site
+        * */
+    @GetMapping("/sites")
+    public Tip queryStudioBySite(Page page,
+                                 @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
+                                 @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize,
+                                 @RequestParam(name = "site", required = false) String site) {
+        page.setCurrent(pageNum);
+        page.setSize(pageSize);
+        List<Studio> studios = domainQueryService.queryStudioBySite(page, site);
+        page.setRecords(studios);
+        return SuccessTip.create(page);
+    }
+
+    /*
+            *   查找店铺 by name
+            * *//*
+    @GetMapping("")
+    public Tip queryStudioByName(Page page,
+                                 @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
+                                 @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize,
+                                 @RequestParam(name = "name", required = false) String name) {
+        page.setCurrent(pageNum);
+        page.setSize(pageSize);
+        List<Studio> studios = domainQueryService.queryStudioByName(page, name);
+        page.setRecords(studios);
+        return SuccessTip.create(page);
+    }*/
 
     /*
     *   CRUD about Studio
     * */
     @PostMapping
-    @Permission(AdminPermission.CREATE.toString())
-    public Tip createStudio(@Valid @RequestBody Studio studio){
+    @Permission(AdminPermission.CREATE)
+    public Tip createStudio(@Valid @RequestBody Studio studio) {
         Integer result = sDservice.createMaster(studio);
         return SuccessTip.create(result);
     }
+
     @PutMapping
-    @Permission(AdminPermission.EDIT.toString())
-    public Tip updateStudio(@Valid@RequestBody Studio studio){
+    @Permission(AdminPermission.EDIT)
+    public Tip updateStudio(@Valid @RequestBody Studio studio) {
         Integer result = sDservice.updateMaster(studio);
         return SuccessTip.create(result);
     }
+
     @GetMapping("/{id}")
-    public Tip showStudioModel(@PathVariable long id){
+    public Tip showStudioModel(@PathVariable long id) {
         StudioModel result = domainQueryService.showStudioModel(id);
         return SuccessTip.create(result);
     }
+
     @DeleteMapping("/{id}")
-    @Permission(AdminPermission.DELETE.toString())
-    public Tip deleteStudio(@PathVariable long id){
+    @Permission(AdminPermission.DELETE)
+    public Tip deleteStudio(@PathVariable long id) {
         Integer result = sDservice.deleteMaster(id);
         return SuccessTip.create(result);
     }
@@ -94,24 +112,29 @@ public class StudioEndpoint extends BaseController{
     * */
 
     @PostMapping("/{studioId}/products")
-    public Tip addStudioProduct(@PathVariable long studioId,@Valid @RequestBody StudioProduct product){
+    public Tip addStudioProduct(@PathVariable long studioId, @Valid @RequestBody StudioProduct product) {
         product.setStudioId(studioId);
-        Integer result = sDservice.addSlaveItem(studioId,product);
+        Integer result = sDservice.addSlaveItem(studioId, product);
         return SuccessTip.create(result);
     }
+
     @PutMapping("/{studioId}/products")
-    public Tip updateStudioProduct(@PathVariable long studioId,@Valid@RequestBody StudioProduct product){
-        Integer result = sDservice.updateSlaveItem(studioId,product);
+    public Tip updateStudioProduct(@PathVariable long studioId, @Valid @RequestBody StudioProduct product) {
+        Integer result = sDservice.updateSlaveItem(studioId, product);
         return SuccessTip.create(result);
     }
+
     @GetMapping("/{studioId}/products/{id}")
-    public Tip showStudioProduct(@PathVariable long studioId,@PathVariable long id){
-        StudioProduct result = sDservice.getSlaveItem(studioId,id);
+    public Tip showStudioProduct(@PathVariable long studioId, @PathVariable long id) {
+        StudioProduct result = sDservice.getSlaveItem(studioId, id);
         return SuccessTip.create(result);
     }
+
     @DeleteMapping("/{studioId}/products/{id}")
-    public Tip deleteStudioProduct(@PathVariable long studioId,@PathVariable long id){
-        Integer result = sDservice.removeSlaveItem(studioId,id);
+    public Tip deleteStudioProduct(@PathVariable long studioId, @PathVariable long id) {
+        Integer result = sDservice.removeSlaveItem(studioId, id);
         return SuccessTip.create(result);
     }
+
+
 }

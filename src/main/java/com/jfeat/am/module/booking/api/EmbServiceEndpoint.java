@@ -26,10 +26,13 @@ public class EmbServiceEndpoint extends BaseController{
     ServiceTypeService typeService;
     @Resource
     AdvertisingService advertisingService;
+    @Resource
+
 
 
     @PostMapping("/ad")
     public Tip createAd(@Valid @RequestBody Advertising advertising){
+
         Integer result = advertisingService.createMaster(advertising);
         return SuccessTip.create(result);
     }
@@ -73,6 +76,31 @@ public class EmbServiceEndpoint extends BaseController{
         Integer result = embServiceService.deleteMaster(id);
         return SuccessTip.create(result);
     }
+
+    /*
+    *   crud covers
+    * */
+    @PostMapping("/covers")
+    public Tip addCovers(@Valid @RequestBody Advertising ad){
+        Integer result = advertisingService.createMaster(ad);
+        return SuccessTip.create(result);
+    }
+    @PutMapping("/covers")
+    public Tip updateCovers(@Valid@RequestBody Advertising ad){
+        Integer result = advertisingService.updateMaster(ad);
+        return SuccessTip.create(result);
+    }
+    @GetMapping("/covers/{id}")
+    public Tip showCovers(@PathVariable long id){
+        Advertising result = advertisingService.retrieveMaster(id);
+        return SuccessTip.create(result);
+    }
+    @DeleteMapping("/covers/{id}")
+    public Tip deleteCovers(@PathVariable long id){
+        Integer result = advertisingService.deleteMaster(id);
+        return SuccessTip.create(result);
+    }
+
 
 
     /*

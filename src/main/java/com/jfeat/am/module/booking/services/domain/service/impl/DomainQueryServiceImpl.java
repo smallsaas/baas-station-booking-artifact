@@ -35,13 +35,14 @@ public class DomainQueryServiceImpl implements DomainQueryService {
     StudioMapper studioMapper;
     @Resource
     StudioProductMapper studioProductMapper;
+
     /*
     *   查找订单
     * */
     public List<Appointment> queryAppointment(Page<Appointment> page,
                                               String status,
                                               long StudioId,
-                                              Date createTime){
+                                              Date createTime) {
         return appointmentDao.queryAppointment(page, status, StudioId, createTime);
     }
 
@@ -49,9 +50,10 @@ public class DomainQueryServiceImpl implements DomainQueryService {
     *   查找店铺 by ServiceType
     * */
 
-    public List<Studio> queryStudioByServiceType(Page<Studio> page,
-                                    String name){
-        return studioDao.queryStudioByServiceType(page,name);
+    public List<Studio> queryStudioByMultiple(Page<Studio> page,
+                                              String tname,
+                                              String name) {
+        return studioDao.queryStudioByMultiple(page, tname,name);
     }
 
     /*
@@ -59,18 +61,27 @@ public class DomainQueryServiceImpl implements DomainQueryService {
     * */
 
     public List<Studio> queryStudioBySite(Page<Studio> page,
-                                                 String site){
-        return studioDao.queryStudioBySite(page,site);
+                                          String site) {
+        return studioDao.queryStudioBySite(page, site);
     }
     /*
-    *   query
+    *   查找店铺 by name
     * */
-    public StudioModel showStudioModel(long id){
+
+    public List<Studio> queryStudioByName(Page<Studio> page,
+                                          String name) {
+        return studioDao.queryStudioByName(page, name);
+    }
+
+    /*
+    *
+    * */
+    public StudioModel showStudioModel(long id) {
         Studio studio = studioMapper.selectById(id);
-        JSONObject studioObj  = JSON.parseObject(JSON.toJSONString(studio));
-        List<StudioProduct> products = studioProductMapper.selectList(new EntityWrapper<StudioProduct>().eq("studio_id",id));
-        studioObj.put("products",products);
-        StudioModel model = JSON.parseObject(studioObj.toJSONString(),StudioModel.class);
+        JSONObject studioObj = JSON.parseObject(JSON.toJSONString(studio));
+        List<StudioProduct> products = studioProductMapper.selectList(new EntityWrapper<StudioProduct>().eq("studio_id", id));
+        studioObj.put("products", products);
+        StudioModel model = JSON.parseObject(studioObj.toJSONString(), StudioModel.class);
         return model;
     }
 }
