@@ -1,12 +1,13 @@
 package com.jfeat.am.module.booking.api;
 
 import com.baomidou.mybatisplus.plugins.Page;
+
 import com.jfeat.am.common.annotation.Permission;
 import com.jfeat.am.common.constant.tips.SuccessTip;
 import com.jfeat.am.common.constant.tips.Tip;
 import com.jfeat.am.common.controller.BaseController;
+import com.jfeat.am.module.booking.services.domain.definition.AdminPermission;
 import com.jfeat.am.module.booking.services.domain.model.StudioModel;
-import com.jfeat.am.module.booking.services.persistence.model.Doctor;
 import com.jfeat.am.module.booking.services.persistence.model.Studio;
 import com.jfeat.am.module.booking.services.persistence.model.StudioProduct;
 import com.jfeat.am.module.booking.services.service.crud.StudioOverProductService;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.validation.Valid;
 import java.util.List;
+
+
 
 /**
  * Created by J4cob on 2017/9/14.
@@ -62,11 +65,13 @@ public class StudioEndpoint extends BaseController{
     *   CRUD about Studio
     * */
     @PostMapping
+    @Permission(AdminPermission.CREATE.toString())
     public Tip createStudio(@Valid @RequestBody Studio studio){
         Integer result = sDservice.createMaster(studio);
         return SuccessTip.create(result);
     }
     @PutMapping
+    @Permission(AdminPermission.EDIT.toString())
     public Tip updateStudio(@Valid@RequestBody Studio studio){
         Integer result = sDservice.updateMaster(studio);
         return SuccessTip.create(result);
@@ -77,13 +82,15 @@ public class StudioEndpoint extends BaseController{
         return SuccessTip.create(result);
     }
     @DeleteMapping("/{id}")
+    @Permission(AdminPermission.DELETE.toString())
     public Tip deleteStudio(@PathVariable long id){
         Integer result = sDservice.deleteMaster(id);
         return SuccessTip.create(result);
     }
 
     /*
-    *   CRUD  Doctor
+    *   CRUD  Products
+    *
     * */
 
     @PostMapping("/{studioId}/products")
