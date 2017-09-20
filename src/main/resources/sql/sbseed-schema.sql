@@ -78,8 +78,8 @@ CREATE TABLE `emb_customer` (
   `wechat` varchar(20) NOT NULL COMMENT '微信号',
   `description` varchar(255) NOT NULL COMMENT '自我描述',
   `cover_id` bigint(20) NOT NULL COMMENT '头像',
-  `longitude`	decimal(10,7) NOT NULL COMMENT '经度',
-`latitude`	decimal(10,7) NOT NULL COMMENT '纬度',
+  `longitude`	decimal(10,7)  NULL COMMENT '经度',
+`latitude`	decimal(10,7)  NULL COMMENT '纬度',
 
   `field_a` varchar(255)  NULL COMMENT '保留字段',
   `field_b` varchar(255)  NULL COMMENT '保留字段',
@@ -119,7 +119,7 @@ CREATE TABLE `emb_doctor` (
 DROP TABLE IF EXISTS `emb_service`;
 CREATE TABLE `emb_service` (
   `id` bigint(20) NOT NULL COMMENT '主键',
-  `name` varchar(50) NOT NULL COMMENT '服务类型',
+  `type_id` bigint(20) NOT NULL COMMENT '服务类型',
   `doctor_id` bigint(20) NOT NULL COMMENT '技师ID',
   `studio_id` bigint(20) NOT NULL COMMENT '工作室ID',
   PRIMARY KEY (`id`)
@@ -156,8 +156,8 @@ CREATE TABLE `emb_studio` (
   `fee` decimal(10,2) NOT NULL COMMENT '费用',
   `studio_site` varchar(20) NOT NULL COMMENT '地址',
   `cover_id` bigint(20) NOT NULL COMMENT '头像',
-  `longitude`	decimal(10,7) NOT NULL COMMENT '经度',
-`latitude`	decimal(10,7) NOT NULL COMMENT '纬度',
+  `longitude`	decimal(10,7)  NULL COMMENT '经度',
+`latitude`	decimal(10,7)  NULL COMMENT '纬度',
 
   `field_a` varchar(255) NULL COMMENT '保留字段',
   `field_b` varchar(255)  NULL COMMENT '保留字段',
