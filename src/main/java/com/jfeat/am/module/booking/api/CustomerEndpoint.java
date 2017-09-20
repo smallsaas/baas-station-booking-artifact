@@ -3,8 +3,9 @@ package com.jfeat.am.module.booking.api;
 import com.jfeat.am.common.constant.tips.SuccessTip;
 import com.jfeat.am.common.constant.tips.Tip;
 import com.jfeat.am.common.controller.BaseController;
+import com.jfeat.am.module.booking.service.crud.CustomerService;
 import com.jfeat.am.module.booking.services.persistence.model.Customer;
-import com.jfeat.am.module.booking.services.service.crud.CustomerService;
+
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;

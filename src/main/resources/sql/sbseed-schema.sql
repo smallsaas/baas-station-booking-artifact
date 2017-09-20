@@ -15,16 +15,6 @@ Date: 2017-09-18 19:18:57
 
 SET FOREIGN_KEY_CHECKS=0;
 
--- ----------------------------
--- Table structure for emb_advertising
--- ----------------------------
-DROP TABLE IF EXISTS `emb_advertising`;
-CREATE TABLE `emb_advertising` (
-  `id` bigint(20) NOT NULL COMMENT '主键',
-  `name` varchar(255) DEFAULT NULL COMMENT '名字',
-  `url` varchar(255) DEFAULT NULL COMMENT '链接',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `emb_covers`;
 CREATE TABLE `emb_covers` (
@@ -44,17 +34,17 @@ DROP TABLE IF EXISTS `emb_appointment`;
 CREATE TABLE `emb_appointment` (
   `id` bigint(20) NOT NULL COMMENT '主键',
   `studio_id` bigint(20) NOT NULL COMMENT '工作室ID',
-  `doctor_id` bigint(20) NOT NULL COMMENT '技师ID',
+  `doctor_id` bigint(20)  NULL COMMENT '技师ID',
   `user_id` bigint(20) NOT NULL COMMENT '技师姓名',
   `service_id` bigint(20) NOT NULL COMMENT '类型ID',
   `status` varchar(20) NOT NULL COMMENT ' 订单状态',
   `fee` decimal(10,2) NOT NULL COMMENT '预约费用',
   `create_time` date NOT NULL COMMENT ' 创建时间',
   `appointment_time` date NOT NULL COMMENT ' 预约时间',
-  `close_time` date NOT NULL COMMENT ' 完成(关闭)时间',
-  `field_a` varchar(255)  NULL COMMENT '保留字段',
-  `field_b` varchar(255)  NULL COMMENT '保留字段',
-  `field_c` varchar(255)  NULL COMMENT '保留字段',
+  `close_time` date  NULL COMMENT ' 完成(关闭)时间',
+  `phone` varchar(255) DEFAULT NULL COMMENT '用户手机号码',
+  `field_b` varchar(255) DEFAULT NULL COMMENT '保留字段',
+  `field_c` varchar(255) DEFAULT NULL COMMENT '保留字段',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -70,20 +60,20 @@ CREATE TABLE `emb_appointment` (
 DROP TABLE IF EXISTS `emb_customer`;
 CREATE TABLE `emb_customer` (
   `id` bigint(20) NOT NULL COMMENT '主键',
-  `name` varchar(50) NOT NULL COMMENT '联系人姓名（即客户姓名）',
-  `phone` varchar(30) NOT NULL COMMENT '联系电话',
-  `birthday` date NOT NULL COMMENT '生日',
-  `verified` int(11) NOT NULL COMMENT '是否手机认证',
-  `sex` varchar(20) NOT NULL COMMENT ' 性别',
-  `wechat` varchar(20) NOT NULL COMMENT '微信号',
-  `description` varchar(255) NOT NULL COMMENT '自我描述',
-  `cover_id` bigint(20) NOT NULL COMMENT '头像',
+  `name` varchar(50)  NULL COMMENT '联系人姓名（即客户姓名）',
+  `phone` varchar(30)  NULL COMMENT '联系电话',
+  `birthday` date  NULL COMMENT '生日',
+  `verified` int(11)  NULL COMMENT '是否手机认证',
+  `sex` varchar(20)  NULL COMMENT ' 性别',
+  `wechat` varchar(20)  NULL COMMENT '微信号',
+  `description` varchar(255)  NULL COMMENT '自我描述',
+  `cover_id` bigint(20)  NULL COMMENT '头像',
   `longitude`	decimal(10,7)  NULL COMMENT '经度',
-`latitude`	decimal(10,7)  NULL COMMENT '纬度',
+  `latitude`	decimal(10,7)  NULL COMMENT '纬度',
 
-  `field_a` varchar(255)  NULL COMMENT '保留字段',
-  `field_b` varchar(255)  NULL COMMENT '保留字段',
-  `field_c` varchar(255)  NULL COMMENT '保留字段',
+  `field_a` varchar(255) DEFAULT NULL COMMENT '保留字段',
+  `field_b` varchar(255) DEFAULT NULL COMMENT '保留字段',
+  `field_c` varchar(255) DEFAULT NULL COMMENT '保留字段',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -97,15 +87,15 @@ CREATE TABLE `emb_customer` (
 DROP TABLE IF EXISTS `emb_doctor`;
 CREATE TABLE `emb_doctor` (
   `id` bigint(20) NOT NULL COMMENT '主键',
-  `name` varchar(50) NOT NULL COMMENT '技师姓名',
-  `sex` varchar(20) NOT NULL COMMENT ' 性别',
-  `studio_id` bigint(20) NOT NULL COMMENT '工作室ID',
-  `description` varchar(255) NOT NULL COMMENT '自我描述',
-  `work_time` date NOT NULL COMMENT ' 工作时间',
-  `cover` varchar(255) NOT NULL COMMENT '头像',
-  `field_a` varchar(255)  NULL COMMENT '保留字段',
-  `field_b` varchar(255)  NULL COMMENT '保留字段',
-  `field_c` varchar(255)  NULL COMMENT '保留字段',
+  `name` varchar(50)  NULL COMMENT '技师姓名',
+  `sex` varchar(20)  NULL COMMENT ' 性别',
+  `studio_id` bigint(20)  NULL COMMENT '工作室ID',
+  `description` varchar(255)  NULL COMMENT '自我描述',
+  `work_time` date  NULL COMMENT ' 工作时间',
+  `cover_id` bigint(20)  NULL COMMENT '头像',
+  `field_a` varchar(255) DEFAULT NULL COMMENT '保留字段',
+  `field_b` varchar(255) DEFAULT NULL COMMENT '保留字段',
+  `field_c` varchar(255) DEFAULT NULL COMMENT '保留字段',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -119,8 +109,8 @@ CREATE TABLE `emb_doctor` (
 DROP TABLE IF EXISTS `emb_service`;
 CREATE TABLE `emb_service` (
   `id` bigint(20) NOT NULL COMMENT '主键',
-  `type_id` bigint(20) NOT NULL COMMENT '服务类型',
-  `doctor_id` bigint(20) NOT NULL COMMENT '技师ID',
+  `name` varchar(50) NOT NULL COMMENT '服务类型',
+  `doctor_id` bigint(20)  NULL COMMENT '技师ID',
   `studio_id` bigint(20) NOT NULL COMMENT '工作室ID',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -136,7 +126,7 @@ DROP TABLE IF EXISTS `emb_service_type`;
 CREATE TABLE `emb_service_type` (
   `id` bigint(20) NOT NULL COMMENT '主键',
   `name` varchar(20) NOT NULL COMMENT '类型名称',
-  `parent_id` bigint(20) DEFAULT NULL COMMENT '外键',
+  `pid` bigint(20) DEFAULT NULL COMMENT '外键',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -154,14 +144,19 @@ CREATE TABLE `emb_studio` (
   `description` varchar(255) NOT NULL COMMENT '工作室描述',
   `work_time` date NOT NULL COMMENT '工作时间',
   `fee` decimal(10,2) NOT NULL COMMENT '费用',
-  `studio_site` varchar(20) NOT NULL COMMENT '地址',
-  `cover_id` bigint(20) NOT NULL COMMENT '头像',
+  `studio_site` varchar(20) NOT NULL COMMENT '详细地址',
+  `cover_id` bigint(20)  NULL COMMENT '头像',
+  `province` varchar(255) DEFAULT NULL COMMENT '省',
+  `city` varchar(255) DEFAULT NULL COMMENT '市',
+  `district` varchar(255) DEFAULT NULL COMMENT '区',
   `longitude`	decimal(10,7)  NULL COMMENT '经度',
-`latitude`	decimal(10,7)  NULL COMMENT '纬度',
-
-  `field_a` varchar(255) NULL COMMENT '保留字段',
-  `field_b` varchar(255)  NULL COMMENT '保留字段',
-  `field_c` varchar(255)  NULL COMMENT '保留字段',
+  `latitude`	decimal(10,7)  NULL COMMENT '纬度',
+  `contact` varchar(255)  NULL COMMENT '联系人',
+  `phone` varchar(255)  NULL COMMENT '电话',
+  `studio_phone` varchar(255) not NULL COMMENT '店铺电话',
+  `field_a` varchar(255) DEFAULT NULL COMMENT '保留字段',
+  `field_b` varchar(255) DEFAULT NULL COMMENT '保留字段',
+  `field_c` varchar(255) DEFAULT NULL COMMENT '保留字段',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -180,10 +175,10 @@ CREATE TABLE `emb_studio_product` (
   `fee` decimal(10,2) NOT NULL COMMENT '项目费用',
   `name` varchar(255) NOT NULL COMMENT ' 项目名称',
   `description` varchar(255) NOT NULL COMMENT ' 项目描述',
-  `cover_id` bigint(20) NOT NULL COMMENT ' 封面',
-  `field_a` varchar(255)  NULL COMMENT '保留字段',
-  `field_b` varchar(255)  NULL COMMENT '保留字段',
-  `field_c` varchar(255)  NULL COMMENT '保留字段',
+  `cover_id` bigint(20)  NULL COMMENT ' 封面',
+  `field_a` varchar(255) DEFAULT NULL COMMENT '保留字段',
+  `field_b` varchar(255) DEFAULT NULL COMMENT '保留字段',
+  `field_c` varchar(255) DEFAULT NULL COMMENT '保留字段',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

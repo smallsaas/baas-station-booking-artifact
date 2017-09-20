@@ -70,10 +70,9 @@ public class Appointment extends Model<Appointment> {
 	@TableField("close_time")
 	private Date closeTime;
     /**
-     * 保留字段
+     * 用户手机号码
      */
-	@TableField("field_a")
-	private String fieldA;
+	private String phone;
     /**
      * 保留字段
      */
@@ -166,12 +165,12 @@ public class Appointment extends Model<Appointment> {
 		this.closeTime = closeTime;
 	}
 
-	public String getFieldA() {
-		return fieldA;
+	public String getPhone() {
+		return phone;
 	}
 
-	public void setFieldA(String fieldA) {
-		this.fieldA = fieldA;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 	public String getFieldB() {
@@ -208,7 +207,7 @@ public class Appointment extends Model<Appointment> {
 			", createTime=" + createTime +
 			", appointmentTime=" + appointmentTime +
 			", closeTime=" + closeTime +
-			", fieldA=" + fieldA +
+			", phone=" + phone +
 			", fieldB=" + fieldB +
 			", fieldC=" + fieldC +
 			"}";

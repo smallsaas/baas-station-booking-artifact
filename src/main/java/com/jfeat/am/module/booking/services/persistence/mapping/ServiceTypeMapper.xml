@@ -6,7 +6,7 @@
 	<resultMap id="BaseResultMap" type="com.jfeat.am.module.booking.services.persistence.model.ServiceType">
 		<id column="id" property="id" />
 		<result column="name" property="name" />
-		<result column="parent_id" property="parentId" />
+		<result column="pid" property="pid" />
 	</resultMap>
 
 </mapper>

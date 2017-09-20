@@ -2,7 +2,6 @@ package com.jfeat.am.module.booking.services.persistence.model;
 
 import java.io.Serializable;
 
-import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
 import java.io.Serializable;
@@ -31,8 +30,7 @@ public class ServiceType extends Model<ServiceType> {
     /**
      * 外键
      */
-	@TableField("parent_id")
-	private Long parentId;
+	private Long pid;
 
 
 	public Long getId() {
@@ -51,12 +49,12 @@ public class ServiceType extends Model<ServiceType> {
 		this.name = name;
 	}
 
-	public Long getParentId() {
-		return parentId;
+	public Long getPid() {
+		return pid;
 	}
 
-	public void setParentId(Long parentId) {
-		this.parentId = parentId;
+	public void setPid(Long pid) {
+		this.pid = pid;
 	}
 
 	@Override
@@ -69,7 +67,7 @@ public class ServiceType extends Model<ServiceType> {
 		return "ServiceType{" +
 			"id=" + id +
 			", name=" + name +
-			", parentId=" + parentId +
+			", pid=" + pid +
 			"}";
 	}
 }

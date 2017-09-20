@@ -50,7 +50,8 @@ public class Doctor extends Model<Doctor> {
     /**
      * 头像
      */
-	private String cover;
+	@TableField("cover_id")
+	private Long coverId;
     /**
      * 保留字段
      */
@@ -116,12 +117,12 @@ public class Doctor extends Model<Doctor> {
 		this.workTime = workTime;
 	}
 
-	public String getCover() {
-		return cover;
+	public Long getCoverId() {
+		return coverId;
 	}
 
-	public void setCover(String cover) {
-		this.cover = cover;
+	public void setCoverId(Long coverId) {
+		this.coverId = coverId;
 	}
 
 	public String getFieldA() {
@@ -162,7 +163,7 @@ public class Doctor extends Model<Doctor> {
 			", studioId=" + studioId +
 			", description=" + description +
 			", workTime=" + workTime +
-			", cover=" + cover +
+			", coverId=" + coverId +
 			", fieldA=" + fieldA +
 			", fieldB=" + fieldB +
 			", fieldC=" + fieldC +

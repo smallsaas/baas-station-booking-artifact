@@ -6,11 +6,12 @@ import com.jfeat.am.common.constant.tips.Tip;
 import com.jfeat.am.common.controller.BaseController;
 
 import com.jfeat.am.core.jwt.JWTKit;
-import com.jfeat.am.module.booking.services.domain.definition.AppointmentStatus;
+
+import com.jfeat.am.module.booking.domain.definition.AppointmentStatus;
+import com.jfeat.am.module.booking.domain.service.DomainQueryService;
+import com.jfeat.am.module.booking.service.crud.AppointmentService;
 import com.jfeat.am.module.booking.services.persistence.model.Appointment;
 
-import com.jfeat.am.module.booking.services.service.crud.AppointmentService;
-import com.jfeat.am.module.booking.services.domain.service.DomainQueryService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;

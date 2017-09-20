@@ -44,7 +44,7 @@ public class Studio extends Model<Studio> {
      */
 	private BigDecimal fee;
     /**
-     * 地址
+     * 详细地址
      */
 	@TableField("studio_site")
 	private String studioSite;
@@ -54,6 +54,18 @@ public class Studio extends Model<Studio> {
 	@TableField("cover_id")
 	private Long coverId;
     /**
+     * 省
+     */
+	private String province;
+    /**
+     * 市
+     */
+	private String city;
+    /**
+     * 区
+     */
+	private String district;
+    /**
      * 经度
      */
 	private BigDecimal longitude;
@@ -61,6 +73,19 @@ public class Studio extends Model<Studio> {
      * 纬度
      */
 	private BigDecimal latitude;
+    /**
+     * 联系人
+     */
+	private String contact;
+    /**
+     * 电话
+     */
+	private String phone;
+    /**
+     * 店铺电话
+     */
+	@TableField("studio_phone")
+	private String studioPhone;
     /**
      * 保留字段
      */
@@ -134,6 +159,30 @@ public class Studio extends Model<Studio> {
 		this.coverId = coverId;
 	}
 
+	public String getProvince() {
+		return province;
+	}
+
+	public void setProvince(String province) {
+		this.province = province;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getDistrict() {
+		return district;
+	}
+
+	public void setDistrict(String district) {
+		this.district = district;
+	}
+
 	public BigDecimal getLongitude() {
 		return longitude;
 	}
@@ -148,6 +197,30 @@ public class Studio extends Model<Studio> {
 
 	public void setLatitude(BigDecimal latitude) {
 		this.latitude = latitude;
+	}
+
+	public String getContact() {
+		return contact;
+	}
+
+	public void setContact(String contact) {
+		this.contact = contact;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getStudioPhone() {
+		return studioPhone;
+	}
+
+	public void setStudioPhone(String studioPhone) {
+		this.studioPhone = studioPhone;
 	}
 
 	public String getFieldA() {
@@ -189,8 +262,14 @@ public class Studio extends Model<Studio> {
 			", fee=" + fee +
 			", studioSite=" + studioSite +
 			", coverId=" + coverId +
+			", province=" + province +
+			", city=" + city +
+			", district=" + district +
 			", longitude=" + longitude +
 			", latitude=" + latitude +
+			", contact=" + contact +
+			", phone=" + phone +
+			", studioPhone=" + studioPhone +
 			", fieldA=" + fieldA +
 			", fieldB=" + fieldB +
 			", fieldC=" + fieldC +

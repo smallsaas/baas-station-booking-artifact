@@ -6,12 +6,14 @@ import com.jfeat.am.common.annotation.Permission;
 import com.jfeat.am.common.constant.tips.SuccessTip;
 import com.jfeat.am.common.constant.tips.Tip;
 import com.jfeat.am.common.controller.BaseController;
-import com.jfeat.am.module.booking.services.domain.definition.AdminPermission;
-import com.jfeat.am.module.booking.services.domain.model.StudioModel;
+
+import com.jfeat.am.module.booking.domain.definition.AdminPermission;
+import com.jfeat.am.module.booking.domain.model.StudioModel;
+import com.jfeat.am.module.booking.domain.service.DomainQueryService;
+import com.jfeat.am.module.booking.service.crud.StudioOverProductService;
 import com.jfeat.am.module.booking.services.persistence.model.Studio;
 import com.jfeat.am.module.booking.services.persistence.model.StudioProduct;
-import com.jfeat.am.module.booking.services.service.crud.StudioOverProductService;
-import com.jfeat.am.module.booking.services.domain.service.DomainQueryService;
+
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;

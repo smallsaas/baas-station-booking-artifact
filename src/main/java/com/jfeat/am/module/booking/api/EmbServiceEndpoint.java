@@ -3,14 +3,17 @@ package com.jfeat.am.module.booking.api;
 import com.jfeat.am.common.constant.tips.SuccessTip;
 import com.jfeat.am.common.constant.tips.Tip;
 import com.jfeat.am.common.controller.BaseController;
+import com.jfeat.am.module.booking.domain.service.DomainQueryTypeService;
+import com.jfeat.am.module.booking.service.crud.EmbServiceService;
+import com.jfeat.am.module.booking.service.crud.ServiceTypeService;
 import com.jfeat.am.module.booking.services.persistence.model.Service;
 import com.jfeat.am.module.booking.services.persistence.model.ServiceType;
-import com.jfeat.am.module.booking.services.service.crud.EmbServiceService;
-import com.jfeat.am.module.booking.services.service.crud.ServiceTypeService;
+
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * Created by Administrator on 2017/9/15.
@@ -22,11 +25,8 @@ public class EmbServiceEndpoint extends BaseController{
     EmbServiceService embServiceService;
     @Resource
     ServiceTypeService typeService;
-
-
-
-
-
+    @Resource
+    DomainQueryTypeService queryTypeService;
 
     /*
   *   CRUD about Service
@@ -51,8 +51,37 @@ public class EmbServiceEndpoint extends BaseController{
         Integer result = embServiceService.deleteMaster(id);
         return SuccessTip.create(result);
     }
+    /*
+    *   servicetype  暂时没用到
+    * */
+    @GetMapping("/types/lists")
+    public Tip showAllType(){
+        List<ServiceType> typeList = queryTypeService.allServiceType();
+        return SuccessTip.create(typeList);
+    }
 
-   /* *//*
+    @PostMapping("/types")
+    public Tip createType(@Valid @RequestBody ServiceType type){
+        Integer result = typeService.createMaster(type);
+        return SuccessTip.create(result);
+    }
+    @PutMapping("/types")
+    public Tip updateType(@Valid@RequestBody ServiceType type){
+        Integer result = typeService.updateMaster(type);
+        return SuccessTip.create(result);
+    }
+    @GetMapping("/types/{id}")
+    public Tip showType(@PathVariable long id){
+        ServiceType result = typeService.retrieveMaster(id);
+        return SuccessTip.create(result);
+    }
+    @DeleteMapping("/types/{id}")
+    public Tip deleteType(@PathVariable long id){
+        Integer result = typeService.deleteMaster(id);
+        return SuccessTip.create(result);
+    }
+
+     /* *//*
     *   crud covers
     * *//*
     @PostMapping("/covers")
@@ -101,27 +130,4 @@ public class EmbServiceEndpoint extends BaseController{
 
 
 
-    /*
-    *   servicetype  暂时没用到
-    * */
-    @PostMapping("/types")
-    public Tip createType(@Valid @RequestBody ServiceType type){
-        Integer result = typeService.createMaster(type);
-        return SuccessTip.create(result);
-    }
-    @PutMapping("/types")
-    public Tip updateType(@Valid@RequestBody ServiceType type){
-        Integer result = typeService.updateMaster(type);
-        return SuccessTip.create(result);
-    }
-    @GetMapping("/types/{id}")
-    public Tip showType(@PathVariable long id){
-        ServiceType result = typeService.retrieveMaster(id);
-        return SuccessTip.create(result);
-    }
-    @DeleteMapping("/types/{id}")
-    public Tip deleteType(@PathVariable long id){
-        Integer result = typeService.deleteMaster(id);
-        return SuccessTip.create(result);
-    }
 }
