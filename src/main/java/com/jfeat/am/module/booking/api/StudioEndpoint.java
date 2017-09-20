@@ -80,15 +80,14 @@ public class StudioEndpoint extends BaseController {
     *   CRUD about Studio
     * */
     @PostMapping
-    //@Permission(AdminPermission.CREATE)
-    //TODO 测试先不是使用权限。
+    @Permission(AdminPermission.CREATE)
     public Tip createStudio(@Valid @RequestBody Studio studio) {
         Integer result = sDservice.createMaster(studio);
         return SuccessTip.create(result);
     }
 
     @PutMapping
-    //@Permission(AdminPermission.EDIT)
+    @Permission(AdminPermission.EDIT)
     public Tip updateStudio(@Valid @RequestBody Studio studio) {
         Integer result = sDservice.updateMaster(studio);
         return SuccessTip.create(result);
@@ -101,7 +100,7 @@ public class StudioEndpoint extends BaseController {
     }
 
     @DeleteMapping("/{id}")
-   // @Permission(AdminPermission.DELETE)
+    @Permission(AdminPermission.DELETE)
     public Tip deleteStudio(@PathVariable long id) {
         Integer result = sDservice.deleteMaster(id);
         return SuccessTip.create(result);
