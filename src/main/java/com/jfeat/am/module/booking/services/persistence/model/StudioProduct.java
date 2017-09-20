@@ -14,7 +14,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author J4cob
- * @since 2017-09-18
+ * @since 2017-09-20
  */
 @TableName("emb_studio_product")
 public class StudioProduct extends Model<StudioProduct> {
@@ -50,7 +50,8 @@ public class StudioProduct extends Model<StudioProduct> {
     /**
      *  封面
      */
-	private String covers;
+	@TableField("cover_id")
+	private Long coverId;
     /**
      * 保留字段
      */
@@ -116,12 +117,12 @@ public class StudioProduct extends Model<StudioProduct> {
 		this.description = description;
 	}
 
-	public String getCovers() {
-		return covers;
+	public Long getCoverId() {
+		return coverId;
 	}
 
-	public void setCovers(String covers) {
-		this.covers = covers;
+	public void setCoverId(Long coverId) {
+		this.coverId = coverId;
 	}
 
 	public String getFieldA() {
@@ -162,7 +163,7 @@ public class StudioProduct extends Model<StudioProduct> {
 			", fee=" + fee +
 			", name=" + name +
 			", description=" + description +
-			", covers=" + covers +
+			", coverId=" + coverId +
 			", fieldA=" + fieldA +
 			", fieldB=" + fieldB +
 			", fieldC=" + fieldC +

@@ -16,7 +16,7 @@ import org.springframework.stereotype.Controller;
  */
 @Controller
 @DependsOn("springContextHolder")
-public class WechatUserApi extends WxaController{
+public class WechatUserApiEndpoint extends WxaController{
 
     protected WxaUserApi wxaUserApi = Duang.duang(WxaUserApi.class);
     /*

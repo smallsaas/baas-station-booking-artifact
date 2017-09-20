@@ -15,7 +15,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author J4cob
- * @since 2017-09-18
+ * @since 2017-09-20
  */
 @TableName("emb_studio")
 public class Studio extends Model<Studio> {
@@ -51,7 +51,16 @@ public class Studio extends Model<Studio> {
     /**
      * 头像
      */
-	private String covers;
+	@TableField("cover_id")
+	private Long coverId;
+    /**
+     * 经度
+     */
+	private BigDecimal longitude;
+    /**
+     * 纬度
+     */
+	private BigDecimal latitude;
     /**
      * 保留字段
      */
@@ -117,12 +126,28 @@ public class Studio extends Model<Studio> {
 		this.studioSite = studioSite;
 	}
 
-	public String getCovers() {
-		return covers;
+	public Long getCoverId() {
+		return coverId;
 	}
 
-	public void setCovers(String covers) {
-		this.covers = covers;
+	public void setCoverId(Long coverId) {
+		this.coverId = coverId;
+	}
+
+	public BigDecimal getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(BigDecimal longitude) {
+		this.longitude = longitude;
+	}
+
+	public BigDecimal getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(BigDecimal latitude) {
+		this.latitude = latitude;
 	}
 
 	public String getFieldA() {
@@ -163,7 +188,9 @@ public class Studio extends Model<Studio> {
 			", workTime=" + workTime +
 			", fee=" + fee +
 			", studioSite=" + studioSite +
-			", covers=" + covers +
+			", coverId=" + coverId +
+			", longitude=" + longitude +
+			", latitude=" + latitude +
 			", fieldA=" + fieldA +
 			", fieldB=" + fieldB +
 			", fieldC=" + fieldC +

@@ -2,6 +2,7 @@ package com.jfeat.am.module.booking.services.persistence.model;
 
 import java.io.Serializable;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
@@ -14,7 +15,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author J4cob
- * @since 2017-09-18
+ * @since 2017-09-20
  */
 @TableName("emb_customer")
 public class Customer extends Model<Customer> {
@@ -56,7 +57,16 @@ public class Customer extends Model<Customer> {
     /**
      * 头像
      */
-	private String cover;
+	@TableField("cover_id")
+	private Long coverId;
+    /**
+     * 经度
+     */
+	private BigDecimal longitude;
+    /**
+     * 纬度
+     */
+	private BigDecimal latitude;
     /**
      * 保留字段
      */
@@ -138,12 +148,28 @@ public class Customer extends Model<Customer> {
 		this.description = description;
 	}
 
-	public String getCover() {
-		return cover;
+	public Long getCoverId() {
+		return coverId;
 	}
 
-	public void setCover(String cover) {
-		this.cover = cover;
+	public void setCoverId(Long coverId) {
+		this.coverId = coverId;
+	}
+
+	public BigDecimal getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(BigDecimal longitude) {
+		this.longitude = longitude;
+	}
+
+	public BigDecimal getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(BigDecimal latitude) {
+		this.latitude = latitude;
 	}
 
 	public String getFieldA() {
@@ -186,7 +212,9 @@ public class Customer extends Model<Customer> {
 			", sex=" + sex +
 			", wechat=" + wechat +
 			", description=" + description +
-			", cover=" + cover +
+			", coverId=" + coverId +
+			", longitude=" + longitude +
+			", latitude=" + latitude +
 			", fieldA=" + fieldA +
 			", fieldB=" + fieldB +
 			", fieldC=" + fieldC +

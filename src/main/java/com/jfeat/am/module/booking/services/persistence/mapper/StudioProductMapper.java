@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  * </p>
  *
  * @author J4cob
- * @since 2017-09-18
+ * @since 2017-09-20
  */
 public interface StudioProductMapper extends BaseMapper<StudioProduct> {
 

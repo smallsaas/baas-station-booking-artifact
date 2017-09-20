@@ -3,10 +3,8 @@ package com.jfeat.am.module.booking.api;
 import com.jfeat.am.common.constant.tips.SuccessTip;
 import com.jfeat.am.common.constant.tips.Tip;
 import com.jfeat.am.common.controller.BaseController;
-import com.jfeat.am.module.booking.services.persistence.model.Advertising;
 import com.jfeat.am.module.booking.services.persistence.model.Service;
 import com.jfeat.am.module.booking.services.persistence.model.ServiceType;
-import com.jfeat.am.module.booking.services.service.crud.AdvertisingService;
 import com.jfeat.am.module.booking.services.service.crud.EmbServiceService;
 import com.jfeat.am.module.booking.services.service.crud.ServiceTypeService;
 import org.springframework.web.bind.annotation.*;
@@ -24,33 +22,10 @@ public class EmbServiceEndpoint extends BaseController{
     EmbServiceService embServiceService;
     @Resource
     ServiceTypeService typeService;
-    @Resource
-    AdvertisingService advertisingService;
-    @Resource
 
 
 
-    @PostMapping("/ad")
-    public Tip createAd(@Valid @RequestBody Advertising advertising){
 
-        Integer result = advertisingService.createMaster(advertising);
-        return SuccessTip.create(result);
-    }
-    @PutMapping("/ad")
-    public Tip updateAd(@Valid@RequestBody Advertising advertising){
-        Integer result = advertisingService.updateMaster(advertising);
-        return SuccessTip.create(result);
-    }
-    @GetMapping("/ad/{id}")
-    public Tip showAd(@PathVariable long id){
-        Advertising result = advertisingService.retrieveMaster(id);
-        return SuccessTip.create(result);
-    }
-    @DeleteMapping("/ad/{id}")
-    public Tip deleteAd(@PathVariable long id){
-        Integer result = advertisingService.deleteMaster(id);
-        return SuccessTip.create(result);
-    }
 
 
     /*
@@ -77,9 +52,9 @@ public class EmbServiceEndpoint extends BaseController{
         return SuccessTip.create(result);
     }
 
-    /*
+   /* *//*
     *   crud covers
-    * */
+    * *//*
     @PostMapping("/covers")
     public Tip addCovers(@Valid @RequestBody Advertising ad){
         Integer result = advertisingService.createMaster(ad);
@@ -100,6 +75,29 @@ public class EmbServiceEndpoint extends BaseController{
         Integer result = advertisingService.deleteMaster(id);
         return SuccessTip.create(result);
     }
+
+
+    @PostMapping("/ad")
+    public Tip createAd(@Valid @RequestBody Advertising advertising){
+
+        Integer result = advertisingService.createMaster(advertising);
+        return SuccessTip.create(result);
+    }
+    @PutMapping("/ad")
+    public Tip updateAd(@Valid@RequestBody Advertising advertising){
+        Integer result = advertisingService.updateMaster(advertising);
+        return SuccessTip.create(result);
+    }
+    @GetMapping("/ad/{id}")
+    public Tip showAd(@PathVariable long id){
+        Advertising result = advertisingService.retrieveMaster(id);
+        return SuccessTip.create(result);
+    }
+    @DeleteMapping("/ad/{id}")
+    public Tip deleteAd(@PathVariable long id){
+        Integer result = advertisingService.deleteMaster(id);
+        return SuccessTip.create(result);
+    }*/
 
 
 

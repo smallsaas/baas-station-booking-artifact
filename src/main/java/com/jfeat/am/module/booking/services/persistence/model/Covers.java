@@ -12,7 +12,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author J4cob
- * @since 2017-09-18
+ * @since 2017-09-20
  */
 @TableName("emb_covers")
 public class Covers extends Model<Covers> {
@@ -24,9 +24,9 @@ public class Covers extends Model<Covers> {
      */
 	private Long id;
     /**
-     * 图片
+     * 图
      */
-	private String photo;
+	private String cover;
 
 
 	public Long getId() {
@@ -37,12 +37,12 @@ public class Covers extends Model<Covers> {
 		this.id = id;
 	}
 
-	public String getPhoto() {
-		return photo;
+	public String getCover() {
+		return cover;
 	}
 
-	public void setPhoto(String photo) {
-		this.photo = photo;
+	public void setCover(String cover) {
+		this.cover = cover;
 	}
 
 	@Override
@@ -54,7 +54,7 @@ public class Covers extends Model<Covers> {
 	public String toString() {
 		return "Covers{" +
 			"id=" + id +
-			", photo=" + photo +
+			", cover=" + cover +
 			"}";
 	}
 }

@@ -12,7 +12,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author J4cob
- * @since 2017-09-18
+ * @since 2017-09-20
  */
 @TableName("emb_advertising")
 public class Advertising extends Model<Advertising> {
