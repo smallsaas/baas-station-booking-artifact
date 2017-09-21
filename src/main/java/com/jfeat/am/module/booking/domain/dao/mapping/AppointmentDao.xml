@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jfeat.am.module.booking.services.domain.dao.AppointmentDao">
+
+
+
+    <sql id="Base_Column_List">
+        emb_appointment.*
+    </sql>
+    <select id="queryAppointment" resultType="Appointment">
+        SELECT emb_appointment.*
+        FROM emb_appointment
+        WHERE 1=1
+        <if test="status != null and status != ''">
+            AND emb_appointment.status LIKE CONCAT('%',#{status},'%')
+        </if>
+
+        <if test="studioId != null and studioId != ''">
+            AND emb_appointment.studio_id LIKE CONCAT('%',#{studioId},'%')
+        </if>
+
+
+        <if test="recordTime != null and recordTime != '' and endTime != null and enddTime != ''">
+            AND (cl_client_transfer_record.create_time BETWEEN CONCAT(#{recordTime},'00:00:00')
+            AND  cl_client_transfer_record.create_time CONCAT(#{endTime},'23:59:59'))
+        </if>
+
+    </select>
+</mapper>

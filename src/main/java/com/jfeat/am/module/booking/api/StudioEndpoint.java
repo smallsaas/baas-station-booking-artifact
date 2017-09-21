@@ -10,7 +10,7 @@ import com.jfeat.am.common.controller.BaseController;
 import com.jfeat.am.module.booking.domain.definition.AdminPermission;
 import com.jfeat.am.module.booking.domain.model.StudioModel;
 import com.jfeat.am.module.booking.domain.service.DomainQueryService;
-import com.jfeat.am.module.booking.service.crud.StudioOverProductService;
+import com.jfeat.am.module.booking.services.service.crud.StudioOverProductService;
 import com.jfeat.am.module.booking.services.persistence.model.Studio;
 import com.jfeat.am.module.booking.services.persistence.model.StudioProduct;
 

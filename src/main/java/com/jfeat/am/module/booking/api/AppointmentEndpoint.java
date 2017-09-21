@@ -1,15 +1,19 @@
 package com.jfeat.am.module.booking.api;
 
 import com.baomidou.mybatisplus.plugins.Page;
+import com.jfeat.am.common.annotation.Permission;
 import com.jfeat.am.common.constant.tips.SuccessTip;
 import com.jfeat.am.common.constant.tips.Tip;
 import com.jfeat.am.common.controller.BaseController;
 
 import com.jfeat.am.core.jwt.JWTKit;
 
+import com.jfeat.am.core.shiro.ShiroKit;
+import com.jfeat.am.module.booking.api.bean.Ids;
+import com.jfeat.am.module.booking.domain.definition.AdminPermission;
 import com.jfeat.am.module.booking.domain.definition.AppointmentStatus;
 import com.jfeat.am.module.booking.domain.service.DomainQueryService;
-import com.jfeat.am.module.booking.service.crud.AppointmentService;
+import com.jfeat.am.module.booking.services.service.crud.AppointmentService;
 import com.jfeat.am.module.booking.services.persistence.model.Appointment;
 
 import org.springframework.web.bind.annotation.*;
@@ -41,14 +45,17 @@ public class AppointmentEndpoint extends BaseController{
                                 @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize,
                                 @RequestParam(name = "status",required = false) String status,
                                 @RequestParam(name = "studioId",required = false)Long studioId,
-                                @RequestParam(name = "createTime",required = false)Date createTime){
+                                @RequestParam(name = "createTime",required = false)Date createTime) {
+        long userId = JWTKit.getUserId(getHttpServletRequest());
         page.setSize(pageSize);
         page.setCurrent(pageNum);
-        List<Appointment> appointments = domainQueryService.queryAppointment(page,status,studioId,createTime);
-        page.setRecords(appointments);
-        return SuccessTip.create(page);
-    }
-    /*
+        List<Appointment> appointments = domainQueryService.queryAppointment(page, status, studioId, createTime);
+        if (ShiroKit.hasPermission(AdminPermission.QUERY)) {
+            page.setRecords(appointments);
+            return SuccessTip.create(page);
+        }
+        return SuccessTip.create();
+    }    /*
    *   CRUD about Appointment
    * */
     @PostMapping

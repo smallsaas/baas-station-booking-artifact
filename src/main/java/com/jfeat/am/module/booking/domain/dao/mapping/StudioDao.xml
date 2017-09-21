@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jfeat.am.module.booking.services.domain.dao.StudioDao">
+
+    <sql id="Base_Column_List">
+        emb_service.name AS sname,
+        emb_studio.*,
+        emb_service.type_id
+    </sql>
+    <select id="queryStudioByMultiple" resultType="Studio">
+    SELECT emb_service.type_id ,emb_studio.* ,emb_service_type.name AS tname
+
+    FROM emb_service_type
+        RIGHT JOIN emb_service
+        ON emb_service_type.id = emb_service.type_id
+        RIGHT JOIN emb_studio
+        ON emb_studio.id = emb_service.studio_id
+    WHERE 1=1
+    <if test="tname != null and tname != ''">
+        AND emb_service_type.name LIKE CONCAT('%',#{tname},'%')
+    </if>
+
+
+     <if test="name != null and name != ''">
+            AND emb_studio.name LIKE CONCAT('%',#{name},'%')
+    </if>
+
+
+    </select>
+
+
+    <select id="queryStudioBySite" resultType="Studio">
+        SELECT emb_studio.*
+        FROM emb_studio
+        WHERE 1=1
+        <if test="site != null and site != ''">
+            AND emb_studio.studio_site LIKE CONCAT('%',#{site},'%')
+        </if>
+
+    </select>
+
+    <select id="queryStudioByName" resultType="Studio">
+        SELECT emb_studio.*
+        FROM emb_studio
+        WHERE 1=1
+        <if test="name != null and name != ''">
+            AND emb_studio.name LIKE CONCAT('%',#{name},'%')
+        </if>
+
+    </select>
+
+</mapper>

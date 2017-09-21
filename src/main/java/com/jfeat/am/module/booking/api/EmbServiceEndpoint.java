@@ -4,8 +4,8 @@ import com.jfeat.am.common.constant.tips.SuccessTip;
 import com.jfeat.am.common.constant.tips.Tip;
 import com.jfeat.am.common.controller.BaseController;
 import com.jfeat.am.module.booking.domain.service.DomainQueryTypeService;
-import com.jfeat.am.module.booking.service.crud.EmbServiceService;
-import com.jfeat.am.module.booking.service.crud.ServiceTypeService;
+import com.jfeat.am.module.booking.services.service.crud.EmbServiceService;
+import com.jfeat.am.module.booking.services.service.crud.ServiceTypeService;
 import com.jfeat.am.module.booking.services.persistence.model.Service;
 import com.jfeat.am.module.booking.services.persistence.model.ServiceType;
 
