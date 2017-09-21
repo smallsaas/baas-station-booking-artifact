@@ -3,6 +3,7 @@ package com.jfeat.am.module.booking.domain.model;
 import com.jfeat.am.module.booking.services.persistence.model.Doctor;
 import com.jfeat.am.module.booking.services.persistence.model.Studio;
 import com.jfeat.am.module.booking.services.persistence.model.StudioProduct;
+import com.jfeat.am.module.booking.services.persistence.model.StudiosPhotos;
 
 import java.util.List;
 
@@ -12,6 +13,17 @@ import java.util.List;
 public class StudioModel extends Studio {
     List<StudioProduct> products;
     List<Doctor> doctors;
+    List<StudiosPhotos> photos;
+
+
+    public List<StudiosPhotos> getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(List<StudiosPhotos> photos) {
+        this.photos = photos;
+    }
+
 
     public List<StudioProduct> getProducts() {
         return products;

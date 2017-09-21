@@ -13,7 +13,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author J4cob
- * @since 2017-09-20
+ * @since 2017-09-21
  */
 @TableName("emb_studio_collect")
 public class StudioCollect extends Model<StudioCollect> {

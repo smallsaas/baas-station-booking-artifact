@@ -12,7 +12,7 @@
 		<result column="sex" property="sex" />
 		<result column="wechat" property="wechat" />
 		<result column="description" property="description" />
-		<result column="cover_id" property="coverId" />
+		<result column="cover" property="cover" />
 		<result column="longitude" property="longitude" />
 		<result column="latitude" property="latitude" />
 		<result column="field_a" property="fieldA" />

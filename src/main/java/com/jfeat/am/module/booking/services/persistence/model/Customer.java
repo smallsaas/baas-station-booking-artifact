@@ -15,7 +15,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author J4cob
- * @since 2017-09-20
+ * @since 2017-09-21
  */
 @TableName("emb_customer")
 public class Customer extends Model<Customer> {
@@ -57,8 +57,7 @@ public class Customer extends Model<Customer> {
     /**
      * 头像
      */
-	@TableField("cover_id")
-	private Long coverId;
+	private String cover;
     /**
      * 经度
      */
@@ -148,12 +147,12 @@ public class Customer extends Model<Customer> {
 		this.description = description;
 	}
 
-	public Long getCoverId() {
-		return coverId;
+	public String getCover() {
+		return cover;
 	}
 
-	public void setCoverId(Long coverId) {
-		this.coverId = coverId;
+	public void setCover(String cover) {
+		this.cover = cover;
 	}
 
 	public BigDecimal getLongitude() {
@@ -212,7 +211,7 @@ public class Customer extends Model<Customer> {
 			", sex=" + sex +
 			", wechat=" + wechat +
 			", description=" + description +
-			", coverId=" + coverId +
+			", cover=" + cover +
 			", longitude=" + longitude +
 			", latitude=" + latitude +
 			", fieldA=" + fieldA +

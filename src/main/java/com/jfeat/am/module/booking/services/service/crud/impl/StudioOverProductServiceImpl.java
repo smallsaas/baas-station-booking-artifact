@@ -95,7 +95,8 @@ public class StudioOverProductServiceImpl implements StudioOverProductService, C
 
 
     @Override
-    public Integer addSlaveItem(long id, StudioProduct product) {
+    public Integer addSlaveItem(long studioId, StudioProduct product) {
+        product.setStudioId(studioId);
         return productMapper.insert(product);
     }
 

@@ -6,11 +6,11 @@
 	<resultMap id="BaseResultMap" type="com.jfeat.am.module.booking.services.persistence.model.StudioProduct">
 		<id column="id" property="id" />
 		<result column="studio_id" property="studioId" />
-		<result column="service_type" property="serviceType" />
+		<result column="service_type_id" property="serviceTypeId" />
 		<result column="fee" property="fee" />
 		<result column="name" property="name" />
 		<result column="description" property="description" />
-		<result column="cover_id" property="coverId" />
+		<result column="cover" property="cover" />
 		<result column="field_a" property="fieldA" />
 		<result column="field_b" property="fieldB" />
 		<result column="field_c" property="fieldC" />

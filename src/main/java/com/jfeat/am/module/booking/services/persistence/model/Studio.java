@@ -15,7 +15,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author J4cob
- * @since 2017-09-20
+ * @since 2017-09-21
  */
 @TableName("emb_studio")
 public class Studio extends Model<Studio> {
@@ -51,8 +51,7 @@ public class Studio extends Model<Studio> {
     /**
      * 头像
      */
-	@TableField("cover_id")
-	private Long coverId;
+	private String cover;
     /**
      * 省
      */
@@ -151,12 +150,12 @@ public class Studio extends Model<Studio> {
 		this.studioSite = studioSite;
 	}
 
-	public Long getCoverId() {
-		return coverId;
+	public String getCover() {
+		return cover;
 	}
 
-	public void setCoverId(Long coverId) {
-		this.coverId = coverId;
+	public void setCover(String cover) {
+		this.cover = cover;
 	}
 
 	public String getProvince() {
@@ -261,7 +260,7 @@ public class Studio extends Model<Studio> {
 			", workTime=" + workTime +
 			", fee=" + fee +
 			", studioSite=" + studioSite +
-			", coverId=" + coverId +
+			", cover=" + cover +
 			", province=" + province +
 			", city=" + city +
 			", district=" + district +

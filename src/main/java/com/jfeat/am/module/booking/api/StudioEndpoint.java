@@ -7,9 +7,14 @@ import com.jfeat.am.common.constant.tips.SuccessTip;
 import com.jfeat.am.common.constant.tips.Tip;
 import com.jfeat.am.common.controller.BaseController;
 
+import com.jfeat.am.module.booking.api.bean.Ids;
 import com.jfeat.am.module.booking.domain.definition.AdminPermission;
 import com.jfeat.am.module.booking.domain.model.StudioModel;
+import com.jfeat.am.module.booking.domain.model.StudioProductModel;
 import com.jfeat.am.module.booking.domain.service.DomainQueryService;
+import com.jfeat.am.module.booking.domain.service.PathPhotoService;
+import com.jfeat.am.module.booking.services.persistence.model.ProductsPhotos;
+import com.jfeat.am.module.booking.services.persistence.model.StudiosPhotos;
 import com.jfeat.am.module.booking.services.service.crud.StudioOverProductService;
 import com.jfeat.am.module.booking.services.persistence.model.Studio;
 import com.jfeat.am.module.booking.services.persistence.model.StudioProduct;
@@ -31,6 +36,9 @@ public class StudioEndpoint extends BaseController {
     StudioOverProductService sDservice;
     @Resource
     DomainQueryService domainQueryService;
+
+    @Resource
+    PathPhotoService pathPhotoService;
 
     /*
     *   查找店铺 by ServiceType
@@ -82,14 +90,14 @@ public class StudioEndpoint extends BaseController {
     *   CRUD about Studio
     * */
     @PostMapping
-    @Permission(AdminPermission.CREATE)
+    //@Permission(AdminPermission.CREATE)
     public Tip createStudio(@Valid @RequestBody Studio studio) {
         Integer result = sDservice.createMaster(studio);
         return SuccessTip.create(result);
     }
 
     @PutMapping
-    @Permission(AdminPermission.EDIT)
+    //@Permission(AdminPermission.EDIT)
     public Tip updateStudio(@Valid @RequestBody Studio studio) {
         Integer result = sDservice.updateMaster(studio);
         return SuccessTip.create(result);
@@ -102,10 +110,26 @@ public class StudioEndpoint extends BaseController {
     }
 
     @DeleteMapping("/{id}")
-    @Permission(AdminPermission.DELETE)
+    //@Permission(AdminPermission.DELETE)
     public Tip deleteStudio(@PathVariable long id) {
         Integer result = sDservice.deleteMaster(id);
         return SuccessTip.create(result);
+    }
+
+    /*
+    *   add or delete  photo for Studio
+    * */
+    @PostMapping("/{studioId}/photos")
+    public Tip addStudioPhotos(@PathVariable long studioId, @RequestBody StudiosPhotos studiosPhotos){
+        return SuccessTip.create(pathPhotoService.addStudioPhotos(studioId,studiosPhotos));
+    }
+    @DeleteMapping(("/{studioId}/photos/{id}"))
+    public Tip deleteStudioPhotos(@PathVariable long studioId,@PathVariable long id){
+        return SuccessTip.create(pathPhotoService.deleteStudioPhotos(studioId,id));
+    }
+    @PostMapping("/{studioId}/photos/bulk/delete")
+    public Tip bulkDeleteStudioPhotos(@PathVariable  long studioId,@RequestBody Ids ids){
+        return SuccessTip.create(pathPhotoService.bulkDeleteStudioPhotos(studioId,ids.getIds()));
     }
 
     /*
@@ -127,9 +151,8 @@ public class StudioEndpoint extends BaseController {
     }
 
     @GetMapping("/{studioId}/products/{id}")
-    public Tip showStudioProduct(@PathVariable long studioId, @PathVariable long id) {
-        StudioProduct result = sDservice.getSlaveItem(studioId, id);
-        return SuccessTip.create(result);
+    public Tip showStudioProductModel(@PathVariable long studioId, @PathVariable long id) {
+        return SuccessTip.create(domainQueryService.showStudioProductModel(studioId,id));
     }
 
     @DeleteMapping("/{studioId}/products/{id}")
@@ -137,6 +160,25 @@ public class StudioEndpoint extends BaseController {
         Integer result = sDservice.removeSlaveItem(studioId, id);
         return SuccessTip.create(result);
     }
+    @GetMapping("/{studioId}/products/lists")
+    public Tip studioProductList(){
+        return SuccessTip.create(domainQueryService.studioProductList());
+    }
 
+    /*
+   *   add or delete  photo for Product
+   * */
+    @PostMapping("/{studioId}/product/{productId}/photos")
+    public Tip addProductPhotos(@PathVariable long studioId,@PathVariable long productId, @RequestBody ProductsPhotos productsPhotos){
+        return SuccessTip.create(pathPhotoService.addProductPhotos(studioId,productId,productsPhotos));
+    }
+    @DeleteMapping(("/{studioId}/product/{productId}/photos/{id}"))
+    public Tip deleteProductPhotos(@PathVariable long studioId,@PathVariable long productId, @PathVariable long id){
+        return SuccessTip.create(pathPhotoService.deleteProductPhotos(studioId,productId,id));
+    }
+    @PostMapping("/{studioId}/product/{productId}/photos/bulk/delete")
+    public Tip bulkDeleteProductPhotos(@PathVariable  long studioId,@PathVariable long productId, @RequestBody Ids ids){
+        return SuccessTip.create(pathPhotoService.bulkDeleteProductPhotos(studioId,productId,ids.getIds()));
+    }
 
 }

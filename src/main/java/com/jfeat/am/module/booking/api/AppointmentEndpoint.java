@@ -61,7 +61,7 @@ public class AppointmentEndpoint extends BaseController{
     @PostMapping
     public Tip createAppointment(@Valid @RequestBody Appointment appointment){
         Long userId = JWTKit.getUserId(getHttpServletRequest());
-        appointment.setUserId(userId);
+        appointment.setCustomerId(userId);
         appointment.setDoctorId(0L);
         appointment.setStatus(AppointmentStatus.TO_BE_COMFIRMED.toString());
         appointment.setCreateTime(new Date());

@@ -10,7 +10,7 @@
 		<result column="work_time" property="workTime" />
 		<result column="fee" property="fee" />
 		<result column="studio_site" property="studioSite" />
-		<result column="cover_id" property="coverId" />
+		<result column="cover" property="cover" />
 		<result column="province" property="province" />
 		<result column="city" property="city" />
 		<result column="district" property="district" />

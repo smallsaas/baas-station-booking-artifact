@@ -14,7 +14,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author J4cob
- * @since 2017-09-20
+ * @since 2017-09-21
  */
 @TableName("emb_doctor")
 public class Doctor extends Model<Doctor> {
@@ -50,8 +50,7 @@ public class Doctor extends Model<Doctor> {
     /**
      * 头像
      */
-	@TableField("cover_id")
-	private Long coverId;
+	private String cover;
     /**
      * 保留字段
      */
@@ -117,12 +116,12 @@ public class Doctor extends Model<Doctor> {
 		this.workTime = workTime;
 	}
 
-	public Long getCoverId() {
-		return coverId;
+	public String getCover() {
+		return cover;
 	}
 
-	public void setCoverId(Long coverId) {
-		this.coverId = coverId;
+	public void setCover(String cover) {
+		this.cover = cover;
 	}
 
 	public String getFieldA() {
@@ -163,7 +162,7 @@ public class Doctor extends Model<Doctor> {
 			", studioId=" + studioId +
 			", description=" + description +
 			", workTime=" + workTime +
-			", coverId=" + coverId +
+			", cover=" + cover +
 			", fieldA=" + fieldA +
 			", fieldB=" + fieldB +
 			", fieldC=" + fieldC +
