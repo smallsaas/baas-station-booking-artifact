@@ -27,7 +27,8 @@ public class Service extends Model<Service> {
     /**
      * 服务类型
      */
-	private String name;
+	@TableField("type_id")
+	private Long typeId;
     /**
      * 技师ID
      */
@@ -48,12 +49,12 @@ public class Service extends Model<Service> {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public Long getTypeId() {
+		return typeId;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setTypeId(Long typeId) {
+		this.typeId = typeId;
 	}
 
 	public Long getDoctorId() {
@@ -81,7 +82,7 @@ public class Service extends Model<Service> {
 	public String toString() {
 		return "Service{" +
 			"id=" + id +
-			", name=" + name +
+			", typeId=" + typeId +
 			", doctorId=" + doctorId +
 			", studioId=" + studioId +
 			"}";

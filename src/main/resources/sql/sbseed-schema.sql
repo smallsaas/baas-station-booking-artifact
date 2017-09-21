@@ -109,7 +109,7 @@ CREATE TABLE `emb_products_photos` (
 DROP TABLE IF EXISTS `emb_service`;
 CREATE TABLE `emb_service` (
   `id` bigint(20) NOT NULL COMMENT '主键',
-  `name` varchar(50) NOT NULL COMMENT '服务类型',
+  `type_id` bigint(20) NOT NULL COMMENT '服务类型',
   `doctor_id` bigint(20) DEFAULT NULL COMMENT '技师ID',
   `studio_id` bigint(20) NOT NULL COMMENT '工作室ID',
   PRIMARY KEY (`id`)
