@@ -2,11 +2,13 @@ package com.jfeat.am.module.booking.api;
 
 import com.baomidou.mybatisplus.plugins.Page;
 
+import com.jfeat.am.common.annotation.Permission;
 import com.jfeat.am.common.constant.tips.SuccessTip;
 import com.jfeat.am.common.constant.tips.Tip;
 import com.jfeat.am.common.controller.BaseController;
 
 import com.jfeat.am.module.booking.api.bean.Ids;
+import com.jfeat.am.module.booking.services.domain.definition.AdminPermission;
 import com.jfeat.am.module.booking.services.domain.model.StudioModel;
 import com.jfeat.am.module.booking.services.domain.service.DomainQueryService;
 import com.jfeat.am.module.booking.services.domain.service.PathPhotoService;
@@ -87,14 +89,14 @@ public class StudioEndpoint extends BaseController {
     *   CRUD about Studio
     * */
     @PostMapping
-    //@Permission(AdminPermission.CREATE)
+    @Permission(AdminPermission.CREATE)
     public Tip createStudio(@Valid @RequestBody Studio studio) {
         Integer result = sDservice.createMaster(studio);
         return SuccessTip.create(result);
     }
 
     @PutMapping
-    //@Permission(AdminPermission.EDIT)
+    @Permission(AdminPermission.EDIT)
     public Tip updateStudio(@Valid @RequestBody Studio studio) {
         Integer result = sDservice.updateMaster(studio);
         return SuccessTip.create(result);
@@ -107,7 +109,7 @@ public class StudioEndpoint extends BaseController {
     }
 
     @DeleteMapping("/{id}")
-    //@Permission(AdminPermission.DELETE)
+    @Permission(AdminPermission.DELETE)
     public Tip deleteStudio(@PathVariable long id) {
         Integer result = sDservice.deleteMaster(id);
         return SuccessTip.create(result);

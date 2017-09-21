@@ -11,6 +11,7 @@ import com.jfeat.am.module.booking.services.domain.dao.StudioDao;
 import com.jfeat.am.module.booking.services.domain.model.StudioModel;
 import com.jfeat.am.module.booking.services.domain.model.StudioProductModel;
 import com.jfeat.am.module.booking.services.domain.service.DomainQueryService;
+import com.jfeat.am.module.booking.services.persistence.mapper.CustomerMapper;
 import com.jfeat.am.module.booking.services.persistence.mapper.StudioMapper;
 import com.jfeat.am.module.booking.services.persistence.mapper.StudioProductMapper;
 import com.jfeat.am.module.booking.services.persistence.mapper.StudiosPhotosMapper;
@@ -23,6 +24,7 @@ import com.jfeat.am.module.booking.services.persistence.model.StudiosPhotos;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -41,6 +43,8 @@ public class DomainQueryServiceImpl implements DomainQueryService {
     StudioProductMapper studioProductMapper;
     @Resource
     StudiosPhotosMapper studiosPhotosMapper;
+    @Resource
+    CustomerMapper customerMapper;
 
     /*
     *   查找订单
@@ -67,7 +71,9 @@ public class DomainQueryServiceImpl implements DomainQueryService {
     * */
 
     public List<Studio> queryStudioBySite(Page<Studio> page,
-                                          String site) {
+                                          String site
+                                          ) {
+
         return studioDao.queryStudioBySite(page, site);
     }
     /*

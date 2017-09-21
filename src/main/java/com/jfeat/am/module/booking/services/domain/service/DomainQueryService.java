@@ -52,8 +52,9 @@ public interface DomainQueryService {
     *   show  product details
     * */
     public StudioProductModel showStudioProductModel(long studioId, long id);
+
     /*
     *   show Product list
     * */
-    public  List<StudioProduct> studioProductList();
+    public List<StudioProduct> studioProductList();
 }
