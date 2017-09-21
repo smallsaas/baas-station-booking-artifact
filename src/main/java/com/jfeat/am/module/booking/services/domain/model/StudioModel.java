@@ -1,4 +1,4 @@
-package com.jfeat.am.module.booking.domain.model;
+package com.jfeat.am.module.booking.services.domain.model;
 
 import com.jfeat.am.module.booking.services.persistence.model.Doctor;
 import com.jfeat.am.module.booking.services.persistence.model.Studio;

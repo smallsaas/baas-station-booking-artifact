@@ -3,7 +3,7 @@ package com.jfeat.am.module.booking.services.service.crud.impl;
 import com.jfeat.am.common.crud.CRUDFilter;
 import com.jfeat.am.common.crud.CRUDObject;
 import com.jfeat.am.common.crud.CRUDServiceOverSlave;
-import com.jfeat.am.module.booking.domain.model.StudioModel;
+import com.jfeat.am.module.booking.services.domain.model.StudioModel;
 import com.jfeat.am.module.booking.services.service.crud.StudioOverProductService;
 import com.jfeat.am.module.booking.services.persistence.mapper.StudioMapper;
 import com.jfeat.am.module.booking.services.persistence.mapper.StudioProductMapper;

@@ -1,6 +1,5 @@
-package com.jfeat.am.module.booking.domain.service;
+package com.jfeat.am.module.booking.services.domain.service;
 
-import com.jfeat.am.module.booking.domain.model.StudioProductModel;
 import com.jfeat.am.module.booking.services.persistence.model.ProductsPhotos;
 import com.jfeat.am.module.booking.services.persistence.model.StudiosPhotos;
 import java.util.List;

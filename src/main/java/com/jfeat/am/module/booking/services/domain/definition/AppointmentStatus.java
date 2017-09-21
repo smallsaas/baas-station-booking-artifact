@@ -1,4 +1,4 @@
-package com.jfeat.am.module.booking.domain.definition;
+package com.jfeat.am.module.booking.services.domain.definition;
 
 /**
  * Created by Administrator on 2017/9/18.

@@ -1,8 +1,8 @@
-package com.jfeat.am.module.booking.domain.service;
+package com.jfeat.am.module.booking.services.domain.service;
 
 import com.baomidou.mybatisplus.plugins.Page;
-import com.jfeat.am.module.booking.domain.model.StudioModel;
-import com.jfeat.am.module.booking.domain.model.StudioProductModel;
+import com.jfeat.am.module.booking.services.domain.model.StudioModel;
+import com.jfeat.am.module.booking.services.domain.model.StudioProductModel;
 import com.jfeat.am.module.booking.services.persistence.model.Appointment;
 import com.jfeat.am.module.booking.services.persistence.model.Studio;
 import com.jfeat.am.module.booking.services.persistence.model.StudioProduct;
@@ -51,7 +51,7 @@ public interface DomainQueryService {
     /*
     *   show  product details
     * */
-    public StudioProductModel showStudioProductModel(long studioId,long id);
+    public StudioProductModel showStudioProductModel(long studioId, long id);
     /*
     *   show Product list
     * */

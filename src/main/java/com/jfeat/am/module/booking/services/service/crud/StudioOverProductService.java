@@ -1,7 +1,7 @@
 package com.jfeat.am.module.booking.services.service.crud;
 
 import com.jfeat.am.common.crud.CRUDServiceOverSlave;
-import com.jfeat.am.module.booking.domain.model.StudioModel;
+import com.jfeat.am.module.booking.services.domain.model.StudioModel;
 import com.jfeat.am.module.booking.services.persistence.model.Studio;
 import com.jfeat.am.module.booking.services.persistence.model.StudioProduct;
 

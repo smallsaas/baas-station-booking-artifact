@@ -1,4 +1,4 @@
-package com.jfeat.am.module.booking.domain.service.impl;
+package com.jfeat.am.module.booking.services.domain.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -6,11 +6,11 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 
 
-import com.jfeat.am.module.booking.domain.dao.AppointmentDao;
-import com.jfeat.am.module.booking.domain.dao.StudioDao;
-import com.jfeat.am.module.booking.domain.model.StudioModel;
-import com.jfeat.am.module.booking.domain.model.StudioProductModel;
-import com.jfeat.am.module.booking.domain.service.DomainQueryService;
+import com.jfeat.am.module.booking.services.domain.dao.AppointmentDao;
+import com.jfeat.am.module.booking.services.domain.dao.StudioDao;
+import com.jfeat.am.module.booking.services.domain.model.StudioModel;
+import com.jfeat.am.module.booking.services.domain.model.StudioProductModel;
+import com.jfeat.am.module.booking.services.domain.service.DomainQueryService;
 import com.jfeat.am.module.booking.services.persistence.mapper.StudioMapper;
 import com.jfeat.am.module.booking.services.persistence.mapper.StudioProductMapper;
 import com.jfeat.am.module.booking.services.persistence.mapper.StudiosPhotosMapper;

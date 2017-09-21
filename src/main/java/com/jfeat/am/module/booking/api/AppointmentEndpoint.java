@@ -1,7 +1,6 @@
 package com.jfeat.am.module.booking.api;
 
 import com.baomidou.mybatisplus.plugins.Page;
-import com.jfeat.am.common.annotation.Permission;
 import com.jfeat.am.common.constant.tips.SuccessTip;
 import com.jfeat.am.common.constant.tips.Tip;
 import com.jfeat.am.common.controller.BaseController;
@@ -9,10 +8,9 @@ import com.jfeat.am.common.controller.BaseController;
 import com.jfeat.am.core.jwt.JWTKit;
 
 import com.jfeat.am.core.shiro.ShiroKit;
-import com.jfeat.am.module.booking.api.bean.Ids;
-import com.jfeat.am.module.booking.domain.definition.AdminPermission;
-import com.jfeat.am.module.booking.domain.definition.AppointmentStatus;
-import com.jfeat.am.module.booking.domain.service.DomainQueryService;
+import com.jfeat.am.module.booking.services.domain.definition.AdminPermission;
+import com.jfeat.am.module.booking.services.domain.definition.AppointmentStatus;
+import com.jfeat.am.module.booking.services.domain.service.DomainQueryService;
 import com.jfeat.am.module.booking.services.service.crud.AppointmentService;
 import com.jfeat.am.module.booking.services.persistence.model.Appointment;
 

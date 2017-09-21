@@ -2,17 +2,14 @@ package com.jfeat.am.module.booking.api;
 
 import com.baomidou.mybatisplus.plugins.Page;
 
-import com.jfeat.am.common.annotation.Permission;
 import com.jfeat.am.common.constant.tips.SuccessTip;
 import com.jfeat.am.common.constant.tips.Tip;
 import com.jfeat.am.common.controller.BaseController;
 
 import com.jfeat.am.module.booking.api.bean.Ids;
-import com.jfeat.am.module.booking.domain.definition.AdminPermission;
-import com.jfeat.am.module.booking.domain.model.StudioModel;
-import com.jfeat.am.module.booking.domain.model.StudioProductModel;
-import com.jfeat.am.module.booking.domain.service.DomainQueryService;
-import com.jfeat.am.module.booking.domain.service.PathPhotoService;
+import com.jfeat.am.module.booking.services.domain.model.StudioModel;
+import com.jfeat.am.module.booking.services.domain.service.DomainQueryService;
+import com.jfeat.am.module.booking.services.domain.service.PathPhotoService;
 import com.jfeat.am.module.booking.services.persistence.model.ProductsPhotos;
 import com.jfeat.am.module.booking.services.persistence.model.StudiosPhotos;
 import com.jfeat.am.module.booking.services.service.crud.StudioOverProductService;

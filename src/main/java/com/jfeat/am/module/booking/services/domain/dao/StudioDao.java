@@ -1,4 +1,4 @@
-package com.jfeat.am.module.booking.domain.dao;
+package com.jfeat.am.module.booking.services.domain.dao;
 
 
 import com.baomidou.mybatisplus.plugins.Page;

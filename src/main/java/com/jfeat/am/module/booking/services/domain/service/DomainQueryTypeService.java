@@ -1,4 +1,4 @@
-package com.jfeat.am.module.booking.domain.service;
+package com.jfeat.am.module.booking.services.domain.service;
 
 import com.jfeat.am.module.booking.services.persistence.model.ServiceType;
 

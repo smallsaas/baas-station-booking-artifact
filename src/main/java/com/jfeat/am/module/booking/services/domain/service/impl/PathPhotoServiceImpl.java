@@ -1,7 +1,6 @@
-package com.jfeat.am.module.booking.domain.service.impl;
+package com.jfeat.am.module.booking.services.domain.service.impl;
 
-import com.jfeat.am.module.booking.api.bean.Ids;
-import com.jfeat.am.module.booking.domain.service.PathPhotoService;
+import com.jfeat.am.module.booking.services.domain.service.PathPhotoService;
 import com.jfeat.am.module.booking.services.persistence.mapper.ProductsPhotosMapper;
 import com.jfeat.am.module.booking.services.persistence.mapper.StudiosPhotosMapper;
 import com.jfeat.am.module.booking.services.persistence.model.ProductsPhotos;
