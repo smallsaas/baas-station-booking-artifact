@@ -193,3 +193,20 @@ CREATE TABLE `emb_studio_collect` (
   `customer_id` bigint(20) DEFAULT NULL COMMENT '客户名字',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+DROP TABLE IF EXISTS `emb_studios_covers`;
+CREATE TABLE `emb_studios_covers` (
+  `id` bigint(20) NOT NULL COMMENT '主键',
+  `studio_id` bigint(20) DEFAULT NULL COMMENT '公司名字',
+  `cover_id` bigint(20) DEFAULT NULL COMMENT '图片ID',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `emb_products_covers`;
+CREATE TABLE `emb_products_covers` (
+  `id` bigint(20) NOT NULL COMMENT '主键',
+  `product_id` bigint(20) DEFAULT NULL COMMENT '公司名字',
+  `cover_id` bigint(20) DEFAULT NULL COMMENT '图片ID',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
