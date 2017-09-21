@@ -7,16 +7,15 @@ import com.jfeat.am.common.constant.tips.SuccessTip;
 import com.jfeat.am.common.constant.tips.Tip;
 import com.jfeat.am.common.controller.BaseController;
 
+import com.jfeat.am.core.jwt.JWTKit;
 import com.jfeat.am.module.booking.api.bean.Ids;
 import com.jfeat.am.module.booking.services.domain.definition.AdminPermission;
 import com.jfeat.am.module.booking.services.domain.model.StudioModel;
 import com.jfeat.am.module.booking.services.domain.service.DomainQueryService;
 import com.jfeat.am.module.booking.services.domain.service.PathPhotoService;
-import com.jfeat.am.module.booking.services.persistence.model.ProductsPhotos;
-import com.jfeat.am.module.booking.services.persistence.model.StudiosPhotos;
+import com.jfeat.am.module.booking.services.persistence.model.*;
+import com.jfeat.am.module.booking.services.service.crud.CustomerService;
 import com.jfeat.am.module.booking.services.service.crud.StudioOverProductService;
-import com.jfeat.am.module.booking.services.persistence.model.Studio;
-import com.jfeat.am.module.booking.services.persistence.model.StudioProduct;
 
 import org.springframework.web.bind.annotation.*;
 
@@ -35,6 +34,8 @@ public class StudioEndpoint extends BaseController {
     StudioOverProductService sDservice;
     @Resource
     DomainQueryService domainQueryService;
+    @Resource
+    CustomerService customerService;
 
     @Resource
     PathPhotoService pathPhotoService;
@@ -65,6 +66,10 @@ public class StudioEndpoint extends BaseController {
                                  @RequestParam(name = "site", required = false) String site) {
         page.setCurrent(pageNum);
         page.setSize(pageSize);
+        long userId = JWTKit.getUserId(getHttpServletRequest());
+        Customer customer = customerService.retrieveMaster(userId);
+        customer.getLatitude();
+        customer.getLongitude();
         List<Studio> studios = domainQueryService.queryStudioBySite(page, site);
         page.setRecords(studios);
         return SuccessTip.create(page);

@@ -25,7 +25,9 @@ public interface StudioDao {
     *   query  by Site
     * */
     List<Studio> queryStudioBySite(Page<Studio> page,
-                                   @Param("site") String site);
+                                   @Param("site") String site,
+                                   @Param("latitude") BigDecimal latitude,
+                                   @Param("longitude") BigDecimal longitude);
 
     /*
     *   query  by name

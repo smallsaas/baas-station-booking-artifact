@@ -15,12 +15,10 @@ import com.jfeat.am.module.booking.services.persistence.mapper.CustomerMapper;
 import com.jfeat.am.module.booking.services.persistence.mapper.StudioMapper;
 import com.jfeat.am.module.booking.services.persistence.mapper.StudioProductMapper;
 import com.jfeat.am.module.booking.services.persistence.mapper.StudiosPhotosMapper;
-import com.jfeat.am.module.booking.services.persistence.model.Appointment;
-import com.jfeat.am.module.booking.services.persistence.model.Studio;
+import com.jfeat.am.module.booking.services.persistence.model.*;
 
 
-import com.jfeat.am.module.booking.services.persistence.model.StudioProduct;
-import com.jfeat.am.module.booking.services.persistence.model.StudiosPhotos;
+import com.jfeat.am.module.booking.services.service.crud.CustomerService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -44,7 +42,7 @@ public class DomainQueryServiceImpl implements DomainQueryService {
     @Resource
     StudiosPhotosMapper studiosPhotosMapper;
     @Resource
-    CustomerMapper customerMapper;
+    CustomerService customerService;
 
     /*
     *   查找订单
@@ -73,8 +71,10 @@ public class DomainQueryServiceImpl implements DomainQueryService {
     public List<Studio> queryStudioBySite(Page<Studio> page,
                                           String site
                                           ) {
-
-        return studioDao.queryStudioBySite(page, site);
+        Customer  customer = new Customer();
+        BigDecimal lati = customer.getLatitude();
+        BigDecimal longi = customer.getLongitude();
+        return studioDao.queryStudioBySite(page, site,lati,longi);
     }
     /*
     *   查找店铺 by name
