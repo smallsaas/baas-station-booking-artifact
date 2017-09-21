@@ -68,9 +68,7 @@ public class StudioEndpoint extends BaseController {
         page.setSize(pageSize);
         long userId = JWTKit.getUserId(getHttpServletRequest());
         Customer customer = customerService.retrieveMaster(userId);
-        customer.getLatitude();
-        customer.getLongitude();
-        List<Studio> studios = domainQueryService.queryStudioBySite(page, site);
+        List<Studio> studios = domainQueryService.queryStudioBySite(page, site, customer.getLatitude(), customer.getLongitude());
         page.setRecords(studios);
         return SuccessTip.create(page);
     }

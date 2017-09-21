@@ -49,9 +49,8 @@ public class DomainQueryServiceImpl implements DomainQueryService {
     * */
     public List<Appointment> queryAppointment(Page<Appointment> page,
                                               String status,
-                                              long StudioId,
-                                              Date createTime) {
-        return appointmentDao.queryAppointment(page, status, StudioId, createTime);
+                                              long StudioId) {
+        return appointmentDao.queryAppointment(page, status, StudioId);
     }
 
     /*
@@ -69,12 +68,9 @@ public class DomainQueryServiceImpl implements DomainQueryService {
     * */
 
     public List<Studio> queryStudioBySite(Page<Studio> page,
-                                          String site
+                                          String site, BigDecimal lat, BigDecimal lng
                                           ) {
-        Customer  customer = new Customer();
-        BigDecimal lati = customer.getLatitude();
-        BigDecimal longi = customer.getLongitude();
-        return studioDao.queryStudioBySite(page, site,lati,longi);
+        return studioDao.queryStudioBySite(page, site,lat,lng);
     }
     /*
     *   查找店铺 by name

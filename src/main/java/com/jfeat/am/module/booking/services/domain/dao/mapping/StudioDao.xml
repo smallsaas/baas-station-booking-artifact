@@ -59,7 +59,7 @@
         distance ASC
         WHERE 1=1
         <if test="site != null and site != ''">
-            AND emb_studio.studio_site LIKE CONCAT('%',#{site},'%')
+            AND emb_studio.site LIKE CONCAT('%',#{site},'%')
         </if>
 
     </select>

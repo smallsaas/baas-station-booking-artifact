@@ -42,17 +42,21 @@ public class AppointmentEndpoint extends BaseController{
                                 @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
                                 @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize,
                                 @RequestParam(name = "status",required = false) String status,
-                                @RequestParam(name = "studioId",required = false)Long studioId,
-                                @RequestParam(name = "createTime",required = false)Date createTime) {
-        long userId = JWTKit.getUserId(getHttpServletRequest());
+                                @RequestParam(name = "studioId",required = false)Long studioId
+                                ) {
         page.setSize(pageSize);
         page.setCurrent(pageNum);
-        List<Appointment> appointments = domainQueryService.queryAppointment(page, status, studioId, createTime);
         if (ShiroKit.hasPermission(AdminPermission.QUERY)) {
+            List<Appointment> appointments = domainQueryService.queryAppointment(page, status, studioId);
+            page.setRecords(appointments);
+            return SuccessTip.create(page);
+        }else{
+            long userId = JWTKit.getUserId(getHttpServletRequest());
+            studioId = userId;
+            List<Appointment> appointments = domainQueryService.queryAppointment(page, status, studioId);
             page.setRecords(appointments);
             return SuccessTip.create(page);
         }
-        return SuccessTip.create();
     }    /*
    *   CRUD about Appointment
    * */
@@ -78,6 +82,7 @@ public class AppointmentEndpoint extends BaseController{
     }
     @DeleteMapping("/{id}")
     public Tip deleteAppointment(@PathVariable long id){
+        Appointment appointment = appointmentService.retrieveMaster(id);
         Integer result = appointmentService.deleteMaster(id);
         return SuccessTip.create(result);
     }

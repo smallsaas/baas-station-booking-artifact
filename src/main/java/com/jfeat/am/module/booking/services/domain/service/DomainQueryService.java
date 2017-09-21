@@ -7,6 +7,7 @@ import com.jfeat.am.module.booking.services.persistence.model.Appointment;
 import com.jfeat.am.module.booking.services.persistence.model.Studio;
 import com.jfeat.am.module.booking.services.persistence.model.StudioProduct;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -20,8 +21,7 @@ public interface DomainQueryService {
      */
     public List<Appointment> queryAppointment(Page<Appointment> page,
                                               String status,
-                                              long StudioId,
-                                              Date createTime);
+                                              long StudioId);
 
     /*
     *   查找店铺 by ServiceType or  StudioName
@@ -34,7 +34,8 @@ public interface DomainQueryService {
         *   查找店铺 by site
         * */
     public List<Studio> queryStudioBySite(Page<Studio> page,
-                                          String site);
+                                          String site, BigDecimal lat, BigDecimal lng
+    );
 
     /*
     *   查找店铺 by name
