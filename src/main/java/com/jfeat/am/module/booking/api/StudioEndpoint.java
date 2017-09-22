@@ -10,6 +10,7 @@ import com.jfeat.am.common.controller.BaseController;
 import com.jfeat.am.core.jwt.JWTKit;
 import com.jfeat.am.module.booking.api.bean.Ids;
 import com.jfeat.am.module.booking.services.domain.definition.AdminPermission;
+import com.jfeat.am.module.booking.services.domain.definition.StudioStick;
 import com.jfeat.am.module.booking.services.domain.model.StudioModel;
 import com.jfeat.am.module.booking.services.domain.service.DomainQueryService;
 import com.jfeat.am.module.booking.services.domain.service.PathPhotoService;
@@ -99,6 +100,7 @@ public class StudioEndpoint extends BaseController {
     @PostMapping
     @Permission(AdminPermission.CREATE)
     public Tip createStudio(@Valid @RequestBody Studio studio) {
+        studio.setIsStick(StudioStick.NORMAL.toString());
         Integer result = sDservice.createMaster(studio);
         return SuccessTip.create(result);
     }
