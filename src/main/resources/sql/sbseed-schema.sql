@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50718
 File Encoding         : 65001
 
-Date: 2017-09-21 11:05:42
+Date: 2017-09-22 11:42:52
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -65,6 +65,7 @@ CREATE TABLE `emb_customer` (
 -- ----------------------------
 -- Records of emb_customer
 -- ----------------------------
+INSERT INTO `emb_customer` VALUES ('1', '1', '1', '2017-09-22', '1', '1', '1', '1', '1', '232.1546120', '32.1562350', '1', '1', '1');
 
 -- ----------------------------
 -- Table structure for emb_doctor
@@ -94,8 +95,8 @@ CREATE TABLE `emb_doctor` (
 DROP TABLE IF EXISTS `emb_products_photos`;
 CREATE TABLE `emb_products_photos` (
   `id` bigint(20) NOT NULL COMMENT '主键',
-  `product_id` bigint(20) DEFAULT NULL COMMENT '公司名字',
-  `photo` bigint(20) DEFAULT NULL COMMENT '图片',
+  `product_id` bigint(20) NOT NULL COMMENT '公司名字',
+  `photo` bigint(20) NOT NULL COMMENT '图片',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -127,6 +128,7 @@ CREATE TABLE `emb_service_type` (
   `id` bigint(20) NOT NULL COMMENT '主键',
   `name` varchar(20) NOT NULL COMMENT '类型名称',
   `pid` bigint(20) DEFAULT NULL COMMENT '外键',
+  `cover` varchar(26) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -142,7 +144,7 @@ CREATE TABLE `emb_studio` (
   `id` bigint(20) NOT NULL COMMENT '主键',
   `name` varchar(50) NOT NULL COMMENT '工作室名称',
   `description` varchar(255) NOT NULL COMMENT '工作室描述',
-  `work_time` date NOT NULL COMMENT '工作时间',
+  `work_time` date DEFAULT NULL COMMENT '工作时间',
   `fee` decimal(10,2) NOT NULL COMMENT '费用',
   `studio_site` varchar(20) NOT NULL COMMENT '详细地址',
   `cover` varchar(255) DEFAULT NULL COMMENT '头像',
@@ -154,7 +156,7 @@ CREATE TABLE `emb_studio` (
   `contact` varchar(255) DEFAULT NULL COMMENT '联系人',
   `phone` varchar(255) DEFAULT NULL COMMENT '电话',
   `studio_phone` varchar(255) NOT NULL COMMENT '店铺电话',
-  `field_a` varchar(255) DEFAULT NULL COMMENT '保留字段',
+  `is_stick` varchar(26) NOT NULL COMMENT '保留字段',
   `field_b` varchar(255) DEFAULT NULL COMMENT '保留字段',
   `field_c` varchar(255) DEFAULT NULL COMMENT '保留字段',
   PRIMARY KEY (`id`)
@@ -163,6 +165,8 @@ CREATE TABLE `emb_studio` (
 -- ----------------------------
 -- Records of emb_studio
 -- ----------------------------
+INSERT INTO `emb_studio` VALUES ('1', 'aaa', 'asddf', '2017-12-12', '12312.00', '广州', 'aaa', '广东', '广州', '萝岗', '117.3155750', '39.1334620', 'ni hao', '12321231', '123564123', 'null', 'null', 'null');
+INSERT INTO `emb_studio` VALUES ('2', 'aaa', 'asddf', '2017-12-12', '12312.00', '广州', 'aaa', '广东', '广州', '萝岗', '117.3234350', '39.1312342', 'ni hao', '12321231', '123564123', 'null', 'null', 'null');
 
 -- ----------------------------
 -- Table structure for emb_studios_photos
@@ -170,8 +174,8 @@ CREATE TABLE `emb_studio` (
 DROP TABLE IF EXISTS `emb_studios_photos`;
 CREATE TABLE `emb_studios_photos` (
   `id` bigint(20) NOT NULL COMMENT '主键',
-  `studio_id` bigint(20) DEFAULT NULL COMMENT '公司名字',
-  `photo` bigint(20) DEFAULT NULL COMMENT '图片',
+  `studio_id` bigint(20) NOT NULL COMMENT '公司名字',
+  `photo` bigint(20) NOT NULL COMMENT '图片',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -185,8 +189,8 @@ CREATE TABLE `emb_studios_photos` (
 DROP TABLE IF EXISTS `emb_studio_collect`;
 CREATE TABLE `emb_studio_collect` (
   `id` bigint(20) NOT NULL COMMENT '主键',
-  `studio_id` bigint(20) DEFAULT NULL COMMENT '公司名字',
-  `customer_id` bigint(20) DEFAULT NULL COMMENT '客户名字',
+  `studio_id` bigint(20) NOT NULL COMMENT '公司名字',
+  `customer_id` bigint(20) NOT NULL COMMENT '客户名字',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -201,7 +205,7 @@ DROP TABLE IF EXISTS `emb_studio_product`;
 CREATE TABLE `emb_studio_product` (
   `id` bigint(20) NOT NULL COMMENT '主键',
   `studio_id` bigint(20) NOT NULL COMMENT '工作室ID',
-  `service_type_id` bigint(20) NOT NULL COMMENT '类型ID',
+  `feature` varchar(26) DEFAULT NULL COMMENT '类型ID',
   `fee` decimal(10,2) NOT NULL COMMENT '项目费用',
   `name` varchar(255) NOT NULL COMMENT ' 项目名称',
   `description` varchar(255) NOT NULL COMMENT ' 项目描述',

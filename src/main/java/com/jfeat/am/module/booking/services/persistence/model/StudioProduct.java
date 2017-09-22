@@ -14,7 +14,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author J4cob
- * @since 2017-09-21
+ * @since 2017-09-22
  */
 @TableName("emb_studio_product")
 public class StudioProduct extends Model<StudioProduct> {
@@ -33,8 +33,7 @@ public class StudioProduct extends Model<StudioProduct> {
     /**
      * 类型ID
      */
-	@TableField("service_type_id")
-	private Long serviceTypeId;
+	private String feature;
     /**
      * 项目费用
      */
@@ -84,12 +83,12 @@ public class StudioProduct extends Model<StudioProduct> {
 		this.studioId = studioId;
 	}
 
-	public Long getServiceTypeId() {
-		return serviceTypeId;
+	public String getFeature() {
+		return feature;
 	}
 
-	public void setServiceTypeId(Long serviceTypeId) {
-		this.serviceTypeId = serviceTypeId;
+	public void setFeature(String feature) {
+		this.feature = feature;
 	}
 
 	public BigDecimal getFee() {
@@ -158,7 +157,7 @@ public class StudioProduct extends Model<StudioProduct> {
 		return "StudioProduct{" +
 			"id=" + id +
 			", studioId=" + studioId +
-			", serviceTypeId=" + serviceTypeId +
+			", feature=" + feature +
 			", fee=" + fee +
 			", name=" + name +
 			", description=" + description +

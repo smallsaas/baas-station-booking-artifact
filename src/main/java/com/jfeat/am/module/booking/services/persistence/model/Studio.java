@@ -15,7 +15,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author J4cob
- * @since 2017-09-21
+ * @since 2017-09-22
  */
 @TableName("emb_studio")
 public class Studio extends Model<Studio> {
@@ -88,8 +88,8 @@ public class Studio extends Model<Studio> {
     /**
      * 保留字段
      */
-	@TableField("field_a")
-	private String fieldA;
+	@TableField("is_stick")
+	private String isStick;
     /**
      * 保留字段
      */
@@ -222,12 +222,12 @@ public class Studio extends Model<Studio> {
 		this.studioPhone = studioPhone;
 	}
 
-	public String getFieldA() {
-		return fieldA;
+	public String getIsStick() {
+		return isStick;
 	}
 
-	public void setFieldA(String fieldA) {
-		this.fieldA = fieldA;
+	public void setIsStick(String isStick) {
+		this.isStick = isStick;
 	}
 
 	public String getFieldB() {
@@ -269,7 +269,7 @@ public class Studio extends Model<Studio> {
 			", contact=" + contact +
 			", phone=" + phone +
 			", studioPhone=" + studioPhone +
-			", fieldA=" + fieldA +
+			", isStick=" + isStick +
 			", fieldB=" + fieldB +
 			", fieldC=" + fieldC +
 			"}";
