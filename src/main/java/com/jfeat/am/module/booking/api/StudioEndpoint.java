@@ -128,6 +128,7 @@ public class StudioEndpoint extends BaseController {
     * */
     @PostMapping("/{studioId}/photos")
     public Tip addStudioPhotos(@PathVariable long studioId, @RequestBody StudiosPhotos studiosPhotos){
+
         return SuccessTip.create(pathPhotoService.addStudioPhotos(studioId,studiosPhotos));
     }
     @DeleteMapping(("/{studioId}/photos/{id}"))

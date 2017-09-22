@@ -31,32 +31,29 @@
 
     <select id="queryStudioBySite" resultType="Studio">
         SELECT
-        *, ROUND(
+        *
+        FROM (
+        SELECT *,
+        ROUND(
         6378.138 * 2 * ASIN(
-        SQRT(
+        SORT (
         POW(
         SIN(
         (
-        #{latitude} * PI() / 180 - latitude * PI() / 180) / 2
-        ),
-        2
-        ) + COS(#{latitude} * PI() / 180
-        ) * COS(
-        emb_studio.latitude * PI() / 180
-        ) * POW(
+        #{latitude} * PI ( ) / 180 – m.latitude * PI ( ) / 180) / 2 ) , 2 ) +
+        COS （ #{latitude} * PI ( ) / 180）* COS ( emb_studio.latitude * PI ( ) / 180) *
+        POW(
         SIN(
         (
-        #{longitude} * PI() / 180 - emb_studio.longitude * PI() / 180) / 2
-        ),
+        #{longitude} * PI ( ) / 180 – emb_studio.longitude * PI ( ) / 180) / 2 ),
         2
         )
         )
         ) * 1000
         ) AS distance
         FROM
-        emb_studio
-        ORDER BY
-        distance ASC
+        emb_customer
+        ORDER BY distance ASC;
         WHERE 1=1
         <if test="site != null and site != ''">
             AND emb_studio.site LIKE CONCAT('%',#{site},'%')
