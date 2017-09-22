@@ -15,7 +15,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author J4cob
- * @since 2017-09-20
+ * @since 2017-09-21
  */
 @TableName("emb_studio")
 public class Studio extends Model<Studio> {
@@ -44,15 +44,26 @@ public class Studio extends Model<Studio> {
      */
 	private BigDecimal fee;
     /**
-     * 地址
+     * 详细地址
      */
 	@TableField("studio_site")
 	private String studioSite;
     /**
      * 头像
      */
-	@TableField("cover_id")
-	private Long coverId;
+	private String cover;
+    /**
+     * 省
+     */
+	private String province;
+    /**
+     * 市
+     */
+	private String city;
+    /**
+     * 区
+     */
+	private String district;
     /**
      * 经度
      */
@@ -61,6 +72,19 @@ public class Studio extends Model<Studio> {
      * 纬度
      */
 	private BigDecimal latitude;
+    /**
+     * 联系人
+     */
+	private String contact;
+    /**
+     * 电话
+     */
+	private String phone;
+    /**
+     * 店铺电话
+     */
+	@TableField("studio_phone")
+	private String studioPhone;
     /**
      * 保留字段
      */
@@ -126,12 +150,36 @@ public class Studio extends Model<Studio> {
 		this.studioSite = studioSite;
 	}
 
-	public Long getCoverId() {
-		return coverId;
+	public String getCover() {
+		return cover;
 	}
 
-	public void setCoverId(Long coverId) {
-		this.coverId = coverId;
+	public void setCover(String cover) {
+		this.cover = cover;
+	}
+
+	public String getProvince() {
+		return province;
+	}
+
+	public void setProvince(String province) {
+		this.province = province;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getDistrict() {
+		return district;
+	}
+
+	public void setDistrict(String district) {
+		this.district = district;
 	}
 
 	public BigDecimal getLongitude() {
@@ -148,6 +196,30 @@ public class Studio extends Model<Studio> {
 
 	public void setLatitude(BigDecimal latitude) {
 		this.latitude = latitude;
+	}
+
+	public String getContact() {
+		return contact;
+	}
+
+	public void setContact(String contact) {
+		this.contact = contact;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getStudioPhone() {
+		return studioPhone;
+	}
+
+	public void setStudioPhone(String studioPhone) {
+		this.studioPhone = studioPhone;
 	}
 
 	public String getFieldA() {
@@ -188,9 +260,15 @@ public class Studio extends Model<Studio> {
 			", workTime=" + workTime +
 			", fee=" + fee +
 			", studioSite=" + studioSite +
-			", coverId=" + coverId +
+			", cover=" + cover +
+			", province=" + province +
+			", city=" + city +
+			", district=" + district +
 			", longitude=" + longitude +
 			", latitude=" + latitude +
+			", contact=" + contact +
+			", phone=" + phone +
+			", studioPhone=" + studioPhone +
 			", fieldA=" + fieldA +
 			", fieldB=" + fieldB +
 			", fieldC=" + fieldC +

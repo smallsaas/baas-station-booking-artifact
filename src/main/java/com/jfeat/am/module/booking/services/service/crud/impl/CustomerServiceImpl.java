@@ -4,9 +4,9 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.jfeat.am.common.crud.impl.CRUDServiceOnlyImpl;
 
 
+import com.jfeat.am.module.booking.services.service.crud.CustomerService;
 import com.jfeat.am.module.booking.services.persistence.mapper.CustomerMapper;
 import com.jfeat.am.module.booking.services.persistence.model.Customer;
-import com.jfeat.am.module.booking.services.service.crud.CustomerService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

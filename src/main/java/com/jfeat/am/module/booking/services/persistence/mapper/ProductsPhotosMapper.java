@@ -1,6 +1,6 @@
 package com.jfeat.am.module.booking.services.persistence.mapper;
 
-import com.jfeat.am.module.booking.services.persistence.model.Advertising;
+import com.jfeat.am.module.booking.services.persistence.model.ProductsPhotos;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 
 /**
@@ -9,8 +9,8 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  * </p>
  *
  * @author J4cob
- * @since 2017-09-20
+ * @since 2017-09-21
  */
-public interface AdvertisingMapper extends BaseMapper<Advertising> {
+public interface ProductsPhotosMapper extends BaseMapper<ProductsPhotos> {
 
 }

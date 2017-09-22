@@ -1,6 +1,6 @@
 package com.jfeat.am.module.booking.services.persistence.mapper;
 
-import com.jfeat.am.module.booking.services.persistence.model.Customer;
+import com.jfeat.am.module.booking.services.persistence.model.StudioCollect;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  * @author J4cob
  * @since 2017-09-21
  */
-public interface CustomerMapper extends BaseMapper<Customer> {
+public interface StudioCollectMapper extends BaseMapper<StudioCollect> {
 
 }

@@ -10,9 +10,15 @@
 		<result column="work_time" property="workTime" />
 		<result column="fee" property="fee" />
 		<result column="studio_site" property="studioSite" />
-		<result column="cover_id" property="coverId" />
+		<result column="cover" property="cover" />
+		<result column="province" property="province" />
+		<result column="city" property="city" />
+		<result column="district" property="district" />
 		<result column="longitude" property="longitude" />
 		<result column="latitude" property="latitude" />
+		<result column="contact" property="contact" />
+		<result column="phone" property="phone" />
+		<result column="studio_phone" property="studioPhone" />
 		<result column="field_a" property="fieldA" />
 		<result column="field_b" property="fieldB" />
 		<result column="field_c" property="fieldC" />

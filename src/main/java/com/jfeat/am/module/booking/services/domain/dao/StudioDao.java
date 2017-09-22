@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.plugins.Page;
 import com.jfeat.am.module.booking.services.persistence.model.Studio;
 import org.apache.ibatis.annotations.Param;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -24,7 +25,9 @@ public interface StudioDao {
     *   query  by Site
     * */
     List<Studio> queryStudioBySite(Page<Studio> page,
-                                   @Param("site") String site);
+                                   @Param("site") String site,
+                                   @Param("latitude") BigDecimal latitude,
+                                   @Param("longitude") BigDecimal longitude);
 
     /*
     *   query  by name

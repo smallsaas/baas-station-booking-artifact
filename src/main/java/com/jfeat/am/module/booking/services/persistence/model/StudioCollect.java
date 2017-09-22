@@ -2,6 +2,7 @@ package com.jfeat.am.module.booking.services.persistence.model;
 
 import java.io.Serializable;
 
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
 import java.io.Serializable;
@@ -12,10 +13,10 @@ import java.io.Serializable;
  * </p>
  *
  * @author J4cob
- * @since 2017-09-20
+ * @since 2017-09-21
  */
-@TableName("emb_advertising")
-public class Advertising extends Model<Advertising> {
+@TableName("emb_studio_collect")
+public class StudioCollect extends Model<StudioCollect> {
 
     private static final long serialVersionUID = 1L;
 
@@ -24,13 +25,15 @@ public class Advertising extends Model<Advertising> {
      */
 	private Long id;
     /**
-     * 名字
+     * 公司名字
      */
-	private String name;
+	@TableField("studio_id")
+	private Long studioId;
     /**
-     * 链接
+     * 客户名字
      */
-	private String url;
+	@TableField("customer_id")
+	private Long customerId;
 
 
 	public Long getId() {
@@ -41,20 +44,20 @@ public class Advertising extends Model<Advertising> {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public Long getStudioId() {
+		return studioId;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setStudioId(Long studioId) {
+		this.studioId = studioId;
 	}
 
-	public String getUrl() {
-		return url;
+	public Long getCustomerId() {
+		return customerId;
 	}
 
-	public void setUrl(String url) {
-		this.url = url;
+	public void setCustomerId(Long customerId) {
+		this.customerId = customerId;
 	}
 
 	@Override
@@ -64,10 +67,10 @@ public class Advertising extends Model<Advertising> {
 
 	@Override
 	public String toString() {
-		return "Advertising{" +
+		return "StudioCollect{" +
 			"id=" + id +
-			", name=" + name +
-			", url=" + url +
+			", studioId=" + studioId +
+			", customerId=" + customerId +
 			"}";
 	}
 }

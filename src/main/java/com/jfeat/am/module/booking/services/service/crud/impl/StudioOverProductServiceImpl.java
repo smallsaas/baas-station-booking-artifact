@@ -4,13 +4,12 @@ import com.jfeat.am.common.crud.CRUDFilter;
 import com.jfeat.am.common.crud.CRUDObject;
 import com.jfeat.am.common.crud.CRUDServiceOverSlave;
 import com.jfeat.am.module.booking.services.domain.model.StudioModel;
-import com.jfeat.am.module.booking.services.persistence.mapper.DoctorMapper;
+import com.jfeat.am.module.booking.services.service.crud.StudioOverProductService;
 import com.jfeat.am.module.booking.services.persistence.mapper.StudioMapper;
 import com.jfeat.am.module.booking.services.persistence.mapper.StudioProductMapper;
-import com.jfeat.am.module.booking.services.persistence.model.Doctor;
 import com.jfeat.am.module.booking.services.persistence.model.Studio;
 import com.jfeat.am.module.booking.services.persistence.model.StudioProduct;
-import com.jfeat.am.module.booking.services.service.crud.StudioOverProductService;
+
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -27,6 +26,14 @@ public class StudioOverProductServiceImpl implements StudioOverProductService, C
     StudioMapper studioMapper;
     @Resource
     StudioProductMapper productMapper;
+
+    /*
+    *   Test
+    * */
+    /*public Integer addTest(Studio studio){
+        Integer studios = studioMapper.insert(studio);
+        return studios;
+    }*/
 
 
     @Override
@@ -96,7 +103,8 @@ public class StudioOverProductServiceImpl implements StudioOverProductService, C
 
 
     @Override
-    public Integer addSlaveItem(long id, StudioProduct product) {
+    public Integer addSlaveItem(long studioId, StudioProduct product) {
+        product.setStudioId(studioId);
         return productMapper.insert(product);
     }
 

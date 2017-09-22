@@ -2,6 +2,7 @@ package com.jfeat.am.module.booking.services.persistence.model;
 
 import java.io.Serializable;
 
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
 import java.io.Serializable;
@@ -14,8 +15,8 @@ import java.io.Serializable;
  * @author J4cob
  * @since 2017-09-21
  */
-@TableName("emb_service_type")
-public class ServiceType extends Model<ServiceType> {
+@TableName("emb_products_photos")
+public class ProductsPhotos extends Model<ProductsPhotos> {
 
     private static final long serialVersionUID = 1L;
 
@@ -24,13 +25,14 @@ public class ServiceType extends Model<ServiceType> {
      */
 	private Long id;
     /**
-     * 类型名称
+     * 公司名字
      */
-	private String name;
+	@TableField("product_id")
+	private Long productId;
     /**
-     * 外键
+     * 图片
      */
-	private Long pid;
+	private Long photo;
 
 
 	public Long getId() {
@@ -41,20 +43,20 @@ public class ServiceType extends Model<ServiceType> {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public Long getProductId() {
+		return productId;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setProductId(Long productId) {
+		this.productId = productId;
 	}
 
-	public Long getPid() {
-		return pid;
+	public Long getPhoto() {
+		return photo;
 	}
 
-	public void setPid(Long pid) {
-		this.pid = pid;
+	public void setPhoto(Long photo) {
+		this.photo = photo;
 	}
 
 	@Override
@@ -64,10 +66,10 @@ public class ServiceType extends Model<ServiceType> {
 
 	@Override
 	public String toString() {
-		return "ServiceType{" +
+		return "ProductsPhotos{" +
 			"id=" + id +
-			", name=" + name +
-			", pid=" + pid +
+			", productId=" + productId +
+			", photo=" + photo +
 			"}";
 	}
 }

@@ -2,9 +2,12 @@ package com.jfeat.am.module.booking.services.domain.service;
 
 import com.baomidou.mybatisplus.plugins.Page;
 import com.jfeat.am.module.booking.services.domain.model.StudioModel;
+import com.jfeat.am.module.booking.services.domain.model.StudioProductModel;
 import com.jfeat.am.module.booking.services.persistence.model.Appointment;
 import com.jfeat.am.module.booking.services.persistence.model.Studio;
+import com.jfeat.am.module.booking.services.persistence.model.StudioProduct;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -13,12 +16,13 @@ import java.util.List;
  */
 public interface DomainQueryService {
 
-    /**   模糊查找Appointment
-    * */
+    /**
+     * 模糊查找Appointment
+     */
     public List<Appointment> queryAppointment(Page<Appointment> page,
                                               String status,
-                                              long StudioId,
-                                              Date createTime);
+                                              long StudioId);
+
     /*
     *   查找店铺 by ServiceType or  StudioName
     * */
@@ -30,7 +34,8 @@ public interface DomainQueryService {
         *   查找店铺 by site
         * */
     public List<Studio> queryStudioBySite(Page<Studio> page,
-                                          String site);
+                                          String site, BigDecimal lat, BigDecimal lng
+    );
 
     /*
     *   查找店铺 by name
@@ -43,4 +48,14 @@ public interface DomainQueryService {
     *       queryStudio and  show the  product
     * */
     public StudioModel showStudioModel(long id);
+
+    /*
+    *   show  product details
+    * */
+    public StudioProductModel showStudioProductModel(long studioId, long id);
+
+    /*
+    *   show Product list
+    * */
+    public List<StudioProduct> studioProductList();
 }

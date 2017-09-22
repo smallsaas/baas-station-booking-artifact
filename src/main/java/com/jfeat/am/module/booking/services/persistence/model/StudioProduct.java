@@ -14,7 +14,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author J4cob
- * @since 2017-09-20
+ * @since 2017-09-21
  */
 @TableName("emb_studio_product")
 public class StudioProduct extends Model<StudioProduct> {
@@ -33,8 +33,8 @@ public class StudioProduct extends Model<StudioProduct> {
     /**
      * 类型ID
      */
-	@TableField("service_type")
-	private Long serviceType;
+	@TableField("service_type_id")
+	private Long serviceTypeId;
     /**
      * 项目费用
      */
@@ -50,8 +50,7 @@ public class StudioProduct extends Model<StudioProduct> {
     /**
      *  封面
      */
-	@TableField("cover_id")
-	private Long coverId;
+	private String cover;
     /**
      * 保留字段
      */
@@ -85,12 +84,12 @@ public class StudioProduct extends Model<StudioProduct> {
 		this.studioId = studioId;
 	}
 
-	public Long getServiceType() {
-		return serviceType;
+	public Long getServiceTypeId() {
+		return serviceTypeId;
 	}
 
-	public void setServiceType(Long serviceType) {
-		this.serviceType = serviceType;
+	public void setServiceTypeId(Long serviceTypeId) {
+		this.serviceTypeId = serviceTypeId;
 	}
 
 	public BigDecimal getFee() {
@@ -117,12 +116,12 @@ public class StudioProduct extends Model<StudioProduct> {
 		this.description = description;
 	}
 
-	public Long getCoverId() {
-		return coverId;
+	public String getCover() {
+		return cover;
 	}
 
-	public void setCoverId(Long coverId) {
-		this.coverId = coverId;
+	public void setCover(String cover) {
+		this.cover = cover;
 	}
 
 	public String getFieldA() {
@@ -159,11 +158,11 @@ public class StudioProduct extends Model<StudioProduct> {
 		return "StudioProduct{" +
 			"id=" + id +
 			", studioId=" + studioId +
-			", serviceType=" + serviceType +
+			", serviceTypeId=" + serviceTypeId +
 			", fee=" + fee +
 			", name=" + name +
 			", description=" + description +
-			", coverId=" + coverId +
+			", cover=" + cover +
 			", fieldA=" + fieldA +
 			", fieldB=" + fieldB +
 			", fieldC=" + fieldC +

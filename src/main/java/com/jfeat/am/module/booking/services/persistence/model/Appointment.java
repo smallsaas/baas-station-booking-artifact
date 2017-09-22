@@ -15,7 +15,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author J4cob
- * @since 2017-09-20
+ * @since 2017-09-21
  */
 @TableName("emb_appointment")
 public class Appointment extends Model<Appointment> {
@@ -37,10 +37,10 @@ public class Appointment extends Model<Appointment> {
 	@TableField("doctor_id")
 	private Long doctorId;
     /**
-     * 技师姓名
+     * 客户姓名
      */
-	@TableField("user_id")
-	private Long userId;
+	@TableField("customer_id")
+	private Long customerId;
     /**
      * 类型ID
      */
@@ -70,10 +70,9 @@ public class Appointment extends Model<Appointment> {
 	@TableField("close_time")
 	private Date closeTime;
     /**
-     * 保留字段
+     * 用户手机号码
      */
-	@TableField("field_a")
-	private String fieldA;
+	private String phone;
     /**
      * 保留字段
      */
@@ -110,12 +109,12 @@ public class Appointment extends Model<Appointment> {
 		this.doctorId = doctorId;
 	}
 
-	public Long getUserId() {
-		return userId;
+	public Long getCustomerId() {
+		return customerId;
 	}
 
-	public void setUserId(Long userId) {
-		this.userId = userId;
+	public void setCustomerId(Long customerId) {
+		this.customerId = customerId;
 	}
 
 	public Long getServiceId() {
@@ -166,12 +165,12 @@ public class Appointment extends Model<Appointment> {
 		this.closeTime = closeTime;
 	}
 
-	public String getFieldA() {
-		return fieldA;
+	public String getPhone() {
+		return phone;
 	}
 
-	public void setFieldA(String fieldA) {
-		this.fieldA = fieldA;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 	public String getFieldB() {
@@ -201,14 +200,14 @@ public class Appointment extends Model<Appointment> {
 			"id=" + id +
 			", studioId=" + studioId +
 			", doctorId=" + doctorId +
-			", userId=" + userId +
+			", customerId=" + customerId +
 			", serviceId=" + serviceId +
 			", status=" + status +
 			", fee=" + fee +
 			", createTime=" + createTime +
 			", appointmentTime=" + appointmentTime +
 			", closeTime=" + closeTime +
-			", fieldA=" + fieldA +
+			", phone=" + phone +
 			", fieldB=" + fieldB +
 			", fieldC=" + fieldC +
 			"}";

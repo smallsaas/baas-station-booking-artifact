@@ -15,6 +15,5 @@ import java.util.List;
 public interface AppointmentDao{
     List<Appointment> queryAppointment(Page<Appointment> page,
                                        @Param("status") String status,
-                                       @Param("studioId") long StudioId,
-                                       @Param("createTime") Date createTime);
+                                       @Param("studioId") long StudioId);
 }

@@ -2,6 +2,7 @@ package com.jfeat.am.module.booking.services.persistence.model;
 
 import java.io.Serializable;
 
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
 import java.io.Serializable;
@@ -12,10 +13,10 @@ import java.io.Serializable;
  * </p>
  *
  * @author J4cob
- * @since 2017-09-20
+ * @since 2017-09-21
  */
-@TableName("emb_covers")
-public class Covers extends Model<Covers> {
+@TableName("emb_studios_photos")
+public class StudiosPhotos extends Model<StudiosPhotos> {
 
     private static final long serialVersionUID = 1L;
 
@@ -24,9 +25,14 @@ public class Covers extends Model<Covers> {
      */
 	private Long id;
     /**
-     * 图
+     * 公司名字
      */
-	private String cover;
+	@TableField("studio_id")
+	private Long studioId;
+    /**
+     * 图片
+     */
+	private Long photo;
 
 
 	public Long getId() {
@@ -37,12 +43,20 @@ public class Covers extends Model<Covers> {
 		this.id = id;
 	}
 
-	public String getCover() {
-		return cover;
+	public Long getStudioId() {
+		return studioId;
 	}
 
-	public void setCover(String cover) {
-		this.cover = cover;
+	public void setStudioId(Long studioId) {
+		this.studioId = studioId;
+	}
+
+	public Long getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(Long photo) {
+		this.photo = photo;
 	}
 
 	@Override
@@ -52,9 +66,10 @@ public class Covers extends Model<Covers> {
 
 	@Override
 	public String toString() {
-		return "Covers{" +
+		return "StudiosPhotos{" +
 			"id=" + id +
-			", cover=" + cover +
+			", studioId=" + studioId +
+			", photo=" + photo +
 			"}";
 	}
 }

@@ -19,11 +19,5 @@
             AND emb_appointment.studio_id LIKE CONCAT('%',#{studioId},'%')
         </if>
 
-
-        <if test="recordTime != null and recordTime != '' and endTime != null and enddTime != ''">
-            AND (cl_client_transfer_record.create_time BETWEEN CONCAT(#{recordTime},'00:00:00')
-            AND  cl_client_transfer_record.create_time CONCAT(#{endTime},'23:59:59'))
-        </if>
-
     </select>
 </mapper>

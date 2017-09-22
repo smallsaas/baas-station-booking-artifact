@@ -6,11 +6,14 @@ import com.jfeat.am.common.constant.tips.Tip;
 import com.jfeat.am.common.controller.BaseController;
 
 import com.jfeat.am.core.jwt.JWTKit;
+
+import com.jfeat.am.core.shiro.ShiroKit;
+import com.jfeat.am.module.booking.services.domain.definition.AdminPermission;
 import com.jfeat.am.module.booking.services.domain.definition.AppointmentStatus;
+import com.jfeat.am.module.booking.services.domain.service.DomainQueryService;
+import com.jfeat.am.module.booking.services.service.crud.AppointmentService;
 import com.jfeat.am.module.booking.services.persistence.model.Appointment;
 
-import com.jfeat.am.module.booking.services.service.crud.AppointmentService;
-import com.jfeat.am.module.booking.services.domain.service.DomainQueryService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -39,21 +42,28 @@ public class AppointmentEndpoint extends BaseController{
                                 @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
                                 @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize,
                                 @RequestParam(name = "status",required = false) String status,
-                                @RequestParam(name = "studioId",required = false)Long studioId,
-                                @RequestParam(name = "createTime",required = false)Date createTime){
+                                @RequestParam(name = "studioId",required = false)Long studioId
+                                ) {
         page.setSize(pageSize);
         page.setCurrent(pageNum);
-        List<Appointment> appointments = domainQueryService.queryAppointment(page,status,studioId,createTime);
-        page.setRecords(appointments);
-        return SuccessTip.create(page);
-    }
-    /*
+        if (ShiroKit.hasPermission(AdminPermission.QUERY)) {
+            List<Appointment> appointments = domainQueryService.queryAppointment(page, status, studioId);
+            page.setRecords(appointments);
+            return SuccessTip.create(page);
+        }else{
+            long userId = JWTKit.getUserId(getHttpServletRequest());
+            studioId = userId;
+            List<Appointment> appointments = domainQueryService.queryAppointment(page, status, studioId);
+            page.setRecords(appointments);
+            return SuccessTip.create(page);
+        }
+    }    /*
    *   CRUD about Appointment
    * */
     @PostMapping
     public Tip createAppointment(@Valid @RequestBody Appointment appointment){
         Long userId = JWTKit.getUserId(getHttpServletRequest());
-        appointment.setUserId(userId);
+        appointment.setCustomerId(userId);
         appointment.setDoctorId(0L);
         appointment.setStatus(AppointmentStatus.TO_BE_COMFIRMED.toString());
         appointment.setCreateTime(new Date());
@@ -72,6 +82,7 @@ public class AppointmentEndpoint extends BaseController{
     }
     @DeleteMapping("/{id}")
     public Tip deleteAppointment(@PathVariable long id){
+        Appointment appointment = appointmentService.retrieveMaster(id);
         Integer result = appointmentService.deleteMaster(id);
         return SuccessTip.create(result);
     }
