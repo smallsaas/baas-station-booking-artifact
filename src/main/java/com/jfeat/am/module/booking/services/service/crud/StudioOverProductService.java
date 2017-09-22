@@ -9,4 +9,6 @@ import com.jfeat.am.module.booking.services.persistence.model.StudioProduct;
  * Created by J4cob on 2017/9/14.
  */
 public interface StudioOverProductService extends CRUDServiceOverSlave<Studio,StudioModel,StudioProduct>{
+
+    /*public Integer addTest(Studio studio);*/
 }
