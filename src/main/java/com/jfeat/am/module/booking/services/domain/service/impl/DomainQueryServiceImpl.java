@@ -7,11 +7,10 @@ import com.baomidou.mybatisplus.plugins.Page;
 
 
 import com.jfeat.am.module.booking.services.domain.dao.AppointmentDao;
-import com.jfeat.am.module.booking.services.domain.dao.StudioDao;
+import com.jfeat.am.module.booking.services.domain.definition.AdminPermission;
 import com.jfeat.am.module.booking.services.domain.model.StudioModel;
 import com.jfeat.am.module.booking.services.domain.model.StudioProductModel;
 import com.jfeat.am.module.booking.services.domain.service.DomainQueryService;
-import com.jfeat.am.module.booking.services.persistence.mapper.CustomerMapper;
 import com.jfeat.am.module.booking.services.persistence.mapper.StudioMapper;
 import com.jfeat.am.module.booking.services.persistence.mapper.StudioProductMapper;
 import com.jfeat.am.module.booking.services.persistence.mapper.StudiosPhotosMapper;
@@ -23,7 +22,6 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -34,7 +32,7 @@ public class DomainQueryServiceImpl implements DomainQueryService {
     @Resource
     AppointmentDao appointmentDao;
     @Resource
-    StudioDao studioDao;
+    AdminPermission.StudioDao studioDao;
     @Resource
     StudioMapper studioMapper;
     @Resource
