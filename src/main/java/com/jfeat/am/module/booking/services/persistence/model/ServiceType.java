@@ -12,7 +12,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author J4cob
- * @since 2017-09-21
+ * @since 2017-09-22
  */
 @TableName("emb_service_type")
 public class ServiceType extends Model<ServiceType> {
@@ -31,6 +31,7 @@ public class ServiceType extends Model<ServiceType> {
      * 外键
      */
 	private Long pid;
+	private String cover;
 
 
 	public Long getId() {
@@ -57,6 +58,14 @@ public class ServiceType extends Model<ServiceType> {
 		this.pid = pid;
 	}
 
+	public String getCover() {
+		return cover;
+	}
+
+	public void setCover(String cover) {
+		this.cover = cover;
+	}
+
 	@Override
 	protected Serializable pkVal() {
 		return this.id;
@@ -68,6 +77,7 @@ public class ServiceType extends Model<ServiceType> {
 			"id=" + id +
 			", name=" + name +
 			", pid=" + pid +
+			", cover=" + cover +
 			"}";
 	}
 }

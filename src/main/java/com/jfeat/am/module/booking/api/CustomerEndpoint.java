@@ -26,8 +26,8 @@ public class CustomerEndpoint extends BaseController{
     @PostMapping
     public Tip createCustomer(@Valid @RequestBody Customer customer){
         Integer result = customerService.createMaster(customer);
-        return SuccessTip.create(result);
-    }
+    return SuccessTip.create(result);
+}
     @PutMapping
     public Tip updateCustomer(@Valid@RequestBody Customer customer){
         Integer result = customerService.updateMaster(customer);

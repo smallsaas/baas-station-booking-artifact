@@ -31,6 +31,12 @@ public class EmbServiceEndpoint extends BaseController{
     /*
   *   CRUD about Service
   * */
+    @GetMapping("/lists")
+    public Tip showAllService(){
+        List<Service> typeList = queryTypeService.allService();
+        return SuccessTip.create(typeList);
+    }
+
     @PostMapping
     public Tip createEmbService(@Valid @RequestBody Service service){
         Integer result = embServiceService.createMaster(service);
@@ -52,7 +58,7 @@ public class EmbServiceEndpoint extends BaseController{
         return SuccessTip.create(result);
     }
     /*
-    *   servicetype  暂时没用到
+    *   servicetype  第一个识类型的列表
     * */
     @GetMapping("/types/lists")
     public Tip showAllType(){

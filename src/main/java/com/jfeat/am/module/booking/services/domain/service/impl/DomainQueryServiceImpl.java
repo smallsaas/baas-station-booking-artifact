@@ -68,9 +68,9 @@ public class DomainQueryServiceImpl implements DomainQueryService {
     * */
 
     public List<Studio> queryStudioBySite(Page<Studio> page,
-                                          String site, BigDecimal lat, BigDecimal lng
+                                          String site, BigDecimal latitude, BigDecimal longitude
                                           ) {
-        return studioDao.queryStudioBySite(page, site,lat,lng);
+        return studioDao.queryStudioBySite(page, site,latitude,longitude);
     }
     /*
     *   查找店铺 by name

@@ -21,6 +21,8 @@
     <properties>
         <sb-base.version>1.0.0</sb-base.version>
         <sb-account.version>1.0.0</sb-account.version>
+        <sb-wechat.version>1.0.0</sb-wechat.version>
+        <sb-ad.version>1.0.0</sb-ad.version>
         <sb-crud.version>1.0.0-SNAPSHOT</sb-crud.version>
     </properties>
 
@@ -39,6 +41,16 @@
             <groupId>com.jfeat</groupId>
             <artifactId>sb-crud</artifactId>
             <version>${sb-crud.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.jfeat</groupId>
+            <artifactId>sb-wechat</artifactId>
+            <version>${sb-wechat.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.jfeat</groupId>
+            <artifactId>sb-ad</artifactId>
+            <version>${sb-ad.version}</version>
         </dependency>
 
         <!--spring boot依赖-->

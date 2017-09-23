@@ -27,6 +27,14 @@ public class StudioOverProductServiceImpl implements StudioOverProductService, C
     @Resource
     StudioProductMapper productMapper;
 
+    /*
+    *   Test
+    * */
+    /*public Integer addTest(Studio studio){
+        Integer studios = studioMapper.insert(studio);
+        return studios;
+    }*/
+
 
     @Override
     public void appendSlaveData(StudioModel studioModel) {
