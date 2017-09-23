@@ -41,6 +41,14 @@ public class StudioEndpoint extends BaseController {
     PathPhotoService pathPhotoService;
 
     /*
+    *   Test
+    * */
+    @PostMapping("/test")
+    public Studio crestStudio(@RequestBody Studio studio){
+        Studio studios = sDservice.createStudio(studio);
+        return studios;
+    }
+    /*
     *   查找店铺 by ServiceType
     * */
     @GetMapping("/options")
