@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.plugins.Page;
 
 
 import com.jfeat.am.module.booking.services.domain.dao.AppointmentDao;
+import com.jfeat.am.module.booking.services.domain.dao.StudioDao;
 import com.jfeat.am.module.booking.services.domain.definition.AdminPermission;
 import com.jfeat.am.module.booking.services.domain.model.StudioModel;
 import com.jfeat.am.module.booking.services.domain.model.StudioProductModel;
@@ -32,7 +33,7 @@ public class DomainQueryServiceImpl implements DomainQueryService {
     @Resource
     AppointmentDao appointmentDao;
     @Resource
-    AdminPermission.StudioDao studioDao;
+    StudioDao studioDao;
     @Resource
     StudioMapper studioMapper;
     @Resource

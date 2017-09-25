@@ -16,33 +16,5 @@ public class  AdminPermission {
     public  static  final  String DELETE = "studio.delete";
     public  static  final  String QUERY = "appointment.query";
 
-    /**
-     * Created by Administrator on 2017/9/15.
-     */
-    public static interface StudioDao {
 
-        /*
-        *   query  by ServiceType
-        * */
-        List<Studio> queryStudioByMultiple(Page<Studio> page,
-                                           @Param("tname") String tname,
-                                           @Param("name") String name);
-
-
-        /*
-        *   query  by Site
-        * */
-        List<Studio> queryStudioBySite(Page<Studio> page,
-                                       @Param("site") String site,
-                                       @Param("latitude") BigDecimal latitude,
-                                       @Param("longitude") BigDecimal longitude);
-
-        /*
-        *   query  by name
-        * */
-        List<Studio> queryStudioByName(Page<Studio> page,
-                                       @Param("name") String name);
-
-
-    }
 }
