@@ -22,8 +22,6 @@
         <if test="name != null and name != ''">
             AND emb_studio.name LIKE CONCAT('%',#{name},'%')
         </if>
-
-
     </select>
 
 
