@@ -8,7 +8,6 @@ import com.baomidou.mybatisplus.plugins.Page;
 
 import com.jfeat.am.module.booking.services.domain.dao.AppointmentDao;
 import com.jfeat.am.module.booking.services.domain.dao.StudioDao;
-import com.jfeat.am.module.booking.services.domain.definition.AdminPermission;
 import com.jfeat.am.module.booking.services.domain.model.StudioModel;
 import com.jfeat.am.module.booking.services.domain.model.StudioProductModel;
 import com.jfeat.am.module.booking.services.domain.service.DomainQueryService;
