@@ -40,6 +40,14 @@ public class StudioEndpoint extends BaseController {
 
     @Resource
     PathPhotoService pathPhotoService;
+    /*
+    *   queryStudioByStick
+    * */
+    @GetMapping("/stick")
+    public Tip queryStudioByStick(){
+        List<Studio> studios = domainQueryService.queryStudioByStick();
+        return SuccessTip.create(studios);
+    }
 
     /*
     *   queryCity
@@ -98,11 +106,6 @@ public class StudioEndpoint extends BaseController {
 
 
         Integer result = sDservice.createMaster(studio);
-        if(studio.getIsStick() == null){
-            studio.setIsStick(StudioStick.NORMAL.toString());
-            return SuccessTip.create(result);
-
-        }
         return SuccessTip.create(result);
     }
 

@@ -7,8 +7,7 @@ public enum StudioStick {
 
     NORMAL,
     RAISE,
-    SINK,
-    DISCOUNT,
-    NEW
+    SINK
+
 
 }

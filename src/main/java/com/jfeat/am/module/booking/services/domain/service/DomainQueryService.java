@@ -16,6 +16,11 @@ import java.util.List;
 public interface DomainQueryService {
 
     /*
+    *   queryStudioByStick
+    * */
+    public List<Studio> queryStudioByStick();
+
+    /*
     *   queryCity
     * */
 

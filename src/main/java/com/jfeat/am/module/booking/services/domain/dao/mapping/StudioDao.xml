@@ -77,4 +77,11 @@
         WHERE 1=1
     </select>
 
+    <select id="queryStudioByStick" resultType="Studio">
+        SELECT emb_studio.*
+        FROM emb_studio
+        WHERE
+        emb_studio.is_stick  =  'RAISE'
+    </select>
+
 </mapper>

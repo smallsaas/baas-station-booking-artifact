@@ -42,6 +42,13 @@ public class DomainQueryServiceImpl implements DomainQueryService {
     @Resource
     CustomerService customerService;
 
+    /*
+    *   queryStudioByStick
+    * */
+    public List<Studio> queryStudioByStick(){
+        return studioDao.queryStudioByStick();
+    }
+
      /*
     *   查找city
     * */
@@ -97,7 +104,7 @@ public class DomainQueryServiceImpl implements DomainQueryService {
     public StudioProductModel showStudioProductModel(long studioId,long id) {
         StudioProduct studioProduct = studioProductMapper.selectById(id);
         JSONObject productObj = JSON.parseObject(JSON.toJSONString(studioProduct));
-        List<StudiosPhotos> photos = studiosPhotosMapper.selectList(new EntityWrapper<StudiosPhotos>().eq("studio_id", id));
+        List<StudioProduct> photos = studioProductMapper.selectList(new EntityWrapper<StudioProduct>().eq("product_id", id));
         productObj.put("photos", photos);
         StudioProductModel model = JSON.parseObject(productObj.toJSONString(), StudioProductModel.class);
         return model;

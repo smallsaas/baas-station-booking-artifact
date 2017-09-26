@@ -25,6 +25,11 @@ public interface StudioDao {
                                                 @Param("tname") String tname,
                                                 @Param("name") String name);
 
+        /*
+        *       queryStudioByStick
+        * */
+        List<Studio> queryStudioByStick();
+
 
         /*
         *   query  by Site
