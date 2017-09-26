@@ -53,7 +53,7 @@ public class StudioEndpoint extends BaseController {
                                         @RequestParam(name = "name", required = false) String name) {
         page.setCurrent(pageNum);
         page.setSize(pageSize);
-        List<Studio> studios = domainQueryService.queryStudioByMultiple(page, tname, name);
+        List<StudioModel> studios = domainQueryService.queryStudioByMultiple(page, tname, name);
         page.setRecords(studios);
         return SuccessTip.create(page);
     }
@@ -81,28 +81,13 @@ public class StudioEndpoint extends BaseController {
     }
 
     /*
-            *   查找店铺 by name
-            * *//*
-    @GetMapping("")
-    public Tip queryStudioByName(Page page,
-                                 @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
-                                 @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize,
-                                 @RequestParam(name = "name", required = false) String name) {
-        page.setCurrent(pageNum);
-        page.setSize(pageSize);
-        List<Studio> studios = domainQueryService.queryStudioByName(page, name);
-        page.setRecords(studios);
-        return SuccessTip.create(page);
-    }*/
-
-    /*
     *   CRUD about Studio
     * */
     @PostMapping
-    //@Permission(AdminPermission.CREATE)
+    @Permission(AdminPermission.CREATE)
     public Tip createStudio(@Valid @RequestBody Studio studio) {
         studio.setIsStick(StudioStick.NORMAL.toString());
-        Studio result = sDservice.createStudio(studio);
+        Integer result = sDservice.createMaster(studio);
         return SuccessTip.create(result);
     }
 

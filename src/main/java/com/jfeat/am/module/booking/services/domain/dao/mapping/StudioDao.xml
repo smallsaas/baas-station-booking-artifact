@@ -7,7 +7,7 @@
         emb_studio.*,
         emb_service.type_id
     </sql>
-    <select id="queryStudioByMultiple" resultType="Studio">
+    <select id="queryStudioByMultiple" resultType="StudioModel">
         SELECT emb_service.type_id ,emb_studio.* ,emb_service_type.name AS tname
 
         FROM emb_service_type

@@ -8,7 +8,6 @@ import com.jfeat.am.module.booking.services.persistence.model.Studio;
 import com.jfeat.am.module.booking.services.persistence.model.StudioProduct;
 
 import java.math.BigDecimal;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -26,9 +25,9 @@ public interface DomainQueryService {
     /*
     *   查找店铺 by ServiceType or  StudioName
     * */
-    public List<Studio> queryStudioByMultiple(Page<Studio> page,
-                                              String tname,
-                                              String name);
+    public List<StudioModel> queryStudioByMultiple(Page<StudioModel> page,
+                                                   String tname,
+                                                   String name);
 
     /*
         *   查找店铺 by site

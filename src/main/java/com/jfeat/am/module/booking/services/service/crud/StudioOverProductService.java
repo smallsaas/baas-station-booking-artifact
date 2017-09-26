@@ -10,5 +10,5 @@ import com.jfeat.am.module.booking.services.persistence.model.StudioProduct;
  */
 public interface StudioOverProductService extends CRUDServiceOverSlave<Studio,StudioModel,StudioProduct>{
 
-    public Studio createStudio(Studio studio);
+
 }

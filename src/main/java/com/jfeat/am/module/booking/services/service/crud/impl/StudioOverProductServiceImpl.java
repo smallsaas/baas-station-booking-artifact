@@ -133,9 +133,5 @@ public class StudioOverProductServiceImpl implements StudioOverProductService, C
         return null;
     }
 
-    public Studio createStudio(Studio studio){
-        Integer studios = studioMapper.insert(studio);
-        return studio;
-    }
 
 }

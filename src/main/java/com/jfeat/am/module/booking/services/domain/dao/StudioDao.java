@@ -1,6 +1,7 @@
 package com.jfeat.am.module.booking.services.domain.dao;
 
 import com.baomidou.mybatisplus.plugins.Page;
+import com.jfeat.am.module.booking.services.domain.model.StudioModel;
 import com.jfeat.am.module.booking.services.persistence.model.Studio;
 import org.apache.ibatis.annotations.Param;
 
@@ -16,9 +17,9 @@ public interface StudioDao {
         /*
         *   query  by ServiceType
         * */
-        List<Studio> queryStudioByMultiple(Page<Studio> page,
-                                           @Param("tname") String tname,
-                                           @Param("name") String name);
+        List<StudioModel> queryStudioByMultiple(Page<StudioModel> page,
+                                                @Param("tname") String tname,
+                                                @Param("name") String name);
 
 
         /*

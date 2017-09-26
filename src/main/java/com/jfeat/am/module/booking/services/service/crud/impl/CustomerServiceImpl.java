@@ -1,6 +1,7 @@
 package com.jfeat.am.module.booking.services.service.crud.impl;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.jfeat.am.common.crud.impl.CRUDServiceOnlyImpl;
 
 
@@ -8,7 +9,7 @@ import com.jfeat.am.module.booking.services.service.crud.CustomerService;
 import com.jfeat.am.module.booking.services.persistence.mapper.CustomerMapper;
 import com.jfeat.am.module.booking.services.persistence.model.Customer;
 import org.springframework.stereotype.Service;
-
+import java.util.List;
 import javax.annotation.Resource;
 
 /**
@@ -22,5 +23,10 @@ public class CustomerServiceImpl extends CRUDServiceOnlyImpl<Customer> implement
     @Override
     protected BaseMapper<Customer> getMasterMapper() {
         return customerMapper;
+    }
+
+    public List<Customer> getAllCustomers(){
+        List<Customer> getAllCustomers = customerMapper.selectList(new EntityWrapper<>());
+        return getAllCustomers;
     }
 }

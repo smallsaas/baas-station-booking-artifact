@@ -6,10 +6,12 @@ import com.jfeat.am.common.controller.BaseController;
 import com.jfeat.am.module.booking.services.service.crud.CustomerService;
 import com.jfeat.am.module.booking.services.persistence.model.Customer;
 
+
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * Created by Administrator on 2017/9/15.
@@ -19,6 +21,15 @@ import javax.validation.Valid;
 public class CustomerEndpoint extends BaseController{
     @Resource
     CustomerService customerService;
+
+    /*
+    *   Customer
+    * */
+    @GetMapping
+    public Tip getAllCustomers(){
+        List<Customer> result = customerService.getAllCustomers();
+        return SuccessTip.create(result);
+    }
 
     /*
   *   CRUD about Customer
