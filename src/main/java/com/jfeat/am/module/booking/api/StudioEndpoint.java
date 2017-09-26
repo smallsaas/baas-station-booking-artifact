@@ -41,6 +41,15 @@ public class StudioEndpoint extends BaseController {
     @Resource
     PathPhotoService pathPhotoService;
 
+    /*
+    *   queryCity
+    * */
+    @GetMapping("/citys")
+    public Tip queryCity(){
+        List<Studio> citys = domainQueryService.queryCity();
+        return SuccessTip.create(citys);
+    }
+
 
     /*
     *   查找店铺 by ServiceType
@@ -84,10 +93,16 @@ public class StudioEndpoint extends BaseController {
     *   CRUD about Studio
     * */
     @PostMapping
-    @Permission(AdminPermission.CREATE)
+    //@Permission(AdminPermission.CREATE)
     public Tip createStudio(@Valid @RequestBody Studio studio) {
-        studio.setIsStick(StudioStick.NORMAL.toString());
+
+
         Integer result = sDservice.createMaster(studio);
+        if(studio.getIsStick() == null){
+            studio.setIsStick(StudioStick.NORMAL.toString());
+            return SuccessTip.create(result);
+
+        }
         return SuccessTip.create(result);
     }
 

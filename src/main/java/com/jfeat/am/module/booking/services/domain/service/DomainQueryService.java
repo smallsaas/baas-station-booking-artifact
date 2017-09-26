@@ -15,6 +15,11 @@ import java.util.List;
  */
 public interface DomainQueryService {
 
+    /*
+    *   queryCity
+    * */
+
+    public List<Studio> queryCity();
     /**
      * 模糊查找Appointment
      */
@@ -35,13 +40,6 @@ public interface DomainQueryService {
     public List<Studio> queryStudioBySite(Page<Studio> page,
                                           String site, BigDecimal lat, BigDecimal lng
     );
-
-    /*
-    *   查找店铺 by name
-    * */
-
-    public List<Studio> queryStudioByName(Page<Studio> page,
-                                          String name);
 
     /*
     *       queryStudio and  show the  product

@@ -13,6 +13,10 @@ import java.util.List;
  */
 public interface StudioDao {
 
+        /*
+        *       queryCity
+        * */
+        List<Studio> queryCity();
 
         /*
         *   query  by ServiceType

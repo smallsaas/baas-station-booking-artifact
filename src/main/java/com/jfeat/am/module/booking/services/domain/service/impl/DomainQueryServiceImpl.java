@@ -42,6 +42,15 @@ public class DomainQueryServiceImpl implements DomainQueryService {
     @Resource
     CustomerService customerService;
 
+     /*
+    *   查找city
+    * */
+
+    public List<Studio> queryCity(){
+        return studioDao.queryCity();
+    }
+
+
     /*
     *   查找订单
     * */
@@ -69,14 +78,6 @@ public class DomainQueryServiceImpl implements DomainQueryService {
                                           String site, BigDecimal latitude, BigDecimal longitude
                                           ) {
         return studioDao.queryStudioBySite(page, site,latitude,longitude);
-    }
-    /*
-    *   查找店铺 by name
-    * */
-
-    public List<Studio> queryStudioByName(Page<Studio> page,
-                                          String name) {
-        return studioDao.queryStudioByName(page, name);
     }
 
     /*
