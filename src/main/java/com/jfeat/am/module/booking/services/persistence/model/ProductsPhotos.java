@@ -13,7 +13,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author J4cob
- * @since 2017-09-22
+ * @since 2017-09-26
  */
 @TableName("emb_products_photos")
 public class ProductsPhotos extends Model<ProductsPhotos> {
@@ -32,7 +32,7 @@ public class ProductsPhotos extends Model<ProductsPhotos> {
     /**
      * 图片
      */
-	private Long photo;
+	private String photo;
 
 
 	public Long getId() {
@@ -51,11 +51,11 @@ public class ProductsPhotos extends Model<ProductsPhotos> {
 		this.productId = productId;
 	}
 
-	public Long getPhoto() {
+	public String getPhoto() {
 		return photo;
 	}
 
-	public void setPhoto(Long photo) {
+	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
 

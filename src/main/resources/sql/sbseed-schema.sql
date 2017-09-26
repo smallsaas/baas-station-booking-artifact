@@ -95,7 +95,7 @@ DROP TABLE IF EXISTS `emb_products_photos`;
 CREATE TABLE `emb_products_photos` (
   `id` bigint(20) NOT NULL COMMENT '主键',
   `product_id` bigint(20) NOT NULL COMMENT '公司名字',
-  `photo` bigint(20) NOT NULL COMMENT '图片',
+  `photo` varchar(255) NOT NULL COMMENT '图片',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -127,7 +127,7 @@ CREATE TABLE `emb_service_type` (
   `id` bigint(20) NOT NULL COMMENT '主键',
   `name` varchar(20) NOT NULL COMMENT '类型名称',
   `pid` bigint(20) DEFAULT NULL COMMENT '外键',
-  `cover` varchar(26) NOT NULL,
+  `cover` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -172,7 +172,7 @@ DROP TABLE IF EXISTS `emb_studios_photos`;
 CREATE TABLE `emb_studios_photos` (
   `id` bigint(20) NOT NULL COMMENT '主键',
   `studio_id` bigint(20) NOT NULL COMMENT '公司名字',
-  `photo` bigint(20) NOT NULL COMMENT '图片',
+  `photo` varchar(255) NOT NULL COMMENT '图片',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

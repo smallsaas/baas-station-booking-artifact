@@ -14,7 +14,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author J4cob
- * @since 2017-09-22
+ * @since 2017-09-26
  */
 @TableName("emb_doctor")
 public class Doctor extends Model<Doctor> {
