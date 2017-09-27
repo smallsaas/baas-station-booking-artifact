@@ -28,8 +28,13 @@ public class CollectEndpoint extends BaseController{
 
     @PostMapping
     public Tip createCollect(@Valid @RequestBody StudioCollect studioCollect){
+
         long userId = JWTKit.getUserId(getHttpServletRequest());
-        studioCollect.setCustomerId(userId);
+        /*if(studioCollect.getCustomerId() == userId){
+            throw new RuntimeException("Do not repeat concern!");
+        }*/
+
+            studioCollect.setCustomerId(userId);
         return SuccessTip.create(collectService.createMaster(studioCollect));
     }
 
