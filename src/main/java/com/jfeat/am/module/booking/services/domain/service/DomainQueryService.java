@@ -16,6 +16,13 @@ import java.util.List;
 public interface DomainQueryService {
 
     /*
+    *   queryProductByAttribute
+    * */
+    public List<StudioProduct> queryStudioProduct(Page<StudioProduct> page,
+                                                  long studioId,
+                                                  String attribute) ;
+
+    /*
     *   queryAppointmentByUserId
     * */
     public List<Appointment> queryAppointmentByUserId(long id);

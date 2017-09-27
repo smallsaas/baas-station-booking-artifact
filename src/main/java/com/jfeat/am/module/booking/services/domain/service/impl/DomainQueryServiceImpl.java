@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.plugins.Page;
 
 import com.jfeat.am.module.booking.services.domain.dao.AppointmentDao;
 import com.jfeat.am.module.booking.services.domain.dao.StudioDao;
+import com.jfeat.am.module.booking.services.domain.dao.StudioProductDao;
 import com.jfeat.am.module.booking.services.domain.model.StudioModel;
 import com.jfeat.am.module.booking.services.domain.model.StudioProductModel;
 import com.jfeat.am.module.booking.services.domain.service.DomainQueryService;
@@ -30,6 +31,7 @@ import java.util.List;
  */
 @Service
 public class DomainQueryServiceImpl implements DomainQueryService {
+
     @Resource
     AppointmentDao appointmentDao;
     @Resource
@@ -44,6 +46,16 @@ public class DomainQueryServiceImpl implements DomainQueryService {
     CustomerService customerService;
     @Resource
     AppointmentMapper appointmentMapper;
+    @Resource
+    StudioProductDao studioProductDao;
+    /*
+    *   queryProductByAttribute
+    * */
+    public List<StudioProduct> queryStudioProduct(Page<StudioProduct> page,
+                                                  long studioId,
+                                              String attribute) {
+        return studioProductDao.queryProductByAttribute(page,attribute);
+    }
 
     /*
     *   queryAppointmentByUserId

@@ -1,3 +1,4 @@
+
 /*
 Navicat MySQL Data Transfer
 
@@ -10,7 +11,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50718
 File Encoding         : 65001
 
-Date: 2017-09-22 11:42:52
+Date: 2017-09-27 15:13:50
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -54,7 +55,7 @@ CREATE TABLE `emb_customer` (
   `wechat` varchar(20) DEFAULT NULL COMMENT '微信号',
   `description` varchar(255) DEFAULT NULL COMMENT '自我描述',
   `cover` varchar(255) DEFAULT NULL COMMENT '头像',
-  `longitude` decimal(10,7) DEFAULT  NULL COMMENT '经度',
+  `longitude` decimal(10,7) DEFAULT NULL COMMENT '经度',
   `latitude` decimal(10,7) DEFAULT NULL COMMENT '纬度',
   `field_a` varchar(255) DEFAULT NULL COMMENT '保留字段',
   `field_b` varchar(255) DEFAULT NULL COMMENT '保留字段',
@@ -155,8 +156,8 @@ CREATE TABLE `emb_studio` (
   `contact` varchar(255) DEFAULT NULL COMMENT '联系人',
   `phone` varchar(255) DEFAULT NULL COMMENT '电话',
   `studio_phone` varchar(255) NOT NULL COMMENT '店铺电话',
-  `is_stick` varchar(26) NOT NULL COMMENT '保留字段',
-  `field_b` varchar(255) DEFAULT NULL COMMENT '保留字段',
+  `is_stick` varchar(26) NOT NULL COMMENT '上下线/精选',
+  `tag` varchar(255) DEFAULT NULL COMMENT '标签',
   `field_c` varchar(255) DEFAULT NULL COMMENT '保留字段',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -188,7 +189,6 @@ CREATE TABLE `emb_studio_collect` (
   `id` bigint(20) NOT NULL COMMENT '主键',
   `studio_id` bigint(20) NOT NULL COMMENT '公司名字',
   `customer_id` bigint(20) NOT NULL COMMENT '客户名字',
-
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -208,7 +208,7 @@ CREATE TABLE `emb_studio_product` (
   `name` varchar(255) NOT NULL COMMENT ' 项目名称',
   `description` varchar(255) NOT NULL COMMENT ' 项目描述',
   `cover` varchar(255) DEFAULT NULL COMMENT ' 封面',
-  `field_a` varchar(255) DEFAULT NULL COMMENT '保留字段',
+  `attribute` varchar(255) DEFAULT NULL COMMENT '属性/团购/次卡/精选',
   `field_b` varchar(255) DEFAULT NULL COMMENT '保留字段',
   `field_c` varchar(255) DEFAULT NULL COMMENT '保留字段',
   PRIMARY KEY (`id`)

@@ -6,6 +6,7 @@ import java.math.BigDecimal;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
+import java.io.Serializable;
 
 /**
  * <p>
@@ -13,7 +14,7 @@ import com.baomidou.mybatisplus.annotations.TableName;
  * </p>
  *
  * @author J4cob
- * @since 2017-09-26
+ * @since 2017-09-27
  */
 @TableName("emb_studio_product")
 public class StudioProduct extends Model<StudioProduct> {
@@ -50,10 +51,9 @@ public class StudioProduct extends Model<StudioProduct> {
      */
 	private String cover;
     /**
-     * 保留字段
+     * 属性/团购/次卡/精选
      */
-	@TableField("field_a")
-	private String fieldA;
+	private String attribute;
     /**
      * 保留字段
      */
@@ -122,12 +122,12 @@ public class StudioProduct extends Model<StudioProduct> {
 		this.cover = cover;
 	}
 
-	public String getFieldA() {
-		return fieldA;
+	public String getAttribute() {
+		return attribute;
 	}
 
-	public void setFieldA(String fieldA) {
-		this.fieldA = fieldA;
+	public void setAttribute(String attribute) {
+		this.attribute = attribute;
 	}
 
 	public String getFieldB() {
@@ -161,7 +161,7 @@ public class StudioProduct extends Model<StudioProduct> {
 			", name=" + name +
 			", description=" + description +
 			", cover=" + cover +
-			", fieldA=" + fieldA +
+			", attribute=" + attribute +
 			", fieldB=" + fieldB +
 			", fieldC=" + fieldC +
 			"}";

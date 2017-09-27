@@ -7,6 +7,7 @@ import java.util.Date;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
+import java.io.Serializable;
 
 /**
  * <p>
@@ -14,7 +15,7 @@ import com.baomidou.mybatisplus.annotations.TableName;
  * </p>
  *
  * @author J4cob
- * @since 2017-09-26
+ * @since 2017-09-27
  */
 @TableName("emb_studio")
 public class Studio extends Model<Studio> {
@@ -85,15 +86,14 @@ public class Studio extends Model<Studio> {
 	@TableField("studio_phone")
 	private String studioPhone;
     /**
-     * 保留字段
+     * 上下线/精选
      */
 	@TableField("is_stick")
 	private String isStick;
     /**
-     * 保留字段
+     * 标签
      */
-	@TableField("field_b")
-	private String fieldB;
+	private String tag;
     /**
      * 保留字段
      */
@@ -229,12 +229,12 @@ public class Studio extends Model<Studio> {
 		this.isStick = isStick;
 	}
 
-	public String getFieldB() {
-		return fieldB;
+	public String getTag() {
+		return tag;
 	}
 
-	public void setFieldB(String fieldB) {
-		this.fieldB = fieldB;
+	public void setTag(String tag) {
+		this.tag = tag;
 	}
 
 	public String getFieldC() {
@@ -269,7 +269,7 @@ public class Studio extends Model<Studio> {
 			", phone=" + phone +
 			", studioPhone=" + studioPhone +
 			", isStick=" + isStick +
-			", fieldB=" + fieldB +
+			", tag=" + tag +
 			", fieldC=" + fieldC +
 			"}";
 	}

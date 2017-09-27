@@ -170,6 +170,18 @@ public class StudioEndpoint extends BaseController {
         return SuccessTip.create(domainQueryService.showStudioProductModel(studioId, id));
     }
 
+    @GetMapping("/{studioId}/products/attributes")
+    public Tip queryProductByAttribute(Page page,
+                                       @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
+                                       @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize,
+                                       @PathVariable long studioId,
+                                       @RequestBody String attribute){
+        page.setCurrent(pageNum);
+        page.setSize(pageSize);
+        List<StudioProduct>  products = domainQueryService.queryStudioProduct(page,studioId,attribute);
+        page.setRecords(products);
+        return SuccessTip.create(page);
+    }
     @DeleteMapping("/{studioId}/products/{id}")
     public Tip deleteStudioProduct(@PathVariable long studioId, @PathVariable long id) {
         Integer result = sDservice.removeSlaveItem(studioId, id);

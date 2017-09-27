@@ -5,6 +5,7 @@ import java.io.Serializable;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
+import java.io.Serializable;
 
 /**
  * <p>
@@ -12,7 +13,7 @@ import com.baomidou.mybatisplus.annotations.TableName;
  * </p>
  *
  * @author J4cob
- * @since 2017-09-26
+ * @since 2017-09-27
  */
 @TableName("emb_studio_collect")
 public class StudioCollect extends Model<StudioCollect> {
