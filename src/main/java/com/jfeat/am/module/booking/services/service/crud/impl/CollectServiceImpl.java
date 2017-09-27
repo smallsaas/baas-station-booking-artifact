@@ -25,10 +25,10 @@ public class CollectServiceImpl extends CRUDServiceOnlyImpl<StudioCollect> imple
         return studioCollectMapper;
     }
 
-    public Integer deleteCollect(Long studioId, Long userId){
+    public Integer deleteCollect(Long studioId, Long customerId){
         Map<String,Object> map = new HashMap<>();
         map.put("studio_id",studioId);
-        map.put("user_id",userId);
+        map.put("customer_id",customerId);
         return studioCollectMapper.deleteByMap(map);
     }
 }

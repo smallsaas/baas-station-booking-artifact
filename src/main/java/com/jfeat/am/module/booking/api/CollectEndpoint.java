@@ -28,9 +28,9 @@ public class CollectEndpoint extends BaseController{
         return SuccessTip.create(collectService.createMaster(studioCollect));
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{studioId}")
     public Tip deleteCollect(@PathVariable Long studioId){
-        long userId = JWTKit.getUserId(getHttpServletRequest());
-        return SuccessTip.create(collectService.deleteCollect(studioId,userId));
+        long customerId = JWTKit.getUserId(getHttpServletRequest());
+        return SuccessTip.create(collectService.deleteCollect(studioId,customerId));
     }
 }
