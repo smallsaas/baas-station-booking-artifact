@@ -20,7 +20,7 @@ public interface DomainQueryService {
     * */
     public List<StudioProduct> queryStudioProduct(Page<StudioProduct> page,
                                                   long studioId,
-                                                  String attribute) ;
+                                                  String attribute);
 
     /*
     *   queryAppointmentByUserId

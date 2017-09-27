@@ -175,7 +175,7 @@ public class StudioEndpoint extends BaseController {
                                        @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
                                        @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize,
                                        @PathVariable long studioId,
-                                       @RequestBody String attribute){
+                                       @RequestParam String attribute){
         page.setCurrent(pageNum);
         page.setSize(pageSize);
         List<StudioProduct>  products = domainQueryService.queryStudioProduct(page,studioId,attribute);

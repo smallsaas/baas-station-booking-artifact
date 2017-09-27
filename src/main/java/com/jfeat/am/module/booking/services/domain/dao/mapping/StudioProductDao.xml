@@ -8,9 +8,8 @@
         emb_studio_product.*
     </sql>
     <select id="queryProductByAttribute" resultType="StudioProduct">
-        SELECT emb_studio_product.attribute
+        SELECT emb_studio_product.*
         FROM emb_studio_product
-        WHERE 1=1
-            emb_studio_product.attribute = #{attribute}
+        WHERE   emb_studio_product.attribute = #{attribute}
     </select>
 </mapper>
