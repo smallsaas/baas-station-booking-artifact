@@ -16,6 +16,11 @@ import java.util.List;
 public interface DomainQueryService {
 
     /*
+    *   queryAppointmentByUserId
+    * */
+    public List<Appointment> queryAppointmentByUserId(long id);
+
+    /*
     *   queryStudioByStick
     * */
     public List<Studio> queryStudioByStick();

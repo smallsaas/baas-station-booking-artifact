@@ -11,6 +11,7 @@ import com.jfeat.am.module.booking.services.domain.dao.StudioDao;
 import com.jfeat.am.module.booking.services.domain.model.StudioModel;
 import com.jfeat.am.module.booking.services.domain.model.StudioProductModel;
 import com.jfeat.am.module.booking.services.domain.service.DomainQueryService;
+import com.jfeat.am.module.booking.services.persistence.mapper.AppointmentMapper;
 import com.jfeat.am.module.booking.services.persistence.mapper.StudioMapper;
 import com.jfeat.am.module.booking.services.persistence.mapper.StudioProductMapper;
 import com.jfeat.am.module.booking.services.persistence.mapper.StudiosPhotosMapper;
@@ -41,6 +42,16 @@ public class DomainQueryServiceImpl implements DomainQueryService {
     StudiosPhotosMapper studiosPhotosMapper;
     @Resource
     CustomerService customerService;
+    @Resource
+    AppointmentMapper appointmentMapper;
+
+    /*
+    *   queryAppointmentByUserId
+    * */
+    public List<Appointment> queryAppointmentByUserId(long id){
+        List<Appointment> appointments = appointmentMapper.selectList(new EntityWrapper<Appointment>().eq("customer_id",id));
+        return appointments;
+    }
 
     /*
     *   queryStudioByStick

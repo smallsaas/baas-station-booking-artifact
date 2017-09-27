@@ -52,8 +52,7 @@ public class AppointmentEndpoint extends BaseController{
             return SuccessTip.create(page);
         }else{
             long userId = JWTKit.getUserId(getHttpServletRequest());
-            studioId = userId;
-            List<Appointment> appointments = domainQueryService.queryAppointment(page, status, studioId);
+            List<Appointment> appointments = domainQueryService.queryAppointmentByUserId(userId);
             page.setRecords(appointments);
             return SuccessTip.create(page);
         }
@@ -72,8 +71,15 @@ public class AppointmentEndpoint extends BaseController{
     }
     @PutMapping
     public Tip updateAppointment(@Valid@RequestBody Appointment appointment){
+        long userId = JWTKit.getUserId(getHttpServletRequest());
+        if(ShiroKit.hasPermission(AdminPermission.EDIT)){
         Integer result = appointmentService.updateMaster(appointment);
         return SuccessTip.create(result);
+        }else if(appointment.getId() == userId && appointment.getStatus() != AppointmentStatus.DONE.toString()){ //未完成的并且有当前用户发起的订单
+            Integer result = appointmentService.updateMaster(appointment);
+            return SuccessTip.create(result);
+        }
+        return null;
     }
     @GetMapping("/{id}")
     public Tip showAppointment(@PathVariable long id){
