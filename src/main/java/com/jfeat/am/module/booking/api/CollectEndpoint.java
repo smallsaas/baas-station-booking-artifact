@@ -21,6 +21,11 @@ public class CollectEndpoint extends BaseController{
     @Resource
     CollectService collectService;
 
+    @GetMapping("/lists")
+    public Tip allCollect(){
+        return SuccessTip.create(collectService.allCollect());
+    }
+
     @PostMapping
     public Tip createCollect(@Valid @RequestBody StudioCollect studioCollect){
         long userId = JWTKit.getUserId(getHttpServletRequest());
