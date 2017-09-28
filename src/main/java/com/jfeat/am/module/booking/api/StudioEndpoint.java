@@ -101,7 +101,7 @@ public class StudioEndpoint extends BaseController {
     *   CRUD about Studio
     * */
     @PostMapping
-    //@Permission(AdminPermission.CREATE)
+    @Permission(AdminPermission.CREATE)
     public Tip createStudio(@Valid @RequestBody Studio studio) {
 
 
