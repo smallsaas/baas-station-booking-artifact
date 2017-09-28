@@ -1,9 +1,6 @@
 package com.jfeat.am.module.booking.services.domain.model;
 
-import com.jfeat.am.module.booking.services.persistence.model.Doctor;
-import com.jfeat.am.module.booking.services.persistence.model.Studio;
-import com.jfeat.am.module.booking.services.persistence.model.StudioProduct;
-import com.jfeat.am.module.booking.services.persistence.model.StudiosPhotos;
+import com.jfeat.am.module.booking.services.persistence.model.*;
 
 import java.util.List;
 
@@ -11,20 +8,10 @@ import java.util.List;
  * Created by J4cob on 2017/9/14.
  */
 public class StudioModel extends Studio {
-   String typeName ;
+    List<Service> services;
     List<StudioProduct> products;
     List<Doctor> doctors;
     List<StudiosPhotos> photos;
-    public String getTypeName() {
-        return typeName;
-    }
-
-    public void setTypeName(String typeName) {
-        this.typeName = typeName;
-    }
-
-
-
     public List<StudiosPhotos> getPhotos() {
         return photos;
     }
@@ -50,4 +37,11 @@ public class StudioModel extends Studio {
         this.doctors = doctors;
     }
 
+    public List<Service> getServices() {
+        return services;
+    }
+
+    public void setServices(List<Service> services) {
+        this.services = services;
+    }
 }

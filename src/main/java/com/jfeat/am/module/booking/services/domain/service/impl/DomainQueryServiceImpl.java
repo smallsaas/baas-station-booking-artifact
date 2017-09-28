@@ -12,10 +12,7 @@ import com.jfeat.am.module.booking.services.domain.dao.StudioProductDao;
 import com.jfeat.am.module.booking.services.domain.model.StudioModel;
 import com.jfeat.am.module.booking.services.domain.model.StudioProductModel;
 import com.jfeat.am.module.booking.services.domain.service.DomainQueryService;
-import com.jfeat.am.module.booking.services.persistence.mapper.AppointmentMapper;
-import com.jfeat.am.module.booking.services.persistence.mapper.StudioMapper;
-import com.jfeat.am.module.booking.services.persistence.mapper.StudioProductMapper;
-import com.jfeat.am.module.booking.services.persistence.mapper.StudiosPhotosMapper;
+import com.jfeat.am.module.booking.services.persistence.mapper.*;
 import com.jfeat.am.module.booking.services.persistence.model.*;
 
 
@@ -49,6 +46,8 @@ public class DomainQueryServiceImpl implements DomainQueryService {
     AppointmentMapper appointmentMapper;
     @Resource
     StudioProductDao studioProductDao;
+    @Resource
+    ServiceMapper serviceMapper;
     /*
     *   queryProductByAttribute
     * */
@@ -120,6 +119,9 @@ public class DomainQueryServiceImpl implements DomainQueryService {
         JSONObject studioObj = JSON.parseObject(JSON.toJSONString(studio));
         List<StudioProduct> products = studioProductMapper.selectList(new EntityWrapper<StudioProduct>().eq("studio_id", id));
         List<StudiosPhotos> photos = studiosPhotosMapper.selectList(new EntityWrapper<StudiosPhotos>().eq("studio_id", id));
+        List<com.jfeat.am.module.booking.services.persistence.model.Service> services =
+                serviceMapper.selectList(new EntityWrapper<com.jfeat.am.module.booking.services.persistence.model.Service>().eq("studio_id",id));
+        studioObj.put("services",services);
         studioObj.put("products", products);
         studioObj.put("photos", photos);
         StudioModel model = JSON.parseObject(studioObj.toJSONString(), StudioModel.class);
