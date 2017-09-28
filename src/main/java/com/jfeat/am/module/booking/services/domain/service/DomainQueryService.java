@@ -9,6 +9,7 @@ import com.jfeat.am.module.booking.services.persistence.model.StudioProduct;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2017/9/15.
@@ -54,8 +55,8 @@ public interface DomainQueryService {
     /*
         *   查找店铺 by site
         * */
-    public List<Studio> queryStudioBySite(Page<Studio> page,
-                                          String site, BigDecimal lat, BigDecimal lng
+    public List<Map<String,Object>> queryStudioBySite(Page<Studio> page,
+                                                      String site, BigDecimal lat, BigDecimal lng
     );
 
     /*

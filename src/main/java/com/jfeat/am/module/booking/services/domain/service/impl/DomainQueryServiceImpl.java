@@ -25,6 +25,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2017/9/15.
@@ -104,8 +105,8 @@ public class DomainQueryServiceImpl implements DomainQueryService {
     *   查找店铺 by site
     * */
 
-    public List<Studio> queryStudioBySite(Page<Studio> page,
-                                          String site, BigDecimal latitude, BigDecimal longitude
+    public List<Map<String,Object>> queryStudioBySite(Page<Studio> page,
+                                                      String site, BigDecimal latitude, BigDecimal longitude
                                           ) {
         return studioDao.queryStudioBySite(page, site,latitude,longitude);
     }

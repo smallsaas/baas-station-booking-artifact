@@ -25,7 +25,7 @@
     </select>
 
 
-    <select id="queryStudioBySite" resultType="Studio">
+    <select id="queryStudioBySite" resultType="Map">
         SELECT
         *, round(
         6378.138 * 2 * asin(

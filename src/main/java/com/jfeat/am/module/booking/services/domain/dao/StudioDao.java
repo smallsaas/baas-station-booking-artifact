@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2017/9/25.
@@ -36,10 +37,10 @@ public interface StudioDao {
     /*
     *   query  by Site
     * */
-    List<Studio> queryStudioBySite(Page<Studio> page,
-                                   @Param("site") String site,
-                                   @Param("latitude") BigDecimal latitude,
-                                   @Param("longitude") BigDecimal longitude);
+    List<Map<String,Object>> queryStudioBySite(Page<Studio> page,
+                                       @Param("site") String site,
+                                       @Param("latitude") BigDecimal latitude,
+                                       @Param("longitude") BigDecimal longitude);
 
     /*
     *   query  by name
