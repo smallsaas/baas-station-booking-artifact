@@ -72,7 +72,7 @@
     </select>
 
     <select id="queryCity" resultType="Studio">
-        SELECT emb_studio.city
+        SELECT DISTINCT emb_studio.city
         FROM emb_studio
         WHERE 1=1
     </select>
