@@ -28,7 +28,7 @@ public class PathPhotoServiceImpl implements PathPhotoService {
     * */
     public Integer addStudioPhotos(long studioId, StudiosPhotos studiosPhotos) {
         studiosPhotos.setStudioId(studioId);
-        return studiosPhotosMapper.insert(studiosPhotos);
+        return studiosPhotosMapper.insertAllColumn(studiosPhotos);
     }
 
     public Integer deleteStudioPhotos(long studioId, long id) {
@@ -44,7 +44,7 @@ public class PathPhotoServiceImpl implements PathPhotoService {
     * */
     public Integer addProductPhotos(long studioId, long productId, ProductsPhotos productsPhotos) {
         productsPhotos.setProductId(productId);
-        return productsPhotosMapper.insert(productsPhotos);
+        return productsPhotosMapper.insertAllColumn(productsPhotos);
     }
 
     public Integer deleteProductPhotos(long studioId, long productId, long id) {
