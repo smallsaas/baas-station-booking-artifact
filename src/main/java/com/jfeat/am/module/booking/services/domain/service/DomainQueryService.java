@@ -26,7 +26,7 @@ public interface DomainQueryService {
     /*
     *   queryAppointmentByUserId
     * */
-    public List<Appointment> queryAppointmentByUserId(long id);
+    public List<Appointment> queryAppointmentByUserId(Page<Appointment> page,Long userId);
 
     /*
     *   queryStudioByStick
@@ -43,7 +43,7 @@ public interface DomainQueryService {
      */
     public List<Appointment> queryAppointment(Page<Appointment> page,
                                               String status,
-                                              long StudioId);
+                                              Long studioId);
 
     /*
     *   查找店铺 by ServiceType or  StudioName

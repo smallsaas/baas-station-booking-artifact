@@ -1,6 +1,7 @@
 package com.jfeat.am.module.booking.api;
 
 import com.baomidou.mybatisplus.plugins.Page;
+import com.jfeat.am.common.annotation.Permission;
 import com.jfeat.am.common.constant.tips.SuccessTip;
 import com.jfeat.am.common.constant.tips.Tip;
 import com.jfeat.am.common.controller.BaseController;
@@ -38,6 +39,7 @@ public class AppointmentEndpoint extends BaseController{
     * */
 
     @GetMapping("/lists")
+    @Permission(AdminPermission.QUERY)
     public Tip queryAppointment(Page page,
                                 @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
                                 @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize,
@@ -46,17 +48,30 @@ public class AppointmentEndpoint extends BaseController{
                                 ) {
         page.setSize(pageSize);
         page.setCurrent(pageNum);
-        if (ShiroKit.hasPermission(AdminPermission.QUERY)) {
             List<Appointment> appointments = domainQueryService.queryAppointment(page, status, studioId);
             page.setRecords(appointments);
             return SuccessTip.create(page);
-        }else{
-            long userId = JWTKit.getUserId(getHttpServletRequest());
-            List<Appointment> appointments = domainQueryService.queryAppointmentByUserId(userId);
-            page.setRecords(appointments);
-            return SuccessTip.create(page);
-        }
-    }    /*
+
+    }
+    /*
+    *   queryUserAppointment
+    * */
+    @GetMapping("/users")
+    public Tip queryUserAppointment(Page page,
+                                    @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
+                                    @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize
+                                    ){
+        long userId = JWTKit.getUserId(getHttpServletRequest());
+
+        page.setSize(pageSize);
+        page.setCurrent(pageNum);
+
+        List<Appointment> appointments = domainQueryService.queryAppointmentByUserId(page,userId);
+        page.setRecords(appointments);
+        return SuccessTip.create(page);
+
+    }
+    /*
    *   CRUD about Appointment
    * */
     @PostMapping

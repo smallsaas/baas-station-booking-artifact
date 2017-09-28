@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -95,6 +96,10 @@ public class StudioEndpoint extends BaseController {
         page.setSize(pageSize);
         long userId = JWTKit.getUserId(getHttpServletRequest());
         Customer customer = customerService.retrieveMaster(userId);
+        if(customer.getLatitude() == null && customer.getLongitude() == null){
+            customer.setLatitude(BigDecimal.valueOf(114.1238523));
+            customer.setLongitude(BigDecimal.valueOf(25.1235203));
+        }
             List<Map<String,Object>> studios = domainQueryService.queryStudioBySite(page, site, customer.getLatitude(), customer.getLongitude());
             page.setRecords(studios);
         return SuccessTip.create(page);
