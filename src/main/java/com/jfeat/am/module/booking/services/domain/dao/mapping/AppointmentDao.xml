@@ -19,5 +19,9 @@
             AND emb_appointment.studio_id LIKE CONCAT('%',#{studioId},'%')
         </if>
 
+        <if test="phone != null and phone != ''">
+            AND emb_appointment.phone LIKE CONCAT('%',#{phone},'%')
+        </if>
+
     </select>
 </mapper>

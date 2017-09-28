@@ -44,11 +44,12 @@ public class AppointmentEndpoint extends BaseController{
                                 @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
                                 @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize,
                                 @RequestParam(name = "status",required = false) String status,
-                                @RequestParam(name = "studioId",required = false)Long studioId
+                                @RequestParam(name = "studioId",required = false)Long studioId,
+                                @RequestParam(name = "phone",required = false)Long phone
                                 ) {
-        page.setSize(pageSize);
-        page.setCurrent(pageNum);
-            List<Appointment> appointments = domainQueryService.queryAppointment(page, status, studioId);
+            page.setSize(pageSize);
+            page.setCurrent(pageNum);
+            List<Appointment> appointments = domainQueryService.queryAppointment(page, status, studioId,phone);
             page.setRecords(appointments);
             return SuccessTip.create(page);
 

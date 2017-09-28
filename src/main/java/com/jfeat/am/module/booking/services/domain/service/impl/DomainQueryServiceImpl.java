@@ -87,8 +87,9 @@ public class DomainQueryServiceImpl implements DomainQueryService {
     * */
     public List<Appointment> queryAppointment(Page<Appointment> page,
                                               String status,
-                                              Long studioId) {
-        return appointmentDao.queryAppointment(page, status, studioId);
+                                              Long studioId,
+                                              Long phone) {
+        return appointmentDao.queryAppointment(page, status, studioId,phone);
     }
 
     /*

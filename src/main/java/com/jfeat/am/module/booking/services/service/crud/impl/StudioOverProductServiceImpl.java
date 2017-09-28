@@ -132,6 +132,5 @@ public class StudioOverProductServiceImpl implements StudioOverProductService, C
     public Integer bulkRemoveSlaveItemList(long l, List<Long> list) {
         return null;
     }
-
-
+    
 }

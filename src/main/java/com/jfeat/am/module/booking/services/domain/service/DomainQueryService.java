@@ -43,7 +43,8 @@ public interface DomainQueryService {
      */
     public List<Appointment> queryAppointment(Page<Appointment> page,
                                               String status,
-                                              Long studioId);
+                                              Long studioId,
+                                              Long phone);
 
     /*
     *   查找店铺 by ServiceType or  StudioName
