@@ -44,8 +44,15 @@ public class StudioEndpoint extends BaseController {
     *   queryStudioByStick
     * */
     @GetMapping("/stick")
-    public Tip queryStudioByStick(){
-        List<Studio> studios = domainQueryService.queryStudioByStick();
+    public Tip queryStudioByStick(Page page,
+                                  @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
+                                  @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize,
+                                  @RequestParam(name = "city", required = false) String city){
+
+        page.setCurrent(pageNum);
+        page.setSize(pageSize);
+        List<Studio> studios = domainQueryService.queryStudioByStick(page,city);
+        page.setRecords(studios);
         return SuccessTip.create(studios);
     }
 

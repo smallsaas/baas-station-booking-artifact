@@ -80,8 +80,8 @@
     <select id="queryStudioByStick" resultType="Studio">
         SELECT emb_studio.*
         FROM emb_studio
-        WHERE
-        emb_studio.is_stick  =  'RAISE'
+        WHERE emb_studio.is_stick  =  'RAISE'
+        AND  emb_studio.city  =  #{city}
     </select>
 
 </mapper>

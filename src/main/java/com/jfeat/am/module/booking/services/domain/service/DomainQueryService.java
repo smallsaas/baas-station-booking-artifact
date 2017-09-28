@@ -30,7 +30,7 @@ public interface DomainQueryService {
     /*
     *   queryStudioByStick
     * */
-    public List<Studio> queryStudioByStick();
+    public List<Studio> queryStudioByStick(Page<Studio> page,String city);
 
     /*
     *   queryCity

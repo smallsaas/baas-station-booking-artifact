@@ -1,4 +1,3 @@
-
 /*
 Navicat MySQL Data Transfer
 
@@ -11,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50718
 File Encoding         : 65001
 
-Date: 2017-09-27 15:13:50
+Date: 2017-09-28 10:06:32
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -25,7 +24,6 @@ CREATE TABLE `emb_appointment` (
   `studio_id` bigint(20) NOT NULL COMMENT '工作室ID',
   `doctor_id` bigint(20) DEFAULT NULL COMMENT '技师ID',
   `customer_id` bigint(20) NOT NULL COMMENT '客户姓名',
-  `service_id` bigint(20) NOT NULL COMMENT '类型ID',
   `status` varchar(20) NOT NULL COMMENT ' 订单状态',
   `fee` decimal(10,2) NOT NULL COMMENT '预约费用',
   `create_time` date NOT NULL COMMENT ' 创建时间',
@@ -195,6 +193,7 @@ CREATE TABLE `emb_studio_collect` (
 -- ----------------------------
 -- Records of emb_studio_collect
 -- ----------------------------
+INSERT INTO `emb_studio_collect` VALUES ('912957275495219201', '1', '876708082437197827');
 
 -- ----------------------------
 -- Table structure for emb_studio_product

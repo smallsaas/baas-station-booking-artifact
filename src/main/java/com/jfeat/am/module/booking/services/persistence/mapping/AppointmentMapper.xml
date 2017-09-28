@@ -8,7 +8,6 @@
 		<result column="studio_id" property="studioId" />
 		<result column="doctor_id" property="doctorId" />
 		<result column="customer_id" property="customerId" />
-		<result column="service_id" property="serviceId" />
 		<result column="status" property="status" />
 		<result column="fee" property="fee" />
 		<result column="create_time" property="createTime" />

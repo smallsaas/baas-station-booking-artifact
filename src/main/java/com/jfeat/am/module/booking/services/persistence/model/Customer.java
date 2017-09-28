@@ -15,7 +15,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author J4cob
- * @since 2017-09-27
+ * @since 2017-09-28
  */
 @TableName("emb_customer")
 public class Customer extends Model<Customer> {

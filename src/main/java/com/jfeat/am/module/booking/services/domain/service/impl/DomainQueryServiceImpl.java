@@ -68,8 +68,8 @@ public class DomainQueryServiceImpl implements DomainQueryService {
     /*
     *   queryStudioByStick
     * */
-    public List<Studio> queryStudioByStick(){
-        return studioDao.queryStudioByStick();
+    public List<Studio> queryStudioByStick(Page<Studio> page,String city){
+        return studioDao.queryStudioByStick(page, city);
     }
 
      /*

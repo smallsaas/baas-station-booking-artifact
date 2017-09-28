@@ -13,37 +13,39 @@ import java.util.List;
  */
 public interface StudioDao {
 
-        /*
-        *       queryCity
-        * */
-        List<Studio> queryCity();
+    /*
+    *       queryCity
+    * */
+    List<Studio> queryCity();
 
-        /*
-        *   query  by ServiceType
-        * */
-        List<StudioModel> queryStudioByMultiple(Page<StudioModel> page,
-                                                @Param("tname") String tname,
-                                                @Param("name") String name);
+    /*
+    *   query  by ServiceType
+    * */
+    List<StudioModel> queryStudioByMultiple(Page<StudioModel> page,
+                                            @Param("tname") String tname,
+                                            @Param("name") String name);
 
-        /*
-        *       queryStudioByStick
-        * */
-        List<Studio> queryStudioByStick();
+    /*
+    *       queryStudioByStick
+    * */
+    List<Studio> queryStudioByStick(
+            Page<Studio> page,
+            @Param("city") String city);
 
 
-        /*
-        *   query  by Site
-        * */
-        List<Studio> queryStudioBySite(Page<Studio> page,
-                                       @Param("site") String site,
-                                       @Param("latitude") BigDecimal latitude,
-                                       @Param("longitude") BigDecimal longitude);
+    /*
+    *   query  by Site
+    * */
+    List<Studio> queryStudioBySite(Page<Studio> page,
+                                   @Param("site") String site,
+                                   @Param("latitude") BigDecimal latitude,
+                                   @Param("longitude") BigDecimal longitude);
 
-        /*
-        *   query  by name
-        * */
-        List<Studio> queryStudioByName(Page<Studio> page,
-                                       @Param("name") String name);
+    /*
+    *   query  by name
+    * */
+    List<Studio> queryStudioByName(Page<Studio> page,
+                                   @Param("name") String name);
 
 
 }

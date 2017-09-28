@@ -15,7 +15,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author J4cob
- * @since 2017-09-27
+ * @since 2017-09-28
  */
 @TableName("emb_appointment")
 public class Appointment extends Model<Appointment> {
@@ -41,11 +41,6 @@ public class Appointment extends Model<Appointment> {
      */
 	@TableField("customer_id")
 	private Long customerId;
-    /**
-     * 类型ID
-     */
-	@TableField("service_id")
-	private Long serviceId;
     /**
      *  订单状态
      */
@@ -115,14 +110,6 @@ public class Appointment extends Model<Appointment> {
 
 	public void setCustomerId(Long customerId) {
 		this.customerId = customerId;
-	}
-
-	public Long getServiceId() {
-		return serviceId;
-	}
-
-	public void setServiceId(Long serviceId) {
-		this.serviceId = serviceId;
 	}
 
 	public String getStatus() {
@@ -201,7 +188,6 @@ public class Appointment extends Model<Appointment> {
 			", studioId=" + studioId +
 			", doctorId=" + doctorId +
 			", customerId=" + customerId +
-			", serviceId=" + serviceId +
 			", status=" + status +
 			", fee=" + fee +
 			", createTime=" + createTime +
