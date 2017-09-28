@@ -87,6 +87,7 @@ public class StudioEndpoint extends BaseController {
     /*
         *   查找店铺 by site
         * */
+    //TODO 空指针异常
     @GetMapping("/sites")
     public Tip queryStudioBySite (Page page,
                                  @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
@@ -96,15 +97,19 @@ public class StudioEndpoint extends BaseController {
         page.setSize(pageSize);
         long userId = JWTKit.getUserId(getHttpServletRequest());
         Customer customer = customerService.retrieveMaster(userId);
-        if(customer.getLatitude() == null && customer.getLongitude() == null){
+        if (customer.getLatitude() == null && customer.getLongitude() == null) {
             customer.setLatitude(BigDecimal.valueOf(114.1238523));
             customer.setLongitude(BigDecimal.valueOf(25.1235203));
-        }
-            List<Map<String,Object>> studios = domainQueryService.queryStudioBySite(page, site, customer.getLatitude(), customer.getLongitude());
+            List<Map<String, Object>> studios = domainQueryService.queryStudioBySite(page, site, customer.getLatitude(), customer.getLongitude());
             page.setRecords(studios);
-        return SuccessTip.create(page);
-    }
+            return SuccessTip.create(page);
+        }
+        List<Map<String, Object>> studios = domainQueryService.queryStudioBySite(page, site, customer.getLatitude(), customer.getLongitude());
+        page.setRecords(studios);
 
+        return SuccessTip.create(page);
+
+    }
     /*
     *   CRUD about Studio
     * */
