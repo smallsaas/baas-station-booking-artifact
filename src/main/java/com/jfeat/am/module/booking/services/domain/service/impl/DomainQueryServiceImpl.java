@@ -98,7 +98,7 @@ public class DomainQueryServiceImpl implements DomainQueryService {
     *   查找店铺 by ServiceType
     * */
 
-    public List<StudioModel> queryStudioByMultiple(Page<StudioModel> page,
+    public List<Map<String,Object>> queryStudioByMultiple(Page<StudioModel> page,
                                                    String tname,
                                                    String name) {
         return studioDao.queryStudioByMultiple(page, tname,name);

@@ -79,7 +79,7 @@ public class StudioEndpoint extends BaseController {
                                         @RequestParam(name = "name", required = false) String name) {
         page.setCurrent(pageNum);
         page.setSize(pageSize);
-        List<StudioModel> studios = domainQueryService.queryStudioByMultiple(page, tname, name);
+        List<Map<String,Object>> studios = domainQueryService.queryStudioByMultiple(page, tname, name);
         page.setRecords(studios);
         return SuccessTip.create(page);
     }

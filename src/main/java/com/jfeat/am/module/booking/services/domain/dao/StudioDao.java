@@ -22,7 +22,7 @@ public interface StudioDao {
     /*
     *   query  by ServiceType
     * */
-    List<StudioModel> queryStudioByMultiple(Page<StudioModel> page,
+    List<Map<String,Object>> queryStudioByMultiple(Page<StudioModel> page,
                                             @Param("tname") String tname,
                                             @Param("name") String name);
 

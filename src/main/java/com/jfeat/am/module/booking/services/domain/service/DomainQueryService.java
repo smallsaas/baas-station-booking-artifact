@@ -49,7 +49,7 @@ public interface DomainQueryService {
     /*
     *   查找店铺 by ServiceType or  StudioName
     * */
-    public List<StudioModel> queryStudioByMultiple(Page<StudioModel> page,
+    public List<Map<String,Object>> queryStudioByMultiple(Page<StudioModel> page,
                                                    String tname,
                                                    String name);
 
