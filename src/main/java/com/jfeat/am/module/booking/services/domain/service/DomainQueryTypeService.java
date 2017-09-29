@@ -2,8 +2,8 @@ package com.jfeat.am.module.booking.services.domain.service;
 
 
 
-import com.jfeat.am.module.booking.services.persistence.model.Service;
 import com.jfeat.am.module.booking.services.persistence.model.ServiceType;
+import com.jfeat.am.module.booking.services.persistence.model.StudioService;
 
 import java.util.List;
 
@@ -22,5 +22,5 @@ public interface DomainQueryTypeService {
     *   查看所有店铺的服务
     *
     * */
-    public List<Service> allService();
+    public List<StudioService> allService();
 }

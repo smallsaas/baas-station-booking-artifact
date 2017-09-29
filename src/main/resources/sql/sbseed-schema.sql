@@ -193,7 +193,6 @@ CREATE TABLE `emb_studio_collect` (
 -- ----------------------------
 -- Records of emb_studio_collect
 -- ----------------------------
-INSERT INTO `emb_studio_collect` VALUES ('912957275495219201', '1', '876708082437197827');
 
 -- ----------------------------
 -- Table structure for emb_studio_product

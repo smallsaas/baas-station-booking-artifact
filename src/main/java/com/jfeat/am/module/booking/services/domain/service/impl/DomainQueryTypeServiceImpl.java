@@ -2,9 +2,10 @@ package com.jfeat.am.module.booking.services.domain.service.impl;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.jfeat.am.module.booking.services.domain.service.DomainQueryTypeService;
-import com.jfeat.am.module.booking.services.persistence.mapper.ServiceMapper;
 import com.jfeat.am.module.booking.services.persistence.mapper.ServiceTypeMapper;
+import com.jfeat.am.module.booking.services.persistence.mapper.StudioServiceMapper;
 import com.jfeat.am.module.booking.services.persistence.model.ServiceType;
+import com.jfeat.am.module.booking.services.persistence.model.StudioService;
 import org.springframework.stereotype.Service;
 
 
@@ -19,15 +20,15 @@ public class DomainQueryTypeServiceImpl implements DomainQueryTypeService {
     @Resource
     ServiceTypeMapper serviceTypeMapper;
     @Resource
-    ServiceMapper embServiceMapper;
+    StudioServiceMapper embServiceMapper;
 
     public List<ServiceType> allServiceType(){
         List<ServiceType> typeList = serviceTypeMapper.selectList(new EntityWrapper<>());
         return typeList;
     }
 
-    public List<com.jfeat.am.module.booking.services.persistence.model.Service> allService(){
-        List<com.jfeat.am.module.booking.services.persistence.model.Service> typeList = embServiceMapper.selectList(new EntityWrapper<>());
+    public List<StudioService> allService(){
+        List<com.jfeat.am.module.booking.services.persistence.model.StudioService> typeList = embServiceMapper.selectList(new EntityWrapper<>());
         return typeList;
     }
 

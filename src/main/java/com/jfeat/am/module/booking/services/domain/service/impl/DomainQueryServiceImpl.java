@@ -47,7 +47,7 @@ public class DomainQueryServiceImpl implements DomainQueryService {
     @Resource
     StudioProductDao studioProductDao;
     @Resource
-    ServiceMapper serviceMapper;
+    StudioServiceMapper serviceMapper;
     /*
     *   queryProductByAttribute
     * */
@@ -119,8 +119,8 @@ public class DomainQueryServiceImpl implements DomainQueryService {
         JSONObject studioObj = JSON.parseObject(JSON.toJSONString(studio));
         List<StudioProduct> products = studioProductMapper.selectList(new EntityWrapper<StudioProduct>().eq("studio_id", id));
         List<StudiosPhotos> photos = studiosPhotosMapper.selectList(new EntityWrapper<StudiosPhotos>().eq("studio_id", id));
-        List<com.jfeat.am.module.booking.services.persistence.model.Service> services =
-                serviceMapper.selectList(new EntityWrapper<com.jfeat.am.module.booking.services.persistence.model.Service>().eq("studio_id",id));
+        List<com.jfeat.am.module.booking.services.persistence.model.StudioService> services =
+                serviceMapper.selectList(new EntityWrapper<com.jfeat.am.module.booking.services.persistence.model.StudioService>().eq("studio_id",id));
         studioObj.put("services",services);
         studioObj.put("products", products);
         studioObj.put("photos", photos);

@@ -4,9 +4,9 @@ import com.jfeat.am.common.constant.tips.SuccessTip;
 import com.jfeat.am.common.constant.tips.Tip;
 import com.jfeat.am.common.controller.BaseController;
 import com.jfeat.am.module.booking.services.domain.service.DomainQueryTypeService;
+import com.jfeat.am.module.booking.services.persistence.model.StudioService;
 import com.jfeat.am.module.booking.services.service.crud.EmbServiceService;
 import com.jfeat.am.module.booking.services.service.crud.ServiceTypeService;
-import com.jfeat.am.module.booking.services.persistence.model.Service;
 import com.jfeat.am.module.booking.services.persistence.model.ServiceType;
 
 import org.springframework.web.bind.annotation.*;
@@ -33,23 +33,23 @@ public class EmbServiceEndpoint extends BaseController{
   * */
     @GetMapping("/lists")
     public Tip showAllService(){
-        List<Service> typeList = queryTypeService.allService();
+        List<StudioService> typeList = queryTypeService.allService();
         return SuccessTip.create(typeList);
     }
 
     @PostMapping
-    public Tip createEmbService(@Valid @RequestBody Service service){
+    public Tip createEmbService(@Valid @RequestBody StudioService service){
         Integer result = embServiceService.createMaster(service);
         return SuccessTip.create(result);
     }
     @PutMapping
-    public Tip updateEmbService(@Valid@RequestBody Service service){
+    public Tip updateEmbService(@Valid@RequestBody StudioService service){
         Integer result = embServiceService.updateMaster(service);
         return SuccessTip.create(result);
     }
     @GetMapping("/{id}")
     public Tip showEmbService(@PathVariable long id){
-        Service result = embServiceService.retrieveMaster(id);
+        StudioService result = embServiceService.retrieveMaster(id);
         return SuccessTip.create(result);
     }
     @DeleteMapping("/{id}")
