@@ -11,4 +11,9 @@ import java.util.List;
 public interface CustomerService extends CRUDServiceOnly<Customer>{
 
     public List<Customer> getAllCustomers();
+
+    /*
+    *   注册账号，并返回注册的数据
+    * */
+    public Customer registerCustomer(Customer customer);
 }

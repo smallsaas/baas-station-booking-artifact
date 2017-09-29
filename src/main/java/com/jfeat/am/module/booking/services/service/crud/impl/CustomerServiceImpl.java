@@ -29,4 +29,8 @@ public class CustomerServiceImpl extends CRUDServiceOnlyImpl<Customer> implement
         List<Customer> getAllCustomers = customerMapper.selectList(new EntityWrapper<>());
         return getAllCustomers;
     }
+     public Customer registerCustomer(Customer customer){
+         customerMapper.insert(customer);
+         return customer;
+     }
 }
