@@ -48,6 +48,9 @@ public class DomainQueryServiceImpl implements DomainQueryService {
     StudioProductDao studioProductDao;
     @Resource
     StudioServiceMapper serviceMapper;
+
+    @Resource
+    ProductsPhotosMapper productsPhotosMapper;
     /*
     *   queryProductByAttribute
     * */
@@ -131,7 +134,7 @@ public class DomainQueryServiceImpl implements DomainQueryService {
     public StudioProductModel showStudioProductModel(long studioId,long id) {
         StudioProduct studioProduct = studioProductMapper.selectById(id);
         JSONObject productObj = JSON.parseObject(JSON.toJSONString(studioProduct));
-        List<StudioProduct> photos = studioProductMapper.selectList(new EntityWrapper<StudioProduct>().eq("product_id", id));
+        List<ProductsPhotos> photos = productsPhotosMapper.selectList(new EntityWrapper<ProductsPhotos>().eq("product_id", id));
         productObj.put("photos", photos);
         StudioProductModel model = JSON.parseObject(productObj.toJSONString(), StudioProductModel.class);
         return model;
