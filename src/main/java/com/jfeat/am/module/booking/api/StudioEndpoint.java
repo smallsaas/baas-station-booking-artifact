@@ -180,7 +180,9 @@ public class StudioEndpoint extends BaseController {
 
     @GetMapping("/{studioId}/products/{id}")
     public Tip showStudioProductModel(@PathVariable long studioId, @PathVariable long id) {
+
         return SuccessTip.create(domainQueryService.showStudioProductModel(studioId, id));
+
     }
 
     @GetMapping("/{studioId}/products/attributes")
@@ -204,6 +206,19 @@ public class StudioEndpoint extends BaseController {
     @GetMapping("/{studioId}/products/lists")
     public Tip studioProductList() {
         return SuccessTip.create(domainQueryService.studioProductList());
+    }
+
+    @GetMapping("/{studioId}/products/stick")
+    public Tip  productStickList(Page page,
+                                                 @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
+                                                 @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize,
+                                                 @PathVariable long studioId,
+                                                 @RequestParam (name = "stick", required = true)String stick){
+        page.setCurrent(pageNum);
+        page.setSize(pageSize);
+        List<StudioProduct>  products = domainQueryService.productStickList(page,studioId,stick);
+        page.setRecords(products);
+        return SuccessTip.create(page);
     }
 
     /*

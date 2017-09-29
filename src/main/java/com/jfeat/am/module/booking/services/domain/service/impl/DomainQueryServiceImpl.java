@@ -144,5 +144,18 @@ public class DomainQueryServiceImpl implements DomainQueryService {
     * */
     public  List<StudioProduct> studioProductList(){
         return studioProductMapper.selectList(new EntityWrapper<StudioProduct>());
+
+
+    }
+
+    /*
+    *       精选产品列表
+    * */
+
+
+    public List<StudioProduct>  productStickList(Page<StudioProduct> page,
+                                                 Long studioId,
+                                          String stick){
+        return studioProductDao.productStickList(page, stick);
     }
 }

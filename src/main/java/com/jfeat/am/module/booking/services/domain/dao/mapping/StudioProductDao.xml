@@ -12,4 +12,10 @@
         FROM emb_studio_product
         WHERE   emb_studio_product.attribute = #{attribute}
     </select>
+
+    <select id="productStickList" resultType="StudioProduct">
+        SELECT emb_studio_product.*
+        FROM emb_studio_product
+        WHERE   emb_studio_product.stick = #{stick}
+    </select>
 </mapper>

@@ -74,4 +74,11 @@ public interface DomainQueryService {
     *   show Product list
     * */
     public List<StudioProduct> studioProductList();
+
+     /*
+    *       精选产品列表
+    * */
+    public List<StudioProduct>  productStickList(Page<StudioProduct> page,
+                                                 Long studioId,
+                                                 String stick);
 }
