@@ -93,7 +93,7 @@ public class StudioEndpoint extends BaseController {
                                  @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
                                  @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize,
                                  @RequestParam(name = "site", required = false) String site) {
-        page.setCurrent(pageNum);
+         page.setCurrent(pageNum);
         page.setSize(pageSize);
         long userId = JWTKit.getUserId(getHttpServletRequest());
         Customer customer = customerService.retrieveMaster(userId);

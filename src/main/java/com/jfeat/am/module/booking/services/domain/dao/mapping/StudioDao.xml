@@ -8,7 +8,7 @@
         emb_service.type_id
     </sql>
     <select id="queryStudioByMultiple" resultType="StudioModel">
-        SELECT emb_service.type_id ,emb_studio.* ,emb_service_type.name AS tname
+        SELECT  emb_service.type_id ,emb_studio.* ,emb_service_type.name AS tname
 
         FROM emb_service_type
         RIGHT JOIN emb_service
@@ -52,7 +52,7 @@
         emb_studio
         WHERE 1=1
         <if test="site != null and site != ''">
-            AND emb_studio.site LIKE CONCAT('%',#{site},'%')
+            AND emb_studio.studio_site LIKE CONCAT('%',#{site},'%')
         </if>
         ORDER BY
 
