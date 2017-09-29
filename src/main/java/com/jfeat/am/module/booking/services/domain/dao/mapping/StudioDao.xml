@@ -3,18 +3,18 @@
 <mapper namespace="com.jfeat.am.module.booking.services.domain.dao.StudioDao">
 
     <sql id="Base_Column_List">
-        emb_service.name AS sname,
+        emb_service_type.name AS tname,
         emb_studio.*,
         emb_service.type_id
     </sql>
     <select id="queryStudioByMultiple" resultType="StudioModel">
-        SELECT  emb_service.type_id ,emb_studio.* ,emb_service_type.name AS tname
+        SELECT   emb_studio_service.type_id ,emb_studio.* , emb_service_type.name AS tname
 
         FROM emb_service_type
-        RIGHT JOIN emb_service
-        ON emb_service_type.id = emb_service.type_id
+        RIGHT JOIN emb_studio_service
+        ON emb_service_type.id = emb_studio_service.type_id
         RIGHT JOIN emb_studio
-        ON emb_studio.id = emb_service.studio_id
+        ON emb_studio.id = emb_studio_service.studio_id
         WHERE 1=1
         <if test="tname != null and tname != ''">
             AND emb_service_type.name LIKE CONCAT('%',#{tname},'%')
