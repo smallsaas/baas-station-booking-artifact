@@ -15,7 +15,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author J4cob
- * @since 2017-09-28
+ * @since 2017-09-30
  */
 @TableName("emb_appointment")
 public class Appointment extends Model<Appointment> {
@@ -37,16 +37,16 @@ public class Appointment extends Model<Appointment> {
 	@TableField("doctor_id")
 	private Long doctorId;
     /**
-     * 客户姓名
+     * 用户ID
      */
 	@TableField("customer_id")
 	private Long customerId;
     /**
-     *  订单状态
+     *  状态
      */
 	private String status;
     /**
-     * 预约费用
+     * 费用
      */
 	private BigDecimal fee;
     /**
@@ -60,12 +60,12 @@ public class Appointment extends Model<Appointment> {
 	@TableField("appointment_time")
 	private Date appointmentTime;
     /**
-     *  完成(关闭)时间
+     *  结束时间
      */
 	@TableField("close_time")
 	private Date closeTime;
     /**
-     * 用户手机号码
+     * 电话
      */
 	private String phone;
     /**

@@ -16,6 +16,6 @@
     <select id="productStickList" resultType="StudioProduct">
         SELECT emb_studio_product.*
         FROM emb_studio_product
-        WHERE   emb_studio_product.stick = #{stick}
+        WHERE   emb_studio_product.stick = 'SIFT'
     </select>
 </mapper>

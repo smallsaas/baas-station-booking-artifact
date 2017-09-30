@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  * </p>
  *
  * @author J4cob
- * @since 2017-09-28
+ * @since 2017-09-30
  */
 public interface ProductsPhotosMapper extends BaseMapper<ProductsPhotos> {
 

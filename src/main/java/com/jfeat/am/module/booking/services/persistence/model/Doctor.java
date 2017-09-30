@@ -14,7 +14,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author J4cob
- * @since 2017-09-28
+ * @since 2017-09-30
  */
 @TableName("emb_doctor")
 public class Doctor extends Model<Doctor> {
@@ -26,7 +26,7 @@ public class Doctor extends Model<Doctor> {
      */
 	private Long id;
     /**
-     * 技师姓名
+     * 姓名
      */
 	private String name;
     /**
@@ -34,12 +34,12 @@ public class Doctor extends Model<Doctor> {
      */
 	private String sex;
     /**
-     * 工作室ID
+     * 店铺ID
      */
 	@TableField("studio_id")
 	private Long studioId;
     /**
-     * 自我描述
+     * 描述
      */
 	private String description;
     /**
@@ -48,7 +48,7 @@ public class Doctor extends Model<Doctor> {
 	@TableField("work_time")
 	private Date workTime;
     /**
-     * 头像
+     * 保留字段
      */
 	private String cover;
     /**

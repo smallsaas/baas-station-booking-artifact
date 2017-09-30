@@ -12,7 +12,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author J4cob
- * @since 2017-09-28
+ * @since 2017-09-30
  */
 @TableName("emb_service_type")
 public class ServiceType extends Model<ServiceType> {
@@ -24,13 +24,16 @@ public class ServiceType extends Model<ServiceType> {
      */
 	private Long id;
     /**
-     * 类型名称
+     * 名称
      */
 	private String name;
     /**
-     * 外键
+     * 父节点
      */
 	private Long pid;
+    /**
+     * 封面
+     */
 	private String cover;
 
 

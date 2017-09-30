@@ -13,7 +13,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author J4cob
- * @since 2017-09-28
+ * @since 2017-09-30
  */
 @TableName("emb_products_photos")
 public class ProductsPhotos extends Model<ProductsPhotos> {
@@ -25,12 +25,12 @@ public class ProductsPhotos extends Model<ProductsPhotos> {
      */
 	private Long id;
     /**
-     * 公司名字
+     * 产品ID
      */
 	@TableField("product_id")
 	private Long productId;
     /**
-     * 图片
+     * 产品图片
      */
 	private String photo;
 

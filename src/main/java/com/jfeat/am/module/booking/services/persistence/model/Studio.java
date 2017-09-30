@@ -15,7 +15,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author J4cob
- * @since 2017-09-28
+ * @since 2017-09-30
  */
 @TableName("emb_studio")
 public class Studio extends Model<Studio> {
@@ -27,11 +27,11 @@ public class Studio extends Model<Studio> {
      */
 	private Long id;
     /**
-     * 工作室名称
+     * 名称
      */
 	private String name;
     /**
-     * 工作室描述
+     * 描述
      */
 	private String description;
     /**
@@ -44,12 +44,12 @@ public class Studio extends Model<Studio> {
      */
 	private BigDecimal fee;
     /**
-     * 详细地址
+     * 地址
      */
 	@TableField("studio_site")
 	private String studioSite;
     /**
-     * 头像
+     * 封面
      */
 	private String cover;
     /**
@@ -86,14 +86,15 @@ public class Studio extends Model<Studio> {
 	@TableField("studio_phone")
 	private String studioPhone;
     /**
-     * 上下线/精选
+     * 精选
      */
 	@TableField("is_stick")
 	private String isStick;
     /**
-     * 标签
+     * 保留字段
      */
-	private String tag;
+	@TableField("field_b")
+	private String fieldB;
     /**
      * 保留字段
      */
@@ -229,12 +230,12 @@ public class Studio extends Model<Studio> {
 		this.isStick = isStick;
 	}
 
-	public String getTag() {
-		return tag;
+	public String getFieldB() {
+		return fieldB;
 	}
 
-	public void setTag(String tag) {
-		this.tag = tag;
+	public void setFieldB(String fieldB) {
+		this.fieldB = fieldB;
 	}
 
 	public String getFieldC() {
@@ -269,7 +270,7 @@ public class Studio extends Model<Studio> {
 			", phone=" + phone +
 			", studioPhone=" + studioPhone +
 			", isStick=" + isStick +
-			", tag=" + tag +
+			", fieldB=" + fieldB +
 			", fieldC=" + fieldC +
 			"}";
 	}

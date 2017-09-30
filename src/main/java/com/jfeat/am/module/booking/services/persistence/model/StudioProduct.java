@@ -14,7 +14,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author J4cob
- * @since 2017-09-28
+ * @since 2017-09-30
  */
 @TableName("emb_studio_product")
 public class StudioProduct extends Model<StudioProduct> {
@@ -26,24 +26,24 @@ public class StudioProduct extends Model<StudioProduct> {
      */
 	private Long id;
     /**
-     * 工作室ID
+     * 店铺ID
      */
 	@TableField("studio_id")
 	private Long studioId;
     /**
-     * 类型ID
+     * 特性
      */
 	private String feature;
     /**
-     * 项目费用
+     * 费用
      */
 	private BigDecimal fee;
     /**
-     *  项目名称
+     *  名称
      */
 	private String name;
     /**
-     *  项目描述
+     *  描述
      */
 	private String description;
     /**
@@ -51,14 +51,13 @@ public class StudioProduct extends Model<StudioProduct> {
      */
 	private String cover;
     /**
-     * 属性/团购/次卡/精选
+     * 精选/SIFT/NORMAL
+     */
+	private String stick;
+    /**
+     * 精选/次卡/团购/
      */
 	private String attribute;
-    /**
-     * 保留字段
-     */
-	@TableField("field_b")
-	private String fieldB;
     /**
      * 保留字段
      */
@@ -122,20 +121,20 @@ public class StudioProduct extends Model<StudioProduct> {
 		this.cover = cover;
 	}
 
+	public String getStick() {
+		return stick;
+	}
+
+	public void setStick(String stick) {
+		this.stick = stick;
+	}
+
 	public String getAttribute() {
 		return attribute;
 	}
 
 	public void setAttribute(String attribute) {
 		this.attribute = attribute;
-	}
-
-	public String getFieldB() {
-		return fieldB;
-	}
-
-	public void setFieldB(String fieldB) {
-		this.fieldB = fieldB;
 	}
 
 	public String getFieldC() {
@@ -161,8 +160,8 @@ public class StudioProduct extends Model<StudioProduct> {
 			", name=" + name +
 			", description=" + description +
 			", cover=" + cover +
+			", stick=" + stick +
 			", attribute=" + attribute +
-			", fieldB=" + fieldB +
 			", fieldC=" + fieldC +
 			"}";
 	}

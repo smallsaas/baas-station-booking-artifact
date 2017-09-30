@@ -13,7 +13,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author J4cob
- * @since 2017-09-28
+ * @since 2017-09-30
  */
 @TableName("emb_studio_collect")
 public class StudioCollect extends Model<StudioCollect> {
@@ -25,12 +25,12 @@ public class StudioCollect extends Model<StudioCollect> {
      */
 	private Long id;
     /**
-     * 公司名字
+     * 店铺ID
      */
 	@TableField("studio_id")
 	private Long studioId;
     /**
-     * 客户名字
+     * 用户ID
      */
 	@TableField("customer_id")
 	private Long customerId;

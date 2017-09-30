@@ -15,7 +15,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author J4cob
- * @since 2017-09-28
+ * @since 2017-09-30
  */
 @TableName("emb_customer")
 public class Customer extends Model<Customer> {
@@ -27,11 +27,11 @@ public class Customer extends Model<Customer> {
      */
 	private Long id;
     /**
-     * 联系人姓名（即客户姓名）
+     * 名称
      */
 	private String name;
     /**
-     * 联系电话
+     * 电话
      */
 	private String phone;
     /**
@@ -39,7 +39,7 @@ public class Customer extends Model<Customer> {
      */
 	private Date birthday;
     /**
-     * 是否手机认证
+     * 认证状态
      */
 	private Integer verified;
     /**
@@ -47,11 +47,11 @@ public class Customer extends Model<Customer> {
      */
 	private String sex;
     /**
-     * 微信号
+     * 微信
      */
 	private String wechat;
     /**
-     * 自我描述
+     * 描述
      */
 	private String description;
     /**

@@ -208,15 +208,18 @@ public class StudioEndpoint extends BaseController {
         return SuccessTip.create(domainQueryService.studioProductList());
     }
 
+    /*
+    *   精选产品列表
+    * */
     @GetMapping("/{studioId}/products/stick")
     public Tip  productStickList(Page page,
                                                  @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
                                                  @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize,
-                                                 @PathVariable long studioId,
-                                                 @RequestParam (name = "stick", required = true)String stick){
+                                                 @PathVariable long studioId
+                                                ){
         page.setCurrent(pageNum);
         page.setSize(pageSize);
-        List<StudioProduct>  products = domainQueryService.productStickList(page,studioId,stick);
+        List<StudioProduct>  products = domainQueryService.productStickList(page,studioId);
         page.setRecords(products);
         return SuccessTip.create(page);
     }

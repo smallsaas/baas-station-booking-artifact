@@ -11,8 +11,8 @@
 		<result column="name" property="name" />
 		<result column="description" property="description" />
 		<result column="cover" property="cover" />
+		<result column="stick" property="stick" />
 		<result column="attribute" property="attribute" />
-		<result column="field_b" property="fieldB" />
 		<result column="field_c" property="fieldC" />
 	</resultMap>
 
