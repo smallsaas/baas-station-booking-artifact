@@ -3,6 +3,7 @@ package com.jfeat.am.module.booking.services.service.crud.impl;
 import com.jfeat.am.common.crud.CRUDFilter;
 import com.jfeat.am.common.crud.CRUDObject;
 import com.jfeat.am.common.crud.CRUDServiceOverSlave;
+import com.jfeat.am.module.booking.api.bean.Ids;
 import com.jfeat.am.module.booking.services.domain.model.StudioModel;
 import com.jfeat.am.module.booking.services.service.crud.StudioOverProductService;
 import com.jfeat.am.module.booking.services.persistence.mapper.StudioMapper;
@@ -83,6 +84,8 @@ public class StudioOverProductServiceImpl implements StudioOverProductService, C
 
     @Override
     public Integer deleteMaster(long id) {
+        //TODO
+        bulkRemoveSlaveItemList(id,null);
         return studioMapper.deleteById(id);
     }
 
@@ -130,7 +133,8 @@ public class StudioOverProductServiceImpl implements StudioOverProductService, C
 
     @Override
     public Integer bulkRemoveSlaveItemList(long l, List<Long> list) {
-        return null;
+        return productMapper.deleteBatchIds(list);
     }
+
     
 }

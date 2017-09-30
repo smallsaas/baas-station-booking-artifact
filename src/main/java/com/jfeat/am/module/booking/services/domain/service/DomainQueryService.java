@@ -26,18 +26,19 @@ public interface DomainQueryService {
     /*
     *   queryAppointmentByUserId
     * */
-    public List<Appointment> queryAppointmentByUserId(Page<Appointment> page,Long userId);
+    public List<Appointment> queryAppointmentByUserId(Page<Appointment> page, Long userId);
 
     /*
     *   queryStudioByStick
     * */
-    public List<Studio> queryStudioByStick(Page<Studio> page,String city);
+    public List<Studio> queryStudioByStick(Page<Studio> page, String city);
 
     /*
     *   queryCity
     * */
 
     public List<Studio> queryCity();
+
     /**
      * 模糊查找Appointment
      */
@@ -49,15 +50,17 @@ public interface DomainQueryService {
     /*
     *   查找店铺 by ServiceType or  StudioName
     * */
-    public List<Map<String,Object>> queryStudioByMultiple(Page<StudioModel> page,
-                                                   String tname,
-                                                   String name);
+    public List<Map<String, Object>> queryStudioByMultiple(Page<StudioModel> page,
+                                                           String tname,
+                                                           String name,
+                                                           BigDecimal latitude,
+                                                           BigDecimal longitude);
 
     /*
         *   查找店铺 by site
         * */
-    public List<Map<String,Object>> queryStudioBySite(Page<Studio> page,
-                                                      String site, BigDecimal lat, BigDecimal lng
+    public List<Map<String, Object>> queryStudioBySite(Page<Studio> page,
+                                                       String site, BigDecimal lat, BigDecimal lng
     );
 
     /*
@@ -75,8 +78,8 @@ public interface DomainQueryService {
     * */
     public List<StudioProduct> studioProductList();
 
-     /*
-    *       精选产品列表
-    * */
-    public List<StudioProduct>  productStickList(Page<StudioProduct> page);
+    /*
+   *       精选产品列表
+   * */
+    public List<StudioProduct> productStickList(Page<StudioProduct> page);
 }

@@ -22,9 +22,11 @@ public interface StudioDao {
     /*
     *   query  by ServiceType
     * */
-    List<Map<String,Object>> queryStudioByMultiple(Page<StudioModel> page,
-                                            @Param("tname") String tname,
-                                            @Param("name") String name);
+    List<Map<String, Object>> queryStudioByMultiple(Page<StudioModel> page,
+                                                    @Param("tname") String tname,
+                                                    @Param("name") String name,
+                                                    @Param("latitude") BigDecimal latitude,
+                                                    @Param("longitude") BigDecimal longitude);
 
     /*
     *       queryStudioByStick
@@ -37,10 +39,10 @@ public interface StudioDao {
     /*
     *   query  by Site
     * */
-    List<Map<String,Object>> queryStudioBySite(Page<Studio> page,
-                                       @Param("site") String site,
-                                       @Param("latitude") BigDecimal latitude,
-                                       @Param("longitude") BigDecimal longitude);
+    List<Map<String, Object>> queryStudioBySite(Page<Studio> page,
+                                                @Param("site") String site,
+                                                @Param("latitude") BigDecimal latitude,
+                                                @Param("longitude") BigDecimal longitude);
 
     /*
     *   query  by name

@@ -79,7 +79,16 @@ public class StudioEndpoint extends BaseController {
                                         @RequestParam(name = "name", required = false) String name) {
         page.setCurrent(pageNum);
         page.setSize(pageSize);
-        List<Map<String,Object>> studios = domainQueryService.queryStudioByMultiple(page, tname, name);
+        long userId = JWTKit.getUserId(getHttpServletRequest());
+        Customer customer = customerService.retrieveMaster(userId);
+        if (customer.getLatitude() == null && customer.getLongitude() == null) {
+            customer.setLatitude(BigDecimal.valueOf(114.1238523));
+            customer.setLongitude(BigDecimal.valueOf(25.1235203));
+            List<Map<String, Object>> studios = domainQueryService.queryStudioByMultiple(page, tname,name, customer.getLatitude(), customer.getLongitude());
+            page.setRecords(studios);
+            return SuccessTip.create(page);
+        }
+        List<Map<String,Object>> studios = domainQueryService.queryStudioByMultiple(page, tname, name,customer.getLatitude(), customer.getLongitude());
         page.setRecords(studios);
         return SuccessTip.create(page);
     }
@@ -137,6 +146,7 @@ public class StudioEndpoint extends BaseController {
     @DeleteMapping("/{id}")
     @Permission(AdminPermission.DELETE)
     public Tip deleteStudio(@PathVariable long id) {
+
         Integer result = sDservice.deleteMaster(id);
         return SuccessTip.create(result);
     }
@@ -202,7 +212,11 @@ public class StudioEndpoint extends BaseController {
         return SuccessTip.create(result);
     }
 
-    @GetMapping("/{studioId}/products/lists")
+    /*
+    *   all of products
+    * */
+
+    @GetMapping("/products/lists")
     public Tip studioProductList() {
         return SuccessTip.create(domainQueryService.studioProductList());
     }

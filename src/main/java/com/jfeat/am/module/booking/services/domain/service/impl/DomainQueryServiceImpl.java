@@ -51,27 +51,28 @@ public class DomainQueryServiceImpl implements DomainQueryService {
 
     @Resource
     ProductsPhotosMapper productsPhotosMapper;
+
     /*
     *   queryProductByAttribute
     * */
     public List<StudioProduct> queryStudioProduct(Page<StudioProduct> page,
                                                   long studioId,
-                                              String attribute) {
-        return studioProductDao.queryProductByAttribute(page,attribute);
+                                                  String attribute) {
+        return studioProductDao.queryProductByAttribute(page, attribute);
     }
 
     /*
     *   queryAppointmentByUserId
     * */
-    public List<Appointment> queryAppointmentByUserId(Page<Appointment> page,Long userId){
-        List<Appointment> appointments = appointmentMapper.selectList(new EntityWrapper<Appointment>().eq("customer_id",userId));
+    public List<Appointment> queryAppointmentByUserId(Page<Appointment> page, Long userId) {
+        List<Appointment> appointments = appointmentMapper.selectList(new EntityWrapper<Appointment>().eq("customer_id", userId));
         return appointments;
     }
 
     /*
     *   queryStudioByStick
     * */
-    public List<Studio> queryStudioByStick(Page<Studio> page,String city){
+    public List<Studio> queryStudioByStick(Page<Studio> page, String city) {
         return studioDao.queryStudioByStick(page, city);
     }
 
@@ -79,7 +80,7 @@ public class DomainQueryServiceImpl implements DomainQueryService {
     *   查找city
     * */
 
-    public List<Studio> queryCity(){
+    public List<Studio> queryCity() {
         return studioDao.queryCity();
     }
 
@@ -91,27 +92,29 @@ public class DomainQueryServiceImpl implements DomainQueryService {
                                               String status,
                                               Long studioId,
                                               Long phone) {
-        return appointmentDao.queryAppointment(page, status, studioId,phone);
+        return appointmentDao.queryAppointment(page, status, studioId, phone);
     }
 
     /*
     *   查找店铺 by ServiceType
     * */
 
-    public List<Map<String,Object>> queryStudioByMultiple(Page<StudioModel> page,
-                                                   String tname,
-                                                   String name) {
-        return studioDao.queryStudioByMultiple(page, tname,name);
+    public List<Map<String, Object>> queryStudioByMultiple(Page<StudioModel> page,
+                                                           String tname,
+                                                           String name,
+                                                           BigDecimal latitude,
+                                                           BigDecimal longitude) {
+        return studioDao.queryStudioByMultiple(page, tname, name, latitude, longitude);
     }
 
     /*
     *   查找店铺 by site
     * */
 
-    public List<Map<String,Object>> queryStudioBySite(Page<Studio> page,
-                                                      String site, BigDecimal latitude, BigDecimal longitude
-                                          ) {
-        return studioDao.queryStudioBySite(page, site,latitude,longitude);
+    public List<Map<String, Object>> queryStudioBySite(Page<Studio> page,
+                                                       String site, BigDecimal latitude, BigDecimal longitude
+    ) {
+        return studioDao.queryStudioBySite(page, site, latitude, longitude);
     }
 
     /*
@@ -123,15 +126,15 @@ public class DomainQueryServiceImpl implements DomainQueryService {
         List<StudioProduct> products = studioProductMapper.selectList(new EntityWrapper<StudioProduct>().eq("studio_id", id));
         List<StudiosPhotos> photos = studiosPhotosMapper.selectList(new EntityWrapper<StudiosPhotos>().eq("studio_id", id));
         List<com.jfeat.am.module.booking.services.persistence.model.StudioService> services =
-                serviceMapper.selectList(new EntityWrapper<com.jfeat.am.module.booking.services.persistence.model.StudioService>().eq("studio_id",id));
-        studioObj.put("services",services);
+                serviceMapper.selectList(new EntityWrapper<com.jfeat.am.module.booking.services.persistence.model.StudioService>().eq("studio_id", id));
+        studioObj.put("services", services);
         studioObj.put("products", products);
         studioObj.put("photos", photos);
         StudioModel model = JSON.parseObject(studioObj.toJSONString(), StudioModel.class);
         return model;
     }
 
-    public StudioProductModel showStudioProductModel(long studioId,long id) {
+    public StudioProductModel showStudioProductModel(long studioId, long id) {
         StudioProduct studioProduct = studioProductMapper.selectById(id);
         JSONObject productObj = JSON.parseObject(JSON.toJSONString(studioProduct));
         List<ProductsPhotos> photos = productsPhotosMapper.selectList(new EntityWrapper<ProductsPhotos>().eq("product_id", id));
@@ -139,10 +142,11 @@ public class DomainQueryServiceImpl implements DomainQueryService {
         StudioProductModel model = JSON.parseObject(productObj.toJSONString(), StudioProductModel.class);
         return model;
     }
+
     /*
     *   产品列表
     * */
-    public  List<StudioProduct> studioProductList(){
+    public List<StudioProduct> studioProductList() {
         return studioProductMapper.selectList(new EntityWrapper<StudioProduct>());
 
 
@@ -153,7 +157,7 @@ public class DomainQueryServiceImpl implements DomainQueryService {
     * */
 
 
-    public List<StudioProduct>  productStickList(Page<StudioProduct> page){
+    public List<StudioProduct> productStickList(Page<StudioProduct> page) {
         return studioProductDao.productStickList(page);
     }
 }
