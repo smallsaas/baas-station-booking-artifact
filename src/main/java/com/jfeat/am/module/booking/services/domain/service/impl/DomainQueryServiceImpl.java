@@ -153,8 +153,7 @@ public class DomainQueryServiceImpl implements DomainQueryService {
     * */
 
 
-    public List<StudioProduct>  productStickList(Page<StudioProduct> page,
-                                                 Long studioId){
+    public List<StudioProduct>  productStickList(Page<StudioProduct> page){
         return studioProductDao.productStickList(page);
     }
 }

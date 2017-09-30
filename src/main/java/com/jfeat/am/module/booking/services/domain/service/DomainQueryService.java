@@ -78,6 +78,5 @@ public interface DomainQueryService {
      /*
     *       精选产品列表
     * */
-    public List<StudioProduct>  productStickList(Page<StudioProduct> page,
-                                                 Long studioId);
+    public List<StudioProduct>  productStickList(Page<StudioProduct> page);
 }

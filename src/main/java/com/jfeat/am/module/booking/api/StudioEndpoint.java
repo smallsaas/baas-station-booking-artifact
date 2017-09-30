@@ -87,7 +87,6 @@ public class StudioEndpoint extends BaseController {
     /*
         *   查找店铺 by site
         * */
-    //TODO 空指针异常
     @GetMapping("/sites")
     public Tip queryStudioBySite (Page page,
                                  @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
@@ -211,15 +210,14 @@ public class StudioEndpoint extends BaseController {
     /*
     *   精选产品列表
     * */
-    @GetMapping("/{studioId}/products/stick")
+    @GetMapping("/products/stick")
     public Tip  productStickList(Page page,
                                                  @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
-                                                 @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize,
-                                                 @PathVariable long studioId
+                                                 @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize
                                                 ){
         page.setCurrent(pageNum);
         page.setSize(pageSize);
-        List<StudioProduct>  products = domainQueryService.productStickList(page,studioId);
+        List<StudioProduct>  products = domainQueryService.productStickList(page);
         page.setRecords(products);
         return SuccessTip.create(page);
     }
