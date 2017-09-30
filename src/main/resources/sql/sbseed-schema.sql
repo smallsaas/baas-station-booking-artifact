@@ -127,7 +127,7 @@ CREATE TABLE `emb_studio` (
   `phone` varchar(255) DEFAULT NULL COMMENT '电话',
   `studio_phone` varchar(255) NOT NULL COMMENT '店铺电话',
   `is_stick` varchar(26) NOT NULL COMMENT '精选',
-  `field_b` varchar(255) DEFAULT NULL COMMENT '保留字段',
+  `tag` varchar(255) DEFAULT NULL COMMENT '标签',
   `field_c` varchar(255) DEFAULT NULL COMMENT '保留字段',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

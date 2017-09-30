@@ -91,10 +91,9 @@ public class Studio extends Model<Studio> {
 	@TableField("is_stick")
 	private String isStick;
     /**
-     * 保留字段
+     * 标签
      */
-	@TableField("field_b")
-	private String fieldB;
+	private String tag;
     /**
      * 保留字段
      */
@@ -230,12 +229,12 @@ public class Studio extends Model<Studio> {
 		this.isStick = isStick;
 	}
 
-	public String getFieldB() {
-		return fieldB;
+	public String getTag() {
+		return tag;
 	}
 
-	public void setFieldB(String fieldB) {
-		this.fieldB = fieldB;
+	public void setTag(String tag) {
+		this.tag = tag;
 	}
 
 	public String getFieldC() {
@@ -270,7 +269,7 @@ public class Studio extends Model<Studio> {
 			", phone=" + phone +
 			", studioPhone=" + studioPhone +
 			", isStick=" + isStick +
-			", fieldB=" + fieldB +
+			", tag=" + tag +
 			", fieldC=" + fieldC +
 			"}";
 	}
