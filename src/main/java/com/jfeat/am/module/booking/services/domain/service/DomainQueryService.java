@@ -82,4 +82,10 @@ public interface DomainQueryService {
    *       精选产品列表
    * */
     public List<StudioProduct> productStickList(Page<StudioProduct> page);
+
+    /*
+    *   queryProductByName
+    * */
+    public  List<StudioProduct> queryProductByName(Page<StudioProduct> page,
+                                                   String name);
 }

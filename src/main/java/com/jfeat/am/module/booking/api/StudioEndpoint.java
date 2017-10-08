@@ -222,7 +222,7 @@ public class StudioEndpoint extends BaseController {
     }
 
     /*
-    *   精选产品列表
+    *   精选产品列·表
     * */
     @GetMapping("/products/stick")
     public Tip  productStickList(Page page,
@@ -232,6 +232,22 @@ public class StudioEndpoint extends BaseController {
         page.setCurrent(pageNum);
         page.setSize(pageSize);
         List<StudioProduct>  products = domainQueryService.productStickList(page);
+        page.setRecords(products);
+        return SuccessTip.create(page);
+    }
+
+    /*
+    *   queryProductByName
+    * */
+    @GetMapping("/products")
+    public Tip  productStickList(Page page,
+                                 @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
+                                 @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize,
+                                 @RequestParam(name = "name", required = false) String name
+    ){
+        page.setCurrent(pageNum);
+        page.setSize(pageSize);
+        List<StudioProduct>  products = domainQueryService.queryProductByName(page,name);
         page.setRecords(products);
         return SuccessTip.create(page);
     }

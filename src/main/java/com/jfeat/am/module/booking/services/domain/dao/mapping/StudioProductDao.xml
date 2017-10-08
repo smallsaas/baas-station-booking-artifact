@@ -14,8 +14,17 @@
     </select>
 
     <select id="productStickList" resultType="StudioProduct">
+    SELECT emb_studio_product.*
+    FROM emb_studio_product
+    WHERE   emb_studio_product.stick = 'SIFT'
+</select>
+
+    <select id="queryProductByName" resultType="StudioProduct">
         SELECT emb_studio_product.*
         FROM emb_studio_product
-        WHERE   emb_studio_product.stick = 'SIFT'
+        WHERE 1 = 1
+        <if test="name != null and name != ''">
+            AND emb_studio_product.name LIKE CONCAT('%',#{name},'%')
+        </if>
     </select>
 </mapper>

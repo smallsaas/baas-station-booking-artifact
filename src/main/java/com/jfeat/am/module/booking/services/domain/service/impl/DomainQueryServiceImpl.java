@@ -160,4 +160,13 @@ public class DomainQueryServiceImpl implements DomainQueryService {
     public List<StudioProduct> productStickList(Page<StudioProduct> page) {
         return studioProductDao.productStickList(page);
     }
+
+    /*
+    *       queryProductByName
+    * */
+
+    public  List<StudioProduct> queryProductByName(Page<StudioProduct> page,
+                                            String name){
+        return studioProductDao.queryProductByName(page,name);
+    }
 }
