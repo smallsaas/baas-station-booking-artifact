@@ -45,7 +45,11 @@ public class StudioEndpoint extends BaseController {
     /*
     *   queryStudioByStick
     * */
-
+    @GetMapping
+    public Tip queryStudioByName(@RequestParam(name = "name", required = false) String name){
+        Studio studio = domainQueryService.queryStudioByName(name);
+        return SuccessTip.create(studio);
+    }
     /*
     *   无精选店铺
     * */

@@ -54,9 +54,9 @@ public class DomainQueryServiceImpl implements DomainQueryService {
     /*
     *   queryStudioByName
     * */
-    public List<Studio> queryStudioByName(Page<Studio> page,
+    public Studio queryStudioByName(
                                    String name){
-        return studioDao.queryStudioByName(page, name);
+        return studioDao.queryStudioByName( name);
     }
     /*
     *   queryProductByAttribute
