@@ -45,6 +45,10 @@ public class StudioEndpoint extends BaseController {
     /*
     *   queryStudioByStick
     * */
+
+    /*
+    *   无精选店铺
+    * */
     @GetMapping("/stick")
     public Tip queryStudioByStick(Page page,
                                   @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
@@ -66,7 +70,6 @@ public class StudioEndpoint extends BaseController {
         List<Studio> citys = domainQueryService.queryCity();
         return SuccessTip.create(citys);
     }
-
 
     /*
     *   查找店铺 by ServiceType
