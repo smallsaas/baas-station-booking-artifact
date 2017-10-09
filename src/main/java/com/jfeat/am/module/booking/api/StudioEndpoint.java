@@ -1,5 +1,6 @@
 package com.jfeat.am.module.booking.api;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 
 import com.jfeat.am.common.annotation.Permission;
@@ -7,17 +8,21 @@ import com.jfeat.am.common.constant.tips.SuccessTip;
 import com.jfeat.am.common.constant.tips.Tip;
 import com.jfeat.am.common.controller.BaseController;
 
+import com.jfeat.am.common.crud.error.CRUDException;
 import com.jfeat.am.core.jwt.JWTKit;
 import com.jfeat.am.module.booking.api.bean.Ids;
 import com.jfeat.am.module.booking.services.domain.definition.AdminPermission;
 import com.jfeat.am.module.booking.services.domain.definition.StudioStick;
 import com.jfeat.am.module.booking.services.domain.model.StudioModel;
+import com.jfeat.am.module.booking.services.domain.model.StudioPhotosModel;
 import com.jfeat.am.module.booking.services.domain.service.DomainQueryService;
 import com.jfeat.am.module.booking.services.domain.service.PathPhotoService;
+import com.jfeat.am.module.booking.services.persistence.mapper.StudioProductMapper;
 import com.jfeat.am.module.booking.services.persistence.model.*;
 import com.jfeat.am.module.booking.services.service.crud.CustomerService;
 import com.jfeat.am.module.booking.services.service.crud.StudioOverProductService;
 
+import com.jfeat.am.module.booking.services.service.path.PathService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -39,6 +44,10 @@ public class StudioEndpoint extends BaseController {
     DomainQueryService domainQueryService;
     @Resource
     CustomerService customerService;
+    @Resource
+    StudioProductMapper studioProductMapper;
+    @Resource
+    PathService pathService;
 
     @Resource
     PathPhotoService pathPhotoService;
@@ -154,8 +163,13 @@ public class StudioEndpoint extends BaseController {
     @Permission(AdminPermission.DELETE)
     public Tip deleteStudio(@PathVariable long id) {
 
-        Integer result = sDservice.deleteMaster(id);
-        return SuccessTip.create(result);
+        List<StudioProduct> studioProduct = studioProductMapper.selectList(new EntityWrapper<StudioProduct>().eq("studio_id",id));
+        if(studioProduct == null || studioProduct.size() == 0) {
+            Integer result = sDservice.deleteMaster(id);
+            return SuccessTip.create(result);
+
+        }
+        throw new RuntimeException("不允许删除非空店铺！");
     }
 
     /*
@@ -165,6 +179,12 @@ public class StudioEndpoint extends BaseController {
     public Tip addStudioPhotos(@PathVariable long studioId, @RequestBody StudiosPhotos studiosPhotos) {
         return SuccessTip.create(pathPhotoService.addStudioPhotos(studioId, studiosPhotos));
     }
+
+    @PostMapping("/bulk/add")
+    public boolean addStudioPhotos(@RequestBody StudioPhotosModel model){
+        return pathService.addStudioPhotos(model.getStudioId(), model.getUrls());
+    }
+
 
     @DeleteMapping(("/{studioId}/photos/{id}"))
     public Tip deleteStudioPhotos(@PathVariable long studioId, @PathVariable long id) {

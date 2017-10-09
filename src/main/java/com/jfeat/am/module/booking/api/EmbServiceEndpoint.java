@@ -3,7 +3,7 @@ package com.jfeat.am.module.booking.api;
 import com.jfeat.am.common.constant.tips.SuccessTip;
 import com.jfeat.am.common.constant.tips.Tip;
 import com.jfeat.am.common.controller.BaseController;
-import com.jfeat.am.module.booking.api.bean.Ids;
+import com.jfeat.am.module.booking.services.domain.model.StudioServiceModel;
 import com.jfeat.am.module.booking.services.domain.service.DomainQueryTypeService;
 import com.jfeat.am.module.booking.services.persistence.model.StudioService;
 import com.jfeat.am.module.booking.services.service.crud.EmbServiceService;
@@ -35,9 +35,9 @@ public class EmbServiceEndpoint extends BaseController{
     /*
     *   Test
     * */
-    @PostMapping("/test")
-    public Integer addStudioServiceType(StudioService studioService, Ids ids){
-        return pathService.addStudioService(studioService,ids.getIds());
+    @PostMapping("/bulk/add")
+    public boolean addStudioServiceType(@RequestBody StudioServiceModel model){
+        return pathService.addStudioService(model.getStudioId(), model.getIds());
     }
 
     /*

@@ -9,5 +9,6 @@ import java.util.List;
  * Created by Administrator on 2017/10/9.
  */
 public interface PathService {
-    public Integer addStudioService(StudioService studioService, List<Long> ids);
+    boolean addStudioService(Long studioId, List<Long> ids);
+    boolean addStudioPhotos(Long studioId, List<String> urls);
 }
