@@ -51,7 +51,13 @@ public class DomainQueryServiceImpl implements DomainQueryService {
 
     @Resource
     ProductsPhotosMapper productsPhotosMapper;
-
+    /*
+    *   queryStudioByName
+    * */
+    public List<Studio> queryStudioByName(Page<Studio> page,
+                                   String name){
+        return studioDao.queryStudioByName(page, name);
+    }
     /*
     *   queryProductByAttribute
     * */

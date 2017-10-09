@@ -17,6 +17,12 @@ import java.util.Map;
 public interface DomainQueryService {
 
     /*
+    *   queryStudioByName
+    * */
+    public List<Studio> queryStudioByName(Page<Studio> page,
+                                          String name);
+
+    /*
     *   queryProductByAttribute
     * */
     public List<StudioProduct> queryStudioProduct(Page<StudioProduct> page,

@@ -3,12 +3,14 @@ package com.jfeat.am.module.booking.api;
 import com.jfeat.am.common.constant.tips.SuccessTip;
 import com.jfeat.am.common.constant.tips.Tip;
 import com.jfeat.am.common.controller.BaseController;
+import com.jfeat.am.module.booking.api.bean.Ids;
 import com.jfeat.am.module.booking.services.domain.service.DomainQueryTypeService;
 import com.jfeat.am.module.booking.services.persistence.model.StudioService;
 import com.jfeat.am.module.booking.services.service.crud.EmbServiceService;
 import com.jfeat.am.module.booking.services.service.crud.ServiceTypeService;
 import com.jfeat.am.module.booking.services.persistence.model.ServiceType;
 
+import com.jfeat.am.module.booking.services.service.path.PathService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -27,6 +29,16 @@ public class EmbServiceEndpoint extends BaseController{
     ServiceTypeService typeService;
     @Resource
     DomainQueryTypeService queryTypeService;
+    @Resource
+    PathService pathService;
+
+    /*
+    *   Test
+    * */
+    @PostMapping("/test")
+    public Integer addStudioServiceType(StudioService studioService, Ids ids){
+        return pathService.addStudioService(studioService,ids.getIds());
+    }
 
     /*
   *   CRUD about Service
