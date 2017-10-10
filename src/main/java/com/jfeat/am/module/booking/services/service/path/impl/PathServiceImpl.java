@@ -1,5 +1,6 @@
 package com.jfeat.am.module.booking.services.service.path.impl;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.jfeat.am.module.booking.services.persistence.mapper.ProductsPhotosMapper;
 import com.jfeat.am.module.booking.services.persistence.mapper.StudioServiceMapper;
 import com.jfeat.am.module.booking.services.persistence.mapper.StudiosPhotosMapper;
@@ -11,11 +12,12 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+
 /**
  * Created by Administrator on 2017/10/9.
  */
 @Service
-public class PathServiceImpl implements PathService{
+public class PathServiceImpl implements PathService {
     @Resource
     StudioServiceMapper studioServiceMapper;
     @Resource
@@ -34,6 +36,10 @@ public class PathServiceImpl implements PathService{
     }
 
     public boolean addStudioPhotos(Long studioId, List<String> urls) {
+        List<StudiosPhotos> photos = studiosPhotosMapper.selectList(new EntityWrapper<StudiosPhotos>().eq("studio_id",studioId));
+        if (photos != null || photos.size() != 0) {
+            studiosPhotosMapper.delete(new EntityWrapper<StudiosPhotos>().eq("studio_id", studioId));
+        }
         for (String url : urls) {
             StudiosPhotos studiosPhotos = new StudiosPhotos();
             studiosPhotos.setStudioId(studioId);
@@ -47,12 +53,17 @@ public class PathServiceImpl implements PathService{
 *   add ProductPhotos
 * */
     public boolean addProductPhotos(Long productId, List<String> urls) {
+        List<ProductsPhotos> photos = productsPhotosMapper.selectList(new EntityWrapper<ProductsPhotos>().eq("product_id", productId));
+        if (photos != null || photos.size() != 0) {
+            productsPhotosMapper.delete(new EntityWrapper<ProductsPhotos>().eq("product_id", productId));
+        }
         for (String url : urls) {
             ProductsPhotos productsPhotos = new ProductsPhotos();
             productsPhotos.setProductId(productId);
             productsPhotos.setPhoto(url);
             productsPhotosMapper.insert(productsPhotos);
         }
+
         return true;
     }
 }
