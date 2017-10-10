@@ -11,4 +11,10 @@ import java.util.List;
 public interface PathService {
     boolean addStudioService(Long studioId, List<Long> ids);
     boolean addStudioPhotos(Long studioId, List<String> urls);
+
+
+    /*
+    *   add ProductPhotos
+    * */
+    public boolean addProductPhotos(Long productId, List<String> urls);
 }

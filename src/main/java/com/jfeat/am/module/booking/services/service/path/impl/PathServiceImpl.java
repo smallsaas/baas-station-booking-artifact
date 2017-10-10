@@ -1,7 +1,9 @@
 package com.jfeat.am.module.booking.services.service.path.impl;
 
+import com.jfeat.am.module.booking.services.persistence.mapper.ProductsPhotosMapper;
 import com.jfeat.am.module.booking.services.persistence.mapper.StudioServiceMapper;
 import com.jfeat.am.module.booking.services.persistence.mapper.StudiosPhotosMapper;
+import com.jfeat.am.module.booking.services.persistence.model.ProductsPhotos;
 import com.jfeat.am.module.booking.services.persistence.model.StudioService;
 import com.jfeat.am.module.booking.services.persistence.model.StudiosPhotos;
 import com.jfeat.am.module.booking.services.service.path.PathService;
@@ -18,6 +20,8 @@ public class PathServiceImpl implements PathService{
     StudioServiceMapper studioServiceMapper;
     @Resource
     StudiosPhotosMapper studiosPhotosMapper;
+    @Resource
+    ProductsPhotosMapper productsPhotosMapper;
 
     public boolean addStudioService(Long studioId, List<Long> ids) {
         for (Long id : ids) {
@@ -35,6 +39,19 @@ public class PathServiceImpl implements PathService{
             studiosPhotos.setStudioId(studioId);
             studiosPhotos.setPhoto(url);
             studiosPhotosMapper.insert(studiosPhotos);
+        }
+        return true;
+    }
+
+    /*
+*   add ProductPhotos
+* */
+    public boolean addProductPhotos(Long productId, List<String> urls) {
+        for (String url : urls) {
+            ProductsPhotos productsPhotos = new ProductsPhotos();
+            productsPhotos.setProductId(productId);
+            productsPhotos.setPhoto(url);
+            productsPhotosMapper.insert(productsPhotos);
         }
         return true;
     }

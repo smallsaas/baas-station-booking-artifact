@@ -13,6 +13,7 @@ import com.jfeat.am.core.jwt.JWTKit;
 import com.jfeat.am.module.booking.api.bean.Ids;
 import com.jfeat.am.module.booking.services.domain.definition.AdminPermission;
 import com.jfeat.am.module.booking.services.domain.definition.StudioStick;
+import com.jfeat.am.module.booking.services.domain.model.ProductPhotosModel;
 import com.jfeat.am.module.booking.services.domain.model.StudioModel;
 import com.jfeat.am.module.booking.services.domain.model.StudioPhotosModel;
 import com.jfeat.am.module.booking.services.domain.service.DomainQueryService;
@@ -247,6 +248,11 @@ public class StudioEndpoint extends BaseController {
     public Tip deleteStudioProduct(@PathVariable long studioId, @PathVariable long id) {
         Integer result = sDservice.removeSlaveItem(studioId, id);
         return SuccessTip.create(result);
+    }
+
+    @PostMapping("/products/bulk/add")
+    public boolean addProductPhotos(@RequestBody ProductPhotosModel model) {
+        return pathService.addProductPhotos(model.getProductId(), model.getUrls());
     }
 
     /*
