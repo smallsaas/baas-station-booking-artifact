@@ -51,14 +51,16 @@ public class StudioEndpoint extends BaseController {
 
     @Resource
     PathPhotoService pathPhotoService;
+
     /*
     *   queryStudioByStick
     * */
     @GetMapping
-    public Tip queryStudioByName(@RequestParam(name = "name", required = false) String name){
-        Studio studio = domainQueryService.queryStudioByName(name);
+    public Tip queryStudioByName(@RequestParam(name = "name", required = false) String name) {
+        List<Studio> studio = domainQueryService.queryStudioByName(name);
         return SuccessTip.create(studio);
     }
+
     /*
     *   无精选店铺
     * */
@@ -66,11 +68,11 @@ public class StudioEndpoint extends BaseController {
     public Tip queryStudioByStick(Page page,
                                   @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
                                   @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize,
-                                  @RequestParam(name = "city", required = false) String city){
+                                  @RequestParam(name = "city", required = false) String city) {
 
         page.setCurrent(pageNum);
         page.setSize(pageSize);
-        List<Studio> studios = domainQueryService.queryStudioByStick(page,city);
+        List<Studio> studios = domainQueryService.queryStudioByStick(page, city);
         page.setRecords(studios);
         return SuccessTip.create(studios);
     }
@@ -79,7 +81,7 @@ public class StudioEndpoint extends BaseController {
     *   queryCity
     * */
     @GetMapping("/citys")
-    public Tip queryCity(){
+    public Tip queryCity() {
         List<Studio> citys = domainQueryService.queryCity();
         return SuccessTip.create(citys);
     }
@@ -100,11 +102,11 @@ public class StudioEndpoint extends BaseController {
         if (customer.getLatitude() == null && customer.getLongitude() == null) {
             customer.setLatitude(BigDecimal.valueOf(114.1238523));
             customer.setLongitude(BigDecimal.valueOf(25.1235203));
-            List<Map<String, Object>> studios = domainQueryService.queryStudioByMultiple(page, tname,name, customer.getLatitude(), customer.getLongitude());
+            List<Map<String, Object>> studios = domainQueryService.queryStudioByMultiple(page, tname, name, customer.getLatitude(), customer.getLongitude());
             page.setRecords(studios);
             return SuccessTip.create(page);
         }
-        List<Map<String,Object>> studios = domainQueryService.queryStudioByMultiple(page, tname, name,customer.getLatitude(), customer.getLongitude());
+        List<Map<String, Object>> studios = domainQueryService.queryStudioByMultiple(page, tname, name, customer.getLatitude(), customer.getLongitude());
         page.setRecords(studios);
         return SuccessTip.create(page);
     }
@@ -113,11 +115,11 @@ public class StudioEndpoint extends BaseController {
         *   查找店铺 by site
         * */
     @GetMapping("/sites")
-    public Tip queryStudioBySite (Page page,
+    public Tip queryStudioBySite(Page page,
                                  @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
                                  @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize,
                                  @RequestParam(name = "site", required = false) String site) {
-         page.setCurrent(pageNum);
+        page.setCurrent(pageNum);
         page.setSize(pageSize);
         long userId = JWTKit.getUserId(getHttpServletRequest());
         Customer customer = customerService.retrieveMaster(userId);
@@ -134,6 +136,7 @@ public class StudioEndpoint extends BaseController {
         return SuccessTip.create(page);
 
     }
+
     /*
     *   CRUD about Studio
     * */
@@ -163,8 +166,8 @@ public class StudioEndpoint extends BaseController {
     @Permission(AdminPermission.DELETE)
     public Tip deleteStudio(@PathVariable long id) {
 
-        List<StudioProduct> studioProduct = studioProductMapper.selectList(new EntityWrapper<StudioProduct>().eq("studio_id",id));
-        if(studioProduct == null || studioProduct.size() == 0) {
+        List<StudioProduct> studioProduct = studioProductMapper.selectList(new EntityWrapper<StudioProduct>().eq("studio_id", id));
+        if (studioProduct == null || studioProduct.size() == 0) {
             Integer result = sDservice.deleteMaster(id);
             return SuccessTip.create(result);
 
@@ -181,7 +184,7 @@ public class StudioEndpoint extends BaseController {
     }
 
     @PostMapping("/bulk/add")
-    public boolean addStudioPhotos(@RequestBody StudioPhotosModel model){
+    public boolean addStudioPhotos(@RequestBody StudioPhotosModel model) {
         return pathService.addStudioPhotos(model.getStudioId(), model.getUrls());
     }
 
@@ -226,13 +229,14 @@ public class StudioEndpoint extends BaseController {
                                        @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
                                        @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize,
                                        @PathVariable long studioId,
-                                       @RequestParam String attribute){
+                                       @RequestParam String attribute) {
         page.setCurrent(pageNum);
         page.setSize(pageSize);
-        List<StudioProduct>  products = domainQueryService.queryStudioProduct(page,studioId,attribute);
+        List<StudioProduct> products = domainQueryService.queryStudioProduct(page, studioId, attribute);
         page.setRecords(products);
         return SuccessTip.create(page);
     }
+
     @DeleteMapping("/{studioId}/products/{id}")
     public Tip deleteStudioProduct(@PathVariable long studioId, @PathVariable long id) {
         Integer result = sDservice.removeSlaveItem(studioId, id);
@@ -252,13 +256,13 @@ public class StudioEndpoint extends BaseController {
     *   精选产品列·表
     * */
     @GetMapping("/products/stick")
-    public Tip  productStickList(Page page,
-                                                 @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
-                                                 @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize
-                                                ){
+    public Tip productStickList(Page page,
+                                @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
+                                @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize
+    ) {
         page.setCurrent(pageNum);
         page.setSize(pageSize);
-        List<StudioProduct>  products = domainQueryService.productStickList(page);
+        List<StudioProduct> products = domainQueryService.productStickList(page);
         page.setRecords(products);
         return SuccessTip.create(page);
     }
@@ -267,14 +271,14 @@ public class StudioEndpoint extends BaseController {
     *   queryProductByName
     * */
     @GetMapping("/products")
-    public Tip  productStickList(Page page,
-                                 @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
-                                 @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize,
-                                 @RequestParam(name = "name", required = false) String name
-    ){
+    public Tip productStickList(Page page,
+                                @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
+                                @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize,
+                                @RequestParam(name = "name", required = false) String name
+    ) {
         page.setCurrent(pageNum);
         page.setSize(pageSize);
-        List<StudioProduct>  products = domainQueryService.queryProductByName(page,name);
+        List<StudioProduct> products = domainQueryService.queryProductByName(page, name);
         page.setRecords(products);
         return SuccessTip.create(page);
     }
