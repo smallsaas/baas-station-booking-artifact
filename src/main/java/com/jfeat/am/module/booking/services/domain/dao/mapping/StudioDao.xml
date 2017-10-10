@@ -8,7 +8,26 @@
         emb_service.type_id
     </sql>
     <select id="queryStudioByMultiple" resultType="Map">
-        SELECT emb_studio_service.type_id ,emb_studio.* , emb_service_type.name AS tname,
+        SELECT emb_studio_service.type_id ,
+        emb_studio.id ,
+        emb_studio.name ,
+        emb_studio.description ,
+        emb_studio.work_time ,
+        emb_studio.fee ,
+        emb_studio.studio_site ,
+        emb_studio.cover ,
+        emb_studio.province ,
+        emb_studio.city ,
+        emb_studio.district ,
+        emb_studio.longitude ,
+        emb_studio.latitude ,
+        emb_studio.contact ,
+        emb_studio.phone ,
+        emb_studio.studio_phone ,
+        emb_studio.is_stick ,
+        emb_studio.tag ,
+        emb_studio.field_c ,
+        emb_service_type.name AS tname,
         round(
         6378.138 * 2 * asin(
         sqrt(
@@ -53,7 +72,7 @@
 
     <select id="queryStudioBySite" resultType="Map">
         SELECT
-        *, round(
+        emb_studio.*, round(
         6378.138 * 2 * asin(
         sqrt(
         pow(
