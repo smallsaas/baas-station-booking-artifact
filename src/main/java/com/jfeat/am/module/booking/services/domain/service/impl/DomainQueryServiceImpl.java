@@ -152,7 +152,7 @@ public class DomainQueryServiceImpl implements DomainQueryService {
     /*
     *   产品列表
     * */
-    public List<StudioProduct> studioProductList() {
+    public List<StudioProduct> studioProductList(Page<StudioProduct> page) {
         return studioProductMapper.selectList(new EntityWrapper<StudioProduct>());
 
 

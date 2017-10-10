@@ -82,7 +82,7 @@ public interface DomainQueryService {
     /*
     *   show Product list
     * */
-    public List<StudioProduct> studioProductList();
+    public List<StudioProduct> studioProductList(Page<StudioProduct> page);
 
     /*
    *       精选产品列表
