@@ -2,6 +2,7 @@ package com.jfeat.am.module.booking.services.persistence.model;
 
 import java.io.Serializable;
 
+import java.util.Date;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
@@ -13,7 +14,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author J4cob
- * @since 2017-09-30
+ * @since 2017-10-10
  */
 @TableName("emb_studio_collect")
 public class StudioCollect extends Model<StudioCollect> {
@@ -34,6 +35,11 @@ public class StudioCollect extends Model<StudioCollect> {
      */
 	@TableField("customer_id")
 	private Long customerId;
+    /**
+     * 创建时间
+     */
+	@TableField("create_time")
+	private Date createTime;
 
 
 	public Long getId() {
@@ -60,6 +66,14 @@ public class StudioCollect extends Model<StudioCollect> {
 		this.customerId = customerId;
 	}
 
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
 	@Override
 	protected Serializable pkVal() {
 		return this.id;
@@ -71,6 +85,7 @@ public class StudioCollect extends Model<StudioCollect> {
 			"id=" + id +
 			", studioId=" + studioId +
 			", customerId=" + customerId +
+			", createTime=" + createTime +
 			"}";
 	}
 }

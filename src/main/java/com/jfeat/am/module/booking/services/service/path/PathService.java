@@ -1,6 +1,7 @@
 package com.jfeat.am.module.booking.services.service.path;
 
 import com.jfeat.am.module.booking.api.bean.Ids;
+import com.jfeat.am.module.booking.services.domain.model.CustomerModel;
 import com.jfeat.am.module.booking.services.persistence.model.StudioService;
 
 import java.util.List;
@@ -17,4 +18,9 @@ public interface PathService {
     *   add ProductPhotos
     * */
     public boolean addProductPhotos(Long productId, List<String> urls);
+
+    /*
+   *   get user Info
+   * */
+    public CustomerModel getMoreInfo(long id);
 }

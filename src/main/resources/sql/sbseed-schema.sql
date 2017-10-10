@@ -56,7 +56,7 @@ CREATE TABLE `emb_customer` (
   `cover` varchar(255) DEFAULT NULL COMMENT '头像',
   `longitude` decimal(10,7) DEFAULT NULL COMMENT '经度',
   `latitude` decimal(10,7) DEFAULT NULL COMMENT '纬度',
-  `field_a` varchar(255) DEFAULT NULL COMMENT '保留字段',
+  `create_time` date DEFAULT  NULL COMMENT '注册时间',
   `field_b` varchar(255) DEFAULT NULL COMMENT '保留字段',
   `field_c` varchar(255) DEFAULT NULL COMMENT '保留字段',
   PRIMARY KEY (`id`)
@@ -153,6 +153,7 @@ CREATE TABLE `emb_studio_collect` (
   `id` bigint(20) NOT NULL COMMENT '主键',
   `studio_id` bigint(20) NOT NULL COMMENT '店铺ID',
   `customer_id` bigint(20) NOT NULL COMMENT '用户ID',
+  `create_time` date DEFAULT  NULL COMMENT '创建时间',
   PRIMARY KEY (`id`),
   KEY `studio_id` (`studio_id`),
   KEY `customer_id` (`customer_id`),

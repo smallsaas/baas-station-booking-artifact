@@ -1,12 +1,11 @@
 package com.jfeat.am.module.booking.services.service.path.impl;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.jfeat.am.module.booking.services.persistence.mapper.ProductsPhotosMapper;
-import com.jfeat.am.module.booking.services.persistence.mapper.StudioServiceMapper;
-import com.jfeat.am.module.booking.services.persistence.mapper.StudiosPhotosMapper;
-import com.jfeat.am.module.booking.services.persistence.model.ProductsPhotos;
-import com.jfeat.am.module.booking.services.persistence.model.StudioService;
-import com.jfeat.am.module.booking.services.persistence.model.StudiosPhotos;
+import com.jfeat.am.module.booking.services.domain.model.CustomerModel;
+import com.jfeat.am.module.booking.services.persistence.mapper.*;
+import com.jfeat.am.module.booking.services.persistence.model.*;
 import com.jfeat.am.module.booking.services.service.path.PathService;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +23,10 @@ public class PathServiceImpl implements PathService {
     StudiosPhotosMapper studiosPhotosMapper;
     @Resource
     ProductsPhotosMapper productsPhotosMapper;
+    @Resource
+    StudioCollectMapper studioCollectMapper;
+    @Resource
+    CustomerMapper customerMapper;
 
     public boolean addStudioService(Long studioId, List<Long> ids) {
         for (Long id : ids) {
@@ -65,5 +68,17 @@ public class PathServiceImpl implements PathService {
         }
 
         return true;
+    }
+
+    /*
+    *   get user Info
+    * */
+    public CustomerModel getMoreInfo(long id){
+        Customer customer = customerMapper.selectById(id);
+        JSONObject customerObj = JSON.parseObject(JSON.toJSONString(customer));
+        List<StudioCollect> favors = studioCollectMapper.selectList(new EntityWrapper<StudioCollect>().eq("customer_id",id));
+        customerObj.put("favors",favors);
+        CustomerModel model = JSON.parseObject(customerObj.toJSONString(),CustomerModel.class);
+        return model;
     }
 }
