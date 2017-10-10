@@ -47,7 +47,7 @@ public interface StudioDao {
     /*
     *   query  by name
     * */
-    List<Studio> queryStudioByName(
+    List<Studio> queryStudioByName(Page<Studio> page,
                                    @Param("name") String name);
 
 

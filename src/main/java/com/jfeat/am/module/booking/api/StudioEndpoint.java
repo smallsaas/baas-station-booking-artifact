@@ -53,12 +53,18 @@ public class StudioEndpoint extends BaseController {
     PathPhotoService pathPhotoService;
 
     /*
-    *   queryStudioByStick
+    *   queryStudioByName
     * */
     @GetMapping
-    public Tip queryStudioByName(@RequestParam(name = "name", required = false) String name) {
-        List<Studio> studio = domainQueryService.queryStudioByName(name);
-        return SuccessTip.create(studio);
+    public Tip queryStudioByName(Page page,
+                                 @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
+                                 @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize,
+                                 @RequestParam(name = "name", required = false) String name) {
+        page.setCurrent(pageNum);
+        page.setSize(pageSize);
+        List<Studio> studio = domainQueryService.queryStudioByName(page,name);
+        page.setRecords(studio);
+        return SuccessTip.create(page);
     }
 
     /*

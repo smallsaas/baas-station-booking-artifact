@@ -19,7 +19,7 @@ public interface DomainQueryService {
     /*
     *   queryStudioByName
     * */
-    public List<Studio> queryStudioByName(
+    public List<Studio> queryStudioByName(Page<Studio> page,
                                           String name);
 
     /*
