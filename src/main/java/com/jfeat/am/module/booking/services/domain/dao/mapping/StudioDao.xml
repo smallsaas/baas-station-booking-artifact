@@ -128,6 +128,5 @@
     <select id="queryCity" resultType="Studio">
         SELECT DISTINCT emb_studio.city
         FROM emb_studio
-        WHERE  1 = 1
     </select>
 </mapper>
