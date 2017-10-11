@@ -12,7 +12,7 @@ import java.util.List;
  */
 public interface StudioProductDao {
         List<StudioProduct>  queryProductByAttribute(Page<StudioProduct> page,
-                                              @Param("attribute") String attribute);
+                                                     @Param("attribute") String attribute);
 
         List<StudioProduct>  productStickList(Page<StudioProduct> page);
 

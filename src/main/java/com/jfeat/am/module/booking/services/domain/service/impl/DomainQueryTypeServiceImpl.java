@@ -28,7 +28,7 @@ public class DomainQueryTypeServiceImpl implements DomainQueryTypeService {
     }
 
     public List<StudioService> allService(){
-        List<com.jfeat.am.module.booking.services.persistence.model.StudioService> typeList = embServiceMapper.selectList(new EntityWrapper<>());
+        List<StudioService> typeList = embServiceMapper.selectList(new EntityWrapper<>());
         return typeList;
     }
 

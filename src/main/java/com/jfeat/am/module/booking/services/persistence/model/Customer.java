@@ -15,7 +15,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author J4cob
- * @since 2017-10-11
+ * @since 2017-10-12
  */
 @TableName("emb_customer")
 public class Customer extends Model<Customer> {
@@ -72,14 +72,14 @@ public class Customer extends Model<Customer> {
 	@TableField("create_time")
 	private Date createTime;
     /**
-     * 保留字段
+     * 微信提供openid
      */
 	private String openid;
     /**
      * 保留字段
      */
-	@TableField("field_c")
-	private String fieldC;
+	@TableField("user_id")
+	private Long userId;
 
 
 	public Long getId() {
@@ -186,12 +186,12 @@ public class Customer extends Model<Customer> {
 		this.openid = openid;
 	}
 
-	public String getFieldC() {
-		return fieldC;
+	public Long getUserId() {
+		return userId;
 	}
 
-	public void setFieldC(String fieldC) {
-		this.fieldC = fieldC;
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 
 	@Override
@@ -215,7 +215,7 @@ public class Customer extends Model<Customer> {
 			", latitude=" + latitude +
 			", createTime=" + createTime +
 			", openid=" + openid +
-			", fieldC=" + fieldC +
+			", userId=" + userId +
 			"}";
 	}
 }

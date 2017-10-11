@@ -14,5 +14,5 @@ public interface AppointmentDao{
     List<Appointment> queryAppointment(Page<Appointment> page,
                                        @Param("status") String status,
                                        @Param("studioId") Long studioId,
-                                       @Param("phone")Long phone);
+                                       @Param("phone") Long phone);
 }

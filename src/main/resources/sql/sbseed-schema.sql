@@ -57,8 +57,8 @@ CREATE TABLE `emb_customer` (
   `longitude` decimal(10,7) DEFAULT NULL COMMENT '经度',
   `latitude` decimal(10,7) DEFAULT NULL COMMENT '纬度',
   `create_time` date DEFAULT  NULL COMMENT '注册时间',
-  `openid` varchar(255) DEFAULT NULL COMMENT '保留字段',
-  `field_c` varchar(255) DEFAULT NULL COMMENT '保留字段',
+  `openid` varchar(255) NOT NULL COMMENT '微信提供openid',
+  `user_id` bigint(20) NOT NULL COMMENT '保留字段',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -88,8 +88,7 @@ CREATE TABLE `emb_products_photos` (
   `id` bigint(20) NOT NULL COMMENT '主键',
   `product_id` bigint(20) NOT NULL COMMENT '产品ID',
   `photo` varchar(255) NOT NULL COMMENT '产品图片',
-  PRIMARY KEY (`id`),
-  KEY `product_id` (`product_id`),
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -139,8 +138,7 @@ CREATE TABLE `emb_studios_photos` (
   `id` bigint(20) NOT NULL COMMENT '主键',
   `studio_id` bigint(20) NOT NULL COMMENT '店铺ID',
   `photo` varchar(255) NOT NULL COMMENT '封面',
-  PRIMARY KEY (`id`),
-  KEY `studio_id` (`studio_id`),
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -196,3 +194,4 @@ CREATE TABLE `emb_studio_service` (
   CONSTRAINT `emb_studio_service_ibfk_1` FOREIGN KEY (`type_id`) REFERENCES `emb_service_type` (`id`),
   CONSTRAINT `emb_studio_service_ibfk_2` FOREIGN KEY (`studio_id`) REFERENCES `emb_studio` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+

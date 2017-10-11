@@ -17,7 +17,7 @@
 		<result column="latitude" property="latitude" />
 		<result column="create_time" property="createTime" />
 		<result column="openid" property="openid" />
-		<result column="field_c" property="fieldC" />
+		<result column="user_id" property="userId" />
 	</resultMap>
 
 </mapper>
