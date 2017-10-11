@@ -199,8 +199,9 @@ public class StudioEndpoint extends BaseController {
     }
 
     @PostMapping("/bulk/add")
-    public boolean addStudioPhotos(@RequestBody StudioPhotosModel model) {
-        return pathService.addStudioPhotos(model.getStudioId(), model.getUrls());
+    public Tip addStudioPhotos(@RequestBody StudioPhotosModel model) {
+        Integer result = pathService.addStudioPhotos(model.getStudioId(), model.getUrls());
+        return SuccessTip.create(result);
     }
 
 
@@ -259,8 +260,9 @@ public class StudioEndpoint extends BaseController {
     }
 
     @PostMapping("/products/bulk/add")
-    public boolean addProductPhotos(@RequestBody ProductPhotosModel model) {
-        return pathService.addProductPhotos(model.getProductId(), model.getUrls());
+    public Tip addProductPhotos(@RequestBody ProductPhotosModel model) {
+        Integer result = pathService.addProductPhotos(model.getProductId(), model.getUrls());
+        return SuccessTip.create(result);
     }
 
     /*

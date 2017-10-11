@@ -10,17 +10,18 @@ import java.util.List;
  * Created by Administrator on 2017/10/9.
  */
 public interface PathService {
-    boolean addStudioService(Long studioId, List<Long> ids);
-    boolean addStudioPhotos(Long studioId, List<String> urls);
+    Integer addStudioService(Long studioId, List<Long> ids);
+
+    Integer addStudioPhotos(Long studioId, List<String> urls);
 
 
     /*
     *   add ProductPhotos
     * */
-    public boolean addProductPhotos(Long productId, List<String> urls);
+    Integer addProductPhotos(Long productId, List<String> urls);
 
     /*
    *   get user Info
    * */
-    public CustomerModel getMoreInfo(long id);
+    CustomerModel getMoreInfo(long id);
 }

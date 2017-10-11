@@ -28,17 +28,17 @@ public class PathServiceImpl implements PathService {
     @Resource
     CustomerMapper customerMapper;
 
-    public boolean addStudioService(Long studioId, List<Long> ids) {
+    public Integer addStudioService(Long studioId, List<Long> ids) {
         for (Long id : ids) {
             StudioService studioService = new StudioService();
             studioService.setStudioId(studioId);
             studioService.setTypeId(id);
             studioServiceMapper.insert(studioService);
         }
-        return true;
+        return ids.size();
     }
 
-    public boolean addStudioPhotos(Long studioId, List<String> urls) {
+    public Integer addStudioPhotos(Long studioId, List<String> urls) {
         List<StudiosPhotos> photos = studiosPhotosMapper.selectList(new EntityWrapper<StudiosPhotos>().eq("studio_id",studioId));
         if (photos != null || photos.size() != 0) {
             studiosPhotosMapper.delete(new EntityWrapper<StudiosPhotos>().eq("studio_id", studioId));
@@ -49,13 +49,13 @@ public class PathServiceImpl implements PathService {
             studiosPhotos.setPhoto(url);
             studiosPhotosMapper.insert(studiosPhotos);
         }
-        return true;
+        return urls.size();
     }
 
     /*
 *   add ProductPhotos
 * */
-    public boolean addProductPhotos(Long productId, List<String> urls) {
+    public Integer addProductPhotos(Long productId, List<String> urls) {
         List<ProductsPhotos> photos = productsPhotosMapper.selectList(new EntityWrapper<ProductsPhotos>().eq("product_id", productId));
         if (photos != null || photos.size() != 0) {
             productsPhotosMapper.delete(new EntityWrapper<ProductsPhotos>().eq("product_id", productId));
@@ -67,7 +67,7 @@ public class PathServiceImpl implements PathService {
             productsPhotosMapper.insert(productsPhotos);
         }
 
-        return true;
+        return urls.size();
     }
 
     /*

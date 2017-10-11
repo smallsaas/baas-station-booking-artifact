@@ -36,8 +36,9 @@ public class EmbServiceEndpoint extends BaseController{
     *   Test
     * */
     @PostMapping("/bulk/add")
-    public boolean addStudioServiceType(@RequestBody StudioServiceModel model){
-        return pathService.addStudioService(model.getStudioId(), model.getIds());
+    public Tip addStudioServiceType(@RequestBody StudioServiceModel model){
+        Integer result = pathService.addStudioService(model.getStudioId(), model.getIds());
+        return SuccessTip.create(result);
     }
 
     /*
