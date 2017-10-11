@@ -9,6 +9,7 @@ import com.jfeat.am.module.booking.services.service.crud.CustomerService;
 import com.jfeat.am.module.booking.services.persistence.mapper.CustomerMapper;
 import com.jfeat.am.module.booking.services.persistence.model.Customer;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import javax.annotation.Resource;
 
@@ -25,15 +26,17 @@ public class CustomerServiceImpl extends CRUDServiceOnlyImpl<Customer> implement
         return customerMapper;
     }
 
-    public List<Customer> getAllCustomers(){
+    public List<Customer> getAllCustomers() {
         List<Customer> getAllCustomers = customerMapper.selectList(new EntityWrapper<>());
         return getAllCustomers;
     }
-     public Customer registerCustomer(Customer customer){
-         String openid = customer.getOpenid();
-         if (openid == null) {
-        customerMapper.insert(customer);
+
+    public Customer registerCustomer(Customer customer) {
+       List<Customer> customers = customerMapper.selectList(new EntityWrapper<Customer>().eq("openid",customer.getOpenid()));
+        if(customers == null || customers.size() == 0) {
+            customerMapper.insert(customer);
         }
+
         return customer;
-        }
-        }
+    }
+}
