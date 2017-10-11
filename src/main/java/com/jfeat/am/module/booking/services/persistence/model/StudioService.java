@@ -2,6 +2,7 @@ package com.jfeat.am.module.booking.services.persistence.model;
 
 import java.io.Serializable;
 
+import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
@@ -13,7 +14,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author J4cob
- * @since 2017-10-10
+ * @since 2017-10-11
  */
 @TableName("emb_studio_service")
 public class StudioService extends Model<StudioService> {
@@ -27,7 +28,7 @@ public class StudioService extends Model<StudioService> {
     /**
      * 服务类型
      */
-	@TableField("type_id")
+    @TableId("type_id")
 	private Long typeId;
     /**
      * 技师ID
@@ -75,7 +76,7 @@ public class StudioService extends Model<StudioService> {
 
 	@Override
 	protected Serializable pkVal() {
-		return this.id;
+		return this.typeId;
 	}
 
 	@Override

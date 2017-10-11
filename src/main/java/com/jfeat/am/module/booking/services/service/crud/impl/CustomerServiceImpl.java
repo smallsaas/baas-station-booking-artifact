@@ -30,7 +30,11 @@ public class CustomerServiceImpl extends CRUDServiceOnlyImpl<Customer> implement
         return getAllCustomers;
     }
      public Customer registerCustomer(Customer customer){
-         customerMapper.insert(customer);
+         String openid = customer.getOpenid();
+         if (openid == null) {
+             customerMapper.insert(customer);
+         }else
+         throw new RuntimeException("请不要重复注册！");
          return customer;
      }
 }

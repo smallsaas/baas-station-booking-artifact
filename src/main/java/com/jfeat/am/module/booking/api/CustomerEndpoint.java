@@ -43,11 +43,10 @@ public class CustomerEndpoint extends BaseController {
   * */
     @PostMapping
     public Tip createCustomer(@Valid @RequestBody Customer customer) {
-        customer.setCreateTime(new Date());
-        Customer result = customerService.registerCustomer(customer);
-        return SuccessTip.create(result);
+            customer.setCreateTime(new Date());
+            Customer result = customerService.registerCustomer(customer);
+            return SuccessTip.create(result);
     }
-
     @PutMapping
     public Tip updateCustomer(@Valid @RequestBody Customer customer) {
         Integer result = customerService.updateMaster(customer);

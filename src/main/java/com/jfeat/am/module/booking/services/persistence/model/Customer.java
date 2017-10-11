@@ -15,7 +15,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author J4cob
- * @since 2017-10-10
+ * @since 2017-10-11
  */
 @TableName("emb_customer")
 public class Customer extends Model<Customer> {
@@ -74,8 +74,7 @@ public class Customer extends Model<Customer> {
     /**
      * 保留字段
      */
-	@TableField("field_b")
-	private String fieldB;
+	private String openid;
     /**
      * 保留字段
      */
@@ -179,12 +178,12 @@ public class Customer extends Model<Customer> {
 		this.createTime = createTime;
 	}
 
-	public String getFieldB() {
-		return fieldB;
+	public String getOpenid() {
+		return openid;
 	}
 
-	public void setFieldB(String fieldB) {
-		this.fieldB = fieldB;
+	public void setOpenid(String openid) {
+		this.openid = openid;
 	}
 
 	public String getFieldC() {
@@ -215,7 +214,7 @@ public class Customer extends Model<Customer> {
 			", longitude=" + longitude +
 			", latitude=" + latitude +
 			", createTime=" + createTime +
-			", fieldB=" + fieldB +
+			", openid=" + openid +
 			", fieldC=" + fieldC +
 			"}";
 	}

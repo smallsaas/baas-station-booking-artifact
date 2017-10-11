@@ -14,7 +14,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author J4cob
- * @since 2017-10-10
+ * @since 2017-10-11
  */
 @TableName("emb_studio_product")
 public class StudioProduct extends Model<StudioProduct> {

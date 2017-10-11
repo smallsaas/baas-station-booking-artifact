@@ -57,7 +57,7 @@ CREATE TABLE `emb_customer` (
   `longitude` decimal(10,7) DEFAULT NULL COMMENT '经度',
   `latitude` decimal(10,7) DEFAULT NULL COMMENT '纬度',
   `create_time` date DEFAULT  NULL COMMENT '注册时间',
-  `field_b` varchar(255) DEFAULT NULL COMMENT '保留字段',
+  `openid` varchar(255) DEFAULT NULL COMMENT '保留字段',
   `field_c` varchar(255) DEFAULT NULL COMMENT '保留字段',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

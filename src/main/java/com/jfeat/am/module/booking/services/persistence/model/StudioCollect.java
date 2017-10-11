@@ -3,6 +3,7 @@ package com.jfeat.am.module.booking.services.persistence.model;
 import java.io.Serializable;
 
 import java.util.Date;
+import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
@@ -14,7 +15,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author J4cob
- * @since 2017-10-10
+ * @since 2017-10-11
  */
 @TableName("emb_studio_collect")
 public class StudioCollect extends Model<StudioCollect> {
@@ -28,7 +29,7 @@ public class StudioCollect extends Model<StudioCollect> {
     /**
      * 店铺ID
      */
-	@TableField("studio_id")
+    @TableId("studio_id")
 	private Long studioId;
     /**
      * 用户ID
@@ -76,7 +77,7 @@ public class StudioCollect extends Model<StudioCollect> {
 
 	@Override
 	protected Serializable pkVal() {
-		return this.id;
+		return this.studioId;
 	}
 
 	@Override
