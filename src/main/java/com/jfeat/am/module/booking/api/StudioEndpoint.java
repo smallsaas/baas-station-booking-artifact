@@ -56,6 +56,7 @@ public class StudioEndpoint extends BaseController {
 
     /*
     *   getAllStudio
+    *
     * */
     @GetMapping("/all")
     public Tip allStudio(Page page,
@@ -63,7 +64,7 @@ public class StudioEndpoint extends BaseController {
                          @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize) {
         page.setCurrent(pageNum);
         page.setSize(pageSize);
-        List<Studio> studio = domainQueryService.allStudio(page);
+        List<Map<String,Object>> studio = domainQueryService.allStudio(page);
         page.setRecords(studio);
         return SuccessTip.create(page);
     }
@@ -115,8 +116,7 @@ public class StudioEndpoint extends BaseController {
     public Tip queryStudioByServiceType(Page page,
                                         @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
                                         @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize,
-                                        @RequestParam(name = "tname", required = false) String tname,
-                                        @RequestParam(name = "name", required = false) String name) {
+                                        @RequestParam(name = "tname", required = false) String tname) {
         page.setCurrent(pageNum);
         page.setSize(pageSize);
         long userId = JWTKit.getUserId(getHttpServletRequest());
@@ -126,11 +126,11 @@ public class StudioEndpoint extends BaseController {
         } else if (customer.getLatitude() == null && customer.getLongitude() == null) {
             customer.setLatitude(BigDecimal.valueOf(114.1238523));
             customer.setLongitude(BigDecimal.valueOf(25.1235203));
-            List<Map<String, Object>> studios = domainQueryService.queryStudioByMultiple(page, tname, name, customer.getLatitude(), customer.getLongitude());
+            List<Map<String, Object>> studios = domainQueryService.queryStudioByMultiple(page, tname,  customer.getLatitude(), customer.getLongitude());
             page.setRecords(studios);
             return SuccessTip.create(page);
         } else {
-            List<Map<String, Object>> studios = domainQueryService.queryStudioByMultiple(page, tname, name, customer.getLatitude(), customer.getLongitude());
+            List<Map<String, Object>> studios = domainQueryService.queryStudioByMultiple(page, tname, customer.getLatitude(), customer.getLongitude());
             page.setRecords(studios);
         }
         return SuccessTip.create(page);

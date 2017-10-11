@@ -56,7 +56,7 @@ public class DomainQueryServiceImpl implements DomainQueryService {
     *   queryAllStudio
     * */
 
-   public List<Studio> allStudio(Page<Studio> page
+   public List<Map<String,Object>> allStudio(Page<Studio> page
                                    ){
        return studioDao.allStudio(page);
    }
@@ -116,10 +116,9 @@ public class DomainQueryServiceImpl implements DomainQueryService {
 
     public List<Map<String, Object>> queryStudioByMultiple(Page<StudioModel> page,
                                                            String tname,
-                                                           String name,
                                                            BigDecimal latitude,
                                                            BigDecimal longitude) {
-        return studioDao.queryStudioByMultiple(page, tname, name, latitude, longitude);
+        return studioDao.queryStudioByMultiple(page, tname,  latitude, longitude);
     }
 
     /*

@@ -24,7 +24,6 @@ public interface StudioDao {
     * */
     List<Map<String, Object>> queryStudioByMultiple(Page<StudioModel> page,
                                                     @Param("tname") String tname,
-                                                    @Param("name") String name,
                                                     @Param("latitude") BigDecimal latitude,
                                                     @Param("longitude") BigDecimal longitude);
 
@@ -51,7 +50,7 @@ public interface StudioDao {
                                    @Param("name") String name);
 
 
-    List<Studio> allStudio(Page<Studio> page);
+    List<Map<String,Object>> allStudio(Page<Studio> page);
 
 
 }

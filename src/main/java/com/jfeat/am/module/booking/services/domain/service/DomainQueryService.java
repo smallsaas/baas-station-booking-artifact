@@ -20,7 +20,7 @@ public interface DomainQueryService {
     *   queryAllStudio
     * */
 
-    public List<Studio> allStudio(Page<Studio> page);
+    public List<Map<String,Object>> allStudio(Page<Studio> page);
 
     /*
     *   queryStudioByName
@@ -64,7 +64,6 @@ public interface DomainQueryService {
     * */
     public List<Map<String, Object>> queryStudioByMultiple(Page<StudioModel> page,
                                                            String tname,
-                                                           String name,
                                                            BigDecimal latitude,
                                                            BigDecimal longitude);
 
