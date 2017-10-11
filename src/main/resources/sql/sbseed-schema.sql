@@ -90,7 +90,6 @@ CREATE TABLE `emb_products_photos` (
   `photo` varchar(255) NOT NULL COMMENT '产品图片',
   PRIMARY KEY (`id`),
   KEY `product_id` (`product_id`),
-  CONSTRAINT `emb_products_photos_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `emb_studio_product` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -142,7 +141,6 @@ CREATE TABLE `emb_studios_photos` (
   `photo` varchar(255) NOT NULL COMMENT '封面',
   PRIMARY KEY (`id`),
   KEY `studio_id` (`studio_id`),
-  CONSTRAINT `emb_studios_photos_ibfk_1` FOREIGN KEY (`studio_id`) REFERENCES `emb_studio` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
