@@ -51,4 +51,7 @@ public interface StudioDao {
                                    @Param("name") String name);
 
 
+    List<Studio> allStudio(Page<Studio> page);
+
+
 }

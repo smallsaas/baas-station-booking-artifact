@@ -17,6 +17,7 @@ import com.jfeat.am.module.booking.services.persistence.model.*;
 
 
 import com.jfeat.am.module.booking.services.service.crud.CustomerService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -51,6 +52,14 @@ public class DomainQueryServiceImpl implements DomainQueryService {
 
     @Resource
     ProductsPhotosMapper productsPhotosMapper;
+    /*
+    *   queryAllStudio
+    * */
+
+   public List<Studio> allStudio(Page<Studio> page
+                                   ){
+       return studioDao.allStudio(page);
+   }
     /*
     *   queryStudioByName
     * */

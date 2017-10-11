@@ -55,6 +55,20 @@ public class StudioEndpoint extends BaseController {
     PathPhotoService pathPhotoService;
 
     /*
+    *   getAllStudio
+    * */
+    @GetMapping("/all")
+    public Tip allStudio(Page page,
+                         @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
+                         @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize) {
+        page.setCurrent(pageNum);
+        page.setSize(pageSize);
+        List<Studio> studio = domainQueryService.allStudio(page);
+        page.setRecords(studio);
+        return SuccessTip.create(page);
+    }
+
+    /*
     *   queryStudioByName
     * */
     @GetMapping
@@ -64,7 +78,7 @@ public class StudioEndpoint extends BaseController {
                                  @RequestParam(name = "name", required = false) String name) {
         page.setCurrent(pageNum);
         page.setSize(pageSize);
-        List<Studio> studio = domainQueryService.queryStudioByName(page,name);
+        List<Studio> studio = domainQueryService.queryStudioByName(page, name);
         page.setRecords(studio);
         return SuccessTip.create(page);
     }
@@ -107,16 +121,15 @@ public class StudioEndpoint extends BaseController {
         page.setSize(pageSize);
         long userId = JWTKit.getUserId(getHttpServletRequest());
         Customer customer = customerService.retrieveMaster(userId);
-        if(customer == null) {
-            return ErrorTip.create(2001,"ERROR");
-        }else
-        if (customer.getLatitude() == null && customer.getLongitude() == null) {
+        if (customer == null) {
+            return ErrorTip.create(2001, "ERROR");
+        } else if (customer.getLatitude() == null && customer.getLongitude() == null) {
             customer.setLatitude(BigDecimal.valueOf(114.1238523));
             customer.setLongitude(BigDecimal.valueOf(25.1235203));
             List<Map<String, Object>> studios = domainQueryService.queryStudioByMultiple(page, tname, name, customer.getLatitude(), customer.getLongitude());
             page.setRecords(studios);
             return SuccessTip.create(page);
-        }else {
+        } else {
             List<Map<String, Object>> studios = domainQueryService.queryStudioByMultiple(page, tname, name, customer.getLatitude(), customer.getLongitude());
             page.setRecords(studios);
         }
@@ -135,8 +148,8 @@ public class StudioEndpoint extends BaseController {
         page.setSize(pageSize);
         long userId = JWTKit.getUserId(getHttpServletRequest());
         Customer customer = customerService.retrieveMaster(userId);
-        if(customer == null) {
-            return ErrorTip.create(2001,"ERROR");
+        if (customer == null) {
+            return ErrorTip.create(2001, "ERROR");
         }
         if (customer.getLatitude() == null && customer.getLongitude() == null) {
             customer.setLatitude(BigDecimal.valueOf(114.1238523));
@@ -187,7 +200,7 @@ public class StudioEndpoint extends BaseController {
             return SuccessTip.create(result);
 
         }
-        return  ErrorTip.create(2000,"不允许删除非空店铺！");
+        return ErrorTip.create(2000, "不允许删除非空店铺！");
     }
 
     /*

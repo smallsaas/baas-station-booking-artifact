@@ -17,6 +17,12 @@ import java.util.Map;
 public interface DomainQueryService {
 
     /*
+    *   queryAllStudio
+    * */
+
+    public List<Studio> allStudio(Page<Studio> page);
+
+    /*
     *   queryStudioByName
     * */
     public List<Studio> queryStudioByName(Page<Studio> page,
@@ -92,6 +98,6 @@ public interface DomainQueryService {
     /*
     *   queryProductByName
     * */
-    public  List<StudioProduct> queryProductByName(Page<StudioProduct> page,
-                                                   String name);
+    public List<StudioProduct> queryProductByName(Page<StudioProduct> page,
+                                                  String name);
 }

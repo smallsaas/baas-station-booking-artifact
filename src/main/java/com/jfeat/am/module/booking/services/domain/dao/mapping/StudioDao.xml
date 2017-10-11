@@ -122,7 +122,16 @@
 
     </select>
 
-
+    <select id="allStudio" resultType="Studio">
+    SELECT emb_studio_service.type_id ,
+    emb_studio.*,
+    emb_service_type.name AS tname
+    FROM FROM emb_studio
+    LEFT JOIN emb_studio_service
+    ON emb_studio.id = emb_studio_service.studio_id
+    left JOIN emb_service_type
+    ON emb_service_type.id = emb_studio_service.type_id
+    </select>
 
     <select id="queryStudioByStick" resultType="Studio">
         SELECT emb_studio.*
