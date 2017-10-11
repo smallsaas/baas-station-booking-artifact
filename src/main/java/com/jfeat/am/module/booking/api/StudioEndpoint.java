@@ -106,6 +106,8 @@ public class StudioEndpoint extends BaseController {
         page.setSize(pageSize);
         long userId = JWTKit.getUserId(getHttpServletRequest());
         Customer customer = customerService.retrieveMaster(userId);
+        if(customer == null)
+            throw new RuntimeException("ERROR");
         if (customer.getLatitude() == null && customer.getLongitude() == null) {
             customer.setLatitude(BigDecimal.valueOf(114.1238523));
             customer.setLongitude(BigDecimal.valueOf(25.1235203));
@@ -130,6 +132,8 @@ public class StudioEndpoint extends BaseController {
         page.setSize(pageSize);
         long userId = JWTKit.getUserId(getHttpServletRequest());
         Customer customer = customerService.retrieveMaster(userId);
+        if(customer == null)
+            throw new RuntimeException("ERROR");
         if (customer.getLatitude() == null && customer.getLongitude() == null) {
             customer.setLatitude(BigDecimal.valueOf(114.1238523));
             customer.setLongitude(BigDecimal.valueOf(25.1235203));
