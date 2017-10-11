@@ -109,16 +109,17 @@ public class StudioEndpoint extends BaseController {
         Customer customer = customerService.retrieveMaster(userId);
         if(customer == null) {
             return ErrorTip.create(2001,"ERROR");
-        }
+        }else
         if (customer.getLatitude() == null && customer.getLongitude() == null) {
             customer.setLatitude(BigDecimal.valueOf(114.1238523));
             customer.setLongitude(BigDecimal.valueOf(25.1235203));
             List<Map<String, Object>> studios = domainQueryService.queryStudioByMultiple(page, tname, name, customer.getLatitude(), customer.getLongitude());
             page.setRecords(studios);
             return SuccessTip.create(page);
+        }else {
+            List<Map<String, Object>> studios = domainQueryService.queryStudioByMultiple(page, tname, name, customer.getLatitude(), customer.getLongitude());
+            page.setRecords(studios);
         }
-        List<Map<String, Object>> studios = domainQueryService.queryStudioByMultiple(page, tname, name, customer.getLatitude(), customer.getLongitude());
-        page.setRecords(studios);
         return SuccessTip.create(page);
     }
 

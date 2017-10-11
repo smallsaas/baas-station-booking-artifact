@@ -107,8 +107,14 @@
     </select>
 
     <select id="queryStudioByName" resultType="Studio">
-        SELECT emb_studio.*
-        FROM emb_studio
+        SELECT emb_studio_service.type_id ,
+        emb_studio.*,
+        emb_service_type.name AS tname
+        FROM FROM emb_studio
+        LEFT JOIN emb_studio_service
+        ON emb_studio.id = emb_studio_service.studio_id
+        left JOIN emb_service_type
+        ON emb_service_type.id = emb_studio_service.type_id
         WHERE 1=1
         <if test="name != null and name != ''">
             AND emb_studio.name LIKE CONCAT('%',#{name},'%')
