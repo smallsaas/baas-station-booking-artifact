@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 
 import com.jfeat.am.common.annotation.Permission;
+import com.jfeat.am.common.constant.tips.ErrorTip;
 import com.jfeat.am.common.constant.tips.SuccessTip;
 import com.jfeat.am.common.constant.tips.Tip;
 import com.jfeat.am.common.controller.BaseController;
@@ -185,7 +186,7 @@ public class StudioEndpoint extends BaseController {
             return SuccessTip.create(result);
 
         }
-        throw new RuntimeException("不允许删除非空店铺！");
+        return  ErrorTip.create(2000,"不允许删除非空店铺！");
     }
 
     /*

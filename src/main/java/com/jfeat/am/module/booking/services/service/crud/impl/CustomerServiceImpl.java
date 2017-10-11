@@ -32,8 +32,8 @@ public class CustomerServiceImpl extends CRUDServiceOnlyImpl<Customer> implement
      public Customer registerCustomer(Customer customer){
          String openid = customer.getOpenid();
          if (openid == null) {
-             customerMapper.insert(customer);
-         }
-         return customer;
-     }
-}
+        customerMapper.insert(customer);
+        }
+        return customer;
+        }
+        }
