@@ -76,10 +76,10 @@ public class PathServiceImpl implements PathService {
     /*
     *   get user Info
     * */
-    public CustomerModel getMoreInfo(long id){
-        Customer customer = customerMapper.selectById(id);
+    public CustomerModel getMoreInfo(long userId){
+        Customer customer = customerDao.queryCustomerByUserId(userId);
         JSONObject customerObj = JSON.parseObject(JSON.toJSONString(customer));
-        List<StudioCollect> favors = studioCollectMapper.selectList(new EntityWrapper<StudioCollect>().eq("customer_id",id));
+        List<StudioCollect> favors = studioCollectMapper.selectList(new EntityWrapper<StudioCollect>().eq("customer_id",customer.getId()));
         customerObj.put("favors",favors);
         CustomerModel model = JSON.parseObject(customerObj.toJSONString(),CustomerModel.class);
         return model;

@@ -67,13 +67,10 @@ public class CustomerEndpoint extends BaseController {
         return SuccessTip.create(result);
     }
 
-    @GetMapping("/users/{id}")
-    public Tip getSelfFiles(@PathVariable long id) {
+    @GetMapping("/users")
+    public Tip getSelfFiles() {
         long userId = JWTKit.getUserId(getHttpServletRequest());
-        if (id == userId) {
-            CustomerModel model = pathService.getMoreInfo(userId);
-            return SuccessTip.create(model);
-        }
-        return ErrorTip.create(2000, "NO PERMISSION!");
+        CustomerModel model = pathService.getMoreInfo(userId);
+        return SuccessTip.create(model);
     }
 }

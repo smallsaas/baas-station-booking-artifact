@@ -24,7 +24,7 @@ public interface PathService {
     /*
    *   get user Info
    * */
-    CustomerModel getMoreInfo(long id);
+    CustomerModel getMoreInfo(long userId);
 
     /*
     *   queryCustomerByUserId
