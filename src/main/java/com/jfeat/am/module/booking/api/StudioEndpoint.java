@@ -122,7 +122,7 @@ public class StudioEndpoint extends BaseController {
         long userId = JWTKit.getUserId(getHttpServletRequest());
         BigDecimal latitude = null;
         BigDecimal longitude = null;
-        Customer customer = customerService.retrieveMaster(userId);
+        Customer customer = pathService.queryCustomerByUserId(userId);
         if (customer != null) {
             latitude = customer.getLatitude();
             longitude = customer.getLongitude();
@@ -145,18 +145,14 @@ public class StudioEndpoint extends BaseController {
         page.setCurrent(pageNum);
         page.setSize(pageSize);
         long userId = JWTKit.getUserId(getHttpServletRequest());
-        Customer customer = customerService.retrieveMaster(userId);
-        if (customer == null) {
-            return ErrorTip.create(2001, "ERROR");
+        BigDecimal latitude = null;
+        BigDecimal longitude = null;
+        Customer customer = pathService.queryCustomerByUserId(userId);
+        if (customer != null) {
+            latitude = customer.getLatitude();
+            longitude = customer.getLongitude();
         }
-        if (customer.getLatitude() == null && customer.getLongitude() == null) {
-            customer.setLatitude(BigDecimal.valueOf(114.1238523));
-            customer.setLongitude(BigDecimal.valueOf(25.1235203));
-            List<Map<String, Object>> studios = domainQueryService.queryStudioBySite(page, site, customer.getLatitude(), customer.getLongitude());
-            page.setRecords(studios);
-            return SuccessTip.create(page);
-        }
-        List<Map<String, Object>> studios = domainQueryService.queryStudioBySite(page, site, customer.getLatitude(), customer.getLongitude());
+        List<Map<String, Object>> studios = domainQueryService.queryStudioBySite(page, site, latitude, longitude);
         page.setRecords(studios);
 
         return SuccessTip.create(page);
