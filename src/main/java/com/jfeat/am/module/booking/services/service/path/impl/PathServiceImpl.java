@@ -3,6 +3,7 @@ package com.jfeat.am.module.booking.services.service.path.impl;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.jfeat.am.module.booking.services.domain.dao.CustomerDao;
 import com.jfeat.am.module.booking.services.domain.model.CustomerModel;
 import com.jfeat.am.module.booking.services.persistence.mapper.*;
 import com.jfeat.am.module.booking.services.persistence.model.*;
@@ -27,6 +28,8 @@ public class PathServiceImpl implements PathService {
     StudioCollectMapper studioCollectMapper;
     @Resource
     CustomerMapper customerMapper;
+    @Resource
+    CustomerDao customerDao;
 
     public Integer addStudioService(Long studioId, List<Long> ids) {
         for (Long id : ids) {
@@ -80,5 +83,12 @@ public class PathServiceImpl implements PathService {
         customerObj.put("favors",favors);
         CustomerModel model = JSON.parseObject(customerObj.toJSONString(),CustomerModel.class);
         return model;
+    }
+
+    /*
+    *   queryCustomerByUserId
+    * */
+    public Customer queryCustomerByUserId(long userId){
+        return customerDao.queryCustomerByUserId(userId);
     }
 }

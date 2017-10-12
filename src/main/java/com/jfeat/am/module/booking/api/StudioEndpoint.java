@@ -120,7 +120,7 @@ public class StudioEndpoint extends BaseController {
         page.setCurrent(pageNum);
         page.setSize(pageSize);
         long userId = JWTKit.getUserId(getHttpServletRequest());
-        Customer customer = customerService.retrieveMaster(userId);
+        Customer customer = pathService.queryCustomerByUserId(userId);
         if (customer == null) {
             return ErrorTip.create(2001, "ERROR");
         } else if (customer.getLatitude() == null && customer.getLongitude() == null) {
