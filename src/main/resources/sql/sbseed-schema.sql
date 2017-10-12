@@ -150,11 +150,7 @@ CREATE TABLE `emb_studio_collect` (
   `studio_id` bigint(20) NOT NULL COMMENT '店铺ID',
   `customer_id` bigint(20) NOT NULL COMMENT '用户ID',
   `create_time` date DEFAULT  NULL COMMENT '创建时间',
-  PRIMARY KEY (`id`),
-  KEY `studio_id` (`studio_id`),
-  KEY `customer_id` (`customer_id`),
-  CONSTRAINT `emb_studio_collect_ibfk_1` FOREIGN KEY (`studio_id`) REFERENCES `emb_studio` (`id`),
-  CONSTRAINT `emb_studio_collect_ibfk_2` FOREIGN KEY (`customer_id`) REFERENCES `emb_customer` (`id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -188,10 +184,6 @@ CREATE TABLE `emb_studio_service` (
   `type_id` bigint(20) NOT NULL COMMENT '服务类型',
   `doctor_id` bigint(20) DEFAULT NULL COMMENT '技师ID',
   `studio_id` bigint(20) NOT NULL COMMENT '工作室ID',
-  PRIMARY KEY (`id`),
-  KEY `type_id` (`type_id`),
-  KEY `studio_id` (`studio_id`),
-  CONSTRAINT `emb_studio_service_ibfk_1` FOREIGN KEY (`type_id`) REFERENCES `emb_service_type` (`id`),
-  CONSTRAINT `emb_studio_service_ibfk_2` FOREIGN KEY (`studio_id`) REFERENCES `emb_studio` (`id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
