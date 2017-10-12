@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
+import java.util.Date;
 
 /**
  * Created by J4cob on 2017/9/23.
@@ -33,7 +34,7 @@ public class CollectEndpoint extends BaseController{
         /*if(studioCollect.getCustomerId() == userId){
             throw new RuntimeException("Do not repeat concern!");
         }*/
-
+            studioCollect.setCreateTime(new Date());
             studioCollect.setCustomerId(userId);
         return SuccessTip.create(collectService.createMaster(studioCollect));
     }
