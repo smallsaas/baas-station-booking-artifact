@@ -188,7 +188,7 @@ CREATE TABLE `emb_studio_service` (
   `type_id` bigint(20) NOT NULL COMMENT '服务类型',
   `doctor_id` bigint(20) DEFAULT NULL COMMENT '技师ID',
   `studio_id` bigint(20) NOT NULL COMMENT '工作室ID',
-  PRIMARY KEY (`type_id`,`studio_id`),
+  PRIMARY KEY (`id`),
   KEY `type_id` (`type_id`),
   KEY `studio_id` (`studio_id`),
   CONSTRAINT `emb_studio_service_ibfk_1` FOREIGN KEY (`type_id`) REFERENCES `emb_service_type` (`id`),
