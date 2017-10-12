@@ -32,6 +32,10 @@ public class PathServiceImpl implements PathService {
     CustomerDao customerDao;
 
     public Integer addStudioService(Long studioId, List<Long> ids) {
+        List<StudioService> studioServices = studioServiceMapper.selectList(new EntityWrapper<StudioService>().eq("studio_id",studioId));
+        if (studioServices != null || studioServices.size() != 0) {
+            studioServiceMapper.delete(new EntityWrapper<StudioService>().eq("studio_id", studioId));
+        }
         for (Long id : ids) {
             StudioService studioService = new StudioService();
             studioService.setStudioId(studioId);
