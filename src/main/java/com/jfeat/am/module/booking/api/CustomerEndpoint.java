@@ -43,10 +43,12 @@ public class CustomerEndpoint extends BaseController {
   * */
     @PostMapping
     public Tip createCustomer(@Valid @RequestBody Customer customer) {
-            customer.setCreateTime(new Date());
-            Customer result = customerService.registerCustomer(customer);
-            return SuccessTip.create(result);
+        customer.setUserId(JWTKit.getUserId(getHttpServletRequest()));
+        customer.setCreateTime(new Date());
+        Customer result = customerService.registerCustomer(customer);
+        return SuccessTip.create(result);
     }
+
     @PutMapping
     public Tip updateCustomer(@Valid @RequestBody Customer customer) {
         Integer result = customerService.updateMaster(customer);
@@ -68,10 +70,10 @@ public class CustomerEndpoint extends BaseController {
     @GetMapping("/users/{id}")
     public Tip getSelfFiles(@PathVariable long id) {
         long userId = JWTKit.getUserId(getHttpServletRequest());
-        if(id == userId) {
+        if (id == userId) {
             CustomerModel model = pathService.getMoreInfo(userId);
             return SuccessTip.create(model);
         }
-        return ErrorTip.create(2000,"NO PERMISSION!");
+        return ErrorTip.create(2000, "NO PERMISSION!");
     }
 }
