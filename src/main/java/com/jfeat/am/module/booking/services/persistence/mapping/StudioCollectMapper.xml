@@ -4,8 +4,8 @@
 
 	<!-- 通用查询映射结果 -->
 	<resultMap id="BaseResultMap" type="com.jfeat.am.module.booking.services.persistence.model.StudioCollect">
-		<id column="studio_id" property="studioId" />
-		<result column="id" property="id" />
+		<id column="id" property="id" />
+		<result column="studio_id" property="studioId" />
 		<result column="customer_id" property="customerId" />
 		<result column="create_time" property="createTime" />
 	</resultMap>
