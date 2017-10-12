@@ -43,7 +43,7 @@ public class CustomerEndpoint extends BaseController {
   * */
     @PostMapping
     public Tip createCustomer(@Valid @RequestBody Customer customer) {
-        customer.setUserId(JWTKit.getUserId(getHttpServletRequest()));
+        customer.setUserId( JWTKit.getUserId(getHttpServletRequest()));
         customer.setCreateTime(new Date());
         Customer result = customerService.registerCustomer(customer);
         return SuccessTip.create(result);
@@ -67,10 +67,5 @@ public class CustomerEndpoint extends BaseController {
         return SuccessTip.create(result);
     }
 
-    @GetMapping("/users")
-    public Tip getSelfFiles() {
-        long userId = JWTKit.getUserId(getHttpServletRequest());
-        CustomerModel model = pathService.getMoreInfo(userId);
-        return SuccessTip.create(model);
-    }
+
 }

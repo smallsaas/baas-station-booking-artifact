@@ -1,5 +1,6 @@
 package com.jfeat.am.module.booking.services.service.crud.impl;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.jfeat.am.common.crud.CRUDFilter;
 import com.jfeat.am.common.crud.CRUDObject;
 import com.jfeat.am.common.crud.CRUDServiceOverSlave;
@@ -27,6 +28,7 @@ public class StudioOverProductServiceImpl implements StudioOverProductService, C
     StudioMapper studioMapper;
     @Resource
     StudioProductMapper productMapper;
+
 
     /*
     *   Test
@@ -84,9 +86,13 @@ public class StudioOverProductServiceImpl implements StudioOverProductService, C
 
     @Override
     public Integer deleteMaster(long id) {
-        //TODO
-        bulkRemoveSlaveItemList(id,null);
-        return studioMapper.deleteById(id);
+        List<StudioProduct> studioProduct = productMapper.selectList(new EntityWrapper<StudioProduct>().eq("studio_id", id));
+        if (studioProduct == null || studioProduct.size() == 0) {
+            return studioMapper.deleteById(id);
+        }else{
+            throw new RuntimeException("请先删除该店铺下的产品在执行删除店铺操作");
+        }
+
     }
 
     @Override

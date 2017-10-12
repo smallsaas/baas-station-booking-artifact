@@ -101,15 +101,7 @@ public class EmbServiceEndpoint extends BaseController{
     }
     @DeleteMapping("/types/{id}")
     public Tip deleteType(@PathVariable long id){
-        List<StudioService> studioServices = studioServiceMapper.selectList(new EntityWrapper<StudioService>().eq("type_id", id));
-        if (studioServices == null || studioServices.size() == 0) {
-            Integer result = typeService.deleteMaster(id);
-            return SuccessTip.create(result);
-
-        }
-        return ErrorTip.create(2000, "请先删除该类型下所有的店铺！");
-      /*  Integer result = typeService.deleteMaster(id);
-        return SuccessTip.create(result);*/
+            return SuccessTip.create(pathService.deleteTypes(id));
     }
 
      /* *//*

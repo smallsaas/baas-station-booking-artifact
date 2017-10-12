@@ -11,6 +11,11 @@ import java.util.List;
  * Created by Administrator on 2017/10/9.
  */
 public interface PathService {
+    /*
+    *   delete Type
+    * */
+    public Integer deleteTypes(long id);
+
     Integer addStudioService(Long studioId, List<Long> ids);
 
     Integer addStudioPhotos(Long studioId, List<String> urls);

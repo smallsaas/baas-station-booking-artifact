@@ -20,6 +20,7 @@ import com.jfeat.am.module.booking.services.persistence.model.Appointment;
 
 import com.jfeat.am.module.booking.services.service.crud.CustomerService;
 import com.jfeat.am.module.booking.services.service.crud.StudioOverProductService;
+import com.jfeat.am.module.booking.services.service.path.PathService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -41,8 +42,7 @@ public class AppointmentEndpoint extends BaseController{
     @Resource
     StudioOverProductService studioService;
     @Resource
-    CustomerDao customerDao;
-
+    PathService pathService;
     /*
     *   fuzzy query
     * */
@@ -87,7 +87,7 @@ public class AppointmentEndpoint extends BaseController{
     @PostMapping
     public Tip createAppointment(@Valid @RequestBody Appointment appointment){
         Long userId = JWTKit.getUserId(getHttpServletRequest());
-        Customer customer = customerDao.queryCustomerByUserId(userId);
+        Customer customer = pathService.queryCustomerByUserId(userId);
         appointment.setCustomerId(customer.getId());
         appointment.setDoctorId(0L);
         appointment.setStatus(AppointmentStatus.TO_BE_COMFIRMED.toString());

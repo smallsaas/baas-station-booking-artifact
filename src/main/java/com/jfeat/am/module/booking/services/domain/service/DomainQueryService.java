@@ -17,86 +17,91 @@ import java.util.Map;
 public interface DomainQueryService {
 
     /*
+    *   queryStudioById
+    * */
+    List<Map<String, Object>> queryStudioById(long id);
+
+    /*
     *   queryAllStudio
     * */
 
-    public List<Map<String,Object>> allStudio(Page<Studio> page);
+    List<Map<String, Object>> allStudio(Page<Studio> page);
 
     /*
     *   queryStudioByName
     * */
-    public List<Studio> queryStudioByName(Page<Studio> page,
-                                          String name);
+    List<Studio> queryStudioByName(Page<Studio> page,
+                                   String name);
 
     /*
     *   queryProductByAttribute
     * */
-    public List<StudioProduct> queryStudioProduct(Page<StudioProduct> page,
-                                                  long studioId,
-                                                  String attribute);
+    List<StudioProduct> queryStudioProduct(Page<StudioProduct> page,
+                                           long studioId,
+                                           String attribute);
 
     /*
     *   queryAppointmentByUserId
     * */
-    public List<Appointment> queryAppointmentByUserId(Page<Appointment> page, Long userId);
+    List<Appointment> queryAppointmentByUserId(Page<Appointment> page, Long userId);
 
     /*
     *   queryStudioByStick
     * */
-    public List<Studio> queryStudioByStick(Page<Studio> page, String city);
+    List<Studio> queryStudioByStick(Page<Studio> page, String city);
 
     /*
     *   queryCity
     * */
 
-    public List<Studio> queryCity();
+    List<Studio> queryCity();
 
     /**
      * 模糊查找Appointment
      */
-    public List<Appointment> queryAppointment(Page<Appointment> page,
-                                              String status,
-                                              Long studioId,
-                                              Long phone);
+    List<Appointment> queryAppointment(Page<Appointment> page,
+                                       String status,
+                                       Long studioId,
+                                       Long phone);
 
     /*
     *   查找店铺 by ServiceType or  StudioName
     * */
-    public List<Map<String, Object>> queryStudioByMultiple(Page<StudioModel> page,
-                                                           String tname,
-                                                           BigDecimal latitude,
-                                                           BigDecimal longitude);
+    List<Map<String, Object>> queryStudioByMultiple(Page<StudioModel> page,
+                                                    String tname,
+                                                    BigDecimal latitude,
+                                                    BigDecimal longitude);
 
     /*
         *   查找店铺 by site
         * */
-    public List<Map<String, Object>> queryStudioBySite(Page<Studio> page,
-                                                       String site, BigDecimal lat, BigDecimal lng
+    List<Map<String, Object>> queryStudioBySite(Page<Studio> page,
+                                                String site, BigDecimal lat, BigDecimal lng
     );
 
     /*
     *       queryStudio and  show the  product
     * */
-    public StudioModel showStudioModel(long id);
+    StudioModel showStudioModel(long id);
 
     /*
     *   show  product details
     * */
-    public StudioProductModel showStudioProductModel(long studioId, long id);
+    StudioProductModel showStudioProductModel(long studioId, long id);
 
     /*
     *   show Product list
     * */
-    public List<StudioProduct> studioProductList(Page<StudioProduct> page);
+    List<StudioProduct> studioProductList(Page<StudioProduct> page);
 
     /*
    *       精选产品列表
    * */
-    public List<StudioProduct> productStickList(Page<StudioProduct> page);
+    List<StudioProduct> productStickList(Page<StudioProduct> page);
 
     /*
     *   queryProductByName
     * */
-    public List<StudioProduct> queryProductByName(Page<StudioProduct> page,
-                                                  String name);
+    List<StudioProduct> queryProductByName(Page<StudioProduct> page,
+                                           String name);
 }

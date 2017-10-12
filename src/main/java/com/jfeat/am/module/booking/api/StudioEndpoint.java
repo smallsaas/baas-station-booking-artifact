@@ -187,14 +187,7 @@ public class StudioEndpoint extends BaseController {
     @DeleteMapping("/{id}")
     @Permission(AdminPermission.DELETE)
     public Tip deleteStudio(@PathVariable long id) {
-
-        List<StudioProduct> studioProduct = studioProductMapper.selectList(new EntityWrapper<StudioProduct>().eq("studio_id", id));
-        if (studioProduct == null || studioProduct.size() == 0) {
-            Integer result = sDservice.deleteMaster(id);
-            return SuccessTip.create(result);
-
-        }
-        return ErrorTip.create(2000, "不允许删除非空店铺！");
+            return SuccessTip.create(sDservice.deleteMaster(id));
     }
 
     /*

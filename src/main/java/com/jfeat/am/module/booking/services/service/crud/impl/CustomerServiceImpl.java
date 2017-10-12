@@ -33,7 +33,7 @@ public class CustomerServiceImpl extends CRUDServiceOnlyImpl<Customer> implement
     }
 
     public Customer registerCustomer(Customer customer) {
-        List<Customer> customers = customerMapper.selectList(new EntityWrapper<Customer>().eq("openid", customer.getOpenid()));
+        List<Customer> customers = customerMapper.selectList(new EntityWrapper<Customer>().eq("user_id", customer.getUserId()));
         if (customers == null || customers.size() == 0) {
             customerMapper.insert(customer);
             return customer;

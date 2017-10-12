@@ -32,7 +32,7 @@ public class PathServiceImpl implements PathService {
     CustomerDao customerDao;
 
     public Integer addStudioService(Long studioId, List<Long> ids) {
-        List<StudioService> studioServices = studioServiceMapper.selectList(new EntityWrapper<StudioService>().eq("studio_id",studioId));
+        List<StudioService> studioServices = studioServiceMapper.selectList(new EntityWrapper<StudioService>().eq("studio_id", studioId));
         if (studioServices != null || studioServices.size() != 0) {
             studioServiceMapper.delete(new EntityWrapper<StudioService>().eq("studio_id", studioId));
         }
@@ -46,7 +46,7 @@ public class PathServiceImpl implements PathService {
     }
 
     public Integer addStudioPhotos(Long studioId, List<String> urls) {
-        List<StudiosPhotos> photos = studiosPhotosMapper.selectList(new EntityWrapper<StudiosPhotos>().eq("studio_id",studioId));
+        List<StudiosPhotos> photos = studiosPhotosMapper.selectList(new EntityWrapper<StudiosPhotos>().eq("studio_id", studioId));
         if (photos != null || photos.size() != 0) {
             studiosPhotosMapper.delete(new EntityWrapper<StudiosPhotos>().eq("studio_id", studioId));
         }
@@ -80,19 +80,28 @@ public class PathServiceImpl implements PathService {
     /*
     *   get user Info
     * */
-    public CustomerModel getMoreInfo(long userId){
+    public CustomerModel getMoreInfo(long userId) {
         Customer customer = customerDao.queryCustomerByUserId(userId);
         JSONObject customerObj = JSON.parseObject(JSON.toJSONString(customer));
-        List<StudioCollect> favors = studioCollectMapper.selectList(new EntityWrapper<StudioCollect>().eq("customer_id",userId));
-        customerObj.put("favors",favors);
-        CustomerModel model = JSON.parseObject(customerObj.toJSONString(),CustomerModel.class);
+        List<StudioCollect> favors = studioCollectMapper.selectList(new EntityWrapper<StudioCollect>().eq("customer_id", userId));
+        customerObj.put("favors", favors);
+        CustomerModel model = JSON.parseObject(customerObj.toJSONString(), CustomerModel.class);
         return model;
     }
 
     /*
     *   queryCustomerByUserId
     * */
-    public Customer queryCustomerByUserId(long userId){
+    public Customer queryCustomerByUserId(long userId) {
         return customerDao.queryCustomerByUserId(userId);
+    }
+
+    public Integer deleteTypes(long id) {
+        List<StudioService> studioServices = studioServiceMapper.selectList(new EntityWrapper<StudioService>().eq("type_id", id));
+        if (studioServices == null || studioServices.size() == 0) {
+            return studioServiceMapper.deleteById(id);
+        } else {
+            return 2000;
+        }
     }
 }

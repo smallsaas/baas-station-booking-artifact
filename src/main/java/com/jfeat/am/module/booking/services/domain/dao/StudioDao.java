@@ -14,6 +14,11 @@ import java.util.Map;
  */
 public interface StudioDao {
 
+
+    /*
+    *   queryStudioById
+    * */
+    List<Map<String,Object>> queryStudioById(@Param("id")long id);
     /*
     *       queryCity
     * */

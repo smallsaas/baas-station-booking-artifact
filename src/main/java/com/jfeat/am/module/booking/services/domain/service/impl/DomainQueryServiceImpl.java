@@ -52,6 +52,13 @@ public class DomainQueryServiceImpl implements DomainQueryService {
 
     @Resource
     ProductsPhotosMapper productsPhotosMapper;
+
+    /*
+    *   queryStudioById
+    * */
+    public List<Map<String,Object>> queryStudioById(long id){
+        return studioDao.queryStudioById(id);
+    }
     /*
     *   queryAllStudio
     * */
@@ -80,7 +87,7 @@ public class DomainQueryServiceImpl implements DomainQueryService {
     *   queryAppointmentByUserId
     * */
     public List<Appointment> queryAppointmentByUserId(Page<Appointment> page, Long userId) {
-        List<Appointment> appointments = appointmentMapper.selectList(new EntityWrapper<Appointment>().eq("customer_id", userId));
+        List<Appointment> appointments = appointmentMapper.selectList(new EntityWrapper<Appointment>().eq("user_id", userId));
         return appointments;
     }
 
@@ -135,14 +142,12 @@ public class DomainQueryServiceImpl implements DomainQueryService {
     *       信息
     * */
     public StudioModel showStudioModel(long id) {
-        Studio studio = studioMapper.selectById(id);
+        List<Map<String,Object>> studio = studioDao.queryStudioById(id);
+//        queryStudioById(id);
         JSONObject studioObj = JSON.parseObject(JSON.toJSONString(studio));
         List<StudioProduct> products = studioProductMapper.selectList(new EntityWrapper<StudioProduct>().eq("studio_id", id));
         List<StudiosPhotos> photos = studiosPhotosMapper.selectList(new EntityWrapper<StudiosPhotos>().eq("studio_id", id));
-        List<StudioService> services =
-                serviceMapper.selectList(new EntityWrapper<StudioService>().eq("studio_id", id));
-        studioObj.put("services", services);
-        studioObj.put("products", products);
+         studioObj.put("products", products);
         studioObj.put("photos", photos);
         StudioModel model = JSON.parseObject(studioObj.toJSONString(), StudioModel.class);
         return model;
