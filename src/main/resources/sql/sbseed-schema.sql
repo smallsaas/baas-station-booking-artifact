@@ -150,7 +150,7 @@ CREATE TABLE `emb_studio_collect` (
   `studio_id` bigint(20) NOT NULL COMMENT '店铺ID',
   `customer_id` bigint(20) NOT NULL COMMENT '用户ID',
   `create_time` date DEFAULT  NULL COMMENT '创建时间',
-  PRIMARY KEY (`studio_id`,`customer_id`),
+  PRIMARY KEY (`id`),
   KEY `studio_id` (`studio_id`),
   KEY `customer_id` (`customer_id`),
   CONSTRAINT `emb_studio_collect_ibfk_1` FOREIGN KEY (`studio_id`) REFERENCES `emb_studio` (`id`),
