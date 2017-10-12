@@ -22,6 +22,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -57,7 +58,7 @@ public class DomainQueryServiceImpl implements DomainQueryService {
     *   queryStudioById
     * */
     public List<Map<String,Object>> queryStudioById(long id){
-        return studioDao.queryStudioById(id);
+        return null;
     }
     /*
     *   queryAllStudio
@@ -142,14 +143,13 @@ public class DomainQueryServiceImpl implements DomainQueryService {
     *       信息
     * */
     public StudioModel showStudioModel(long id) {
-        List<Map<String,Object>> studio = studioDao.queryStudioById(id);
-//        queryStudioById(id);
-        JSONObject studioObj = JSON.parseObject(JSON.toJSONString(studio));
-        List<StudioProduct> products = studioProductMapper.selectList(new EntityWrapper<StudioProduct>().eq("studio_id", id));
-        List<StudiosPhotos> photos = studiosPhotosMapper.selectList(new EntityWrapper<StudiosPhotos>().eq("studio_id", id));
-         studioObj.put("products", products);
-        studioObj.put("photos", photos);
-        StudioModel model = JSON.parseObject(studioObj.toJSONString(), StudioModel.class);
+        StudioModel model = studioDao.queryStudioById(id);
+//        Map map = new HashMap<>();
+//        List<StudioProduct> products = studioProductMapper.selectList(new EntityWrapper<StudioProduct>().eq("studio_id", id));
+//        List<StudiosPhotos> photos = studiosPhotosMapper.selectList(new EntityWrapper<StudiosPhotos>().eq("studio_id", id));
+//        map.put("products", products);
+//        map.put("photos", photos);
+//        map.put("studio",studio);
         return model;
     }
 

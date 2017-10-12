@@ -142,9 +142,45 @@
         FROM emb_studio
     </select>
 
-    <select id="queryStudioById" resultType="Map">
-        SELECT emb_studio_service.type_id ,
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="studioModel" type="com.jfeat.am.module.booking.services.domain.model.StudioModel">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="description" property="description" />
+        <result column="work_time" property="workTime" />
+        <result column="fee" property="fee" />
+        <result column="studio_site" property="studioSite" />
+        <result column="cover" property="cover" />
+        <result column="province" property="province" />
+        <result column="city" property="city" />
+        <result column="district" property="district" />
+        <result column="longitude" property="longitude" />
+        <result column="latitude" property="latitude" />
+        <result column="contact" property="contact" />
+        <result column="phone" property="phone" />
+        <result column="studio_phone" property="studioPhone" />
+        <result column="is_stick" property="isStick" />
+        <result column="tag" property="tag" />
+        <result column="field_c" property="fieldC" />
+        <!--<collection property="services" ofType="com.jfeat.am.module.booking.services.persistence.model.StudioService" >-->
+            <!--<id column="sId" property="id"></id>-->
+            <!--<result column="typeId" property="typeId"></result>-->
+        <!--</collection>-->
+
+        <collection property="types" ofType="com.jfeat.am.module.booking.services.persistence.model.ServiceType">
+            <id column="tId" property="id"></id>
+            <result column="tname" property="name"></result>
+        </collection>
+    </resultMap>
+
+
+    <select id="queryStudioById" parameterType="long" resultMap="studioModel">
+        SELECT
+        emb_studio_service.type_id as typeId ,
+        emb_studio_service.id as sId,
         emb_studio.*,
+        emb_service_type.id as tId,
         emb_service_type.name AS tname
         FROM emb_studio
         LEFT JOIN emb_studio_service

@@ -8,10 +8,21 @@ import java.util.List;
  * Created by J4cob on 2017/9/14.
  */
 public class StudioModel extends Studio {
-    List<StudioService> services;
+//    List<StudioService> services;
     List<StudioProduct> products;
     List<Doctor> doctors;
     List<StudiosPhotos> photos;
+
+    public List<ServiceType> getTypes() {
+        return types;
+    }
+
+    public void setTypes(List<ServiceType> types) {
+        this.types = types;
+    }
+
+    List<ServiceType> types;
+
     public List<StudiosPhotos> getPhotos() {
         return photos;
     }
@@ -37,11 +48,11 @@ public class StudioModel extends Studio {
         this.doctors = doctors;
     }
 
-    public List<StudioService> getServices() {
-        return services;
-    }
-
-    public void setServices(List<StudioService> services) {
-        this.services = services;
-    }
+//    public List<StudioService> getServices() {
+//        return services;
+//    }
+//
+//    public void setServices(List<StudioService> services) {
+//        this.services = services;
+//    }
 }

@@ -180,7 +180,7 @@ public class StudioEndpoint extends BaseController {
 
     @GetMapping("/{id}")
     public Tip showStudioModel(@PathVariable long id) {
-        StudioModel result = domainQueryService.showStudioModel(id);
+        Object result = domainQueryService.showStudioModel(id);
         return SuccessTip.create(result);
     }
 
