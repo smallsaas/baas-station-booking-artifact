@@ -9,6 +9,7 @@ import com.jfeat.am.common.controller.BaseController;
 import com.jfeat.am.core.jwt.JWTKit;
 
 import com.jfeat.am.core.shiro.ShiroKit;
+import com.jfeat.am.module.booking.services.domain.dao.CustomerDao;
 import com.jfeat.am.module.booking.services.domain.definition.AdminPermission;
 import com.jfeat.am.module.booking.services.domain.definition.AppointmentStatus;
 import com.jfeat.am.module.booking.services.domain.service.DomainQueryService;
@@ -39,6 +40,8 @@ public class AppointmentEndpoint extends BaseController{
     DomainQueryService domainQueryService;
     @Resource
     StudioOverProductService studioService;
+    @Resource
+    CustomerDao customerDao;
 
     /*
     *   fuzzy query
@@ -84,7 +87,8 @@ public class AppointmentEndpoint extends BaseController{
     @PostMapping
     public Tip createAppointment(@Valid @RequestBody Appointment appointment){
         Long userId = JWTKit.getUserId(getHttpServletRequest());
-        appointment.setCustomerId(userId);
+        Customer customer = customerDao.queryCustomerByUserId(userId);
+        appointment.setCustomerId(customer.getId());
         appointment.setDoctorId(0L);
         appointment.setStatus(AppointmentStatus.TO_BE_COMFIRMED.toString());
         Studio studio = studioService.retrieveMaster(appointment.getStudioId());
