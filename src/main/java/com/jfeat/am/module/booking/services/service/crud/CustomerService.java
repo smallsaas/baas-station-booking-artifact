@@ -16,5 +16,4 @@ public interface CustomerService extends CRUDServiceOnly<Customer>{
     *   注册账号，并返回注册的数据
     * */
     public Customer registerCustomer(Customer customer);
-    public Integer deleteProduct(long studioId,long id);
 }

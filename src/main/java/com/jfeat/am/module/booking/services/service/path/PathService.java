@@ -3,6 +3,7 @@ package com.jfeat.am.module.booking.services.service.path;
 import com.jfeat.am.module.booking.api.bean.Ids;
 import com.jfeat.am.module.booking.services.domain.model.CustomerModel;
 import com.jfeat.am.module.booking.services.persistence.model.Customer;
+import com.jfeat.am.module.booking.services.persistence.model.StudioCollect;
 import com.jfeat.am.module.booking.services.persistence.model.StudioService;
 
 import java.util.List;
@@ -35,4 +36,10 @@ public interface PathService {
     *   queryCustomerByUserId
     * */
     public Customer queryCustomerByUserId(long userId);
+
+    /*
+    *
+    * */
+
+    Integer addOrCancelFavors(StudioCollect studioCollect);
 }

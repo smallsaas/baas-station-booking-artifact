@@ -97,7 +97,7 @@ public interface DomainQueryService {
     /*
    *       精选产品列表
    * */
-    List<StudioProduct> productStickList(Page<StudioProduct> page);
+    List<StudioProduct> productStickList(Page<StudioProduct> page,String city);
 
     /*
     *   queryProductByName

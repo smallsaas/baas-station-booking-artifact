@@ -14,7 +14,7 @@ public interface StudioProductDao {
         List<StudioProduct>  queryProductByAttribute(Page<StudioProduct> page,
                                                      @Param("attribute") String attribute);
 
-        List<StudioProduct>  productStickList(Page<StudioProduct> page);
+        List<StudioProduct>  productStickList(Page<StudioProduct> page,@Param("city")String city);
 
         List<StudioProduct> queryProductByName(Page<StudioProduct> page,
                                                @Param("name") String name);

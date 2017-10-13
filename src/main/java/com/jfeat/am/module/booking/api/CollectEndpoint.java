@@ -4,7 +4,9 @@ import com.jfeat.am.common.constant.tips.SuccessTip;
 import com.jfeat.am.common.constant.tips.Tip;
 import com.jfeat.am.common.controller.BaseController;
 import com.jfeat.am.core.jwt.JWTKit;
+import com.jfeat.am.module.booking.services.domain.dao.CustomerDao;
 import com.jfeat.am.module.booking.services.domain.model.CustomerModel;
+import com.jfeat.am.module.booking.services.persistence.model.Customer;
 import com.jfeat.am.module.booking.services.persistence.model.StudioCollect;
 import com.jfeat.am.module.booking.services.service.crud.CollectService;
 import com.jfeat.am.module.booking.services.service.path.PathService;
@@ -26,6 +28,9 @@ public class CollectEndpoint extends BaseController {
     @Resource
     PathService pathService;
 
+    @Resource
+    CustomerDao customerDao;
+
     @GetMapping("/lists")
     public Tip allCollect() {
         return SuccessTip.create(collectService.allCollect());
@@ -35,12 +40,10 @@ public class CollectEndpoint extends BaseController {
     public Tip createCollect(@Valid @RequestBody StudioCollect studioCollect) {
 
         long userId = JWTKit.getUserId(getHttpServletRequest());
-        /*if(studioCollect.getCustomerId() == userId){
-            throw new RuntimeException("Do not repeat concern!");
-        }*/
         studioCollect.setCreateTime(new Date());
-        studioCollect.setCustomerId(userId);
-        return SuccessTip.create(collectService.createMaster(studioCollect));
+        Customer customer = customerDao.queryCustomerByUserId(userId);
+        studioCollect.setCustomerId(customer.getId());
+        return SuccessTip.create(pathService.addOrCancelFavors(studioCollect));
     }
 
     @DeleteMapping("/{studioId}")

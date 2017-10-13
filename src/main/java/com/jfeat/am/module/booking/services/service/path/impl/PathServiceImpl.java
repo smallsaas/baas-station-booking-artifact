@@ -12,7 +12,9 @@ import com.jfeat.am.module.booking.services.service.path.PathService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2017/10/9.
@@ -107,6 +109,20 @@ public class PathServiceImpl implements PathService {
         }else {
             throw new RuntimeException("请先执行该类别下店铺的删除操作！");
 
+        }
+    }
+
+
+    public Integer addOrCancelFavors(StudioCollect studioCollect) {
+        List<StudioCollect> collects = studioCollectMapper.selectList(new EntityWrapper<StudioCollect>().eq("customer_id", studioCollect.getCustomerId())
+                .eq("studio_id", studioCollect.getStudioId()));
+        if (collects == null || collects.size() == 0) {
+            return studioCollectMapper.insert(studioCollect);
+        } else {
+            Map<String,Object> map = new HashMap<>();
+            map.put("studio_id",studioCollect.getStudioId());
+            map.put("customer_id",studioCollect.getCustomerId());
+            return studioCollectMapper.deleteByMap(map);
         }
     }
 }
