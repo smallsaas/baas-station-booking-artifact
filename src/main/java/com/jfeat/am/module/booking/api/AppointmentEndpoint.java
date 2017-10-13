@@ -84,11 +84,12 @@ public class AppointmentEndpoint extends BaseController{
                                     @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize
                                     ){
         long userId = JWTKit.getUserId(getHttpServletRequest());
+        Customer customer = pathService.queryCustomerByUserId(userId);
 
         page.setSize(pageSize);
         page.setCurrent(pageNum);
 
-        List<Appointment> appointments = domainQueryService.queryAppointmentByUserId(page,userId);
+        List<Appointment> appointments = domainQueryService.queryAppointmentByCustomerId(page,customer.getId());
         page.setRecords(appointments);
         return SuccessTip.create(page);
 

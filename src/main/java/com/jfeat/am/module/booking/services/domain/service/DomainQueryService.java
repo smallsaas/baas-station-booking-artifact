@@ -43,7 +43,7 @@ public interface DomainQueryService {
     /*
     *   queryAppointmentByUserId
     * */
-    List<Appointment> queryAppointmentByUserId(Page<Appointment> page, Long userId);
+    List<Appointment> queryAppointmentByCustomerId(Page<Appointment> page, long id);
 
     /*
     *   queryStudioByStick
