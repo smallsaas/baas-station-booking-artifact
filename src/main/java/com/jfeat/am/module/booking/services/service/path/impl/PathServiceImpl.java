@@ -3,6 +3,7 @@ package com.jfeat.am.module.booking.services.service.path.impl;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.jfeat.am.common.constant.tips.ErrorTip;
 import com.jfeat.am.module.booking.services.domain.dao.CustomerDao;
 import com.jfeat.am.module.booking.services.domain.model.CustomerModel;
 import com.jfeat.am.module.booking.services.persistence.mapper.*;
@@ -30,6 +31,8 @@ public class PathServiceImpl implements PathService {
     CustomerMapper customerMapper;
     @Resource
     CustomerDao customerDao;
+    @Resource
+    ServiceTypeMapper typeMapper;
 
     public Integer addStudioService(Long studioId, List<Long> ids) {
         List<StudioService> studioServices = studioServiceMapper.selectList(new EntityWrapper<StudioService>().eq("studio_id", studioId));
@@ -99,9 +102,11 @@ public class PathServiceImpl implements PathService {
     public Integer deleteTypes(long id) {
         List<StudioService> studioServices = studioServiceMapper.selectList(new EntityWrapper<StudioService>().eq("type_id", id));
         if (studioServices == null || studioServices.size() == 0) {
-            return studioServiceMapper.deleteById(id);
-        } else {
-            return 2000;
+            return typeMapper.deleteById(id);
+
+        }else {
+            throw new RuntimeException("请先执行该类别下店铺的删除操作！");
+
         }
     }
 }
