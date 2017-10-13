@@ -6,6 +6,7 @@ package com.jfeat.am.module.booking.services.domain.definition;
 public enum  AppointmentStatus {
     DONE,
     CANCEL,
+    PAY_PENDING,
     TO_BE_COMFIRMED,
     ACCEPT
 

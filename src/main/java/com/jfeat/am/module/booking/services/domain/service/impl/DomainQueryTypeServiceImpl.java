@@ -20,7 +20,7 @@ public class DomainQueryTypeServiceImpl implements DomainQueryTypeService {
     @Resource
     ServiceTypeMapper serviceTypeMapper;
     @Resource
-    StudioServiceMapper embServiceMapper;
+    StudioServiceMapper studioServiceMapper;
 
     public List<ServiceType> allServiceType(){
         List<ServiceType> typeList = serviceTypeMapper.selectList(new EntityWrapper<>());
@@ -28,7 +28,7 @@ public class DomainQueryTypeServiceImpl implements DomainQueryTypeService {
     }
 
     public List<StudioService> allService(){
-        List<StudioService> typeList = embServiceMapper.selectList(new EntityWrapper<>());
+        List<StudioService> typeList = studioServiceMapper.selectList(new EntityWrapper<>());
         return typeList;
     }
 
