@@ -107,6 +107,7 @@ public class AppointmentEndpoint extends BaseController{
         if (studio == null) {
             throw new RuntimeException("studio not found.");
         }
+        appointment.setCustomerName(customer.getName());
         appointment.setCustomerId(customer.getId());
         appointment.setDoctorId(0L);
         appointment.setStatus(AppointmentStatus.PAY_PENDING.toString());
@@ -134,7 +135,7 @@ public class AppointmentEndpoint extends BaseController{
         if(ShiroKit.hasPermission(AdminPermission.EDIT)){
         Integer result = appointmentService.updateMaster(appointment);
         return SuccessTip.create(result);
-        }else if(appointment.getId() == userId && appointment.getStatus() != AppointmentStatus.DONE.toString()){ //未完成的并且有当前用户发起的订单
+        }else if(appointment.getId() == userId && appointment.getStatus() != AppointmentStatus.DONE.toString()){
             Integer result = appointmentService.updateMaster(appointment);
             return SuccessTip.create(result);
         }

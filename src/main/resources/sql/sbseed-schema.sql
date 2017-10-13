@@ -31,13 +31,9 @@ CREATE TABLE `emb_appointment` (
   `appointment_time` date NOT NULL COMMENT ' 预约时间',
   `close_time` date DEFAULT NULL COMMENT ' 结束时间',
   `phone` varchar(255) DEFAULT NULL COMMENT '电话',
-  `field_b` varchar(255) DEFAULT NULL COMMENT '保留字段',
+  `customer_name` varchar(255) DEFAULT NULL COMMENT '保留字段',
   `field_c` varchar(255) DEFAULT NULL COMMENT '保留字段',
-  PRIMARY KEY (`id`),
-  KEY `studio_id` (`studio_id`),
-  KEY `customer_id` (`customer_id`),
-  CONSTRAINT `emb_appointment_ibfk_1` FOREIGN KEY (`studio_id`) REFERENCES `emb_studio` (`id`),
-  CONSTRAINT `emb_appointment_ibfk_2` FOREIGN KEY (`customer_id`) REFERENCES `emb_customer` (`id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------

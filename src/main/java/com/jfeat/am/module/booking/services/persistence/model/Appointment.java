@@ -15,7 +15,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author J4cob
- * @since 2017-10-12
+ * @since 2017-10-13
  */
 @TableName("emb_appointment")
 public class Appointment extends Model<Appointment> {
@@ -71,8 +71,8 @@ public class Appointment extends Model<Appointment> {
     /**
      * 保留字段
      */
-	@TableField("field_b")
-	private String fieldB;
+	@TableField("customer_name")
+	private String customerName;
     /**
      * 保留字段
      */
@@ -160,12 +160,12 @@ public class Appointment extends Model<Appointment> {
 		this.phone = phone;
 	}
 
-	public String getFieldB() {
-		return fieldB;
+	public String getCustomerName() {
+		return customerName;
 	}
 
-	public void setFieldB(String fieldB) {
-		this.fieldB = fieldB;
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
 	}
 
 	public String getFieldC() {
@@ -194,7 +194,7 @@ public class Appointment extends Model<Appointment> {
 			", appointmentTime=" + appointmentTime +
 			", closeTime=" + closeTime +
 			", phone=" + phone +
-			", fieldB=" + fieldB +
+			", customerName=" + customerName +
 			", fieldC=" + fieldC +
 			"}";
 	}
