@@ -145,11 +145,13 @@ public class DomainQueryServiceImpl implements DomainQueryService {
     public StudioModel showStudioModel(long id) {
         StudioModel model = studioDao.queryStudioById(id);
 //        Map map = new HashMap<>();
-//        List<StudioProduct> products = studioProductMapper.selectList(new EntityWrapper<StudioProduct>().eq("studio_id", id));
-//        List<StudiosPhotos> photos = studiosPhotosMapper.selectList(new EntityWrapper<StudiosPhotos>().eq("studio_id", id));
+        List<StudioProduct> products = studioProductMapper.selectList(new EntityWrapper<StudioProduct>().eq("studio_id", id));
+        List<StudiosPhotos> photos = studiosPhotosMapper.selectList(new EntityWrapper<StudiosPhotos>().eq("studio_id", id));
 //        map.put("products", products);
 //        map.put("photos", photos);
 //        map.put("studio",studio);
+        model.setPhotos(photos);
+        model.setProducts(products);
         return model;
     }
 
