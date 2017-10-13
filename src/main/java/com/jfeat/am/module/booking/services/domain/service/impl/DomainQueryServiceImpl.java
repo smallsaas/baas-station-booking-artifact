@@ -49,7 +49,7 @@ public class DomainQueryServiceImpl implements DomainQueryService {
     @Resource
     StudioProductDao studioProductDao;
     @Resource
-    StudioServiceMapper serviceMapper;
+    StudioServiceMapper studioServiceMapper;
 
     @Resource
     ProductsPhotosMapper productsPhotosMapper;

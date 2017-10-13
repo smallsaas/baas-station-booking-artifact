@@ -17,10 +17,10 @@ public class EmbServiceServiceImpl extends CRUDServiceOnlyImpl<com.jfeat.am.modu
         implements EmbServiceService {
 
     @Resource
-    StudioServiceMapper embMapper;
+    StudioServiceMapper studioServiceMapper;
 
     @Override
     protected BaseMapper<com.jfeat.am.module.booking.services.persistence.model.StudioService> getMasterMapper() {
-        return embMapper;
+        return studioServiceMapper;
     }
 }
