@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 public class BookingMQConfig {
 
     @Bean
-    public Queue vipPaidNotifyQueue() {
+    public Queue appointmentPaidNotifyQueue() {
         return new Queue(Const.APPOINTMENT_PAID_NOTIFY_QUEUE);
     }
 

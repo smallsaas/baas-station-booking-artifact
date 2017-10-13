@@ -27,7 +27,7 @@ public class AppointmentPaidNotifyData implements Serializable {
 
     @Override
     public String toString() {
-        return "VipPaidNotifyData{" +
+        return "AppointmentPaidNotifyData{" +
                 "id='" + id + '\'' +
                 ", transactionId='" + transactionId + '\'' +
                 '}';

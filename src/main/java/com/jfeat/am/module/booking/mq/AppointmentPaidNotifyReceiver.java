@@ -39,6 +39,6 @@ public class AppointmentPaidNotifyReceiver {
         }
         appointment.setStatus(AppointmentStatus.TO_BE_COMFIRMED.toString());
         Integer result = appointmentService.updateMaster(appointment);
-        logger.debug("update VipPurchase result = {}. appointment={}", result, appointment);
+        logger.debug("update appointment result = {}. appointment={}", result, appointment);
     }
 }
