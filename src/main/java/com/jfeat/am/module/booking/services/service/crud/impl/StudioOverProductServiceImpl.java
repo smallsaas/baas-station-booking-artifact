@@ -142,5 +142,4 @@ public class StudioOverProductServiceImpl implements StudioOverProductService, C
         return productMapper.deleteBatchIds(list);
     }
 
-    
 }

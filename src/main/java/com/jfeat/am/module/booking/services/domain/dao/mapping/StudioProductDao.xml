@@ -16,7 +16,10 @@
     <select id="productStickList" resultType="StudioProduct">
     SELECT emb_studio_product.*
     FROM emb_studio_product
+    LEFT JOIN emb_studio
+    ON emb_studio_product.studio_id = emb_studio.id
     WHERE   emb_studio_product.stick = 'SIFT'
+    AND emb_studio.city = #{city}
 </select>
 
     <select id="queryProductByName" resultType="StudioProduct">
