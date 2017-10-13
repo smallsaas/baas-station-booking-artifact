@@ -62,8 +62,11 @@
         <if test="name != null and name != ''">
             AND emb_studio.name LIKE CONCAT('%',#{name},'%')
         </if>
-        <if test="name != null and name != ''">
+        <if test="city != null and city != ''">
             AND emb_studio.city LIKE CONCAT('%',#{city},'%')
+        </if>
+        <if test="stick != null and stick != ''">
+            AND emb_studio.is_stick LIKE CONCAT('%',#{stick},'%')
         </if>
         ORDER BY
 

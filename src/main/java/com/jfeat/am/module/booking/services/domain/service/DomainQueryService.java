@@ -71,6 +71,7 @@ public interface DomainQueryService {
                                                     String tname,
                                                     String name,
                                                     String city,
+                                                    String stick,
                                                     BigDecimal latitude,
                                                     BigDecimal longitude);
 
@@ -99,7 +100,7 @@ public interface DomainQueryService {
     /*
    *       精选产品列表
    * */
-    List<StudioProduct> productStickList(Page<StudioProduct> page,String city);
+    List<StudioProduct> productStickList(Page<StudioProduct> page, String city);
 
     /*
     *   queryProductByName

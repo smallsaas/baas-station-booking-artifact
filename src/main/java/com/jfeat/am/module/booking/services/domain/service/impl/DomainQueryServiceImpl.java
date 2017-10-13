@@ -126,9 +126,10 @@ public class DomainQueryServiceImpl implements DomainQueryService {
                                                            String tname,
                                                            String name,
                                                            String city,
+                                                           String stick,
                                                            BigDecimal latitude,
                                                            BigDecimal longitude) {
-        return studioDao.queryStudioByMultiple(page, tname,name,city, latitude, longitude);
+        return studioDao.queryStudioByMultiple(page, tname,name,city,stick, latitude, longitude);
     }
 
     /*

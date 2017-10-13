@@ -12,7 +12,6 @@ import com.jfeat.am.core.jwt.JWTKit;
 import com.jfeat.am.core.shiro.ShiroKit;
 import com.jfeat.am.modular.wechat.service.WechatConfigService;
 import com.jfeat.am.modular.wechat.service.WechatPushOrderService;
-import com.jfeat.am.module.booking.services.domain.dao.CustomerDao;
 import com.jfeat.am.module.booking.services.domain.definition.AdminPermission;
 import com.jfeat.am.module.booking.services.domain.definition.AppointmentStatus;
 import com.jfeat.am.module.booking.services.domain.service.DomainQueryService;
@@ -21,10 +20,8 @@ import com.jfeat.am.module.booking.services.persistence.model.Studio;
 import com.jfeat.am.module.booking.services.service.crud.AppointmentService;
 import com.jfeat.am.module.booking.services.persistence.model.Appointment;
 
-import com.jfeat.am.module.booking.services.service.crud.CustomerService;
 import com.jfeat.am.module.booking.services.service.crud.StudioOverProductService;
 import com.jfeat.am.module.booking.services.service.path.PathService;
-import com.jfinal.kit.StrKit;
 import com.jfinal.weixin.sdk.kit.IpKit;
 import org.springframework.web.bind.annotation.*;
 
