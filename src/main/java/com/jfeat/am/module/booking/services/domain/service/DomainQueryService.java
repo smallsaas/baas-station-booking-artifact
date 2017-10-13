@@ -69,6 +69,8 @@ public interface DomainQueryService {
     * */
     List<Map<String, Object>> queryStudioByMultiple(Page<StudioModel> page,
                                                     String tname,
+                                                    String name,
+                                                    String city,
                                                     BigDecimal latitude,
                                                     BigDecimal longitude);
 
