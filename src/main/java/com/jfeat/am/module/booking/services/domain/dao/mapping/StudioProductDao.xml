@@ -20,6 +20,7 @@
     ON emb_studio_product.studio_id = emb_studio.id
     WHERE   emb_studio_product.stick = 'SIFT'
     AND emb_studio.city = #{city}
+    AND emb_studio.is_stick != 'SINK'
 </select>
 
     <select id="queryProductByName" resultType="StudioProduct">

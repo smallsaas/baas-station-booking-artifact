@@ -101,6 +101,7 @@
         <if test="site != null and site != ''">
             AND emb_studio.city LIKE CONCAT('%',#{city},'%')
         </if>
+        AND emb_studio.is_stick != 'SINK'
         ORDER BY
 
         IF (ISNULL(distance), 1, 0),
