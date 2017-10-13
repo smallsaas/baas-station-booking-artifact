@@ -3,6 +3,7 @@ package com.jfeat.am.module.booking.services.service.path.impl;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.jfeat.am.common.constant.tips.ErrorTip;
 import com.jfeat.am.module.booking.services.domain.dao.CustomerDao;
 import com.jfeat.am.module.booking.services.domain.model.CustomerModel;
 import com.jfeat.am.module.booking.services.persistence.mapper.*;
@@ -11,7 +12,9 @@ import com.jfeat.am.module.booking.services.service.path.PathService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2017/10/9.
@@ -30,6 +33,8 @@ public class PathServiceImpl implements PathService {
     CustomerMapper customerMapper;
     @Resource
     CustomerDao customerDao;
+    @Resource
+    ServiceTypeMapper typeMapper;
 
     public Integer addStudioService(Long studioId, List<Long> ids) {
         List<StudioService> studioServices = studioServiceMapper.selectList(new EntityWrapper<StudioService>().eq("studio_id", studioId));
@@ -99,9 +104,25 @@ public class PathServiceImpl implements PathService {
     public Integer deleteTypes(long id) {
         List<StudioService> studioServices = studioServiceMapper.selectList(new EntityWrapper<StudioService>().eq("type_id", id));
         if (studioServices == null || studioServices.size() == 0) {
-            return studioServiceMapper.deleteById(id);
+            return typeMapper.deleteById(id);
+
+        }else {
+            throw new RuntimeException("请先执行该类别下店铺的删除操作！");
+
+        }
+    }
+
+
+    public Integer addOrCancelFavors(StudioCollect studioCollect) {
+        List<StudioCollect> collects = studioCollectMapper.selectList(new EntityWrapper<StudioCollect>().eq("customer_id", studioCollect.getCustomerId())
+                .eq("studio_id", studioCollect.getStudioId()));
+        if (collects == null || collects.size() == 0) {
+            return studioCollectMapper.insert(studioCollect);
         } else {
-            return 2000;
+            Map<String,Object> map = new HashMap<>();
+            map.put("studio_id",studioCollect.getStudioId());
+            map.put("customer_id",studioCollect.getCustomerId());
+            return studioCollectMapper.deleteByMap(map);
         }
     }
 }

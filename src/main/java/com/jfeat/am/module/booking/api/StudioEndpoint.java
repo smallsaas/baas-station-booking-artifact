@@ -286,11 +286,12 @@ public class StudioEndpoint extends BaseController {
     @GetMapping("/products/stick")
     public Tip productStickList(Page page,
                                 @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
-                                @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize
+                                @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize,
+                                @RequestParam(name = "city", required = true) String city
     ) {
         page.setCurrent(pageNum);
         page.setSize(pageSize);
-        List<StudioProduct> products = domainQueryService.productStickList(page);
+        List<StudioProduct> products = domainQueryService.productStickList(page,city);
         page.setRecords(products);
         return SuccessTip.create(page);
     }
@@ -299,7 +300,7 @@ public class StudioEndpoint extends BaseController {
     *   queryProductByName
     * */
     @GetMapping("/products")
-    public Tip productStickList(Page page,
+    public Tip productList(Page page,
                                 @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
                                 @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize,
                                 @RequestParam(name = "name", required = false) String name
