@@ -1,6 +1,7 @@
 package com.jfeat.am.module.booking.services.service.crud.impl;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.jfeat.am.common.constant.tips.ErrorTip;
 import com.jfeat.am.common.crud.CRUDFilter;
 import com.jfeat.am.common.crud.CRUDObject;
 import com.jfeat.am.common.crud.CRUDServiceOverSlave;
@@ -90,7 +91,7 @@ public class StudioOverProductServiceImpl implements StudioOverProductService, C
         if (studioProduct == null || studioProduct.size() == 0) {
             return studioMapper.deleteById(id);
         }else{
-            throw new RuntimeException("请先删除该店铺下的产品在执行删除店铺操作");
+            return 1000;
         }
 
     }
