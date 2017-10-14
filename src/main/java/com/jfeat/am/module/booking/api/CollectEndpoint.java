@@ -3,6 +3,8 @@ package com.jfeat.am.module.booking.api;
 import com.jfeat.am.common.constant.tips.SuccessTip;
 import com.jfeat.am.common.constant.tips.Tip;
 import com.jfeat.am.common.controller.BaseController;
+import com.jfeat.am.common.exception.BizExceptionEnum;
+import com.jfeat.am.common.exception.BusinessException;
 import com.jfeat.am.core.jwt.JWTKit;
 import com.jfeat.am.module.booking.services.domain.dao.CustomerDao;
 import com.jfeat.am.module.booking.services.domain.model.CustomerModel;
@@ -40,7 +42,7 @@ public class CollectEndpoint extends BaseController {
         studioCollect.setCreateTime(new Date());
         Customer customer = pathService.queryCustomerByUserId(userId);
         if (customer == null) {
-            throw new RuntimeException("customer not found.");
+            throw new BusinessException(BizExceptionEnum.SERVER_ERROR.getCode(),"customer not found.");
         }
         studioCollect.setCustomerId(customer.getId());
         return SuccessTip.create(pathService.addOrCancelFavors(studioCollect));

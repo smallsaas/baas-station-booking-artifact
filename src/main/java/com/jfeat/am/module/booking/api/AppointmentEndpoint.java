@@ -6,6 +6,8 @@ import com.jfeat.am.common.constant.tips.SuccessTip;
 import com.jfeat.am.common.constant.tips.Tip;
 import com.jfeat.am.common.controller.BaseController;
 
+import com.jfeat.am.common.exception.BizExceptionEnum;
+import com.jfeat.am.common.exception.BusinessException;
 import com.jfeat.am.common.persistence.model.WechatConfig;
 import com.jfeat.am.core.jwt.JWTKit;
 
@@ -83,7 +85,7 @@ public class AppointmentEndpoint extends BaseController{
         long userId = JWTKit.getUserId(getHttpServletRequest());
         Customer customer = pathService.queryCustomerByUserId(userId);
         if (customer == null) {
-            throw new RuntimeException("customer not found.");
+            throw new BusinessException(BizExceptionEnum.SERVER_ERROR.getCode(),"customer not found.");
         }
         page.setSize(pageSize);
         page.setCurrent(pageNum);
@@ -101,11 +103,11 @@ public class AppointmentEndpoint extends BaseController{
         Long userId = JWTKit.getUserId(getHttpServletRequest());
         Customer customer = pathService.queryCustomerByUserId(userId);
         if (customer == null) {
-            throw new RuntimeException("customer not found.");
+            throw new BusinessException(BizExceptionEnum.SERVER_ERROR.getCode(),"customer not found.");
         }
         Studio studio = studioService.retrieveMaster(appointment.getStudioId());
         if (studio == null) {
-            throw new RuntimeException("studio not found.");
+            throw new BusinessException(BizExceptionEnum.SERVER_ERROR.getCode(),"studio not found.");
         }
         appointment.setCustomerName(customer.getName());
         appointment.setCustomerId(customer.getId());
@@ -141,24 +143,25 @@ public class AppointmentEndpoint extends BaseController{
         long userId = JWTKit.getUserId(getHttpServletRequest());
         Customer customer = pathService.queryCustomerByUserId(userId);
         if (customer == null) {
-            throw new RuntimeException("customer not found.");
+            throw new BusinessException(BizExceptionEnum.SERVER_ERROR.getCode(), "customer not found.");
         }
         Appointment result = appointmentService.retrieveMaster(id);
-        if (result.getCustomerId() != customer.getId() || ShiroKit.hasPermission(AdminPermission.QUERY)){
-            throw new RuntimeException("no permission to show customer appointment!");
+        if (result.getCustomerId() == customer.getId() || ShiroKit.hasPermission(AdminPermission.QUERY)){
+            return SuccessTip.create(result);
         }
-        return SuccessTip.create(result);
+        throw new  BusinessException(BizExceptionEnum.NO_PERMISSION.getCode(),"no permission to show customer appointment!");
+
     }
     @DeleteMapping("/{id}")
     public Tip deleteAppointment(@PathVariable long id){
         long userId = JWTKit.getUserId(getHttpServletRequest());
         Customer customer = pathService.queryCustomerByUserId(userId);
         if (customer == null) {
-            throw new RuntimeException("customer not found.");
+            throw new BusinessException(BizExceptionEnum.SERVER_ERROR.getCode(),"customer not found.");
         }
         Appointment appointment = appointmentService.retrieveMaster(id);
         if (appointment.getCustomerId() != customer.getId()){
-            throw new RuntimeException("no permission to delete customer appointment!");
+            throw new BusinessException(BizExceptionEnum.NO_PERMISSION.getCode(),"no permission to delete customer appointment!");
         }
         Integer result = appointmentService.deleteMaster(id);
         return SuccessTip.create(result);
