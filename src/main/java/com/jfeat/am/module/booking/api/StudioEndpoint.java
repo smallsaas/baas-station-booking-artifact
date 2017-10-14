@@ -191,12 +191,9 @@ public class StudioEndpoint extends BaseController {
     @DeleteMapping("/{id}")
     @Permission(AdminPermission.DELETE)
     public Tip deleteStudio(@PathVariable long id) {
-            int result = sDservice.deleteMaster(id);
-        if(result==2000){
-            return ErrorTip.create(2000,"请先删除该店铺下的产品再执行删除店铺操作");
-        }else {
-            return SuccessTip.create(result);
-        }
+
+            return SuccessTip.create(sDservice.deleteMaster(id));
+
     }
 
     /*
