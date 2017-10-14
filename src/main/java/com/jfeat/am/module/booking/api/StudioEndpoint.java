@@ -131,7 +131,8 @@ public class StudioEndpoint extends BaseController {
             longitude = customer.getLongitude();
         }
 
-        List<Map<String, Object>> studios = domainQueryService.queryStudioByMultiple(page, tname,name,city ,stick,latitude, longitude);
+        List<Map<String, Object>> studios =
+                domainQueryService.queryStudioByMultiple(page, tname,name,city ,stick,latitude, longitude);
         page.setRecords(studios);
 
         return SuccessTip.create(page);
@@ -191,8 +192,8 @@ public class StudioEndpoint extends BaseController {
     @Permission(AdminPermission.DELETE)
     public Tip deleteStudio(@PathVariable long id) {
             int result = sDservice.deleteMaster(id);
-        if(result==1000){
-            return ErrorTip.create(1000,"请先删除该店铺下的产品再执行删除店铺操作");
+        if(result==2000){
+            return ErrorTip.create(2000,"请先删除该店铺下的产品再执行删除店铺操作");
         }else {
             return SuccessTip.create(result);
         }

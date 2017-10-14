@@ -91,7 +91,7 @@ public class StudioOverProductServiceImpl implements StudioOverProductService, C
         if (studioProduct == null || studioProduct.size() == 0) {
             return studioMapper.deleteById(id);
         }else{
-            return 1000;
+            return 2000;
         }
 
     }

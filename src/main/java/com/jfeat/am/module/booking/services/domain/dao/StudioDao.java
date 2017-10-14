@@ -31,7 +31,7 @@ public interface StudioDao {
                                                     @Param("tname") String tname,
                                                     @Param("name") String name,
                                                     @Param("city") String city,
-                                                    @Param("city") String stick,
+                                                    @Param("stick") String stick,
                                                     @Param("latitude") BigDecimal latitude,
                                                     @Param("longitude") BigDecimal longitude);
 
