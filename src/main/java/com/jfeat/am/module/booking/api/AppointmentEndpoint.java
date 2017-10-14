@@ -122,7 +122,8 @@ public class AppointmentEndpoint extends BaseController{
                 tenantId,
                 customer.getOpenid(),
                 IpKit.getRealIp(getHttpServletRequest()),
-                wechatConfig.getHost() + "/api/pub/wpay/notify/" + wechatConfig.getAppId());
+                wechatConfig.getHost() + "/api/pub/wpay/notify/" + wechatConfig.getAppId(),
+                true);
         logger.debug("push order result: {}", map);
         return SuccessTip.create(map);
     }
