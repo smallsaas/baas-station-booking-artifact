@@ -36,6 +36,8 @@ public class PathServiceImpl implements PathService {
     CustomerDao customerDao;
     @Resource
     ServiceTypeMapper typeMapper;
+    @Resource
+    StudioMapper studioMapper;
 
     public Integer addStudioService(Long studioId, List<Long> ids) {
         List<StudioService> studioServices = studioServiceMapper.selectList(new EntityWrapper<StudioService>().eq("studio_id", studioId));
@@ -90,7 +92,10 @@ public class PathServiceImpl implements PathService {
         Customer customer = customerDao.queryCustomerByUserId(userId);
         JSONObject customerObj = JSON.parseObject(JSON.toJSONString(customer));
         List<StudioCollect> favors = studioCollectMapper.selectList(new EntityWrapper<StudioCollect>().eq("customer_id", customer.getId()));
-        customerObj.put("favors", favors);
+        for(StudioCollect studioCollect:favors){
+            Studio studios = studioMapper.selectById(studioCollect.getStudioId());
+            customerObj.put("studios", studios);
+        }
         CustomerModel model = JSON.parseObject(customerObj.toJSONString(), CustomerModel.class);
         return model;
     }
