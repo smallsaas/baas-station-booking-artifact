@@ -13,6 +13,7 @@ import com.jfeat.am.module.booking.services.service.path.PathService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -92,10 +93,12 @@ public class PathServiceImpl implements PathService {
         Customer customer = customerDao.queryCustomerByUserId(userId);
         JSONObject customerObj = JSON.parseObject(JSON.toJSONString(customer));
         List<StudioCollect> favors = studioCollectMapper.selectList(new EntityWrapper<StudioCollect>().eq("customer_id", customer.getId()));
+        List<Studio> studioList = new ArrayList<>();
         for(StudioCollect studioCollect:favors){
             Studio studios = studioMapper.selectById(studioCollect.getStudioId());
-            customerObj.put("studios", studios);
+            studioList.add(studios);
         }
+        customerObj.put("studios",studioList);
         CustomerModel model = JSON.parseObject(customerObj.toJSONString(), CustomerModel.class);
         return model;
     }

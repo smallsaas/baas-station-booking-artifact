@@ -115,17 +115,17 @@ public class AppointmentEndpoint extends BaseController{
         //pushOrder(String title,String detail,String orderNum,String totalFee,Long tenantId,String openid,String ip,String notifyUrl)
         Long tenantId = JWTKit.getTenantId(getHttpServletRequest());
         WechatConfig wechatConfig = wechatConfigService.getByTenantId(tenantId);
-        Map map = wechatPushOrderService.pushOrder(studio.getName(),
-                studio.getName(),
-                appointment.getId().toString(),
-                appointment.getFee().multiply(BigDecimal.valueOf(100)).intValue() + "",
-                tenantId,
-                customer.getOpenid(),
-                IpKit.getRealIp(getHttpServletRequest()),
-                wechatConfig.getHost() + "/api/pub/wpay/notify/" + wechatConfig.getAppId(),
-                true);
-        logger.debug("push order result: {}", map);
-        return SuccessTip.create(map);
+//        Map map = wechatPushOrderService.pushOrder(studio.getName(),
+//                studio.getName(),
+//                appointment.getId().toString(),
+//                appointment.getFee().multiply(BigDecimal.valueOf(100)).intValue() + "",
+//                tenantId,
+//                customer.getOpenid(),
+//                IpKit.getRealIp(getHttpServletRequest()),
+//                wechatConfig.getHost() + "/api/pub/wpay/notify/" + wechatConfig.getAppId(),
+//                true);
+       // logger.debug("push order result: {}", map);
+        return SuccessTip.create(result);
     }
 
     @PutMapping
