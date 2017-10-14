@@ -6,6 +6,8 @@ import com.jfeat.am.common.constant.tips.SuccessTip;
 import com.jfeat.am.common.constant.tips.Tip;
 import com.jfeat.am.common.controller.BaseController;
 
+import com.jfeat.am.common.exception.BizExceptionEnum;
+import com.jfeat.am.common.exception.BusinessException;
 import com.jfeat.am.common.persistence.model.WechatConfig;
 import com.jfeat.am.core.jwt.JWTKit;
 
@@ -99,11 +101,11 @@ public class AppointmentEndpoint extends BaseController{
         Long userId = JWTKit.getUserId(getHttpServletRequest());
         Customer customer = pathService.queryCustomerByUserId(userId);
         if (customer == null) {
-            throw new RuntimeException("customer not found.");
+            throw new BusinessException(BizExceptionEnum.INVALID_TUPLE_ID.getCode(), "customer not found.");
         }
         Studio studio = studioService.retrieveMaster(appointment.getStudioId());
         if (studio == null) {
-            throw new RuntimeException("studio not found.");
+            throw new BusinessException(BizExceptionEnum.INVALID_TUPLE_ID.getCode(), "studio not found.");
         }
         appointment.setCustomerName(customer.getName());
         appointment.setCustomerId(customer.getId());
