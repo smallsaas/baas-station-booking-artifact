@@ -144,7 +144,7 @@ public class AppointmentEndpoint extends BaseController{
             throw new RuntimeException("customer not found.");
         }
         Appointment result = appointmentService.retrieveMaster(id);
-        if (result.getCustomerId() != customer.getId()){
+        if (result.getCustomerId() != customer.getId() || ShiroKit.hasPermission(AdminPermission.QUERY)){
             throw new RuntimeException("no permission to show customer appointment!");
         }
         return SuccessTip.create(result);
