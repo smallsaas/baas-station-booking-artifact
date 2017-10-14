@@ -28,9 +28,6 @@ public class CollectEndpoint extends BaseController {
     @Resource
     PathService pathService;
 
-    @Resource
-    CustomerDao customerDao;
-
     @GetMapping("/lists")
     public Tip allCollect() {
         return SuccessTip.create(collectService.allCollect());
@@ -41,7 +38,7 @@ public class CollectEndpoint extends BaseController {
 
         long userId = JWTKit.getUserId(getHttpServletRequest());
         studioCollect.setCreateTime(new Date());
-        Customer customer = customerDao.queryCustomerByUserId(userId);
+        Customer customer = pathService.queryCustomerByUserId(userId);
         studioCollect.setCustomerId(customer.getId());
         return SuccessTip.create(pathService.addOrCancelFavors(studioCollect));
     }

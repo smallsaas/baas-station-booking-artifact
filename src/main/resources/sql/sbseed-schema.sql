@@ -24,7 +24,6 @@ CREATE TABLE `emb_appointment` (
   `studio_id` bigint(20) NOT NULL COMMENT '工作室ID',
   `doctor_id` bigint(20) DEFAULT NULL COMMENT '技师ID',
   `customer_id` bigint(20) NOT NULL COMMENT '用户ID',
-
   `status` varchar(20) NOT NULL COMMENT ' 状态',
   `fee` decimal(10,2) NOT NULL COMMENT '费用',
   `create_time` date NOT NULL COMMENT ' 创建时间',
@@ -96,8 +95,7 @@ CREATE TABLE `emb_service_type` (
   `name` varchar(20) NOT NULL unique COMMENT '名称',
   `pid` bigint(20) DEFAULT NULL COMMENT '父节点',
   `cover` varchar(255) NOT NULL comment '封面',
-  PRIMARY KEY (`id`),
-  KEY `pid` (`pid`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -166,9 +164,7 @@ CREATE TABLE `emb_studio_product` (
   `stick` varchar(255) DEFAULT NULL COMMENT '精选/SIFT/NORMAL',
   `attribute` varchar(255) DEFAULT NULL COMMENT '精选/次卡/团购/',
   `field_c` varchar(255) DEFAULT NULL COMMENT '保留字段',
-  PRIMARY KEY (`id`),
-  KEY `studio_id` (`studio_id`),
-  CONSTRAINT `emb_studio_product_ibfk_1` FOREIGN KEY (`studio_id`) REFERENCES `emb_studio` (`id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
