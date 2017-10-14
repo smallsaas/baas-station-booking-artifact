@@ -107,7 +107,7 @@ public class PathServiceImpl implements PathService {
             return typeMapper.deleteById(id);
 
         }else {
-            throw new RuntimeException("请先执行该类别下店铺的删除操作！");
+            return 2000;
 
         }
     }
