@@ -115,7 +115,8 @@ public class PathServiceImpl implements PathService {
 
 
     public Integer addOrCancelFavors(StudioCollect studioCollect) {
-        List<StudioCollect> collects = studioCollectMapper.selectList(new EntityWrapper<StudioCollect>().eq("customer_id", studioCollect.getCustomerId())
+        List<StudioCollect> collects = studioCollectMapper.selectList(
+                new EntityWrapper<StudioCollect>().eq("customer_id", studioCollect.getCustomerId())
                 .eq("studio_id", studioCollect.getStudioId()));
         if (collects == null || collects.size() == 0) {
             return studioCollectMapper.insert(studioCollect);
