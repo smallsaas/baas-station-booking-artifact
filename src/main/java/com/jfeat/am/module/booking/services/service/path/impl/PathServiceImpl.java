@@ -13,6 +13,7 @@ import com.jfeat.am.module.booking.services.service.path.PathService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,6 +37,8 @@ public class PathServiceImpl implements PathService {
     CustomerDao customerDao;
     @Resource
     ServiceTypeMapper typeMapper;
+    @Resource
+    StudioMapper studioMapper;
 
     public Integer addStudioService(Long studioId, List<Long> ids) {
         List<StudioService> studioServices = studioServiceMapper.selectList(new EntityWrapper<StudioService>().eq("studio_id", studioId));
@@ -89,8 +92,13 @@ public class PathServiceImpl implements PathService {
     public CustomerModel getMoreInfo(long userId) {
         Customer customer = customerDao.queryCustomerByUserId(userId);
         JSONObject customerObj = JSON.parseObject(JSON.toJSONString(customer));
-        List<StudioCollect> favors = studioCollectMapper.selectList(new EntityWrapper<StudioCollect>().eq("customer_id", userId));
-        customerObj.put("favors", favors);
+        List<StudioCollect> favors = studioCollectMapper.selectList(new EntityWrapper<StudioCollect>().eq("customer_id", customer.getId()));
+        List<Studio> studioList = new ArrayList<>();
+        for(StudioCollect studioCollect:favors){
+            Studio studios = studioMapper.selectById(studioCollect.getStudioId());
+            studioList.add(studios);
+        }
+        customerObj.put("studios",studioList);
         CustomerModel model = JSON.parseObject(customerObj.toJSONString(), CustomerModel.class);
         return model;
     }

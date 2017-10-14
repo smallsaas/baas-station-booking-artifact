@@ -87,8 +87,8 @@ public class DomainQueryServiceImpl implements DomainQueryService {
     /*
     *   queryAppointmentByUserId
     * */
-    public List<Appointment> queryAppointmentByCustomerId(Page<Appointment> page, long id) {
-        List<Appointment> appointments = appointmentMapper.selectList(new EntityWrapper<Appointment>().eq("id", id));
+    public List<Appointment> queryAppointmentByCustomerId(Page<Appointment> page, long userId) {
+        List<Appointment> appointments = appointmentMapper.selectList(new EntityWrapper<Appointment>().eq("customer_id", userId));
         return appointments;
     }
 
