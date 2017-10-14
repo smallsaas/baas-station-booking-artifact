@@ -39,6 +39,9 @@ public class CollectEndpoint extends BaseController {
         long userId = JWTKit.getUserId(getHttpServletRequest());
         studioCollect.setCreateTime(new Date());
         Customer customer = pathService.queryCustomerByUserId(userId);
+        if (customer == null) {
+            throw new RuntimeException("customer not found.");
+        }
         studioCollect.setCustomerId(customer.getId());
         return SuccessTip.create(pathService.addOrCancelFavors(studioCollect));
     }

@@ -47,7 +47,7 @@ public interface StudioDao {
     *   query  by Site
     * */
     List<Map<String, Object>> queryStudioBySite(Page<Studio> page,
-                                                @Param("site") String site,
+                                                @Param("city") String city,
                                                 @Param("latitude") BigDecimal latitude,
                                                 @Param("longitude") BigDecimal longitude);
 

@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.jfeat.am.common.constant.tips.ErrorTip;
 import com.jfeat.am.module.booking.services.domain.dao.CustomerDao;
+import com.jfeat.am.module.booking.services.domain.definition.ServiceCode;
 import com.jfeat.am.module.booking.services.domain.model.CustomerModel;
 import com.jfeat.am.module.booking.services.persistence.mapper.*;
 import com.jfeat.am.module.booking.services.persistence.model.*;
@@ -107,14 +108,15 @@ public class PathServiceImpl implements PathService {
             return typeMapper.deleteById(id);
 
         }else {
-            return 2000;
+            return ServiceCode.NOT_ALLOW_TO_DELETE.getCode();
 
         }
     }
 
 
     public Integer addOrCancelFavors(StudioCollect studioCollect) {
-        List<StudioCollect> collects = studioCollectMapper.selectList(new EntityWrapper<StudioCollect>().eq("customer_id", studioCollect.getCustomerId())
+        List<StudioCollect> collects = studioCollectMapper.selectList(
+                new EntityWrapper<StudioCollect>().eq("customer_id", studioCollect.getCustomerId())
                 .eq("studio_id", studioCollect.getStudioId()));
         if (collects == null || collects.size() == 0) {
             return studioCollectMapper.insert(studioCollect);
