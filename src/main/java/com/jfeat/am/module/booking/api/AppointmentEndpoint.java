@@ -133,10 +133,15 @@ public class AppointmentEndpoint extends BaseController{
     }
 
     @PutMapping
-    @Permission(AdminPermission.EDIT)
     public Tip updateAppointment(@Valid@RequestBody Appointment appointment){
-            Integer result = appointmentService.updateMaster(appointment);
-            return SuccessTip.create(result);
+        long userId = JWTKit.getUserId(getHttpServletRequest());
+        Customer customer = pathService.queryCustomerByUserId(userId);
+        if((appointment.getCustomerId() == customer.getId() && appointment.getStatus() != AppointmentStatus.DONE.toString())
+                || ShiroKit.hasPermission(AdminPermission.EDIT)) {
+            return SuccessTip.create(appointmentService.updateMaster(appointment));
+        }else {
+            throw new BusinessException(BizExceptionEnum.OUT_OF_RANGE.getCode(),"no permission");
+        }
     }
     @GetMapping("/{id}")
     public Tip showAppointment(@PathVariable long id){
@@ -160,10 +165,12 @@ public class AppointmentEndpoint extends BaseController{
             throw new BusinessException(BizExceptionEnum.SERVER_ERROR.getCode(),"customer not found.");
         }
         Appointment appointment = appointmentService.retrieveMaster(id);
-        if (appointment.getCustomerId() != customer.getId()){
+        if (appointment.getCustomerId() == customer.getId() || ShiroKit.hasPermission(AdminPermission.EDIT)){
+            Integer result = appointmentService.deleteMaster(id);
+            return SuccessTip.create(result);
+        }else{
             throw new BusinessException(BizExceptionEnum.NO_PERMISSION.getCode(),"no permission to delete customer appointment!");
         }
-        Integer result = appointmentService.deleteMaster(id);
-        return SuccessTip.create(result);
+
     }
 }
