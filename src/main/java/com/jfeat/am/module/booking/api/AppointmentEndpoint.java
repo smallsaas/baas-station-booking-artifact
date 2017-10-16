@@ -1,6 +1,7 @@
 package com.jfeat.am.module.booking.api;
 
 import com.baomidou.mybatisplus.plugins.Page;
+import com.google.common.collect.Maps;
 import com.jfeat.am.common.annotation.Permission;
 import com.jfeat.am.common.constant.tips.SuccessTip;
 import com.jfeat.am.common.constant.tips.Tip;
@@ -25,6 +26,9 @@ import com.jfeat.am.module.booking.services.persistence.model.Appointment;
 import com.jfeat.am.module.booking.services.service.crud.StudioOverProductService;
 import com.jfeat.am.module.booking.services.service.path.PathService;
 import com.jfinal.weixin.sdk.kit.IpKit;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -39,6 +43,8 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/api/appointments")
+@Configuration
+@ConfigurationProperties(prefix="am")
 public class AppointmentEndpoint extends BaseController{
 
     @Resource
@@ -53,6 +59,17 @@ public class AppointmentEndpoint extends BaseController{
     WechatPushOrderService wechatPushOrderService;
     @Resource
     WechatConfigService wechatConfigService;
+
+
+    private boolean wechatPushOrder = true;
+
+    public boolean getWechatPushOrder() {
+        return wechatPushOrder;
+    }
+
+    public void setWechatPushOrder(boolean wechatPushOrder) {
+        this.wechatPushOrder = wechatPushOrder;
+    }
 
     /*
     *   fuzzy query
@@ -119,16 +136,19 @@ public class AppointmentEndpoint extends BaseController{
         //pushOrder(String title,String detail,String orderNum,String totalFee,Long tenantId,String openid,String ip,String notifyUrl)
         Long tenantId = JWTKit.getTenantId(getHttpServletRequest());
         WechatConfig wechatConfig = wechatConfigService.getByTenantId(tenantId);
-        Map map = wechatPushOrderService.pushOrder(studio.getName(),
-                studio.getName(),
-                appointment.getId().toString(),
-                appointment.getFee().multiply(BigDecimal.valueOf(100)).intValue() + "",
-                tenantId,
-                customer.getOpenid(),
-                IpKit.getRealIp(getHttpServletRequest()),
-                wechatConfig.getHost() + "/api/pub/wpay/notify/" + wechatConfig.getAppId(),
-                true);
-        logger.debug("push order result: {}", map);
+        Map map = Maps.newHashMap();
+        if (getWechatPushOrder()) {
+            map = wechatPushOrderService.pushOrder(studio.getName(),
+                    studio.getName(),
+                    appointment.getId().toString(),
+                    appointment.getFee().multiply(BigDecimal.valueOf(100)).intValue() + "",
+                    tenantId,
+                    customer.getOpenid(),
+                    IpKit.getRealIp(getHttpServletRequest()),
+                    wechatConfig.getHost() + "/api/pub/wpay/notify/" + wechatConfig.getAppId(),
+                    true);
+            logger.debug("push order result: {}", map);
+        }
         return SuccessTip.create(map);
     }
 
