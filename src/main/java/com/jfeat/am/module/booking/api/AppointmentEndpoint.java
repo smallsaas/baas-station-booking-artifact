@@ -17,6 +17,7 @@ import com.jfeat.am.modular.wechat.service.WechatConfigService;
 import com.jfeat.am.modular.wechat.service.WechatPushOrderService;
 import com.jfeat.am.module.booking.services.domain.definition.AdminPermission;
 import com.jfeat.am.module.booking.services.domain.definition.AppointmentStatus;
+import com.jfeat.am.module.booking.services.domain.model.AppointmentModel;
 import com.jfeat.am.module.booking.services.domain.service.DomainQueryService;
 import com.jfeat.am.module.booking.services.persistence.model.Customer;
 import com.jfeat.am.module.booking.services.persistence.model.Studio;
@@ -34,6 +35,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.validation.Valid;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -108,7 +110,13 @@ public class AppointmentEndpoint extends BaseController{
         page.setCurrent(pageNum);
 
         List<Appointment> appointments = domainQueryService.queryAppointmentByCustomerId(page,customer.getId());
-        page.setRecords(appointments);
+        List<AppointmentModel> models = new ArrayList<>();
+
+        for(Appointment appointment:appointments){
+            models.add(pathService.appointmentDetails(appointment.getId()));
+
+        }
+        page.setRecords(models);
         return SuccessTip.create(page);
 
     }
@@ -137,7 +145,7 @@ public class AppointmentEndpoint extends BaseController{
         Long tenantId = JWTKit.getTenantId(getHttpServletRequest());
         WechatConfig wechatConfig = wechatConfigService.getByTenantId(tenantId);
         Map map = Maps.newHashMap();
-        if (getWechatPushOrder()) {
+/*        if (getWechatPushOrder()) {
             map = wechatPushOrderService.pushOrder(studio.getName(),
                     studio.getName(),
                     appointment.getId().toString(),
@@ -148,7 +156,7 @@ public class AppointmentEndpoint extends BaseController{
                     wechatConfig.getHost() + "/api/pub/wpay/notify/" + wechatConfig.getAppId(),
                     true);
             logger.debug("push order result: {}", map);
-        }
+        }*/
         return SuccessTip.create(map);
     }
 

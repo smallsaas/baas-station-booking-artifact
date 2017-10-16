@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.jfeat.am.common.constant.tips.ErrorTip;
 import com.jfeat.am.module.booking.services.domain.dao.CustomerDao;
 import com.jfeat.am.module.booking.services.domain.definition.ServiceCode;
+import com.jfeat.am.module.booking.services.domain.model.AppointmentModel;
 import com.jfeat.am.module.booking.services.domain.model.CustomerModel;
 import com.jfeat.am.module.booking.services.persistence.mapper.*;
 import com.jfeat.am.module.booking.services.persistence.model.*;
@@ -39,6 +40,8 @@ public class PathServiceImpl implements PathService {
     ServiceTypeMapper typeMapper;
     @Resource
     StudioMapper studioMapper;
+    @Resource
+    AppointmentMapper appointmentMapper;
 
     public Integer addStudioService(Long studioId, List<Long> ids) {
         List<StudioService> studioServices = studioServiceMapper.selectList(new EntityWrapper<StudioService>().eq("studio_id", studioId));
@@ -134,5 +137,17 @@ public class PathServiceImpl implements PathService {
             map.put("customer_id",studioCollect.getCustomerId());
             return studioCollectMapper.deleteByMap(map);
         }
+    }
+
+    /*
+    *   get Users appointment
+    * */
+    public AppointmentModel appointmentDetails(long id){
+        Appointment appointment = appointmentMapper.selectById(id);
+        JSONObject appointObj = JSON.parseObject(JSON.toJSONString(appointment));
+        Studio studio = studioMapper.selectById(appointment.getStudioId());
+        appointObj.put("studio",studio);
+        AppointmentModel model = JSON.parseObject(appointObj.toJSONString(),AppointmentModel.class);
+        return model;
     }
 }
