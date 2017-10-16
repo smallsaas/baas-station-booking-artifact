@@ -145,7 +145,7 @@ public class AppointmentEndpoint extends BaseController{
         Long tenantId = JWTKit.getTenantId(getHttpServletRequest());
         WechatConfig wechatConfig = wechatConfigService.getByTenantId(tenantId);
         Map map = Maps.newHashMap();
-/*        if (getWechatPushOrder()) {
+        if (getWechatPushOrder()) {
             map = wechatPushOrderService.pushOrder(studio.getName(),
                     studio.getName(),
                     appointment.getId().toString(),
@@ -156,7 +156,7 @@ public class AppointmentEndpoint extends BaseController{
                     wechatConfig.getHost() + "/api/pub/wpay/notify/" + wechatConfig.getAppId(),
                     true);
             logger.debug("push order result: {}", map);
-        }*/
+        }
         return SuccessTip.create(map);
     }
 
@@ -172,13 +172,13 @@ public class AppointmentEndpoint extends BaseController{
         }
     }
     @GetMapping("/{id}")
-    public Tip showAppointment(@PathVariable long id){
+    public Tip showAppointmentModel(@PathVariable long id){
         long userId = JWTKit.getUserId(getHttpServletRequest());
         Customer customer = pathService.queryCustomerByUserId(userId);
         if (customer == null) {
             throw new BusinessException(BizExceptionEnum.SERVER_ERROR.getCode(), "customer not found.");
         }
-        Appointment result = appointmentService.retrieveMaster(id);
+        AppointmentModel result = pathService.appointmentDetails(id);
         if (result.getCustomerId() == customer.getId() || ShiroKit.hasPermission(AdminPermission.QUERY)){
             return SuccessTip.create(result);
         }
