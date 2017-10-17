@@ -13,7 +13,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author J4cob
- * @since 2017-10-13
+ * @since 2017-10-16
  */
 @TableName("emb_products_photos")
 public class ProductsPhotos extends Model<ProductsPhotos> {
