@@ -49,7 +49,7 @@ import java.util.Map;
 @ConfigurationProperties(prefix = "am")
 public class AppointmentEndpoint extends BaseController {
 
-    @Resource()
+    @Resource
     AppointmentService appointmentService;
     @Resource
     DomainQueryService domainQueryService;
