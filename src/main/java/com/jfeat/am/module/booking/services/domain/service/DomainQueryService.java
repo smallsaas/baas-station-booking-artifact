@@ -1,6 +1,7 @@
 package com.jfeat.am.module.booking.services.domain.service;
 
 import com.baomidou.mybatisplus.plugins.Page;
+import com.jfeat.am.module.booking.services.domain.model.AppointmentModel;
 import com.jfeat.am.module.booking.services.domain.model.StudioModel;
 import com.jfeat.am.module.booking.services.domain.model.StudioProductModel;
 import com.jfeat.am.module.booking.services.persistence.model.Appointment;
@@ -43,7 +44,13 @@ public interface DomainQueryService {
     /*
     *   queryAppointmentByUserId
     * */
-    List<Appointment> queryAppointmentByCustomerId(Page<Appointment> page, long id);
+    List<AppointmentModel> queryAppointmentByCustomerId(Page<AppointmentModel> page, long id);
+
+    /*
+    *       queryAppointmentByStatus  only show user data
+    * */
+    List<AppointmentModel> queryAppointmentByStatus(Page<AppointmentModel> page,
+                                               String status);
 
     /*
     *   queryStudioByStick

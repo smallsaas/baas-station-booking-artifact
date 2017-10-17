@@ -46,8 +46,8 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/appointments")
 @Configuration
-@ConfigurationProperties(prefix="am")
-public class AppointmentEndpoint extends BaseController{
+@ConfigurationProperties(prefix = "am")
+public class AppointmentEndpoint extends BaseController {
 
     @Resource
     AppointmentService appointmentService;
@@ -82,57 +82,82 @@ public class AppointmentEndpoint extends BaseController{
     public Tip queryAppointment(Page page,
                                 @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
                                 @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize,
-                                @RequestParam(name = "status",required = false) String status,
-                                @RequestParam(name = "studioId",required = false)Long studioId,
-                                @RequestParam(name = "phone",required = false)Long phone
-                                ) {
-            page.setSize(pageSize);
-            page.setCurrent(pageNum);
-            List<Appointment> appointments = domainQueryService.queryAppointment(page, status, studioId,phone);
-            page.setRecords(appointments);
-            return SuccessTip.create(page);
-
-    }
-    /*
-    *   queryUserAppointment
-    * */
-    @GetMapping("/users")
-    public Tip queryUserAppointment(Page page,
-                                    @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
-                                    @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize
-                                    ){
-        long userId = JWTKit.getUserId(getHttpServletRequest());
-        Customer customer = pathService.queryCustomerByUserId(userId);
-        if (customer == null) {
-            throw new BusinessException(BizExceptionEnum.SERVER_ERROR.getCode(),"customer not found.");
-        }
+                                @RequestParam(name = "status", required = false) String status,
+                                @RequestParam(name = "studioId", required = false) Long studioId,
+                                @RequestParam(name = "phone", required = false) Long phone
+    ) {
         page.setSize(pageSize);
         page.setCurrent(pageNum);
-
-        List<Appointment> appointments = domainQueryService.queryAppointmentByCustomerId(page,customer.getId());
-        List<AppointmentModel> models = new ArrayList<>();
-
-        for(Appointment appointment:appointments){
-            models.add(pathService.appointmentDetails(appointment.getId()));
-
-        }
-        page.setRecords(models);
+        List<Appointment> appointments = domainQueryService.queryAppointment(page, status, studioId, phone);
+        page.setRecords(appointments);
         return SuccessTip.create(page);
 
     }
+
+    /*
+    *   queryByStatus
+    * */
+    @GetMapping("/users")
+    public Tip queryAppointmentByStatus(Page page,
+                                @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
+                                @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize,
+                                @RequestParam(name = "status", required = false) String status
+    ) {
+        page.setSize(pageSize);
+        page.setCurrent(pageNum);
+        long userId = JWTKit.getUserId(getHttpServletRequest());
+        Customer customer = pathService.queryCustomerByUserId(userId);
+        if (customer == null) {
+            throw new BusinessException(BizExceptionEnum.SERVER_ERROR.getCode(), "customer not found.");
+        }
+//        List<Appointment> appointments = domainQueryService.queryAppointmentByStatus(page, status);
+        List<AppointmentModel> models = domainQueryService.queryAppointmentByStatus(page, status);
+        List<Appointment> appointmentList = new ArrayList<>();
+        for(Appointment appointment : models){
+
+            if(appointment.getCustomerId() == customer.getId()){
+                appointmentList.add(appointment);
+            }
+        }
+        page.setRecords(appointmentList);
+        return SuccessTip.create(page);
+
+    }
+
+    /*
+    *   queryUserAppointment
+    * */
+/*    @GetMapping("/users")
+    public Tip queryUserAppointment(Page page,
+                                    @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
+                                    @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize
+    ) {
+        long userId = JWTKit.getUserId(getHttpServletRequest());
+        Customer customer = pathService.queryCustomerByUserId(userId);
+        if (customer == null) {
+            throw new BusinessException(BizExceptionEnum.SERVER_ERROR.getCode(), "customer not found.");
+        }
+        page.setSize(pageSize);
+        page.setCurrent(pageNum);
+        List<AppointmentModel> models = domainQueryService.queryAppointmentByCustomerId(page, customer.getId());
+        page.setRecords(models);
+        return SuccessTip.create(page);
+
+    }*/
+
     /*
    *   CRUD about Appointment
    * */
     @PostMapping
-    public Tip createAppointment(@Valid @RequestBody Appointment appointment){
+    public Tip createAppointment(@Valid @RequestBody Appointment appointment) {
         Long userId = JWTKit.getUserId(getHttpServletRequest());
         Customer customer = pathService.queryCustomerByUserId(userId);
         if (customer == null) {
-            throw new BusinessException(BizExceptionEnum.SERVER_ERROR.getCode(),"customer not found.");
+            throw new BusinessException(BizExceptionEnum.SERVER_ERROR.getCode(), "customer not found.");
         }
         Studio studio = studioService.retrieveMaster(appointment.getStudioId());
         if (studio == null) {
-            throw new BusinessException(BizExceptionEnum.SERVER_ERROR.getCode(),"studio not found.");
+            throw new BusinessException(BizExceptionEnum.SERVER_ERROR.getCode(), "studio not found.");
         }
         appointment.setCustomerName(customer.getName());
         appointment.setCustomerId(customer.getId());
@@ -161,43 +186,45 @@ public class AppointmentEndpoint extends BaseController{
     }
 
     @PutMapping
-    public Tip updateAppointment(@Valid@RequestBody Appointment appointment){
+    public Tip updateAppointment(@Valid @RequestBody Appointment appointment) {
         long userId = JWTKit.getUserId(getHttpServletRequest());
         Customer customer = pathService.queryCustomerByUserId(userId);
-        if((appointment.getCustomerId() == customer.getId() && appointment.getStatus() != AppointmentStatus.DONE.toString())
-                || ShiroKit.hasPermission(AdminPermission.EDIT)) {
+        if ((appointment.getCustomerId() == customer.getId() && !(appointment.getStatus().equals(AppointmentStatus.DONE.toString()))
+                || ShiroKit.hasPermission(AdminPermission.EDIT))) {
             return SuccessTip.create(appointmentService.updateMaster(appointment));
-        }else {
-            throw new BusinessException(BizExceptionEnum.OUT_OF_RANGE.getCode(),"no permission");
+        } else {
+            throw new BusinessException(BizExceptionEnum.OUT_OF_RANGE.getCode(), "no permission");
         }
     }
+
     @GetMapping("/{id}")
-    public Tip showAppointmentModel(@PathVariable long id){
+    public Tip showAppointmentModel(@PathVariable long id) {
         long userId = JWTKit.getUserId(getHttpServletRequest());
         Customer customer = pathService.queryCustomerByUserId(userId);
         if (customer == null) {
             throw new BusinessException(BizExceptionEnum.SERVER_ERROR.getCode(), "customer not found.");
         }
         AppointmentModel result = pathService.appointmentDetails(id);
-        if (result.getCustomerId() == customer.getId() || ShiroKit.hasPermission(AdminPermission.QUERY)){
+        if (result.getCustomerId() == customer.getId() || ShiroKit.hasPermission(AdminPermission.QUERY)) {
             return SuccessTip.create(result);
         }
-        throw new  BusinessException(BizExceptionEnum.NO_PERMISSION.getCode(),"no permission to show customer appointment!");
+        throw new BusinessException(BizExceptionEnum.NO_PERMISSION.getCode(), "no permission to show customer appointment!");
 
     }
+
     @DeleteMapping("/{id}")
-    public Tip deleteAppointment(@PathVariable long id){
+    public Tip deleteAppointment(@PathVariable long id) {
         long userId = JWTKit.getUserId(getHttpServletRequest());
         Customer customer = pathService.queryCustomerByUserId(userId);
         if (customer == null) {
-            throw new BusinessException(BizExceptionEnum.SERVER_ERROR.getCode(),"customer not found.");
+            throw new BusinessException(BizExceptionEnum.SERVER_ERROR.getCode(), "customer not found.");
         }
         Appointment appointment = appointmentService.retrieveMaster(id);
-        if (appointment.getCustomerId() == customer.getId() || ShiroKit.hasPermission(AdminPermission.EDIT)){
+        if (appointment.getCustomerId() == customer.getId() || ShiroKit.hasPermission(AdminPermission.EDIT)) {
             Integer result = appointmentService.deleteMaster(id);
             return SuccessTip.create(result);
-        }else{
-            throw new BusinessException(BizExceptionEnum.NO_PERMISSION.getCode(),"no permission to delete customer appointment!");
+        } else {
+            throw new BusinessException(BizExceptionEnum.NO_PERMISSION.getCode(), "no permission to delete customer appointment!");
         }
 
     }

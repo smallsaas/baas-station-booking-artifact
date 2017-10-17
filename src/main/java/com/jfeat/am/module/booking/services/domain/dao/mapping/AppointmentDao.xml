@@ -24,4 +24,17 @@
         </if>
 
     </select>
+
+
+    <select id="queryAppointmentByStatus" resultType="AppointmentModel">
+    SELECT emb_appointment.*
+    FROM emb_appointment
+    WHERE 1=1
+    <if test="status != null and status != ''">
+        AND emb_appointment.status LIKE CONCAT('%',#{status},'%')
+    </if>
+    </select>
+
+
+
 </mapper>

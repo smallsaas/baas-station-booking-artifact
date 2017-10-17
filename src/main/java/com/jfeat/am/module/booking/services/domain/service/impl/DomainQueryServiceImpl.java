@@ -9,6 +9,7 @@ import com.baomidou.mybatisplus.plugins.Page;
 import com.jfeat.am.module.booking.services.domain.dao.AppointmentDao;
 import com.jfeat.am.module.booking.services.domain.dao.StudioDao;
 import com.jfeat.am.module.booking.services.domain.dao.StudioProductDao;
+import com.jfeat.am.module.booking.services.domain.model.AppointmentModel;
 import com.jfeat.am.module.booking.services.domain.model.StudioModel;
 import com.jfeat.am.module.booking.services.domain.model.StudioProductModel;
 import com.jfeat.am.module.booking.services.domain.service.DomainQueryService;
@@ -17,11 +18,13 @@ import com.jfeat.am.module.booking.services.persistence.model.*;
 
 
 import com.jfeat.am.module.booking.services.service.crud.CustomerService;
+import com.jfeat.am.module.booking.services.service.path.PathService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -53,6 +56,8 @@ public class DomainQueryServiceImpl implements DomainQueryService {
 
     @Resource
     ProductsPhotosMapper productsPhotosMapper;
+    @Resource
+    PathService pathService;
 
     /*
     *   queryStudioById
@@ -87,9 +92,26 @@ public class DomainQueryServiceImpl implements DomainQueryService {
     /*
     *   queryAppointmentByUserId
     * */
-    public List<Appointment> queryAppointmentByCustomerId(Page<Appointment> page, long customerId) {
-        List<Appointment> appointments = appointmentMapper.selectList(new EntityWrapper<Appointment>().eq("customer_id", customerId));
-        return appointments;
+    public List<AppointmentModel> queryAppointmentByCustomerId(Page<AppointmentModel> page, long customerId) {
+
+        List<Appointment> appointments = appointmentMapper.selectPage(page,new EntityWrapper<Appointment>().eq("customer_id", customerId));
+        List<AppointmentModel> models = new ArrayList<>();
+        for(Appointment appointment:appointments){
+            models.add(pathService.appointmentDetails(appointment.getId()));
+        }
+        page.setRecords(models);
+        return models;
+    }
+
+
+
+    /*
+    *       queryAppointmentByStatus  only show user data
+    * */
+    public List<AppointmentModel> queryAppointmentByStatus(Page<AppointmentModel> page,
+                                                String status){
+        /*List<Appointment> appointments = appointmentDao.queryAppointmentByStatus(page,status);*/
+       return appointmentDao.queryAppointmentByStatus(page,status);
     }
 
     /*
