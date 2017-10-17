@@ -35,7 +35,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.validation.Valid;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -71,6 +70,17 @@ public class AppointmentEndpoint extends BaseController {
 
     public void setWechatPushOrder(boolean wechatPushOrder) {
         this.wechatPushOrder = wechatPushOrder;
+    }
+
+    @GetMapping("/admin/{id}")
+    @Permission(AdminPermission.EDIT)
+    public Tip queryAppointment(@PathVariable long id) {
+        return SuccessTip.create(appointmentService.retrieveMaster(id));
+    }
+    @PutMapping("/admin")
+    @Permission(AdminPermission.EDIT)
+    public Tip editAppointment(@Valid @RequestBody Appointment appointment) {
+        return SuccessTip.create(appointmentService.updateMaster(appointment));
     }
 
     /*
@@ -182,13 +192,14 @@ public class AppointmentEndpoint extends BaseController {
     public Tip updateAppointment(@Valid @RequestBody Appointment appointment) {
         long userId = JWTKit.getUserId(getHttpServletRequest());
         Customer customer = pathService.queryCustomerByUserId(userId);
-        if ((appointment.getCustomerId() == customer.getId() && !(appointment.getStatus().equals(AppointmentStatus.DONE.toString()))
-                || ShiroKit.hasPermission(AdminPermission.EDIT))) {
+        if ((appointment.getCustomerId().equals(customer.getId()) && !(appointment.getStatus().equals(AppointmentStatus.DONE.toString()))
+               )) {
             return SuccessTip.create(appointmentService.updateMaster(appointment));
         } else {
             throw new BusinessException(BizExceptionEnum.OUT_OF_RANGE.getCode(), "no permission");
         }
     }
+
 
     @GetMapping("/{id}")
     public Tip showAppointmentModel(@PathVariable long id) {

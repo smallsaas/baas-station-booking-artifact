@@ -112,7 +112,11 @@ public class DomainQueryServiceImpl implements DomainQueryService {
                                                            long customerId,
                                                 String status){
         /*List<Appointment> appointments = appointmentDao.queryAppointmentByStatus(page,status);*/
-        List<AppointmentModel> appointmentModelList = appointmentDao.queryAppointmentByStatus(page,customerId,status);
+        List<AppointmentModel> appointmentModelList =  appointmentDao.queryAppointmentByStatus(page,customerId,status);
+        for(AppointmentModel appointment:appointmentModelList){
+            Studio studio = studioMapper.selectById(appointment.getStudioId());
+            appointment.setStudio(studio);
+        }
        return appointmentModelList;
     }
 
