@@ -50,6 +50,7 @@ public interface DomainQueryService {
     *       queryAppointmentByStatus  only show user data
     * */
     List<AppointmentModel> queryAppointmentByStatus(Page<AppointmentModel> page,
+                                                    long customerId,
                                                String status);
 
     /*

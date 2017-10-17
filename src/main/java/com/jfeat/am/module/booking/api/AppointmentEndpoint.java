@@ -49,7 +49,7 @@ import java.util.Map;
 @ConfigurationProperties(prefix = "am")
 public class AppointmentEndpoint extends BaseController {
 
-    @Resource
+    @Resource()
     AppointmentService appointmentService;
     @Resource
     DomainQueryService domainQueryService;
@@ -111,15 +111,9 @@ public class AppointmentEndpoint extends BaseController {
             throw new BusinessException(BizExceptionEnum.SERVER_ERROR.getCode(), "customer not found.");
         }
 //        List<Appointment> appointments = domainQueryService.queryAppointmentByStatus(page, status);
-        List<AppointmentModel> models = domainQueryService.queryAppointmentByStatus(page, status);
-        List<Appointment> appointmentList = new ArrayList<>();
-        for(Appointment appointment : models){
+        List<AppointmentModel> models = domainQueryService.queryAppointmentByStatus(page,customer.getId(),status);
 
-            if(appointment.getCustomerId() == customer.getId()){
-                appointmentList.add(appointment);
-            }
-        }
-        page.setRecords(appointmentList);
+        page.setRecords(models);
         return SuccessTip.create(page);
 
     }
@@ -178,8 +172,7 @@ public class AppointmentEndpoint extends BaseController {
                     tenantId,
                     customer.getOpenid(),
                     IpKit.getRealIp(getHttpServletRequest()),
-                    wechatConfig.getHost() + "/api/pub/wpay/notify/" + wechatConfig.getAppId(),
-                    true);
+                    wechatConfig.getHost() + "/api/pub/wpay/notify/" + wechatConfig.getAppId());
             logger.debug("push order result: {}", map);
         }
         return SuccessTip.create(map);

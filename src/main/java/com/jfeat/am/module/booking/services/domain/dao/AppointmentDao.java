@@ -18,6 +18,7 @@ public interface AppointmentDao{
                                        @Param("phone") Long phone);
 
     List<AppointmentModel> queryAppointmentByStatus(Page<AppointmentModel> page,
+                                                    @Param("customerId")long customerId,
                                        @Param("status") String status);
 }
 

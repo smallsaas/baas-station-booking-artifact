@@ -109,9 +109,11 @@ public class DomainQueryServiceImpl implements DomainQueryService {
     *       queryAppointmentByStatus  only show user data
     * */
     public List<AppointmentModel> queryAppointmentByStatus(Page<AppointmentModel> page,
+                                                           long customerId,
                                                 String status){
         /*List<Appointment> appointments = appointmentDao.queryAppointmentByStatus(page,status);*/
-       return appointmentDao.queryAppointmentByStatus(page,status);
+        List<AppointmentModel> appointmentModelList = appointmentDao.queryAppointmentByStatus(page,customerId,status);
+       return appointmentModelList;
     }
 
     /*

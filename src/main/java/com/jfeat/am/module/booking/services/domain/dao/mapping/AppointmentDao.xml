@@ -30,6 +30,7 @@
     SELECT emb_appointment.*
     FROM emb_appointment
     WHERE 1=1
+        AND emb_appointment.customer_id = #{customerId}
     <if test="status != null and status != ''">
         AND emb_appointment.status LIKE CONCAT('%',#{status},'%')
     </if>
