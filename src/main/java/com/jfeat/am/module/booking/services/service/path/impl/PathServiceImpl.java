@@ -3,6 +3,7 @@ package com.jfeat.am.module.booking.services.service.path.impl;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.jfeat.am.module.booking.services.domain.dao.CollectDao;
 import com.jfeat.am.module.booking.services.domain.dao.CustomerDao;
@@ -161,11 +162,14 @@ public class PathServiceImpl implements PathService {
     /*
     *  通过店铺ID跟customerID查找是否收藏了店铺
     * */
-    public List<StudioCollect> queryStudioCollect(long studioId , long customerId){
-        Map<String,Object> map = new HashMap<>();
+    public Integer queryStudioCollect(long studioId , long customerId){
+        /*Map<String,Object> map = new HashMap<>();
         map.put("studio_id",studioId);
         map.put("customer_id",customerId);
-        return studioCollectMapper.selectByMap(map);
+        return studioCollectMapper.selectByMap(map);*/
+
+        return studioCollectMapper.selectCount(new EntityWrapper<StudioCollect>().eq("studio_id",studioId)
+                .eq("customer_id",customerId));
     }
 
     /*
