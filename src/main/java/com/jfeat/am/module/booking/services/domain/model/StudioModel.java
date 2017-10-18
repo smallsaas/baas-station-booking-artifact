@@ -12,6 +12,7 @@ public class StudioModel extends Studio {
     List<StudioProduct> products;
     List<Doctor> doctors;
     List<StudiosPhotos> photos;
+    StudioCollect collect;
 
     public List<ServiceType> getTypes() {
         return types;
@@ -48,7 +49,14 @@ public class StudioModel extends Studio {
         this.doctors = doctors;
     }
 
-//    public List<StudioService> getServices() {
+    public StudioCollect getCollect() {
+        return collect;
+    }
+
+    public void setCollect(StudioCollect collect) {
+        this.collect = collect;
+    }
+    //    public List<StudioService> getServices() {
 //        return services;
 //    }
 //

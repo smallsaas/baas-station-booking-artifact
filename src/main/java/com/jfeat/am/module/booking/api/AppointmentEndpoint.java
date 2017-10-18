@@ -128,6 +128,7 @@ public class AppointmentEndpoint extends BaseController {
 
     }
 
+
     /*
     *   queryUserAppointment
     * */
@@ -197,14 +198,14 @@ public class AppointmentEndpoint extends BaseController {
         System.out.println(appointment);
         System.out.println(appointments);
         if ((appointments.getStatus().compareTo(AppointmentStatus.DONE.toString())==0)){
-            throw new BusinessException(BizExceptionEnum.NO_PERMISSION.getCode(), "测试");
+            throw new BusinessException(BizExceptionEnum.NO_PERMISSION.getCode(), "no permission");
         }
         if((appointments.getStatus().compareTo(AppointmentStatus.PAY_PENDING.toString())==0)
                 && !(appointment.getStatus().compareTo(AppointmentStatus.CANCEL.toString())==0)){
-            throw new BusinessException(BizExceptionEnum.NO_PERMISSION.getCode(), "哪里");
+            throw new BusinessException(BizExceptionEnum.NO_PERMISSION.getCode(), "no permission");
             }
         if (!(appointments.getCustomerId().equals(customer.getId()))){
-            throw new BusinessException(BizExceptionEnum.NO_PERMISSION.getCode(), "抛出");
+            throw new BusinessException(BizExceptionEnum.NO_PERMISSION.getCode(), "no permission");
         }
         return SuccessTip.create(appointmentService.updateMaster(appointment));
 

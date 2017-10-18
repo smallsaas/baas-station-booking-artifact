@@ -4,12 +4,10 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
-import com.jfeat.am.common.constant.tips.ErrorTip;
 import com.jfeat.am.module.booking.services.domain.dao.CollectDao;
 import com.jfeat.am.module.booking.services.domain.dao.CustomerDao;
 import com.jfeat.am.module.booking.services.domain.definition.ServiceCode;
 import com.jfeat.am.module.booking.services.domain.model.AppointmentModel;
-import com.jfeat.am.module.booking.services.domain.model.CustomerModel;
 import com.jfeat.am.module.booking.services.domain.model.StudioCollectModel;
 import com.jfeat.am.module.booking.services.persistence.mapper.*;
 import com.jfeat.am.module.booking.services.persistence.model.*;
@@ -17,7 +15,6 @@ import com.jfeat.am.module.booking.services.service.path.PathService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -160,6 +157,15 @@ public class PathServiceImpl implements PathService {
             map.put("customer_id",studioCollect.getCustomerId());
             return studioCollectMapper.deleteByMap(map);
         }
+    }
+    /*
+    *  通过店铺ID跟customerID查找是否收藏了店铺
+    * */
+    public List<StudioCollect> queryStudioCollect(long studioId , long customerId){
+        Map<String,Object> map = new HashMap<>();
+        map.put("studio_id",studioId);
+        map.put("customer_id",customerId);
+        return studioCollectMapper.selectByMap(map);
     }
 
     /*

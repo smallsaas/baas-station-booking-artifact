@@ -15,6 +15,11 @@ import java.util.List;
  * Created by Administrator on 2017/10/9.
  */
 public interface PathService {
+
+    /*
+    *  通过店铺ID跟customerID查找是否收藏了店铺
+    * */
+    public List<StudioCollect> queryStudioCollect(long studioId , long customerId);
     /*
     *   delete Type
     * */

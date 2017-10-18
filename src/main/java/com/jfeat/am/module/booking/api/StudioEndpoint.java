@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.validation.Valid;
 import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -58,6 +59,13 @@ public class StudioEndpoint extends BaseController {
     *   getAllStudio
     *
     * */
+    @GetMapping("/test/{id}")
+    public Tip queryCollect(@PathVariable long id){
+        long userId = JWTKit.getUserId(getHttpServletRequest());
+        Customer customer = pathService.queryCustomerByUserId(userId);
+        return SuccessTip.create(pathService.queryStudioCollect(id,customer.getId()));
+
+    }
     @GetMapping("/all")
     public Tip allStudio(Page page,
                          @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
@@ -184,8 +192,14 @@ public class StudioEndpoint extends BaseController {
 
     @GetMapping("/{id}")
     public Tip showStudioModel(@PathVariable long id) {
+        Map map = new HashMap<>();
+        long userId = JWTKit.getUserId(getHttpServletRequest());
+        Customer customer = pathService.queryCustomerByUserId(userId);
+        List<StudioCollect> collect = pathService.queryStudioCollect(id,customer.getId());
         Object result = domainQueryService.showStudioModel(id);
-        return SuccessTip.create(result);
+        map.put("collect",collect);
+        map.put("result",result);
+        return SuccessTip.create(map);
     }
 
     @DeleteMapping("/{id}")
