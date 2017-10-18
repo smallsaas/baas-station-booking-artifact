@@ -194,17 +194,17 @@ public class AppointmentEndpoint extends BaseController {
         Customer customer = pathService.queryCustomerByUserId(userId);
         Appointment appointments = appointmentService.retrieveMaster(id);
         appointment.setId(id);
-        if ((appointments.getStatus().equals(AppointmentStatus.DONE.toString()))){
-
-            throw new BusinessException(BizExceptionEnum.NO_PERMISSION.getCode(), "no permission");
-
+        System.out.println(appointment);
+        System.out.println(appointments);
+        if ((appointments.getStatus().compareTo(AppointmentStatus.DONE.toString())==0)){
+            throw new BusinessException(BizExceptionEnum.NO_PERMISSION.getCode(), "测试");
         }
-        if((appointments.getStatus().equals(AppointmentStatus.PAY_PENDING.toString()))
-                && !(appointment.getStatus().equals(AppointmentStatus.CANCEL))){
-            throw new BusinessException(BizExceptionEnum.NO_PERMISSION.getCode(), "no permission");
+        if((appointments.getStatus().compareTo(AppointmentStatus.PAY_PENDING.toString())==0)
+                && !(appointment.getStatus().compareTo(AppointmentStatus.CANCEL.toString())==0)){
+            throw new BusinessException(BizExceptionEnum.NO_PERMISSION.getCode(), "哪里");
             }
         if (!(appointments.getCustomerId().equals(customer.getId()))){
-            throw new BusinessException(BizExceptionEnum.NO_PERMISSION.getCode(), "no permission");
+            throw new BusinessException(BizExceptionEnum.NO_PERMISSION.getCode(), "抛出");
         }
         return SuccessTip.create(appointmentService.updateMaster(appointment));
 
