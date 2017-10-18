@@ -61,9 +61,10 @@ public class CollectEndpoint extends BaseController {
                             @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
                             @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize) {
         long userId = JWTKit.getUserId(getHttpServletRequest());
+        Customer customer = pathService.queryCustomerByUserId(userId);
         page.setCurrent(pageNum);
         page.setSize(pageSize);
-        List<StudioCollectModel> model = pathService.queryUserCollects(page,userId);
+        List<StudioCollectModel> model = pathService.queryUserCollects(page,customer.getId());
         page.setRecords(model);
         return SuccessTip.create(page);
     }

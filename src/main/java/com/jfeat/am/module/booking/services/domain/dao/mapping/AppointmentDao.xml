@@ -27,15 +27,14 @@
 
 
     <select id="queryAppointmentByStatus" resultType="AppointmentModel">
-    SELECT emb_appointment.*
-    FROM emb_appointment
+    SELECT A.*
+    FROM emb_appointment A
     WHERE 1=1
-        AND emb_appointment.customer_id = #{customerId}
+        AND A.customer_id = #{customerId}
     <if test="status != null and status != ''">
-        AND emb_appointment.status LIKE CONCAT('%',#{status},'%')
+        AND A.status LIKE CONCAT('%',#{status},'%')
     </if>
+        order by A.create_time DESC
     </select>
-
-
 
 </mapper>
