@@ -1,11 +1,9 @@
 package com.jfeat.am.module.booking.api;
 
-import com.jfeat.am.common.constant.tips.ErrorTip;
 import com.jfeat.am.common.constant.tips.SuccessTip;
 import com.jfeat.am.common.constant.tips.Tip;
 import com.jfeat.am.common.controller.BaseController;
 import com.jfeat.am.core.jwt.JWTKit;
-import com.jfeat.am.module.booking.services.domain.model.CustomerModel;
 import com.jfeat.am.module.booking.services.service.crud.CustomerService;
 import com.jfeat.am.module.booking.services.persistence.model.Customer;
 

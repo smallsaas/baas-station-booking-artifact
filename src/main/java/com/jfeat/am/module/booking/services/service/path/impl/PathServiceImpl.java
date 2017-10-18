@@ -3,11 +3,14 @@ package com.jfeat.am.module.booking.services.service.path.impl;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.plugins.Page;
 import com.jfeat.am.common.constant.tips.ErrorTip;
+import com.jfeat.am.module.booking.services.domain.dao.CollectDao;
 import com.jfeat.am.module.booking.services.domain.dao.CustomerDao;
 import com.jfeat.am.module.booking.services.domain.definition.ServiceCode;
 import com.jfeat.am.module.booking.services.domain.model.AppointmentModel;
 import com.jfeat.am.module.booking.services.domain.model.CustomerModel;
+import com.jfeat.am.module.booking.services.domain.model.StudioCollectModel;
 import com.jfeat.am.module.booking.services.persistence.mapper.*;
 import com.jfeat.am.module.booking.services.persistence.model.*;
 import com.jfeat.am.module.booking.services.service.path.PathService;
@@ -42,6 +45,8 @@ public class PathServiceImpl implements PathService {
     StudioMapper studioMapper;
     @Resource
     AppointmentMapper appointmentMapper;
+    @Resource
+    CollectDao collectDao;
 
     public Integer addStudioService(Long studioId, List<Long> ids) {
         List<StudioService> studioServices = studioServiceMapper.selectList(new EntityWrapper<StudioService>().eq("studio_id", studioId));
@@ -92,18 +97,36 @@ public class PathServiceImpl implements PathService {
     /*
     *   get user Info
     * */
-    public CustomerModel getMoreInfo(long userId) {
+   /* public CustomerModel getMoreInfo(long userId) {
         Customer customer = customerDao.queryCustomerByUserId(userId);
-        JSONObject customerObj = JSON.parseObject(JSON.toJSONString(customer));
+        List<StudioCollect> collects =  studioCollectMapper.selectList(new EntityWrapper<StudioCollect>().eq("customer_id", customer.getId()));
+        List<CustomerModel> models = new ArrayList<>();
+        for(StudioCollect collect:collects){
+            Studio studio = studioMapper.selectById(collect.getStudioId());
+            *//*models.set*//*
+
+        }
+
+
+       *//* JSONObject customerObj = JSON.parseObject(JSON.toJSONString(customer));
         List<StudioCollect> favors = studioCollectMapper.selectList(new EntityWrapper<StudioCollect>().eq("customer_id", customer.getId()));
-        List<Studio> studioList = new ArrayList<>();
         for(StudioCollect studioCollect:favors){
             Studio studios = studioMapper.selectById(studioCollect.getStudioId());
-            studioList.add(studios);
+            customerObj.put("studios",studios);
         }
-        customerObj.put("studios",studioList);
-        CustomerModel model = JSON.parseObject(customerObj.toJSONString(), CustomerModel.class);
+        CustomerModel model = JSON.parseObject(customerObj.toJSONString(), CustomerModel.class);*//*
         return model;
+    }*/
+
+    public List<StudioCollectModel> queryUserCollects(Page<StudioCollectModel> page,
+                                                           long customerId){
+        /*List<Appointment> appointments = appointmentDao.queryAppointmentByStatus(page,status);*/
+        List<StudioCollectModel> collectModels =  collectDao.queryUserCollects(page,customerId);
+        for(StudioCollectModel model:collectModels){
+            Studio studio = studioMapper.selectById(model.getStudioId());
+            model.setStudio(studio);
+        }
+        return collectModels;
     }
 
     /*

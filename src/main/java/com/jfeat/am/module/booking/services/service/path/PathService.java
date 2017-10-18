@@ -1,8 +1,10 @@
 package com.jfeat.am.module.booking.services.service.path;
 
+import com.baomidou.mybatisplus.plugins.Page;
 import com.jfeat.am.module.booking.api.bean.Ids;
 import com.jfeat.am.module.booking.services.domain.model.AppointmentModel;
 import com.jfeat.am.module.booking.services.domain.model.CustomerModel;
+import com.jfeat.am.module.booking.services.domain.model.StudioCollectModel;
 import com.jfeat.am.module.booking.services.persistence.model.Customer;
 import com.jfeat.am.module.booking.services.persistence.model.StudioCollect;
 import com.jfeat.am.module.booking.services.persistence.model.StudioService;
@@ -31,7 +33,9 @@ public interface PathService {
     /*
    *   get user Info
    * */
-    CustomerModel getMoreInfo(long userId);
+//    CustomerModel getMoreInfo(long userId);
+    public List<StudioCollectModel> queryUserCollects(Page<StudioCollectModel> page,
+                                                      long customerId);
 
     /*
     *   queryCustomerByUserId
