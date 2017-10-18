@@ -188,10 +188,13 @@ public class AppointmentEndpoint extends BaseController {
         return SuccessTip.create(map);
     }
 
-    @PutMapping
-    public Tip updateAppointment(@Valid @RequestBody Appointment appointment) {
+    @PutMapping("/{id}")
+    public Tip updateAppointment(@PathVariable long id,@Valid @RequestBody Appointment appointment) {
         long userId = JWTKit.getUserId(getHttpServletRequest());
-        if (!(appointment.getStatus().equals(AppointmentStatus.DONE.toString()))
+        Customer customer = pathService.queryCustomerByUserId(userId);
+        Appointment appointments = appointmentService.retrieveMaster(id);
+        appointment.setId(id);
+        if (appointments.getCustomerId().equals(customer.getId()) && !(appointments.getStatus().equals(AppointmentStatus.DONE.toString()))
                ) {
             return SuccessTip.create(appointmentService.updateMaster(appointment));
         } else {
