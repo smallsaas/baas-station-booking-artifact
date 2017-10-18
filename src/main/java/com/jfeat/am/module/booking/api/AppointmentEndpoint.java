@@ -188,12 +188,11 @@ public class AppointmentEndpoint extends BaseController {
         return SuccessTip.create(map);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping
     public Tip updateAppointment(@Valid @RequestBody Appointment appointment) {
         long userId = JWTKit.getUserId(getHttpServletRequest());
-        Customer customer = pathService.queryCustomerByUserId(userId);
-        if ((appointment.getCustomerId().equals(customer.getId()) && !(appointment.getStatus().equals(AppointmentStatus.DONE.toString()))
-               )) {
+        if (!(appointment.getStatus().equals(AppointmentStatus.DONE.toString()))
+               ) {
             return SuccessTip.create(appointmentService.updateMaster(appointment));
         } else {
             throw new BusinessException(BizExceptionEnum.OUT_OF_RANGE.getCode(), "no permission");
