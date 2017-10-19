@@ -195,6 +195,7 @@ public class StudioEndpoint extends BaseController {
         long userId = JWTKit.getUserId(getHttpServletRequest());
         Customer customer = pathService.queryCustomerByUserId(userId);
         StudioModel result = domainQueryService.showStudioModel(id);
+<<<<<<< HEAD
 
         if(customer != null) {
             List<StudioCollect> collects = pathService.queryStudioCollect(id, customer.getId());
@@ -204,6 +205,12 @@ public class StudioEndpoint extends BaseController {
             }
         }
         //BeanKit.beanToMap(result);
+=======
+        if(customer != null){
+            result.setCollected(pathService.queryStudioCollect(id,customer.getId()));
+        }
+
+>>>>>>> 8f893f5e879d040483bab62694fc9224e5b54d18
         return SuccessTip.create(result);
     }
 

@@ -13,6 +13,16 @@ public class StudioModel extends Studio {
     List<Doctor> doctors;
     List<StudiosPhotos> photos;
     StudioCollect collect;
+    long collected;
+
+
+    public long getCollected() {
+        return collected;
+    }
+
+    public void setCollected(long collected) {
+        this.collected = collected;
+    }
 
     public List<ServiceType> getTypes() {
         return types;
