@@ -11,6 +11,7 @@ import com.jfeat.am.common.controller.BaseController;
 
 import com.jfeat.am.common.crud.error.CRUDException;
 import com.jfeat.am.core.jwt.JWTKit;
+import com.jfeat.am.core.support.BeanKit;
 import com.jfeat.am.module.booking.api.bean.Ids;
 import com.jfeat.am.module.booking.services.domain.definition.AdminPermission;
 import com.jfeat.am.module.booking.services.domain.definition.StudioStick;
@@ -30,7 +31,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.validation.Valid;
 import java.math.BigDecimal;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -59,13 +59,13 @@ public class StudioEndpoint extends BaseController {
     *   getAllStudio
     *
     * */
-    @GetMapping("/test/{id}")
+ /*   @GetMapping("/test/{id}")
     public Tip queryCollect(@PathVariable long id){
         long userId = JWTKit.getUserId(getHttpServletRequest());
         Customer customer = pathService.queryCustomerByUserId(userId);
         return SuccessTip.create(pathService.queryStudioCollect(id,customer.getId()));
 
-    }
+    }*/
     @GetMapping("/all")
     public Tip allStudio(Page page,
                          @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
@@ -192,18 +192,24 @@ public class StudioEndpoint extends BaseController {
 
     @GetMapping("/{id}")
     public Tip showStudioModel(@PathVariable long id) {
-        Map map = new HashMap<>();
         long userId = JWTKit.getUserId(getHttpServletRequest());
         Customer customer = pathService.queryCustomerByUserId(userId);
-        List<StudioCollect> collect = pathService.queryStudioCollect(id,customer.getId());
-        Object result = domainQueryService.showStudioModel(id);
-        map.put("collect",collect);
-        map.put("result",result);
-        return SuccessTip.create(map);
+        StudioModel result = domainQueryService.showStudioModel(id);
+
+        if(customer != null) {
+            List<StudioCollect> collects = pathService.queryStudioCollect(id, customer.getId());
+            if (collects != null && collects.size() == 1) {
+                StudioCollect collect = collects.get(0);
+                result.setCollect(collect);
+            }
+        }
+        //BeanKit.beanToMap(result);
+        return SuccessTip.create(result);
     }
 
+
     @DeleteMapping("/{id}")
-    @Permission(AdminPermission.DELETE)
+//    @Permission(AdminPermission.DELETE)
     public Tip deleteStudio(@PathVariable long id) {
 
             return SuccessTip.create(sDservice.deleteMaster(id));

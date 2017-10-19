@@ -5,6 +5,8 @@ import com.jfeat.am.common.constant.tips.ErrorTip;
 import com.jfeat.am.common.crud.CRUDFilter;
 import com.jfeat.am.common.crud.CRUDObject;
 import com.jfeat.am.common.crud.CRUDServiceOverSlave;
+import com.jfeat.am.common.exception.BizExceptionEnum;
+import com.jfeat.am.common.exception.BusinessException;
 import com.jfeat.am.module.booking.api.bean.Ids;
 import com.jfeat.am.module.booking.services.domain.definition.ServiceCode;
 import com.jfeat.am.module.booking.services.domain.model.StudioModel;
@@ -92,7 +94,7 @@ public class StudioOverProductServiceImpl implements StudioOverProductService, C
         if (studioProduct == null || studioProduct.size() == 0) {
             return studioMapper.deleteById(id);
         }else{
-            return ServiceCode.NOT_ALLOW_TO_DELETE.getCode();
+            throw new BusinessException(2000,"请先删除该店铺下面的所有店铺！");
         }
 
     }
