@@ -178,10 +178,12 @@ public class DomainQueryServiceImpl implements DomainQueryService {
 //        Map map = new HashMap<>();
         List<StudioProduct> products = studioProductMapper.selectList(new EntityWrapper<StudioProduct>().eq("studio_id", id));
         List<StudiosPhotos> photos = studiosPhotosMapper.selectList(new EntityWrapper<StudiosPhotos>().eq("studio_id", id));
+        Integer sales = appointmentMapper.selectCount(new EntityWrapper<Appointment>().eq("studio_id",id));
 //        map.put("products", products);
 //        map.put("photos", photos);
 //        map.put("studio",studio);
         model.setPhotos(photos);
+        model.setSales(sales);
         model.setProducts(products);
         return model;
     }

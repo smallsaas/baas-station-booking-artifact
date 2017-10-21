@@ -14,7 +14,15 @@ public class StudioModel extends Studio {
     List<StudiosPhotos> photos;
     StudioCollect collect;
     long collected;
+    long sales;
 
+    public long getSales() {
+        return sales;
+    }
+
+    public void setSales(long sales) {
+        this.sales = sales;
+    }
 
     public long getCollected() {
         return collected;
