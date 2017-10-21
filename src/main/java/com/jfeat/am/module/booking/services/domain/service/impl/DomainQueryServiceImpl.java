@@ -165,9 +165,10 @@ public class DomainQueryServiceImpl implements DomainQueryService {
     * */
 
     public List<Map<String, Object>> queryStudioBySite(Page<Studio> page,
-                                                       String city, BigDecimal latitude, BigDecimal longitude
+                                                       String city,
+                                                       String typeName,BigDecimal latitude, BigDecimal longitude
     ) {
-        return studioDao.queryStudioBySite(page, city, latitude, longitude);
+        return studioDao.queryStudioBySite(page, city,typeName, latitude, longitude);
     }
 
     /*

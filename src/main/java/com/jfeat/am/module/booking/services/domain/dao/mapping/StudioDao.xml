@@ -76,7 +76,7 @@
 
 
     <select id="queryStudioBySite" resultType="Map">
-        SELECT
+        SELECT emb_service_type.name AS typeName,
         emb_studio.*, round(
         6378.138 * 2 * asin(
         sqrt(
@@ -100,9 +100,16 @@
         ) as distance
         FROM
         emb_studio
+        LEFT JOIN emb_studio_service
+        ON emb_studio.id = emb_studio_service.studio_id
+        left JOIN emb_service_type
+        ON emb_service_type.id = emb_studio_service.type_id
         WHERE 1=1
         <if test="city != null and city != ''">
             AND emb_studio.city LIKE CONCAT('%',#{city},'%')
+        </if>
+        <if test="typeName != null and typeName != ''">
+            AND emb_service_type.name LIKE CONCAT('%',#{typeName},'%')
         </if>
         AND emb_studio.is_stick != 'SINK'
         ORDER BY

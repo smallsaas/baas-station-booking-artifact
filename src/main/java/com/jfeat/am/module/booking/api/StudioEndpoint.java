@@ -121,6 +121,7 @@ public class StudioEndpoint extends BaseController {
     *   查找店铺 by ServiceType
     * */
     @GetMapping("/options")
+    @Permission(AdminPermission.QUERY)
     public Tip queryStudioByServiceType(Page page,
                                         @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
                                         @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize,
@@ -153,7 +154,8 @@ public class StudioEndpoint extends BaseController {
     public Tip queryStudioBySite(Page page,
                                  @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
                                  @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize,
-                                 @RequestParam(name = "city", required = false) String city) {
+                                 @RequestParam(name = "city", required = false) String city,
+                                 @RequestParam(name = "typeName", required = false) String typeName) {
         page.setCurrent(pageNum);
         page.setSize(pageSize);
         long userId = JWTKit.getUserId(getHttpServletRequest());
@@ -164,7 +166,7 @@ public class StudioEndpoint extends BaseController {
             latitude = customer.getLatitude();
             longitude = customer.getLongitude();
         }
-        List<Map<String, Object>> studios = domainQueryService.queryStudioBySite(page, city, latitude, longitude);
+        List<Map<String, Object>> studios = domainQueryService.queryStudioBySite(page, city,typeName, latitude, longitude);
         page.setRecords(studios);
 
         return SuccessTip.create(page);
