@@ -74,7 +74,8 @@
         ORDER BY
 
         IF (ISNULL(distance), 1, 0),
-        distance ASC
+        distance ASC,
+        emb_studio.id ASC
     </select>
 
 
@@ -121,7 +122,8 @@
         ORDER BY
 
         IF (ISNULL(distance), 1, 0),
-        distance ASC
+        distance ASC,
+        emb_studio.id ASC
 
     </select>
 
