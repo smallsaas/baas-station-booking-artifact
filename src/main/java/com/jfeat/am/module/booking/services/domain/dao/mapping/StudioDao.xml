@@ -68,6 +68,9 @@
         <if test="stick != null and stick != ''">
             AND emb_studio.is_stick LIKE CONCAT('%',#{stick},'%')
         </if>
+
+        GROUP BY emb_studio.id
+
         ORDER BY
 
         IF (ISNULL(distance), 1, 0),
@@ -112,6 +115,9 @@
             AND emb_service_type.name LIKE CONCAT('%',#{typeName},'%')
         </if>
         AND emb_studio.is_stick != 'SINK'
+
+        GROUP BY emb_studio.id
+
         ORDER BY
 
         IF (ISNULL(distance), 1, 0),
@@ -133,6 +139,8 @@
             AND emb_studio.name LIKE CONCAT('%',#{name},'%')
         </if>
 
+        GROUP BY emb_studio.id
+
     </select>
 
     <select id="allStudio" resultType="Map">
@@ -145,6 +153,7 @@
     left JOIN emb_service_type
     ON emb_service_type.id = emb_studio_service.type_id
     WHERE 1 = 1
+        GROUP BY emb_studio.id
     </select>
 
     <select id="queryStudioByStick" resultType="Studio">
