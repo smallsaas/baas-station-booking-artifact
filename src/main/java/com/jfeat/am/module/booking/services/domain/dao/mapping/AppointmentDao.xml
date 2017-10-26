@@ -7,9 +7,11 @@
     <sql id="Base_Column_List">
         emb_appointment.*
     </sql>
-    <select id="queryAppointment" resultType="Appointment">
+    <select id="queryAppointment" resultType="AppointmentModel">
         SELECT emb_appointment.*
         FROM emb_appointment
+        LEFT JOIN emb_studio
+        ON emb_appointment.studio_id  =  emb_studio.id
         WHERE 1=1
         <if test="status != null and status != ''">
             AND emb_appointment.status LIKE CONCAT('%',#{status},'%')

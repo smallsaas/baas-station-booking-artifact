@@ -12,7 +12,7 @@ import java.util.List;
  * Created by Administrator on 2017/9/15.
  */
 public interface AppointmentDao{
-    List<Appointment> queryAppointment(Page<Appointment> page,
+    List<AppointmentModel> queryAppointment(Page<AppointmentModel> page,
                                        @Param("status") String status,
                                        @Param("studioId") Long studioId,
                                        @Param("phone") Long phone);

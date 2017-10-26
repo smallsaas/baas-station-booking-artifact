@@ -139,11 +139,16 @@ public class DomainQueryServiceImpl implements DomainQueryService {
     /*
     *   查找订单
     * */
-    public List<Appointment> queryAppointment(Page<Appointment> page,
+    public List<AppointmentModel> queryAppointment(Page<AppointmentModel> page,
                                               String status,
                                               Long studioId,
                                               Long phone) {
-        return appointmentDao.queryAppointment(page, status, studioId, phone);
+        List<AppointmentModel> models = appointmentDao.queryAppointment(page, status, studioId, phone);
+        for(AppointmentModel model : models){
+            Studio studio = studioMapper.selectById(model.getStudioId());
+            model.setStudio(studio);
+        }
+        return models;
     }
 
     /*

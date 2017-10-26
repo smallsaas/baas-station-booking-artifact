@@ -73,7 +73,7 @@ public class AppointmentEndpoint extends BaseController {
     }
 
     @GetMapping("/admin/{id}")
-    @Permission(AdminPermission.EDIT)
+    @Permission(AdminPermission.QUERY)
     public Tip queryAppointment(@PathVariable long id) {
         return SuccessTip.create(appointmentService.retrieveMaster(id));
     }
@@ -98,7 +98,7 @@ public class AppointmentEndpoint extends BaseController {
     ) {
         page.setSize(pageSize);
         page.setCurrent(pageNum);
-        List<Appointment> appointments = domainQueryService.queryAppointment(page, status, studioId, phone);
+        List<AppointmentModel> appointments = domainQueryService.queryAppointment(page, status, studioId, phone);
         page.setRecords(appointments);
         return SuccessTip.create(page);
 

@@ -67,7 +67,7 @@ public interface DomainQueryService {
     /**
      * 模糊查找Appointment
      */
-    List<Appointment> queryAppointment(Page<Appointment> page,
+    List<AppointmentModel> queryAppointment(Page<AppointmentModel> page,
                                        String status,
                                        Long studioId,
                                        Long phone);
