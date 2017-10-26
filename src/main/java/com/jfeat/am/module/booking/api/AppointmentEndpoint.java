@@ -75,7 +75,7 @@ public class AppointmentEndpoint extends BaseController {
     @GetMapping("/admin/{id}")
     @Permission(AdminPermission.QUERY)
     public Tip queryAppointment(@PathVariable long id) {
-        return SuccessTip.create(appointmentService.retrieveMaster(id));
+        return SuccessTip.create(pathService.appointmentDetails(id));
     }
     @PutMapping("/admin")
     @Permission(AdminPermission.EDIT)
