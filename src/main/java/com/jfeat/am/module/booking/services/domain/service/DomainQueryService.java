@@ -87,7 +87,7 @@ public interface DomainQueryService {
         *   查找店铺 by site
         * */
     public List<Map<String, Object>> queryStudioBySite(Page<Studio> page,
-                                                       String city,String typeName, BigDecimal latitude, BigDecimal longitude
+                                                       String city,String typeName,String name, BigDecimal latitude, BigDecimal longitude
     );
 
     /*

@@ -115,6 +115,9 @@
         <if test="typeName != null and typeName != ''">
             AND emb_service_type.name LIKE CONCAT('%',#{typeName},'%')
         </if>
+        <if test="name != null and name != ''">
+            AND emb_studio.name LIKE CONCAT('%',#{name},'%')
+        </if>
         AND emb_studio.is_stick != 'SINK'
 
         GROUP BY emb_studio.id
