@@ -108,7 +108,7 @@ CREATE TABLE `emb_studio` (
   `description` varchar(255) NOT NULL COMMENT '描述',
   `work_time` datetime DEFAULT NULL COMMENT '工作时间',
   `fee` decimal(10,2) NOT NULL COMMENT '费用',
-  `studio_site` varchar(20) NOT NULL COMMENT '地址',
+  `studio_site` varchar(255) NOT NULL COMMENT '地址',
   `cover` varchar(255) DEFAULT NULL COMMENT '封面',
   `province` varchar(255) DEFAULT NULL COMMENT '省',
   `city` varchar(255) DEFAULT NULL COMMENT '市',
