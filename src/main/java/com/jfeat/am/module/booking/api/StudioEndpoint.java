@@ -156,16 +156,27 @@ public class StudioEndpoint extends BaseController {
                                  @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize,
                                  @RequestParam(name = "city", required = false) String city,
                                  @RequestParam(name = "typeName", required = false) String typeName,
-                                 @RequestParam(name = "name", required = false) String name) {
+                                 @RequestParam(name = "name", required = false) String name,
+                                 @RequestParam(name = "latitude",required = true) String  lat,
+                                 @RequestParam(name = "latitude",required = true)String lng) {
         page.setCurrent(pageNum);
         page.setSize(pageSize);
         long userId = JWTKit.getUserId(getHttpServletRequest());
-        BigDecimal latitude = null;
+        /*BigDecimal latitude = null;
         BigDecimal longitude = null;
         Customer customer = pathService.queryCustomerByUserId(userId);
         if (customer != null) {
             latitude = customer.getLatitude();
             longitude = customer.getLongitude();
+        }*/
+        BigDecimal latitude = new BigDecimal(lat);
+        BigDecimal longitude = new BigDecimal(lng);
+
+        Customer customer = pathService.queryCustomerByUserId(userId);
+        if (customer != null) {
+            customer.setLatitude(latitude);
+            customer.setLongitude(longitude);
+            customerService.updateMaster(customer);
         }
         List<Map<String, Object>> studios = domainQueryService.queryStudioBySite(page, city,typeName,name, latitude, longitude);
         page.setRecords(studios);
