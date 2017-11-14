@@ -172,13 +172,13 @@ public class StudioEndpoint extends BaseController {
         BigDecimal latitude = new BigDecimal(lat);
         BigDecimal longitude = new BigDecimal(lng);
 
-        Customer customer = pathService.queryCustomerByUserId(userId);
+/*        Customer customer = pathService.queryCustomerByUserId(userId);
         if (customer != null) {
             customer.setLatitude(latitude);
             customer.setLongitude(longitude);
             customerService.updateMaster(customer);
-        }
-        List<Map<String, Object>> studios = domainQueryService.queryStudioBySite(page, city,typeName,name, latitude, longitude);
+        }*/
+        List<Map<String, Object>> studios = domainQueryService.queryStudioBySite(page, city, typeName,name, latitude, longitude);
         page.setRecords(studios);
 
         return SuccessTip.create(page);

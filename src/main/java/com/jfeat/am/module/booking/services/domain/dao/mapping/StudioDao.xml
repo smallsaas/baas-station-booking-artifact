@@ -109,9 +109,7 @@
         left JOIN emb_service_type
         ON emb_service_type.id = emb_studio_service.type_id
         WHERE 1=1
-        <if test="city != null and city != ''">
-            AND emb_studio.city LIKE CONCAT('%',#{city},'%')
-        </if>
+            AND emb_studio.city = #{city}
         <if test="typeName != null and typeName != ''">
             AND emb_service_type.name LIKE CONCAT('%',#{typeName},'%')
         </if>
