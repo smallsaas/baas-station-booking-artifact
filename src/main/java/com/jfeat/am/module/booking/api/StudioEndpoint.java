@@ -158,7 +158,7 @@ public class StudioEndpoint extends BaseController {
                                  @RequestParam(name = "typeName", required = false) String typeName,
                                  @RequestParam(name = "name", required = false) String name,
                                  @RequestParam(name = "latitude",required = true) String  lat,
-                                 @RequestParam(name = "latitude",required = true)String lng) {
+                                 @RequestParam(name = "longitude",required = true)String lng) {
         page.setCurrent(pageNum);
         page.setSize(pageSize);
         long userId = JWTKit.getUserId(getHttpServletRequest());
