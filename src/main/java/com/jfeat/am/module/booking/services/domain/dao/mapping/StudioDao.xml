@@ -7,7 +7,7 @@
         emb_studio.*,
         emb_service.type_id
     </sql>
-    <select id="queryStudioByMultiple" resultType="Map">
+    <select id="queryStudioByTypeName" resultType="Map">
         SELECT emb_studio_service.type_id ,
         emb_studio.id ,
         emb_studio.name ,
@@ -27,55 +27,16 @@
         emb_studio.is_stick ,
         emb_studio.tag ,
         emb_studio.field_c ,
-        emb_service_type.name AS tname,
-        round(
-        6378.138 * 2 * asin(
-        sqrt(
-        pow(
-        sin(
-        (
-        #{latitude} * pi() / 180 - emb_studio.latitude * pi() / 180
-        ) / 2
-        ),
-        2
-        ) + cos(#{latitude} * pi() / 180) * cos(emb_studio.latitude * pi() / 180) * pow(
-        sin(
-        (
-        #{longitude} * pi() / 180 - emb_studio.longitude * pi() / 180
-        ) / 2
-        ),
-        2
-        )
-        )
-        ) * 1000
-        ) as distance
-
+        emb_service_type.name AS typeName
         FROM emb_studio
         LEFT JOIN emb_studio_service
         ON emb_studio.id = emb_studio_service.studio_id
         left JOIN emb_service_type
         ON emb_service_type.id = emb_studio_service.type_id
         WHERE 1=1
-        <if test="tname != null and tname != ''">
-            AND emb_service_type.name LIKE CONCAT('%',#{tname},'%')
-        </if>
-        <if test="name != null and name != ''">
-            AND emb_studio.name LIKE CONCAT('%',#{name},'%')
-        </if>
-        <if test="city != null and city != ''">
-            AND emb_studio.city LIKE CONCAT('%',#{city},'%')
-        </if>
-        <if test="stick != null and stick != ''">
-            AND emb_studio.is_stick LIKE CONCAT('%',#{stick},'%')
-        </if>
-
-        GROUP BY emb_studio.id
-
-        ORDER BY
-
-        IF (ISNULL(distance), 1, 0),
-        distance ASC,
-        emb_studio.id ASC
+            AND emb_service_type.name = #{typeName}
+            AND emb_studio.city = #{city}
+            AND emb_studio.is_stick != 'SINK'
     </select>
 
 

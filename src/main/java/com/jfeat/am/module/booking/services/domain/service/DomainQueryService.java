@@ -75,13 +75,9 @@ public interface DomainQueryService {
     /*
     *   查找店铺 by ServiceType or  StudioName
     * */
-    List<Map<String, Object>> queryStudioByMultiple(Page<StudioModel> page,
-                                                    String tname,
-                                                    String name,
-                                                    String city,
-                                                    String stick,
-                                                    BigDecimal latitude,
-                                                    BigDecimal longitude);
+    List<Map<String, Object>> queryStudioByTypeName(Page<StudioModel> page,
+                                                    String typeName,
+                                                    String city);
 
     /*
         *   查找店铺 by site

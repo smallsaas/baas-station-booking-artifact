@@ -27,13 +27,9 @@ public interface StudioDao {
     /*
     *   query  by ServiceType
     * */
-    List<Map<String, Object>> queryStudioByMultiple(Page<StudioModel> page,
-                                                    @Param("tname") String tname,
-                                                    @Param("name") String name,
-                                                    @Param("city") String city,
-                                                    @Param("stick") String stick,
-                                                    @Param("latitude") BigDecimal latitude,
-                                                    @Param("longitude") BigDecimal longitude);
+    List<Map<String, Object>> queryStudioByTypeName(Page<StudioModel> page,
+                                                    @Param("typeName") String typeName,
+                                                    @Param("city") String city);
 
     /*
     *       queryStudioByStick

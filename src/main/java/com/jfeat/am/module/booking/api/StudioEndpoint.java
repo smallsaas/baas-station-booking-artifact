@@ -125,23 +125,13 @@ public class StudioEndpoint extends BaseController {
     public Tip queryStudioByServiceType(Page page,
                                         @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
                                         @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize,
-                                        @RequestParam(name = "tname", required = false) String tname,
-                                        @RequestParam(name = "name", required = false) String name,
-                                        @RequestParam(name = "city", required = false) String city,
-                                        @RequestParam(name = "stick", required = false) String stick) {
+                                        @RequestParam(name = "typeName", required = true) String typeName,
+                                        @RequestParam(name = "city", required = true) String city) {
         page.setCurrent(pageNum);
         page.setSize(pageSize);
-        long userId = JWTKit.getUserId(getHttpServletRequest());
-        BigDecimal latitude = null;
-        BigDecimal longitude = null;
-        Customer customer = pathService.queryCustomerByUserId(userId);
-        if (customer != null) {
-            latitude = customer.getLatitude();
-            longitude = customer.getLongitude();
-        }
 
         List<Map<String, Object>> studios =
-                domainQueryService.queryStudioByMultiple(page, tname,name,city ,stick,latitude, longitude);
+                domainQueryService.queryStudioByTypeName(page, typeName,city );
         page.setRecords(studios);
 
         return SuccessTip.create(page);

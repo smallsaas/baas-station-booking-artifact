@@ -9,12 +9,12 @@ import com.jfeat.am.common.controller.BaseController;
 
 import com.jfeat.am.common.exception.BizExceptionEnum;
 import com.jfeat.am.common.exception.BusinessException;
-import com.jfeat.am.common.persistence.model.WechatConfig;
+//import com.jfeat.am.common.persistence.model.WechatConfig;
 import com.jfeat.am.core.jwt.JWTKit;
 
 import com.jfeat.am.core.shiro.ShiroKit;
-import com.jfeat.am.modular.wechat.service.WechatConfigService;
-import com.jfeat.am.modular.wechat.service.WechatPushOrderService;
+/*import com.jfeat.am.modular.wechat.service.WechatConfigService;
+import com.jfeat.am.modular.wechat.service.WechatPushOrderService;*/
 import com.jfeat.am.module.booking.services.domain.definition.AdminPermission;
 import com.jfeat.am.module.booking.services.domain.definition.AppointmentStatus;
 import com.jfeat.am.module.booking.services.domain.model.AppointmentModel;
@@ -56,10 +56,10 @@ public class AppointmentEndpoint extends BaseController {
     StudioOverProductService studioService;
     @Resource
     PathService pathService;
-    @Resource
+    /*@Resource
     WechatPushOrderService wechatPushOrderService;
     @Resource
-    WechatConfigService wechatConfigService;
+    WechatConfigService wechatConfigService;*/
 
 
     private boolean wechatPushOrder = true;
@@ -153,7 +153,7 @@ public class AppointmentEndpoint extends BaseController {
     /*
    *   CRUD about Appointment
    * */
-    @PostMapping
+    /*@PostMapping
     public Tip createAppointment(@Valid @RequestBody Appointment appointment) {
         Long userId = JWTKit.getUserId(getHttpServletRequest());
         Customer customer = pathService.queryCustomerByUserId(userId);
@@ -188,7 +188,7 @@ public class AppointmentEndpoint extends BaseController {
             logger.debug("push order result: {}", map);
         }
         return SuccessTip.create(map);
-    }
+    }*/
 
     @PutMapping("/{id}")
     public Tip updateAppointment(@PathVariable long id,@Valid @RequestBody Appointment appointment) {
