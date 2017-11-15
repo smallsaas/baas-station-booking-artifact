@@ -121,7 +121,6 @@ public class StudioEndpoint extends BaseController {
     *   查找店铺 by ServiceType
     * */
     @GetMapping("/options")
-    @Permission(AdminPermission.QUERY)
     public Tip queryStudioByServiceType(Page page,
                                         @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
                                         @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize,
