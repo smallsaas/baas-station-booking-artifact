@@ -79,6 +79,12 @@ public interface DomainQueryService {
                                                     String typeName,
                                                     String city);
 
+    List<Map<String, Object>> queryStudioByMultiple(Page<StudioModel> page,
+                                                    String tname,
+                                                    String name,
+                                                    String city,
+                                                    String stick);
+
     /*
         *   查找店铺 by site
         * */

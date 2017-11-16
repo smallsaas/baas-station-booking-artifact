@@ -120,7 +120,7 @@ public class StudioEndpoint extends BaseController {
     /*
     *   查找店铺 by ServiceType
     * */
-    @GetMapping("/options")
+    @GetMapping("/types")
     public Tip queryStudioByServiceType(Page page,
                                         @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
                                         @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize,
@@ -131,6 +131,24 @@ public class StudioEndpoint extends BaseController {
 
         List<Map<String, Object>> studios =
                 domainQueryService.queryStudioByTypeName(page, typeName,city );
+        page.setRecords(studios);
+
+        return SuccessTip.create(page);
+    }
+
+    @GetMapping("/options")
+    @Permission(AdminPermission.QUERY)
+    public Tip queryStudioByServiceType(Page page,
+                                        @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
+                                        @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize,
+                                        @RequestParam(name = "tname", required = false) String tname,
+                                        @RequestParam(name = "name", required = false) String name,
+                                        @RequestParam(name = "city", required = false) String city,
+                                        @RequestParam(name = "stick", required = false) String stick) {
+        page.setCurrent(pageNum);
+        page.setSize(pageSize);
+        List<Map<String, Object>> studios =
+                domainQueryService.queryStudioByMultiple(page, tname,name,city ,stick);
         page.setRecords(studios);
 
         return SuccessTip.create(page);

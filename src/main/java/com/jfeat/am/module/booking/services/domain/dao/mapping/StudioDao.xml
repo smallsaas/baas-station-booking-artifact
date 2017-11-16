@@ -39,6 +39,48 @@
             AND emb_studio.is_stick != 'SINK'
     </select>
 
+    <select id="queryStudioByMultiple" resultType="Map">
+        SELECT emb_studio_service.type_id ,
+        emb_studio.id ,
+        emb_studio.name ,
+        emb_studio.description ,
+        emb_studio.work_time ,
+        emb_studio.fee ,
+        emb_studio.studio_site ,
+        emb_studio.cover ,
+        emb_studio.province ,
+        emb_studio.city ,
+        emb_studio.district ,
+        emb_studio.longitude ,
+        emb_studio.latitude ,
+        emb_studio.contact ,
+        emb_studio.phone ,
+        emb_studio.studio_phone ,
+        emb_studio.is_stick ,
+        emb_studio.tag ,
+        emb_studio.field_c ,
+        emb_service_type.name AS tname
+        FROM emb_studio
+        LEFT JOIN emb_studio_service
+        ON emb_studio.id = emb_studio_service.studio_id
+        left JOIN emb_service_type
+        ON emb_service_type.id = emb_studio_service.type_id
+        WHERE 1=1
+        <if test="tname != null and tname != ''">
+            AND emb_service_type.name LIKE CONCAT('%',#{tname},'%')
+        </if>
+        <if test="name != null and name != ''">
+            AND emb_studio.name LIKE CONCAT('%',#{name},'%')
+        </if>
+        <if test="city != null and city != ''">
+            AND emb_studio.city LIKE CONCAT('%',#{city},'%')
+        </if>
+        <if test="stick != null and stick != ''">
+            AND emb_studio.is_stick LIKE CONCAT('%',#{stick},'%')
+        </if>
+
+        GROUP BY emb_studio.id
+    </select>
 
     <select id="queryStudioBySite" resultType="Map">
         SELECT emb_service_type.name AS typeName,

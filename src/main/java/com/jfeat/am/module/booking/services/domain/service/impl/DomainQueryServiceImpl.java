@@ -161,6 +161,13 @@ public class DomainQueryServiceImpl implements DomainQueryService {
         return studioDao.queryStudioByTypeName(page, typeName,city);
     }
 
+    public List<Map<String, Object>> queryStudioByMultiple(Page<StudioModel> page,
+                                                           String tname,
+                                                           String name,
+                                                           String city,
+                                                           String stick) {
+        return studioDao.queryStudioByMultiple(page, tname,name,city,stick);
+    }
     /*
     *   查找店铺 by site
     * */
