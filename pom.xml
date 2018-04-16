@@ -23,7 +23,8 @@
         <sb-account.version>1.0.0</sb-account.version>
         <sb-wechat.version>1.0.0</sb-wechat.version>
         <sb-ad.version>1.0.0</sb-ad.version>
-        <sb-crud.version>1.0.0-SNAPSHOT</sb-crud.version>
+        <sb-pcd.version>1.0.0</sb-pcd.version>
+        <sb-crud.version>1.0.0</sb-crud.version>
     </properties>
 
     <dependencies>
@@ -31,6 +32,11 @@
             <groupId>com.jfeat</groupId>
             <artifactId>sb-base</artifactId>
             <version>${sb-base.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.jfeat</groupId>
+            <artifactId>sb-pcd</artifactId>
+            <version>${sb-pcd.version}</version>
         </dependency>
         <dependency>
             <groupId>com.jfeat</groupId>
