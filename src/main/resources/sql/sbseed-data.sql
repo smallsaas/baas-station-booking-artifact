@@ -9,3 +9,4 @@ INSERT INTO `perm` (`id`, `groupid`, `name`, `identifier`) VALUES
 ('909719474314252293', '909719474314252289', '查询订单', 'appointment.query');
 
 
+insert into t_ad_group (id,name) values (1, 'carousel'),(2, 'banner');
