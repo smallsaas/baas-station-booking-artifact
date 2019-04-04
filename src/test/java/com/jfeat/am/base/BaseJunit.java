@@ -1,6 +1,6 @@
 package com.jfeat.am.base;
 
-import com.jfeat.am.AmApplication;
+import com.jfeat.AmApplication;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
