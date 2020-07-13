@@ -1,10 +1,5 @@
 package com.jfeat.am.module.booking.api;
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.jfeat.am.common.constant.tips.ErrorTip;
-import com.jfeat.am.common.constant.tips.SuccessTip;
-import com.jfeat.am.common.constant.tips.Tip;
-import com.jfeat.am.common.controller.BaseController;
 import com.jfeat.am.module.booking.services.domain.model.StudioServiceModel;
 import com.jfeat.am.module.booking.services.domain.service.DomainQueryTypeService;
 import com.jfeat.am.module.booking.services.persistence.mapper.StudioServiceMapper;
@@ -14,6 +9,9 @@ import com.jfeat.am.module.booking.services.service.crud.ServiceTypeService;
 import com.jfeat.am.module.booking.services.persistence.model.ServiceType;
 
 import com.jfeat.am.module.booking.services.service.path.PathService;
+import com.jfeat.crud.base.tips.SuccessTip;
+import com.jfeat.crud.base.tips.Tip;
+
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -25,7 +23,7 @@ import java.util.List;
  */
 @RequestMapping("/api/emb/services")
 @RestController
-public class EmbServiceEndpoint extends BaseController{
+public class EmbServiceEndpoint{
     @Resource
     EmbServiceService embServiceService;
     @Resource

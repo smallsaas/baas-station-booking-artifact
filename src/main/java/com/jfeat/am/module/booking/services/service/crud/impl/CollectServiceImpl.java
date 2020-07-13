@@ -2,10 +2,11 @@ package com.jfeat.am.module.booking.services.service.crud.impl;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.jfeat.am.common.crud.impl.CRUDServiceOnlyImpl;
 import com.jfeat.am.module.booking.services.persistence.mapper.StudioCollectMapper;
 import com.jfeat.am.module.booking.services.persistence.model.StudioCollect;
 import com.jfeat.am.module.booking.services.service.crud.CollectService;
+import com.jfeat.crud.plus.impl.CRUDServiceOnlyImpl;
+
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -26,11 +27,13 @@ public class CollectServiceImpl extends CRUDServiceOnlyImpl<StudioCollect> imple
         return studioCollectMapper;
     }
 
+    @Override
     public List<StudioCollect>  allCollect(){
         List<StudioCollect> collects = studioCollectMapper.selectList(new EntityWrapper<>());
         return collects;
     }
 
+    @Override
     public Integer deleteCollect(Long studioId, Long customerId){
         Map<String,Object> map = new HashMap<>();
         map.put("studio_id",studioId);

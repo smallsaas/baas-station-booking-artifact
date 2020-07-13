@@ -1,14 +1,14 @@
 package com.jfeat.am.module.booking.api;
 
-import com.jfeat.am.common.constant.tips.SuccessTip;
-import com.jfeat.am.common.constant.tips.Tip;
-import com.jfeat.am.common.controller.BaseController;
 import com.jfeat.am.core.jwt.JWTKit;
 import com.jfeat.am.module.booking.services.service.crud.CustomerService;
 import com.jfeat.am.module.booking.services.persistence.model.Customer;
 
 
 import com.jfeat.am.module.booking.services.service.path.PathService;
+import com.jfeat.crud.base.tips.SuccessTip;
+import com.jfeat.crud.base.tips.Tip;
+
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -21,7 +21,7 @@ import java.util.List;
  */
 @RequestMapping("/api/customers")
 @RestController
-public class CustomerEndpoint extends BaseController {
+public class CustomerEndpoint {
     @Resource
     CustomerService customerService;
     @Resource
@@ -41,7 +41,7 @@ public class CustomerEndpoint extends BaseController {
   * */
     @PostMapping
     public Tip createCustomer(@Valid @RequestBody Customer customer) {
-        customer.setUserId( JWTKit.getUserId(getHttpServletRequest()));
+        customer.setUserId( JWTKit.getUserId());
         customer.setCreateTime(new Date());
         Customer result = customerService.registerCustomer(customer);
         return SuccessTip.create(result);

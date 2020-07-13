@@ -1,10 +1,11 @@
 package com.jfeat.am.module.booking.services.service.crud.impl;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
-import com.jfeat.am.common.crud.impl.CRUDServiceOnlyImpl;
-import com.jfeat.am.module.booking.services.service.crud.AppointmentService;
 import com.jfeat.am.module.booking.services.persistence.mapper.AppointmentMapper;
 import com.jfeat.am.module.booking.services.persistence.model.Appointment;
+import com.jfeat.am.module.booking.services.service.crud.AppointmentService;
+import com.jfeat.crud.plus.impl.CRUDServiceOnlyImpl;
+
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

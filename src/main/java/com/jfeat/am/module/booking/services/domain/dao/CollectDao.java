@@ -10,5 +10,5 @@ import java.util.List;
  */
 public interface CollectDao {
 
-    List<StudioCollectModel>  queryUserCollects(Page<StudioCollectModel> page, @Param("customerId")long customerId);
+    List<StudioCollectModel>  queryUserCollects(Page<StudioCollectModel> page, @Param("customerId") long customerId);
 }

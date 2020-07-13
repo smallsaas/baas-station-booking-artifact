@@ -13,13 +13,13 @@ import java.util.List;
  */
 public interface AppointmentDao{
     List<AppointmentModel> queryAppointment(Page<AppointmentModel> page,
-                                       @Param("status") String status,
-                                       @Param("studioId") Long studioId,
-                                       @Param("phone") Long phone);
+                                            @Param("status") String status,
+                                            @Param("studioId") Long studioId,
+                                            @Param("phone") Long phone);
 
     List<AppointmentModel> queryAppointmentByStatus(Page<AppointmentModel> page,
-                                                    @Param("customerId")long customerId,
-                                       @Param("status") String status);
+                                                    @Param("customerId") long customerId,
+                                                    @Param("status") String status);
 }
 
 

@@ -51,7 +51,7 @@ public interface DomainQueryService {
     * */
     List<AppointmentModel> queryAppointmentByStatus(Page<AppointmentModel> page,
                                                     long customerId,
-                                               String status);
+                                                    String status);
 
     /*
     *   queryStudioByStick
@@ -68,9 +68,9 @@ public interface DomainQueryService {
      * 模糊查找Appointment
      */
     List<AppointmentModel> queryAppointment(Page<AppointmentModel> page,
-                                       String status,
-                                       Long studioId,
-                                       Long phone);
+                                            String status,
+                                            Long studioId,
+                                            Long phone);
 
     /*
     *   查找店铺 by ServiceType or  StudioName
@@ -89,7 +89,7 @@ public interface DomainQueryService {
         *   查找店铺 by site
         * */
     public List<Map<String, Object>> queryStudioBySite(Page<Studio> page,
-                                                       String city,String typeName,String name, BigDecimal latitude, BigDecimal longitude
+                                                       String city, String typeName, String name, BigDecimal latitude, BigDecimal longitude
     );
 
     /*

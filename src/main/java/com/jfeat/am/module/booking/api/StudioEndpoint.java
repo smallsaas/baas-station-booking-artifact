@@ -4,14 +4,8 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 
 import com.jfeat.am.common.annotation.Permission;
-import com.jfeat.am.common.constant.tips.ErrorTip;
-import com.jfeat.am.common.constant.tips.SuccessTip;
-import com.jfeat.am.common.constant.tips.Tip;
-import com.jfeat.am.common.controller.BaseController;
 
-import com.jfeat.am.common.crud.error.CRUDException;
 import com.jfeat.am.core.jwt.JWTKit;
-import com.jfeat.am.core.support.BeanKit;
 import com.jfeat.am.module.booking.api.bean.Ids;
 import com.jfeat.am.module.booking.services.domain.definition.AdminPermission;
 import com.jfeat.am.module.booking.services.domain.definition.StudioStick;
@@ -25,7 +19,11 @@ import com.jfeat.am.module.booking.services.persistence.model.*;
 import com.jfeat.am.module.booking.services.service.crud.CustomerService;
 import com.jfeat.am.module.booking.services.service.crud.StudioOverProductService;
 
+import com.jfeat.am.module.booking.services.service.crud.impl.StudioOverProductServiceImpl;
 import com.jfeat.am.module.booking.services.service.path.PathService;
+import com.jfeat.crud.base.tips.SuccessTip;
+import com.jfeat.crud.base.tips.Tip;
+
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -40,9 +38,9 @@ import java.util.Map;
  */
 @RequestMapping("/api/studios")
 @RestController
-public class StudioEndpoint extends BaseController {
+public class StudioEndpoint{
     @Resource
-    StudioOverProductService sDservice;
+    StudioOverProductServiceImpl sDservice;
     @Resource
     DomainQueryService domainQueryService;
     @Resource
@@ -168,7 +166,7 @@ public class StudioEndpoint extends BaseController {
                                  @RequestParam(name = "longitude",required = true)String lng) {
         page.setCurrent(pageNum);
         page.setSize(pageSize);
-        long userId = JWTKit.getUserId(getHttpServletRequest());
+        long userId = JWTKit.getUserId();
         /*BigDecimal latitude = null;
         BigDecimal longitude = null;
         Customer customer = pathService.queryCustomerByUserId(userId);
@@ -213,7 +211,7 @@ public class StudioEndpoint extends BaseController {
 
     @GetMapping("/{id}")
     public Tip showStudioModel(@PathVariable long id) {
-        long userId = JWTKit.getUserId(getHttpServletRequest());
+        long userId = JWTKit.getUserId();
         Customer customer = pathService.queryCustomerByUserId(userId);
         StudioModel result = domainQueryService.showStudioModel(id);
         if(customer != null){

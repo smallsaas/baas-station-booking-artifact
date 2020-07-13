@@ -4,7 +4,8 @@ import com.alibaba.fastjson.JSON;
 import com.jfeat.am.module.booking.services.domain.definition.AppointmentStatus;
 import com.jfeat.am.module.booking.services.persistence.model.Appointment;
 import com.jfeat.am.module.booking.services.service.crud.AppointmentService;
-import com.jfinal.kit.StrKit;
+import com.jfeat.crud.base.util.StrKit;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
