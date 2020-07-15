@@ -24,6 +24,16 @@ public class StudioService extends Model<StudioService> {
      * 主键
      */
 	private Long id;
+	/**
+	 * 所属组织ID
+	 */
+	@TableField("orgId")
+	private Long orgId;
+	/**
+	 * 组织标志
+	 */
+	@TableField("org_tag")
+	private String orgTag;
     /**
      * 服务类型
      */

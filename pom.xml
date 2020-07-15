@@ -246,7 +246,7 @@
             <artifactId>log4j</artifactId>
             <version>1.2.17</version>
         </dependency>
-        <dependency>
+        <!--<dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
             <version>1.7.29</version>
@@ -255,7 +255,7 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>1.7.29</version>
-        </dependency>
+        </dependency>-->
 
         <!--allow swagger support java 11 (above java9)-->
         <dependency>

@@ -31,14 +31,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.annotation.HttpMethodConstraint;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.models.HttpMethod;
 
 /**
  * Created by Administrator on 2017/9/15.
@@ -47,6 +54,7 @@ import javax.validation.Valid;
 @RequestMapping("/api/appointments")
 @Configuration
 @ConfigurationProperties(prefix = "am")
+@Api(value = "/api/appointments")
 public class AppointmentEndpoint {
 
     @Resource
@@ -75,22 +83,30 @@ public class AppointmentEndpoint {
 
     @GetMapping("/admin/{id}")
     @Permission(AdminPermission.QUERY)
-    public Tip queryAppointment(@PathVariable long id) {
+    @ApiOperation(value = "根据提供ID查询约定记录并返回",response = AppointmentModel.class)
+    @ApiParam(name = "id",value = "待查询的约定记录ID")
+    public Tip queryAppointment( @PathVariable long id) {
         return SuccessTip.create(pathService.appointmentDetails(id));
     }
 
     @PutMapping("/admin")
     @Permission(AdminPermission.EDIT)
+    @ApiOperation(value = "根据提供提交的约定记录实体类进行数据的更新",response = Integer.class)
+    @ApiParam(value = "待更新的约定记录ID")
     public Tip editAppointment(@Valid @RequestBody Appointment appointment) {
         return SuccessTip.create(appointmentService.updateMaster(appointment));
     }
 
-    /*
-     *   fuzzy query
-     * */
-
     @GetMapping("/lists")
     @Permission(AdminPermission.QUERY)
+    @ApiOperation(value = "根据请求参数status,studioId,phone配合pageNum与pageSize进行分页条件查询",response = Page.class)
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "pageNum",value = "当前请求页"),
+            @ApiImplicitParam(name = "pageSize", value = "每页记录条数"),
+            @ApiImplicitParam(name = "status",value = "记录状态"),
+            @ApiImplicitParam(name = "studioId",value = "工作室ID"),
+            @ApiImplicitParam(name = "phone",value = "联系电话")
+    })
     public Tip queryAppointment(Page page,
                                 @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
                                 @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize,
@@ -106,15 +122,17 @@ public class AppointmentEndpoint {
 
     }
 
-    /*
-     *   queryByStatus
-     * */
     @GetMapping("/users")
+    @ApiOperation(value = "根据记录状态进行查询，并将结果返回",response = Page.class)
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "pageNum",value = "当前请求页"),
+            @ApiImplicitParam(name = "pageSize", value = "每页记录条数"),
+            @ApiImplicitParam(name = "status",value = "记录状态")
+    })
     public Tip queryAppointmentByStatus(Page page,
                                         @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
                                         @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize,
-                                        @RequestParam(name = "status", required = false) String status
-    ) {
+                                        @RequestParam(name = "status", required = false) String status) {
         page.setSize(pageSize);
         page.setCurrent(pageNum);
         long userId = JWTKit.getUserId();
@@ -131,7 +149,9 @@ public class AppointmentEndpoint {
     }
 
     @PostMapping
-    public Tip createAppointment(@Valid @RequestBody Appointment appointment, HttpServletRequest request) {
+    @ApiOperation(value = "将传递的Appointment实体类写入数据库并返回数据结果",response = Map.class)
+    @ApiParam(name = "appointment",value = "约定记录实体类")
+    public Tip createAppointment(@Valid @RequestBody Appointment appointment) {
         Long userId = JWTKit.getUserId();
         Customer customer = pathService.queryCustomerByUserId(userId);
         if (customer == null) {
@@ -168,6 +188,11 @@ public class AppointmentEndpoint {
     }
 
     @PutMapping("/{id}")
+    @ApiOperation(value = "根据提供的ID和appointment进行相关记录的更新操作",response = Integer.class)
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "id",value = "待更新记录的ID"),
+            @ApiImplicitParam(name = "appointment",value = "待更新记录的实体类")
+    })
     public Tip updateAppointment(@PathVariable long id, @Valid @RequestBody Appointment appointment) {
         long userId = JWTKit.getUserId();
         Customer customer = pathService.queryCustomerByUserId(userId);
@@ -199,6 +224,8 @@ public class AppointmentEndpoint {
 
 
     @GetMapping("/{id}")
+    @ApiOperation(value = "根据提供ID查询约定记录",response = Integer.class)
+    @ApiParam(name = "id",value = "待查询的约定记录ID")
     public Tip showAppointmentModel(@PathVariable long id) {
         long userId = JWTKit.getUserId();
         Customer customer = pathService.queryCustomerByUserId(userId);
@@ -214,6 +241,8 @@ public class AppointmentEndpoint {
     }
 
     @DeleteMapping("/{id}")
+    @ApiOperation(value = "根据提供ID删除约定记录",response = Integer.class)
+    @ApiParam(name = "id",value = "待删除的约定记录ID")
     public Tip deleteAppointment(@PathVariable long id) {
         long userId = JWTKit.getUserId();
         Customer customer = pathService.queryCustomerByUserId(userId);

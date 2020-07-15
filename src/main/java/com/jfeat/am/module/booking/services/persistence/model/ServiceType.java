@@ -3,6 +3,7 @@ package com.jfeat.am.module.booking.services.persistence.model;
 import java.io.Serializable;
 
 import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
 import java.io.Serializable;
 
@@ -23,6 +24,16 @@ public class ServiceType extends Model<ServiceType> {
      * 主键
      */
 	private Long id;
+	/**
+	 * 所属组织ID
+	 */
+	@TableField("orgId")
+	private Long orgId;
+	/**
+	 * 组织标志
+	 */
+	@TableField("org_tag")
+	private String orgTag;
     /**
      * 名称
      */

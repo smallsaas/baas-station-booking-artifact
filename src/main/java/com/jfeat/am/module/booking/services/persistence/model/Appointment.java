@@ -25,6 +25,16 @@ public class Appointment extends Model<Appointment> {
      * 主键
      */
 	private Long id;
+	/**
+	 * 所属组织ID
+	 */
+	@TableField("orgId")
+	private Long orgId;
+	/**
+	 * 组织标志
+	 */
+	@TableField("org_tag")
+	private String orgTag;
     /**
      * 工作室ID
      */

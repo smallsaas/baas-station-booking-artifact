@@ -97,7 +97,7 @@ spring:
       filters: log4j,wall,mergeStat
       initialize: false
       schema: classpath*:sql/*-schema.sql
-      data: classpath*:sql/*-data.sql
+#      data: classpath*:sql/*-data.sql
   rabbitmq:
       host: 112.74.26.228
       port: 5672

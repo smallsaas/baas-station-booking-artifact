@@ -5,6 +5,8 @@
 	<!-- 通用查询映射结果 -->
 	<resultMap id="BaseResultMap" type="com.jfeat.am.module.booking.services.persistence.model.StudioProduct">
 		<id column="id" property="id" />
+		<result column="org_id" property="orgId" />
+		<result column="org_tag" property="orgTag" />
 		<result column="studio_id" property="studioId" />
 		<result column="feature" property="feature" />
 		<result column="fee" property="fee" />
