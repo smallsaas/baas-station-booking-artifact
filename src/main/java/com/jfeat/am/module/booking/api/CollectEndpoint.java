@@ -1,7 +1,6 @@
 package com.jfeat.am.module.booking.api;
 
 import com.baomidou.mybatisplus.plugins.Page;
-import com.jfeat.am.core.jwt.JWTKit;
 import com.jfeat.am.module.booking.services.domain.model.StudioCollectModel;
 import com.jfeat.am.module.booking.services.persistence.model.Customer;
 import com.jfeat.am.module.booking.services.persistence.model.StudioCollect;
@@ -57,7 +56,7 @@ public class CollectEndpoint  {
     @ApiParam(name = "studioCollect",value = "工作室集合实体类")
     public Tip createCollect(@Valid @RequestBody StudioCollect studioCollect) {
 
-        long userId = JWTKit.getUserId();
+        long userId = 1l;//JWTKit.getUserId();
         studioCollect.setCreateTime(new Date());
         Customer customer = pathService.queryCustomerByUserId(userId);
         if (customer == null) {
@@ -71,20 +70,20 @@ public class CollectEndpoint  {
     @ApiOperation(value = "根据提供ID删除收藏记录",response = Integer.class)
     @ApiParam(name = "id",value = "待删除的收藏记录ID")
     public Tip deleteCollect(@PathVariable Long studioId) {
-        long customerId = JWTKit.getUserId();
+        long customerId = 1l;//JWTKit.getUserId();
         return SuccessTip.create(collectService.deleteCollect(studioId, customerId));
     }
 
     @GetMapping("/users")
     @ApiOperation(value = "根据用户ID查询名下的工作室收藏记录",response = List.class)
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "pageNum",value = "当前请求页"),
-            @ApiImplicitParam(name = "pageSize", value = "每页记录条数")
+            @ApiImplicitParam(name = "pageNum",value = "当前请求页",paramType = "query"),
+            @ApiImplicitParam(name = "pageSize", value = "每页记录条数",paramType = "query")
     })
     public Tip getSelfFiles(Page page,
                             @RequestParam(name = "pageNum", required = false, defaultValue = "1") Integer pageNum,
                             @RequestParam(name = "pageSize", required = false, defaultValue = "10") Integer pageSize) {
-        long userId = JWTKit.getUserId();
+        long userId = 1l;//JWTKit.getUserId();
         Customer customer = pathService.queryCustomerByUserId(userId);
         page.setCurrent(pageNum);
         page.setSize(pageSize);

@@ -24,10 +24,27 @@ public class ProductsPhotos extends Model<ProductsPhotos> {
      * 主键
      */
 	private Long id;
+
+	public Long getOrgId() {
+		return orgId;
+	}
+
+	public void setOrgId(Long orgId) {
+		this.orgId = orgId;
+	}
+
+	public String getOrgTag() {
+		return orgTag;
+	}
+
+	public void setOrgTag(String orgTag) {
+		this.orgTag = orgTag;
+	}
+
 	/**
 	 * 所属组织ID
 	 */
-	@TableField("orgId")
+	@TableField("org_id")
 	private Long orgId;
 	/**
 	 * 组织标志

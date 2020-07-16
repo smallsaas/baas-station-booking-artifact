@@ -28,7 +28,7 @@ public class Appointment extends Model<Appointment> {
 	/**
 	 * 所属组织ID
 	 */
-	@TableField("orgId")
+	@TableField("org_id")
 	private Long orgId;
 	/**
 	 * 组织标志
@@ -88,6 +88,21 @@ public class Appointment extends Model<Appointment> {
 	@TableField("field_c")
 	private String fieldC;
 
+	public Long getOrgId() {
+		return orgId;
+	}
+
+	public void setOrgId(Long orgId) {
+		this.orgId = orgId;
+	}
+
+	public String getOrgTag() {
+		return orgTag;
+	}
+
+	public void setOrgTag(String orgTag) {
+		this.orgTag = orgTag;
+	}
 
 	public Long getId() {
 		return id;

@@ -20,14 +20,30 @@ public class ServiceType extends Model<ServiceType> {
 
     private static final long serialVersionUID = 1L;
 
-    /**
+	public Long getOrgId() {
+		return orgId;
+	}
+
+	public void setOrgId(Long orgId) {
+		this.orgId = orgId;
+	}
+
+	public String getOrgTag() {
+		return orgTag;
+	}
+
+	public void setOrgTag(String orgTag) {
+		this.orgTag = orgTag;
+	}
+
+	/**
      * 主键
      */
 	private Long id;
 	/**
 	 * 所属组织ID
 	 */
-	@TableField("orgId")
+	@TableField("org_id")
 	private Long orgId;
 	/**
 	 * 组织标志

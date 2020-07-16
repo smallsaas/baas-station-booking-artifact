@@ -1,24 +1,27 @@
 package com.jfeat.am.module.booking.api;
 
-import com.jfeat.am.core.jwt.JWTKit;
-import com.jfeat.am.module.booking.services.service.crud.CustomerService;
 import com.jfeat.am.module.booking.services.persistence.model.Customer;
-
-
+import com.jfeat.am.module.booking.services.service.crud.CustomerService;
 import com.jfeat.am.module.booking.services.service.path.PathService;
 import com.jfeat.crud.base.tips.SuccessTip;
 import com.jfeat.crud.base.tips.Tip;
 
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
-import javax.validation.Valid;
 import java.util.Date;
 import java.util.List;
 
+import javax.annotation.Resource;
+import javax.validation.Valid;
+
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
@@ -51,7 +54,7 @@ public class CustomerEndpoint {
     @ApiOperation(value = "根据传递的Customer实体类创建数据库记录",response = Customer.class)
     @ApiParam(name = "customer",value = "客户记录实体类")
     public Tip createCustomer(@Valid @RequestBody Customer customer) {
-        customer.setUserId( JWTKit.getUserId());
+        customer.setUserId(1L);// JWTKit.getUserId()
         customer.setCreateTime(new Date());
         Customer result = customerService.registerCustomer(customer);
         return SuccessTip.create(result);
