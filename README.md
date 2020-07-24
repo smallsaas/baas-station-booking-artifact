@@ -2,7 +2,6 @@
 ## 0x1. Swaager
 
 ### a. Maven依赖
-=======
 ## Swaager依赖
 
 可使用封装好的Swagger库或直接依赖crud-dev，其中已依赖Swagger，如下所示：
@@ -24,7 +23,6 @@
 </dependency>
 ```
 
-<<<<<<< HEAD
 ### b. 使用方法
 
 待项目启动后，可通过**`http://ipaddress:port/swagger-ui.html#/`**直接在线查阅已说明的API接口，同时可通过该在线页面发起HTTP请求进行接口调用测试。视图如下所示：
