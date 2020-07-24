@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.jfeat</groupId>
-    <artifactId>doctor-booking</artifactId>
+    <artifactId>baas-station-booking-artifact</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
-    <name>Environment-SaaS-Starter</name>
-    <description>Environment for SaaS Starter</description>
+    <name>baas-station-booking-artifact</name>
+    <description>baas-station-booking-artifact</description>
 
     <parent>
         <groupId>com.jfeat</groupId>
@@ -24,76 +24,13 @@
         <!---CRUD, scope provided-->
         <crud-plus.version>0.0.6</crud-plus.version>
         <crud-core.version>0.0.2</crud-core.version>
-        <!---only dev, scope provided-->
-        <crud-dev.version>0.0.1</crud-dev.version>
         <!---only produce, scope provided-->
         <crud-log.version>0.0.1</crud-log.version>
         <crud-base.version>0.0.1</crud-base.version>
-
-        <sb-base.version>1.0.0</sb-base.version>
-        <sb-account.version>1.0.0</sb-account.version>
-        <sb-wechat.version>1.1.0</sb-wechat.version>
-        <sb-ad.version>1.0.0</sb-ad.version>
-        <sb-pcd.version>1.0.0</sb-pcd.version>
+        <crud-dev.version>0.0.1</crud-dev.version>
     </properties>
 
     <dependencies>
-        <!--  &lt;!&ndash; jwt &ndash;&gt;
-                &lt;!&ndash; https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt &ndash;&gt;
-                <dependency>
-                    <groupId>io.jsonwebtoken</groupId>
-                    <artifactId>jjwt</artifactId>
-                    <version>${jjwt.version}</version>
-                </dependency>-->
-        <!--<dependency>
-            <groupId>com.jfeat</groupId>
-            <artifactId>sb-pcd</artifactId>
-            <version>${sb-pcd.version}</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>sb-base</artifactId>
-                    <groupId>com.jfeat</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>-->
-        <!-- <dependency>
-             <groupId>com.jfeat</groupId>
-             <artifactId>sb-wechat</artifactId>
-             <version>${sb-wechat.version}</version>
-             <exclusions>
-                 <exclusion>
-                     <artifactId>sb-base</artifactId>
-                     <groupId>com.jfeat</groupId>
-                 </exclusion>
-             </exclusions>
-         </dependency>-->
-        <!-- dev only -->
-        <!--<dependency>
-            <groupId>com.jfeat</groupId>
-            <artifactId>crud-dev</artifactId>
-            <version>${crud-dev.version}</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>log4j-over-slf4j</artifactId>
-                    <groupId>org.slf4j</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>-->
-        <!-- produce only
-        <dependency>
-            <groupId>com.jfeat</groupId>
-            <artifactId>crud-log</artifactId>
-            <version>${crud-log.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        produce only END -->
-        <!--swagger ui-->
-        <dependency>
-            <groupId>com.jfeat</groupId>
-            <artifactId>swagger-ui</artifactId>
-            <version>0.0.1</version>
-        </dependency>
-
         <!-- redis -->
         <dependency>
             <groupId>redis.clients</groupId>
@@ -121,26 +58,6 @@
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>${commons.io.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.github.penggle</groupId>
-            <artifactId>kaptcha</artifactId>
-            <version>${kaptcha.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.zxing</groupId>
-            <artifactId>core</artifactId>
-            <version>${zxing.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.velocity</groupId>
-            <artifactId>velocity</artifactId>
-            <version>${velocity.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.ibeetl</groupId>
-            <artifactId>beetl</artifactId>
-            <version>${beetl.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -188,17 +105,6 @@
             <artifactId>aspectjrt</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-ehcache</artifactId>
-            <version>${shiro.version}</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>slf4j-api</artifactId>
-                    <groupId>org.slf4j</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
         <!--spring boot依赖-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -208,6 +114,11 @@
             <groupId>com.jfeat</groupId>
             <artifactId>crud-base</artifactId>
             <version>${crud-base.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.jfeat</groupId>
+            <artifactId>crud-dev</artifactId>
+            <version>${crud-dev.version}</version>
         </dependency>
         <dependency>
             <groupId>com.jfeat</groupId>
@@ -257,17 +168,6 @@
             <artifactId>log4j</artifactId>
             <version>1.2.17</version>
         </dependency>
-        <!--<dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <version>1.7.29</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.7.29</version>
-        </dependency>-->
-
         <!--allow swagger support java 11 (above java9)-->
         <dependency>
             <groupId>javax.xml.bind</groupId>
@@ -289,22 +189,6 @@
             <artifactId>activation</artifactId>
             <version>1.1.1</version>
         </dependency>
-        <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjweaver</artifactId>
-            <version>1.9.4</version>
-        </dependency>
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-            <version>${swagger.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
-            <version>${swagger.version}</version>
-        </dependency>
-
     </dependencies>
 
     <build>
@@ -336,22 +220,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-deploy-plugin</artifactId>
             </plugin>
-            <plugin>
-                <groupId>com.jfeat</groupId>
-                <artifactId>sb-code-generator</artifactId>
-                <version>1.0.0</version>
-                <configuration>
-                    <!-- change to your module name -->
-                    <moduleName>booking</moduleName>
-                    <dbUrl>jdbc:mysql://127.0.0.1:3306/drbooking</dbUrl>
-                    <username>root</username>
-                    <password>root</password>
-                    <outputDir>src/main/java</outputDir>
-                    <parentPackage>com.jfeat.am.module</parentPackage>
-                </configuration>
-            </plugin>
-
-
         </plugins>
         <resources>
             <resource>

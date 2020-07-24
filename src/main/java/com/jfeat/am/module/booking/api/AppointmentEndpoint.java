@@ -63,10 +63,6 @@ public class AppointmentEndpoint {
     StudioOverProductService studioService;
     @Resource
     PathService pathService;
-/*    @Resource
-    WechatPushOrderService wechatPushOrderService;
-    @Resource
-    WechatConfigService wechatConfigService;*/
 
     private boolean wechatPushOrder = true;
 
@@ -79,7 +75,6 @@ public class AppointmentEndpoint {
     }
 
     @GetMapping("/admin/{id}")
-//    @Permission(AdminPermission.QUERY)
     @ApiOperation(value = "根据提供ID查询订单记录并返回",response = AppointmentModel.class)
     @ApiParam(name = "id",value = "待查询的订单记录ID")
     public Tip queryAppointment( @PathVariable long id) {
@@ -87,7 +82,6 @@ public class AppointmentEndpoint {
     }
 
     @PutMapping("/admin")
-//    @Permission(AdminPermission.EDIT)
     @ApiOperation(value = "根据提供提交的订单记录实体类进行数据的更新",response = Integer.class)
     @ApiParam(value = "待更新的订单记录ID")
     public Tip editAppointment(@Valid @RequestBody Appointment appointment) {
@@ -95,7 +89,6 @@ public class AppointmentEndpoint {
     }
 
     @GetMapping("/lists")
-//    @Permission(AdminPermission.QUERY)
     @ApiOperation(value = "根据请求参数status,studioId,phone配合pageNum与pageSize进行分页条件查询",response = Page.class)
     @ApiImplicitParams({
             @ApiImplicitParam(name = "pageNum",value = "当前请求页",paramType = "query"),
@@ -138,7 +131,6 @@ public class AppointmentEndpoint {
         if (customer == null) {
             throw new BusinessException(BusinessCode.InvalidKey.getCode(), "customer not found.");
         }
-//        List<Appointment> appointments = domainQueryService.queryAppointmentByStatus(page, status);
         List<AppointmentModel> models = domainQueryService.queryAppointmentByStatus(page, customer.getId(), status);
 
         page.setRecords(models);
@@ -150,7 +142,6 @@ public class AppointmentEndpoint {
     @ApiOperation(value = "将传递的Appointment实体类写入数据库并返回数据结果",response = Map.class)
     @ApiParam(name = "appointment",value = "订单记录实体类")
     public Tip createAppointment(@Valid @RequestBody Appointment appointment) {
-//        Long userId = JWTKit.getUserId();
         Long userId = 1l;
         Customer customer = pathService.queryCustomerByUserId(userId);
         if (customer == null) {
@@ -233,10 +224,10 @@ public class AppointmentEndpoint {
     public Tip deleteAppointment(@PathVariable long id) {
         long userId = 1l;//JWTKit.getUserId();
         Customer customer = pathService.queryCustomerByUserId(userId);
-        /*if (customer == null) {
-            throw new BusinessException(BusinessCode.InvalidKey.getCode(), "customer not found.");
-        }*/
         Appointment appointment = appointmentService.retrieveMaster(id);
+        if (customer == null || appointment == null) {
+            throw new BusinessException(BusinessCode.InvalidKey.getCode(), "customer or appointment not found.");
+        }
         if (appointment.getCustomerId() == customer.getId()) {//Per.hasPermission(AdminPermission.EDIT)
             Integer result = appointmentService.deleteMaster(id);
             return SuccessTip.create(result);
