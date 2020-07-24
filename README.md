@@ -9,16 +9,16 @@
 <!-- 其中crud-dev依赖已包含swagger-ui -->
 <!--swagger ui-->
 <dependency>
-	<groupId>com.jfeat</groupId>
-	<artifactId>swagger-ui</artifactId>
-	<version>0.0.1</version>
+    <groupId>com.jfeat</groupId>
+    <artifactId>swagger-ui</artifactId>
+    <version>0.0.1</version>
 </dependency>
 
 <!--curd-dev-->
 <dependency>
-	<groupId>com.jfeat</groupId>
-	<artifactId>crud-dev</artifactId>
-	<version>0.0.1</version>
+    <groupId>com.jfeat</groupId>
+    <artifactId>crud-dev</artifactId>
+    <version>0.0.1</version>
 </dependency>
 ```
 
