@@ -2,7 +2,6 @@
 ## 0x1. Swaager
 
 ### a. Maven依赖
-## Swaager依赖
 
 可使用封装好的Swagger库或直接依赖crud-dev，其中已依赖Swagger，如下所示：
 
