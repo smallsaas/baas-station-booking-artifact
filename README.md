@@ -1,0 +1,1 @@
+# baas-station-booking-artifact
