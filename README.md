@@ -1,11 +1,9 @@
 # baas-station-booking-artifact
-<<<<<<< HEAD
 ## 0x1. Swaager
 
 ### a. Maven依赖
 =======
 ## Swaager依赖
->>>>>>> bbe32cef97e62d8a70ed0b47d59605fc69d1cee5
 
 可使用封装好的Swagger库或直接依赖crud-dev，其中已依赖Swagger，如下所示：
 
@@ -33,4 +31,3 @@
 
 ![UTOOLS1595563160151.png](https://user-gold-cdn.xitu.io/2020/7/24/1737ef9b6ba98ad8?w=1073&h=896&f=png&s=101222)
 =======
->>>>>>> bbe32cef97e62d8a70ed0b47d59605fc69d1cee5
