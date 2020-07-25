@@ -24,7 +24,5 @@
 
 ### b. 使用方法
 
-待项目启动后，可通过`http://ipaddress:port/swagger-ui.html#/`直接在线查阅已说明的API接口，同时可通过该在线页面发起HTTP请求进行接口调用测试。视图如下所示：
-
-![UTOOLS1595656668077.png](http://yanxuan.nosdn.127.net/6ab052629b0cc8081bcd46b474aa37cb.png)
+待项目启动后，可通过`http://ipaddress:port/swagger-ui.html#/`直接在线查阅已说明的API接口，同时可通过该在线页面发起HTTP请求进行接口调用测试。
 =======
